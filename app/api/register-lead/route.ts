@@ -11,7 +11,7 @@ export async function POST(request: Request) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, phone }),
+      body: JSON.stringify(body),
     });
 
     if (!response.ok) {

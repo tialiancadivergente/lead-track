@@ -6,11 +6,10 @@ import GoogleTagManager from '../../components/GoogleTagManager';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Meu App',
-  description: 'Descrição do meu app',
-//   viewport:
-//     "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, height=device-height, viewport-fit=cover",
-}
+    title: "O Resgate dos Otimistas - Diagnóstico de Dependência Emocional",
+    description:
+      "Faça seu diagnóstico de dependência emocional gratuito e descubra como aumentar seu nível de permissão.",
+  }
 
 export default function QuizLayout({ children }: { children: React.ReactNode }) {
   return (

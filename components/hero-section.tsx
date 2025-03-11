@@ -136,11 +136,12 @@ export default function HeroSection() {
       const payload: Record<string, any> = {
         email,
         phone: fullPhone,
-        temperatura,
+        temperature: temperatura,
         tipo,
-        versao,
+        version: versao,
         parametroCompleto: params.temperatura,
         domain,
+        uri: domain,
       };
       
       // Adicionar formFields ao payload apenas se existir
