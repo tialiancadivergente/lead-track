@@ -13,12 +13,14 @@ const useUserIP = () => {
         setUserIp(data.ip);
 
         // Enviar para o Google Tag Manager
-        TagManager.dataLayer({
-          dataLayer: {
-            event: "IP",
-            user_ip: data.ip,
-          },
-        });
+        if (data.ip) {
+          TagManager.dataLayer({
+            dataLayer: {
+              event: "IP",
+              user_ip: data.ip,
+            },
+          });
+        }
       })
       .catch((error) => console.error("Erro ao obter o IP:", error));
   }, []);
