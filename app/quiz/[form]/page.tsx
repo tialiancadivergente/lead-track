@@ -340,7 +340,10 @@ export default function Quiz({ params }: { params: { form: string } }) {
                                 para receber o link e materiais do evento:
                             </p>
 
-                            <Button className="w-full py-4 md:py-6 text-base md:text-lg bg-green-600 hover:bg-green-700">
+                            <Button 
+                                className="w-full py-4 md:py-6 text-base md:text-lg bg-green-600 hover:bg-green-700"
+                                onClick={() => window.location.href = "https://i.sendflow.pro/invite/oromar25f1?force=true"}
+                            >
                                 <Phone className="mr-2 h-4 w-4 md:h-5 md:w-5" /> 
                                 Entrar no Grupo no WhatsApp
                             </Button>
