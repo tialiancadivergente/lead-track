@@ -115,21 +115,14 @@ const questions = [
             { value: "frequentemente", label: "Frequentemente", weight: 0 },
             { value: "sempre", label: "Sempre", weight: 0 },
         ],
-    },
-    {
-        id: 11,
-        question:
-            "Você já buscou algum tipo de ajuda ou suporte (terapia, coaching, grupos de apoio) para lidar com seus desafios emocionais?",
-        options: [
-            { value: "sim", label: "Sim", weight: 27.8 },
-            { value: "parcialmente", label: "Parcialmente", weight: 36.9 },
-            { value: "nao", label: "Não", weight: 24.9 },
-            { value: "nuncafiz", label: "Nunca fiz", weight: 17.3 },
-        ],
-    },
+    }
 ]
 
 export default function Quiz() {
+    const [answers, setAnswers] = useState<Record<number, string>>({})
+    const [weights, setWeights] = useState<Record<number, number>>({})
+    const [completed, setCompleted] = useState(false)
+    const [totalScore, setTotalScore] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [email, setEmail] = useState("")
     const [whatsapp, setWhatsapp] = useState("")
@@ -163,11 +156,6 @@ export default function Quiz() {
         }, 3000)
     }
 
-    const [answers, setAnswers] = useState<Record<number, string>>({})
-    const [weights, setWeights] = useState<Record<number, number>>({})
-    const [completed, setCompleted] = useState(false)
-    const [totalScore, setTotalScore] = useState(0)
-
     const handleAnswer = (value: string) => {
         const question = questions[currentQuestion]
         const selectedOption = question.options.find((option) => option.value === value)
@@ -199,42 +187,6 @@ export default function Quiz() {
     }
 
     const progress = ((currentQuestion + 1) / questions.length) * 100
-
-    // if (completed) {
-    //     return (
-    //         <div className="flex flex-col items-center justify-center min-h-screen p-4 text-center">
-    //             <div className="absolute inset-0 bg-[url('/images/paper-texture.png')] bg-cover bg-center opacity-15"></div>
-    //             <div className="w-full max-w-xl mx-auto">
-    //                 <div className="mb-8">
-    //                     <Image
-    //                         src="/placeholder.svg?height=110&width=320"
-    //                         alt="O Resgate dos Otimistas"
-    //                         width={320}
-    //                         height={110}
-    //                         className="mx-auto"
-    //                     />
-    //                 </div>
-
-    //                 <h1 className="text-4xl font-bold text-amber-500 mb-5">OBRIGADO POR PARTICIPAR!</h1>
-
-    //                 <div className="bg-zinc-900 rounded-lg p-8 mb-8">
-    //                     <p className="text-white text-lg mb-7">
-    //                         Com base nas suas respostas, temos um conteúdo especial para você. Clique no botão abaixo para acessá-lo!
-    //                     </p>
-
-    //                     <Button
-    //                         className="w-full py-6 text-lg bg-green-600 hover:bg-green-700"
-    //                         onClick={() => window.open("#", "_blank")}
-    //                     >
-    //                         Clique aqui para entrar no Grupo no WhatsApp
-    //                     </Button>
-    //                 </div>
-
-    //                 <p className="text-gray-400 text-sm">© 2023. All rights reserved. Política de Privacidade.</p>
-    //             </div>
-    //         </div>
-    //     )
-    // }
 
     const currentQuestionData = questions[currentQuestion]
     const selectedValue = answers[currentQuestionData.id] || ""
