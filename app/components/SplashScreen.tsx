@@ -12,7 +12,7 @@ const criticalAssets = {
   ]
 }
 
-export default function SplashScreen({ children }) {
+export default function SplashScreen({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true)
   const [progress, setProgress] = useState(0)
   
