@@ -1,38 +1,209 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Phone } from "lucide-react"
 import Image from "next/image"
+import { useParams, useSearchParams, useRouter } from "next/navigation"
 
 export default function HeroSection() {
+  const params = useParams()
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const [temperatura, setTemperatura] = useState<string | null>(null)
+  const [tipo, setTipo] = useState<string | null>(null)
+  const [versao, setVersao] = useState<string | null>(null)
+  const [formFields, setFormFields] = useState<Record<string, string> | null>(null)
   const [email, setEmail] = useState("")
   const [whatsapp, setWhatsapp] = useState("")
+  const [ddi, setDdi] = useState("+55")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [domain, setDomain] = useState<string>("")
+
+  const launch = "[ORO] [MAR25]"
+
+  // Capturar o domínio da página
+  useEffect(() => {
+    // Verificar se estamos no navegador
+    if (typeof window !== 'undefined') {
+      const currentDomain = window.location.hostname;
+      console.log('Current domain:', currentDomain);
+      setDomain(currentDomain);
+    }
+  }, []);
+
+  // Capturar UTMs da queryString
+  useEffect(() => {
+    if (searchParams) {
+      const utmParams: Record<string, string> = {};
+      let hasUtm = false;
+      
+      // Lista de parâmetros UTM comuns
+      const utmKeys = [
+        'utm_source', 
+        'utm_medium', 
+        'utm_campaign', 
+        'utm_term', 
+        'utm_content',
+        'utm_id'
+      ];
+      
+      // Verificar cada parâmetro UTM
+      utmKeys.forEach(key => {
+        const value = searchParams.get(key);
+        if (value) {
+          utmParams[key] = value;
+          hasUtm = true;
+        }
+      });
+      
+      // Adicionar outros parâmetros da query que não são UTM
+      searchParams.forEach((value, key) => {
+        if (!utmKeys.includes(key) && key !== 'temperatura') {
+          utmParams[key] = value;
+          hasUtm = true;
+        }
+      });
+      
+      // Definir formFields apenas se houver UTMs
+      if (hasUtm) {
+        console.log('UTM params:', utmParams);
+        setFormFields(utmParams);
+      }
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (params && params.temperatura) {
+      console.log('temperatura param', params.temperatura)
+      
+      // Extrair os valores da string usando split
+      const paramValue = params.temperatura as string;
+      const parts = paramValue.split('-');
+      
+      if (parts.length >= 3) {
+        const tipoValue = parts[0];
+        const versaoValue = parts[1];
+        const temperaturaValue = parts[2];
+        
+        console.log('Tipo:', tipoValue);
+        console.log('Versão:', versaoValue);
+        console.log('Temperatura:', temperaturaValue);
+        
+        setTipo(tipoValue);
+        setVersao(versaoValue);
+        setTemperatura(temperaturaValue);
+      } else {
+        // Caso o formato não seja o esperado, usar o valor completo como temperatura
+        console.log('Formato inesperado, usando valor completo');
+        setTemperatura(paramValue);
+      }
+    }
+  }, [params])
+
+  // Função para construir a URL de redirecionamento
+  const buildRedirectUrl = () => {
+    // Construir o path base com os valores dinâmicos
+    const basePath = `/quiz/${tipo || 'oro'}-${versao || 'v9'}-${temperatura || 'q'}-typ`;
+    
+    // Iniciar com os parâmetros de email e telefone
+    const queryParams = new URLSearchParams();
+    queryParams.append('email', email);
+    queryParams.append('phone', `${ddi}${whatsapp.replace(/\s+|-|\(|\)|\./g, "")}`);
+    
+    // Adicionar UTMs se existirem
+    if (formFields) {
+      Object.entries(formFields).forEach(([key, value]) => {
+        queryParams.append(key, value);
+      });
+    }
+    
+    // Construir a URL completa
+    return `${basePath}?${queryParams.toString()}`;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const cleanedPhone = whatsapp.replace(/\s+|-|\(|\)|\./g, "");
+      
+      const fullPhone = `${ddi}${cleanedPhone}`;
+      
+      // Preparar o payload para a API
+      const payload: Record<string, any> = {
+        email,
+        phone: fullPhone,
+        temperatura,
+        tipo,
+        versao,
+        parametroCompleto: params.temperatura,
+        domain,
+      };
+      
+      // Adicionar formFields ao payload apenas se existir
+      if (formFields) {
+        payload.formFields = formFields;
+      }
+      
+      const response = await fetch('/api/register-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
 
-    const leads = JSON.parse(localStorage.getItem("leads") || "[]")
-    leads.push({ email, whatsapp, date: new Date().toISOString() })
-    localStorage.setItem("leads", JSON.stringify(leads))
+      if (!response.ok) {
+        throw new Error('Falha ao registrar lead');
+      }
 
-    setSuccess(true)
-    setIsSubmitting(false)
+      // Preparar dados para localStorage
+      const leadData: Record<string, any> = { 
+        email, 
+        whatsapp: fullPhone, 
+        temperature: temperatura,
+        tipo,
+        version: versao,
+        launch,
+        domain,
+        parametroCompleto: params.temperatura,
+        date: new Date().toISOString() 
+      };
+      
+      // Adicionar formFields aos dados do localStorage apenas se existir
+      if (formFields) {
+        leadData.formFields = formFields;
+      }
+      
+      const leads = JSON.parse(localStorage.getItem("leads") || "[]")
+      leads.push(leadData)
+      localStorage.setItem("leads", JSON.stringify(leads))
 
-    setTimeout(() => {
-      setSuccess(false)
-      setEmail("")
-      setWhatsapp("")
-    }, 3000)
+      setSuccess(true)
+      
+      // Redirecionar após um breve delay para mostrar a mensagem de sucesso
+      setTimeout(() => {
+        const redirectUrl = buildRedirectUrl();
+        console.log('Redirecionando para:', redirectUrl);
+        
+        // Usar window.location.href para navegação completa
+        if (typeof window !== 'undefined') {
+          window.location.href = redirectUrl;
+        }
+      }, 1500);
+      
+    } catch (error) {
+      console.error('Erro ao enviar dados:', error);
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
-    <section className="relative flex items-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] torn-paper-bottom mb-[-50px] lg:mb-[-150px] z-0">
+    <section className="relative flex items-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] mb-[-50px] lg:mb-[-150px] z-0">
       {/* Background com overlay */}
       <div className="absolute inset-0 bg-[url('/images/paper-texture.png')] bg-cover bg-center opacity-15"></div>
 
@@ -84,7 +255,11 @@ export default function HeroSection() {
                   <Phone size={18} className="text-gray-500" />
                 </div>
                 <div className="flex">
-                  <select className="py-3 pl-10 pr-2 rounded-l-md bg-[#f4f0e1]/90 text-[#07242c] border-r border-gray-300 focus:ring-0 focus:outline-none">
+                  <select 
+                    className="py-3 pl-10 pr-2 rounded-l-md bg-[#f4f0e1]/90 text-[#07242c] border-r border-gray-300 focus:ring-0 focus:outline-none"
+                    value={ddi}
+                    onChange={(e) => setDdi(e.target.value)}
+                  >
                     <option value="+55">🇧🇷 +55</option>
                     <option value="+1">🇺🇸 +1</option>
                     <option value="+44">🇬🇧 +44</option>

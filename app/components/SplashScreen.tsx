@@ -7,7 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 const criticalAssets = {
   images: [
     '/images/logo.png',
-    '/images/hero-banner.jpg',
+    '/images/hero-images.png',
+    '/images/journey-background.png',
     // Adicione outras imagens críticas
   ]
 }

@@ -15,8 +15,7 @@ export default function MentorSection() {
   }
 
   return (
-    <section id="mentor-section" className="bg-custom-background py-16 md:py-24 torn-paper-top">
-      <div className="absolute inset-0 bg-mentor-pattern bg-cover bg-center opacity-20"></div>
+    <section id="mentor-section" className="bg-custom-background py-16 md:py-24">
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row items-center">

@@ -6,8 +6,8 @@ import { useState, useEffect } from 'react'
 const criticalAssets = {
   images: [
     '/images/logo.png',
-    '/images/hero-banner.jpg',
-    '/images/background.jpg',
+    '/images/hero-images.png',
+    '/images/journey-background.png',
     // Adicione outras imagens críticas
   ],
   fonts: [

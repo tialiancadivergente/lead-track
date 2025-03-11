@@ -46,35 +46,6 @@
     position: relative;
   }
 
-  .torn-paper-top::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background-image: url("/images/torn-paper.png");
-    background-repeat: repeat-x;
-    background-size: contain;
-    z-index: 10;
-  }
 
-  .torn-paper-bottom {
-    position: relative;
-  }
-
-  .torn-paper-bottom::after {
-    content: "";
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background-image: url("/images/torn-paper.png");
-    background-repeat: repeat-x;
-    background-size: contain;
-    transform: rotate(180deg);
-    z-index: 10;
-  }
 }
 

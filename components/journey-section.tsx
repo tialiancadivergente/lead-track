@@ -15,7 +15,7 @@ export default function JourneySection() {
   }
 
   return (
-    <section className="relative py-32 md:py-48 overflow-hidden torn-paper-top torn-paper-bottom z-[9999] lg:mt-[45px]">
+    <section className="relative py-32 md:py-48 overflow-hidden z-[9999] lg:mt-[45px]">
       {/* Imagem de fundo com overlay */}
 
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/bg-journey.png')", backgroundPosition: "center top" }}></div>

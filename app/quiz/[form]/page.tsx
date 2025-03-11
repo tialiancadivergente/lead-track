@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { CustomRadio } from "@/app/components/custom-input"
 import SplashScreen from "@/app/components/SplashScreen"
+import { useSearchParams } from "next/navigation"
 // Definição das perguntas e respostas com seus respectivos pesos
 const questions = [
     {
@@ -118,7 +119,8 @@ const questions = [
     }
 ]
 
-export default function Quiz() {
+export default function Quiz({ params }: { params: { form: string } }) {
+    const searchParams = useSearchParams()
     const [answers, setAnswers] = useState<Record<number, string>>({})
     const [weights, setWeights] = useState<Record<number, number>>({})
     const [completed, setCompleted] = useState(false)
@@ -129,12 +131,34 @@ export default function Quiz() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [success, setSuccess] = useState(false)
     const [progressValue, setProgressValue] = useState(0)
+    const [isClient, setIsClient] = useState(false)
 
-  useEffect(() => {
-    // Atualiza o valor do progresso quando a pergunta atual muda
-    const newProgress = ((currentQuestion + 1) / questions.length) * 100
-    setProgressValue(newProgress)
-  }, [currentQuestion])
+    // Verificar se estamos no cliente
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    // Capturar email e telefone da URL
+    useEffect(() => {
+        if (searchParams) {
+            const emailParam = searchParams.get('email');
+            const phoneParam = searchParams.get('phone');
+            
+            if (emailParam) {
+                setEmail(emailParam);
+            }
+            
+            if (phoneParam) {
+                setWhatsapp(phoneParam);
+            }
+        }
+    }, [searchParams]);
+
+    useEffect(() => {
+        // Atualiza o valor do progresso quando a pergunta atual muda
+        const newProgress = ((currentQuestion + 1) / questions.length) * 100
+        setProgressValue(newProgress)
+    }, [currentQuestion])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -192,8 +216,13 @@ export default function Quiz() {
     const selectedValue = answers[currentQuestionData.id] || ""
     const isLastQuestion = currentQuestion === questions.length - 1
 
+    // Se não estamos no cliente, não renderize nada
+    if (!isClient) {
+        return null;
+    }
+
     return (
-        <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] torn-paper-bottom mb-[-50px] lg:mb-[-150px] h-full">
+        <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] mb-[-50px] lg:mb-[-150px] h-full">
             {/* Background com overlay */}
 
             <div className="container mx-auto relative h-full px-4">
