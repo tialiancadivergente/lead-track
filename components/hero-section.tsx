@@ -242,6 +242,7 @@ export default function HeroSection() {
               <div>
                 <input
                   type="email"
+                  id="form-field-email"
                   placeholder="Seu melhor e-mail"
                   className="w-full px-4 py-3 rounded-md bg-[#f4f0e1]/90 text-[#07242c]"
                   value={email}
@@ -279,6 +280,7 @@ export default function HeroSection() {
                   <input
                     type="tel"
                     placeholder="Seu WhatsApp"
+                    id="form-field-telefone"
                     className="flex-1 px-4 py-3 rounded-r-md bg-[#f4f0e1]/90 text-[#07242c] focus:outline-none"
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
