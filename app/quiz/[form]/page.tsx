@@ -241,7 +241,6 @@ export default function Quiz() {
     const isLastQuestion = currentQuestion === questions.length - 1
 
     return (
-        <SplashScreen>
         <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] torn-paper-bottom mb-[-50px] lg:mb-[-150px] h-full">
             {/* Background com overlay */}
 
@@ -266,7 +265,7 @@ export default function Quiz() {
                         <h1 className="text-xl md:text-4xl font-bold text-custom-primary-gold mb-1 md:mb-2 text-center">FALTA APENAS UM PASSO</h1>
                         <h2 className="text-xl md:text-4xl font-bold text-custom-primary-gold mb-4 md:mb-7 text-center">PARA GARANTIR SUA VAGA!</h2>
 
-                        <p className="text-white text-base md:text-lg mb-5 md:mb-7 text-center">Para concluir sua inscrição, responda:</p>
+                        <p className="text-white text-base md:text-lg mb-5 md:mb-7 text-center" style={{ color: "#fff" }}>Para concluir sua inscrição, responda:</p>
 
                         <div className="mb-4 md:mb-5">
                         <div className="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden">
@@ -275,13 +274,13 @@ export default function Quiz() {
                             style={{ width: `${progressValue}%` }}
                             ></div>
                         </div>
-                            <p className="text-right text-xs md:text-sm text-gray-400 mt-1.5">
+                            <p className="text-right text-xs md:text-sm text-gray-400 mt-1.5" style={{ color: "#fff" }}>
                                 {currentQuestion + 1} de {questions.length}
                             </p>
                         </div>
 
                         <div className="bg-zinc-900 rounded-lg p-4 md:p-7 mb-6 md:mb-8">
-                            <h3 className="text-white text-base md:text-lg font-medium mb-4 md:mb-5 text-center">{currentQuestionData.question}</h3>
+                            <h3 className="text-white text-base md:text-lg font-medium mb-4 md:mb-5 text-center" style={{ color: "#fff" }}>{currentQuestionData.question}</h3>
 
                             <CustomRadio options={currentQuestionData.options} value={selectedValue} onChange={handleAnswer} />
 
@@ -306,26 +305,25 @@ export default function Quiz() {
                             </div>
                         </div>
 
-                        <div className="mb-6 md:mb-8 text-center">
+                        <div className="mb-6 md:mb-8 text-center" style={{ color: "#fff" }}>
                             <p className="text-white text-xs md:text-sm mb-4 md:mb-5">
                                 Após responder as questões, toque no botão abaixo
                                 <br className="hidden md:block" />
                                 para receber o link e materiais do evento:
                             </p>
 
-                            <Button className="w-full py-4 md:py-6 text-base md:text-lg bg-green-600 hover:bg-green-700" disabled>
+                            <Button className="w-full py-4 md:py-6 text-base md:text-lg bg-green-600 hover:bg-green-700">
                                 <Phone className="mr-2 h-4 w-4 md:h-5 md:w-5" /> 
                                 Entrar no Grupo no WhatsApp
                             </Button>
                         </div>
 
-                        <p className="text-gray-400 text-xs md:text-sm text-center">© 2023. All rights reserved. Política de Privacidade.</p>
+                        <p className="text-gray-400 text-xs md:text-sm text-center" style={{ color: "#fff" }}>© 2023. All rights reserved. Política de Privacidade.</p>
                     </div>
                 </div>
 
             </div>
         </section>
-        </SplashScreen>
     )
 }
 

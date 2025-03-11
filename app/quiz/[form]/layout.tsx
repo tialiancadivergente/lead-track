@@ -23,9 +23,7 @@ export default function QuizLayout({ children }: { children: React.ReactNode }) 
             <link rel="apple-touch-icon" href="/apple-icon.svg" type="image/svg+xml" />
         </head> */}
       <body className={inter.className}>
-        <AssetPreloader>
           {children}
-        </AssetPreloader>
       </body>
     </html>
   )

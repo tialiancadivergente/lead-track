@@ -68,13 +68,13 @@ export default function SplashScreen({ children }) {
           />
           <div className="w-64 h-2 bg-custom-primary-gold rounded-full overflow-hidden">
             <motion.div 
-              className="h-full bg-blue-600"
+              className="h-full"
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.3 }}
+              style={{ backgroundColor: "#C0964B" }}
             ></motion.div>
           </div>
-          <p className="mt-2 text-sm text-[#C0964B]">{progress}%</p>
         </motion.div>
       ) : (
         <motion.div
