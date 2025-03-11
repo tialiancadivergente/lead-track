@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { CustomRadio } from "@/app/components/custom-input"
 import SplashScreen from "@/app/components/SplashScreen"
-import { useSearchParams } from "next/navigation"
+import { useParams, useSearchParams } from "next/navigation"
 import TagManager from "react-gtm-module";
 // Definição das perguntas e respostas com seus respectivos pesos
 const questions = [
@@ -121,6 +121,7 @@ const questions = [
 
 export default function Quiz({ params }: { params: { form: string } }) {
     const searchParams = useSearchParams()
+    const _params = useParams()
     const [answers, setAnswers] = useState<Record<number, string>>({})
     const [weights, setWeights] = useState<Record<number, number>>({})
     const [completed, setCompleted] = useState(false)
@@ -132,11 +133,42 @@ export default function Quiz({ params }: { params: { form: string } }) {
     const [success, setSuccess] = useState(false)
     const [progressValue, setProgressValue] = useState(0)
     const [isClient, setIsClient] = useState(false)
+    const [temperatura, setTemperatura] = useState<string | null>(null)
+    const [tipo, setTipo] = useState<string | null>(null)
+    const [versao, setVersao] = useState<string | null>(null)
 
     // Verificar se estamos no cliente
     useEffect(() => {
         setIsClient(true)
     }, [])
+
+    useEffect(() => {
+        if (_params && _params.form) {
+          console.log('temperatura param', _params.form)
+          
+          // Extrair os valores da string usando split
+          const paramValue = _params.form as string;
+          const parts = paramValue.split('-');
+          
+          if (parts.length >= 3) {
+            const tipoValue = parts[0];
+            const versaoValue = parts[1];
+            const temperaturaValue = parts[2];
+            
+            console.log('Tipo:', tipoValue);
+            console.log('Versão:', versaoValue);
+            console.log('Temperatura:', temperaturaValue);
+            
+            setTipo(tipoValue);
+            setVersao(versaoValue);
+            setTemperatura(temperaturaValue);
+          } else {
+            // Caso o formato não seja o esperado, usar o valor completo como temperatura
+            console.log('Formato inesperado, usando valor completo');
+            setTemperatura(paramValue);
+          }
+        }
+      }, [_params])
 
     // Capturar email e telefone da URL
     useEffect(() => {
@@ -183,7 +215,10 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 phone: phoneParam,
                 answers: answers,
                 totalScore: totalScore,
-                faixa: faixa // Include the faixa in the data
+                faixa: faixa, // Include the faixa in the data
+                tipo: tipo,
+                version: versao,
+                temperature: temperatura,
             };
 
             TagManager.dataLayer({
@@ -196,7 +231,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
             console.log('gtmData', gtmData);
             
             // Redirecionar o usuário para a URL especificada
-            window.location.href = "https://i.sendflow.pro/invite/oromar25f1?force=true";
+            window.location.href = `https://i.sendflow.pro/invite/oromar25${temperatura}1?force=true`;
         }
     }, [completed, searchParams, answers, totalScore]);
 
@@ -342,7 +377,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
                             <Button 
                                 className="w-full py-4 md:py-6 text-base md:text-lg bg-green-600 hover:bg-green-700"
-                                onClick={() => window.location.href = "https://i.sendflow.pro/invite/oromar25f1?force=true"}
+                                onClick={() => window.location.href = `https://i.sendflow.pro/invite/oromar25${temperatura}1?force=true`}
                             >
                                 <Phone className="mr-2 h-4 w-4 md:h-5 md:w-5" /> 
                                 Entrar no Grupo no WhatsApp
