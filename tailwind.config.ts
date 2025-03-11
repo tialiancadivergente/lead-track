@@ -45,7 +45,7 @@ const config: Config = {
         },
         "custom-background": "#07242c", // Fundo principal escuro
         "custom-foreground": "#f4f0e1", // Texto claro
-        "custom-primary": "#c0964b", // Dourado/bronze
+        "custom-primary-gold": "#C0964B", // Dourado/bronze 
         "custom-primary-foreground": "#000508", // Texto sobre dourado
         "custom-secondary": "#006d71", // Verde-água
         "custom-secondary-foreground": "#ffffff", // Texto sobre verde-água

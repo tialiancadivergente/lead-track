@@ -32,15 +32,15 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="relative flex items-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] torn-paper-bottom mb-[-50px] lg:mb-[-45px] z-0">
+    <section className="relative flex items-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] torn-paper-bottom mb-[-50px] lg:mb-[-150px] z-0">
       {/* Background com overlay */}
       <div className="absolute inset-0 bg-[url('/images/paper-texture.png')] bg-cover bg-center opacity-15"></div>
 
-      <div className="container mx-auto px-4 py-20 md:py-32 relative z-10 z-[0]">
+      <div className="container mx-auto px-4 py-20 md:py-32 relative">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 z-[0]">
           {/* Coluna da esquerda - Formulário */}
-          <div className="w-full md:w-1/2 lg:w-2/5 mb-12 md:mb-0">
-            <div className="mb-8">
+          <div className="w-full md:w-1/2 lg:w-2/5 mb-12 md:mb-0 text-center md:text-left">
+            <div className="mb-8 flex justify-center md:justify-start">
             <Image
                   src="/images/logo-resgate-dos-otimistas.png"
                   alt="Logotipo Resgate dos otimistas"
@@ -62,12 +62,12 @@ export default function HeroSection() {
               <p className="text-[#f4f0e1]/90 mb-6">gratuito</p>
             </div>
 
-            <p className="text-[#f4f0e1]/80 mb-8 max-w-md">
+            <p className="text-[#f4f0e1]/80 mb-8 max-w-md mx-auto md:mx-0">
               Descubra como <span className="font-bold">AUMENTAR O SEU NÍVEL DE PERMISSÃO</span> e melhorar seus
               resultados nas finanças, nos relacionamentos e na saúde.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4 max-w-md">
+            <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto md:mx-0">
               <div>
                 <input
                   type="email"
@@ -114,27 +114,27 @@ export default function HeroSection() {
 
               <button 
                 type="submit" 
-                className="w-full bg-custom-primary text-white font-medium py-3 px-6 rounded-md transition-all hover:brightness-110 uppercase text-sm tracking-wider" 
+                className="w-full bg-custom-primary-gold text-white font-medium py-3 px-6 rounded-md transition-all hover:brightness-110 uppercase text-sm tracking-wider" 
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "PROCESSANDO..." : success ? "INSCRITO COM SUCESSO!" : "PARTICIPAR GRATUITAMENTE"}
               </button>
             </form>
 
-            <p className="text-custom-primary text-sm mt-4">ONLINE E GRATUITO. 17, 18 e 19/03 - 19h55</p>
+            <div className="text-[#C0964B] text-lg mt-4 text-center md:text-left">ONLINE E GRATUITO. 17, 18 e 19/03 - 19h55</div>
           </div>
 
           {/* Coluna da direita - Imagem Hero */}
-          <div className="w-full md:w-1/2 lg:w-3/5 relative">
+          <div className="w-full md:w-1/2 lg:w-3/5 relative flex justify-center md:justify-end mt-[-50px] mb-[-150px]">
             <div className="relative w-full" style={{ height: "540px" }}>
-              <div className="absolute inset-0 flex items-center justify-end">
+              <div className="absolute inset-0 flex items-center justify-center md:justify-end">
                 <Image
                   src="/images/hero-images.png"
                   alt="Mentor e histórias de transformação"
                   width={600}
                   height={540}
                   priority
-                  className="object-contain select-none pointer-events-none"
+                  className="object-contain select-none pointer-events-none -mt-16 md:mt-0"
                   style={{
                     maxWidth: "100%",
                     height: "auto",
@@ -145,15 +145,6 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      {/* <div className="w-full px-4 py-4 flex justify-center items-center absolute bottom-0 left-0 right-0 z-9999 opacity-80">
-        <Image
-          src="/images/cut.png"
-          alt="Cut Image"
-          layout="fill"
-          objectFit="cover"
-          className="select-none pointer-events-none"
-        />
-      </div> */}
     </section>
   )
 }

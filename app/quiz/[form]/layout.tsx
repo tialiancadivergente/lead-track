@@ -1,24 +1,17 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
+import { Inter } from 'next/font/google'
+import '../../globals.css'
+import AssetPreloader from '../../components/AssetPreloader';
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: "O Resgate dos Otimistas - Diagnóstico de Dependência Emocional",
-  description:
-    "Faça seu diagnóstico de dependência emocional gratuito e descubra como aumentar seu nível de permissão.",
-    generator: 'v0.dev',
-    viewport:
+export const metadata = {
+  title: 'Meu App',
+  description: 'Descrição do meu app',
+  viewport:
     "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, height=device-height, viewport-fit=cover",
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function QuizLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
         <head>
@@ -29,11 +22,11 @@ export default function RootLayout({
             <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
             <link rel="apple-touch-icon" href="/apple-icon.svg" type="image/svg+xml" />
         </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AssetPreloader>
+          {children}
+        </AssetPreloader>
+      </body>
     </html>
   )
-}
-
-
-
-import './globals.css'
+} 

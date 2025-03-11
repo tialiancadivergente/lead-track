@@ -15,33 +15,32 @@ export default function MentorSection() {
   }
 
   return (
-    <section id="mentor-section" className="bg-background py-16 md:py-24 torn-paper-top">
+    <section id="mentor-section" className="bg-custom-background py-16 md:py-24 torn-paper-top">
       <div className="absolute inset-0 bg-mentor-pattern bg-cover bg-center opacity-20"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-2/5 mb-10 md:mb-0">
-            <div className="relative h-96 w-full">
-              {/* Placeholder para a imagem do mentor */}
-              <div className="w-full h-full bg-accent/20 relative">
-                {/* Efeitos decorativos */}
-                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/20 z-0"></div>
-                <div className="absolute -top-4 -left-4 w-32 h-32 bg-primary/20 z-0"></div>
-              </div>
+            <div className="relative w-full">
+              <img 
+                src="/images/mentor-image.png" 
+                alt="Elton Euler - Mentor" 
+                className="w-full h-full object-cover object-center"
+              />
             </div>
           </div>
 
-          <div className="md:w-3/5 md:pl-12">
-            <h2 className="text-2xl md:text-3xl text-foreground mb-6 font-bold">
+          <div className="w-full md:w-3/5 md:pl-12 mt-[-150px] md:mt-0 p-10 md:p-0">
+            <h2 className="text-2xl md:text-3xl text-custom-foreground mb-6 font-bold">
               QUEM VAI SER O SEU
               <br />
               <span className="text-foreground">MENTOR NESSA JORNADA?</span>
             </h2>
 
-            <h3 className="text-primary text-xl md:text-2xl mb-2 font-bold">Elton Euler</h3>
-            <p className="text-primary/90 mb-6">Líder e Idealizador da Aliança Divergente</p>
+            <h3 className="text-custom-primary-gold text-xl md:text-2xl mb-2 font-bold">Elton Euler</h3>
+            <p className="text-custom-primary-gold mb-6">Líder e Idealizador da Aliança Divergente</p>
 
-            <div className="space-y-4 text-foreground/80">
+            <div className="space-y-4 text-custom-foreground">
               <p>Elton Euler é um dos maiores exemplos de superação e transformação da atualidade.</p>
 
               <p>
@@ -64,10 +63,10 @@ export default function MentorSection() {
                 novo patamar.
               </p>
 
-              <p className="font-semibold">Você está pronto para descobrir?</p>
+              <p className="font-semibold text-center md:text-left">Você está pronto para descobrir?</p>
             </div>
 
-            <button onClick={handleClick} className="btn-primary mt-8" disabled={isSubmitting}>
+            <button onClick={handleClick} className="bg-custom-primary-gold text-custom-foreground mt-8 px-6 py-3 rounded-md font-medium mx-auto md:mx-0 block" disabled={isSubmitting}>
               {isSubmitting ? "PROCESSANDO..." : "PARTICIPAR GRATUITAMENTE"}
             </button>
           </div>
