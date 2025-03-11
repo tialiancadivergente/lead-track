@@ -16,7 +16,7 @@ const criticalAssets = {
   // Outros assets que você queira pré-carregar
 }
 
-export default function AssetPreloader({ children }) {
+export default function AssetPreloader({ children }: { children: React.ReactNode }) {
   const [assetsLoaded, setAssetsLoaded] = useState(false)
   const [progress, setProgress] = useState(0)
   
