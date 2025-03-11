@@ -9,6 +9,7 @@ import { Progress } from "@/components/ui/progress"
 import { CustomRadio } from "@/app/components/custom-input"
 import SplashScreen from "@/app/components/SplashScreen"
 import { useSearchParams } from "next/navigation"
+import TagManager from "react-gtm-module";
 // Definição das perguntas e respostas com seus respectivos pesos
 const questions = [
     {
@@ -165,17 +166,34 @@ export default function Quiz({ params }: { params: { form: string } }) {
             const emailParam = searchParams.get('email');
             const phoneParam = searchParams.get('phone');
 
+            // Calculate the faixa based on totalScore
+            let faixa;
+            if (totalScore >= 256) {
+                faixa = 'Faixa A';
+            } else if (totalScore >= 239) {
+                faixa = 'Faixa B';
+            } else if (totalScore >= 213) {
+                faixa = 'Faixa C';
+            } else {
+                faixa = 'Faixa D';
+            }
+
             // Prepare the data to be sent to GTM
             const gtmData = {
                 email: emailParam,
                 phone: phoneParam,
                 answers: answers,
-                totalScore: totalScore
+                totalScore: totalScore,
+                faixa: faixa // Include the faixa in the data
             };
 
-            // Send data to Google Tag Manager
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push(gtmData);
+            TagManager.dataLayer({
+                dataLayer: {
+                  event: "leadscore",
+                  ...gtmData
+                },
+              });
+              
             console.log('gtmData', gtmData);
         }
     }, [completed, searchParams, answers, totalScore]);
@@ -218,7 +236,14 @@ export default function Quiz({ params }: { params: { form: string } }) {
             setCurrentQuestion(currentQuestion + 1)
         } else {
             // Calcular pontuação total
-            const score = Object.values(weights).reduce((sum, weight) => sum + weight, 0)
+            let score = Object.values(weights).reduce((sum, weight) => sum + weight, 0)
+            
+            // Adicionar pontuação extra baseada na URL
+            const publicoScore = window.location.href.indexOf('f-typ') !== -1 || 
+                                window.location.href.indexOf('m-typ') !== -1 || 
+                                window.location.href.indexOf('q-typ') !== -1 ? 10 : 0;
+            
+            score += publicoScore;
             setTotalScore(score)
             setCompleted(true)
         }
