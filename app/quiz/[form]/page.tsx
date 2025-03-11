@@ -20,7 +20,7 @@ const questions = [
             { value: "25-35", label: "25-35", weight: 18.7 },
             { value: "36-45", label: "36-45", weight: 26.9 },
             { value: "46-55", label: "46-55", weight: 27 },
-            { value: "56+", label: "56 ou mais", weight: 26.4 },
+            { value: "56 ou mais", label: "56 ou mais", weight: 26.4 },
         ],
     },
     {
@@ -39,10 +39,10 @@ const questions = [
     },
     {
         id: 3,
-        question: "Como você se identifica?",
+        question: "Qual seu sexo?",
         options: [
-            { value: "feminino", label: "Feminino", weight: 24.8 },
-            { value: "masculino", label: "Masculino", weight: 28 },
+            { value: "feminino", label: "Sou do sexo Feminino", weight: 24.8 },
+            { value: "masculino", label: "Sou do sexo Masculino", weight: 28 },
         ],
     },
     {
@@ -90,18 +90,18 @@ const questions = [
     },
     {
         id: 8,
-        question: "Com que frequência você lê livros ou conteúdos educativos?",
+        question: "Com que frequência você se sente sozinho(a)/travado(a) e com baixos resultados?",
         options: [
-            { value: "sempre", label: "Sempre", weight: 26.5 },
+            { value: "as vezes", label: "Às vezes", weight: 23.1 },
             { value: "frequentemente", label: "Frequentemente", weight: 28 },
-            { value: "asvezes", label: "Às vezes", weight: 23.1 },
+            { value: "sempre", label: "Sempre", weight: 26.5 },
             { value: "raramente", label: "Raramente", weight: 16.6 },
             { value: "nunca", label: "Nunca", weight: 16.4 },
         ],
     },
     {
         id: 9,
-        question: "Você já fez algum curso online?",
+        question: "Você já buscou algum tipo de ajuda ou suporte (terapia, coaching, grupos de apoio) para lidar com seus desafios emocionais?",
         options: [
             { value: "sim", label: "Sim", weight: 34.6 },
             { value: "nao", label: "Não", weight: 16.9 },
@@ -109,13 +109,12 @@ const questions = [
     },
     {
         id: 10,
-        question: "Com que frequência você se sente sozinho(a)/travado(a) e com baixos resultados?",
+        question: "Se sim, o método utilizado foi eficaz?",
         options: [
-            { value: "nunca", label: "Nunca", weight: 0 },
-            { value: "raramente", label: "Raramente", weight: 0 },
-            { value: "asvezes", label: "Às vezes", weight: 0 },
-            { value: "frequentemente", label: "Frequentemente", weight: 0 },
-            { value: "sempre", label: "Sempre", weight: 0 },
+            { value: "sim", label: "Sim", weight: 27.8 },
+            { value: "parcialmente", label: "Parcialmente", weight: 36.9 },
+            { value: "nao", label: "Não", weight: 24.9 },
+            { value: "Nunca fiz", label: "Nunca fiz", weight: 17.3 },
         ],
     }
 ]
@@ -193,8 +192,11 @@ export default function Quiz({ params }: { params: { form: string } }) {
                   ...gtmData
                 },
               });
-              
+
             console.log('gtmData', gtmData);
+            
+            // Redirecionar o usuário para a URL especificada
+            window.location.href = "https://i.sendflow.pro/invite/oromar25f1?force=true";
         }
     }, [completed, searchParams, answers, totalScore]);
 
