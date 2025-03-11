@@ -295,7 +295,7 @@ export default function HeroSection() {
                 className="w-full bg-custom-primary-gold text-white font-medium py-3 px-6 rounded-md transition-all hover:brightness-110 uppercase text-sm tracking-wider" 
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "PROCESSANDO..." : success ? "INSCRITO COM SUCESSO!" : "PARTICIPAR GRATUITAMENTE"}
+                {isSubmitting ? "PROCESSANDO..." : success ? "SUCESSO! AGUARDE..." : "PARTICIPAR GRATUITAMENTE"}
               </button>
             </form>
 
