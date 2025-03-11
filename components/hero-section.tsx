@@ -238,7 +238,7 @@ export default function HeroSection() {
               resultados nas finanças, nos relacionamentos e na saúde.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto md:mx-0">
+            <form onSubmit={handleSubmit} id="cadastro" name={launch} className="space-y-4 max-w-md mx-auto md:mx-0">
               <div>
                 <input
                   type="email"

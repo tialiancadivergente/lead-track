@@ -160,6 +160,26 @@ export default function Quiz({ params }: { params: { form: string } }) {
         setProgressValue(newProgress)
     }, [currentQuestion])
 
+    useEffect(() => {
+        if (completed) {
+            const emailParam = searchParams.get('email');
+            const phoneParam = searchParams.get('phone');
+
+            // Prepare the data to be sent to GTM
+            const gtmData = {
+                email: emailParam,
+                phone: phoneParam,
+                answers: answers,
+                totalScore: totalScore
+            };
+
+            // Send data to Google Tag Manager
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push(gtmData);
+            console.log('gtmData', gtmData);
+        }
+    }, [completed, searchParams, answers, totalScore]);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
