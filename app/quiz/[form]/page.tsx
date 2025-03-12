@@ -136,6 +136,20 @@ export default function Quiz({ params }: { params: { form: string } }) {
     const [temperatura, setTemperatura] = useState<string | null>(null)
     const [tipo, setTipo] = useState<string | null>(null)
     const [versao, setVersao] = useState<string | null>(null)
+    const [domain, setDomain] = useState<string>("")
+    const [isLoading, setIsLoading] = useState(false)
+
+    const launch = "[ORO] [MAR25]"
+  
+    // Capturar o domínio da página
+    useEffect(() => {
+      // Verificar se estamos no navegador
+      if (typeof window !== 'undefined') {
+        const currentDomain = window.location.hostname;
+        console.log('Current domain:', currentDomain);
+        setDomain(currentDomain);
+      }
+    }, []);
 
     // Verificar se estamos no cliente
     useEffect(() => {
@@ -194,6 +208,8 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
     useEffect(() => {
         if (completed) {
+            setIsLoading(true);
+            
             const emailParam = searchParams.get('email');
             const phoneParam = searchParams.get('phone');
 
@@ -209,31 +225,65 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 faixa = 'Faixa D';
             }
 
+            // Prepare detailed answers with questions and selected options
+            const detailedAnswers: Record<string, string> = {};
+            Object.entries(answers).forEach(([questionId, answerValue]) => {
+                const questionObj = questions.find(q => q.id === parseInt(questionId));
+                const selectedOption = questionObj?.options.find(opt => opt.value === answerValue);
+                
+                if (questionObj) {
+                    detailedAnswers[questionObj.question] = selectedOption?.label || answerValue
+                }
+            });
+
             // Prepare the data to be sent to GTM
             const gtmData = {
                 email: emailParam,
                 phone: phoneParam,
                 answers: answers,
-                totalScore: totalScore,
-                faixa: faixa, // Include the faixa in the data
+                totalScore: Math.round(totalScore),
+                faixa: faixa,
                 tipo: tipo,
                 version: versao,
                 temperature: temperatura,
             };
 
+            const payload = {
+                ...gtmData,
+                detailedAnswers: detailedAnswers,
+                domain: domain,
+                launch: launch
+            }
+
+            // Still send to GTM as before
             TagManager.dataLayer({
                 dataLayer: {
-                  event: "leadscore",
-                  ...gtmData
+                    event: "leadscore",
+                    ...gtmData
                 },
-              });
-
-            console.log('gtmData', gtmData);
+            });
             
-            // Redirecionar o usuário para a URL especificada
-            window.location.href = `https://i.sendflow.pro/invite/oromar25${temperatura}1?force=true`;
+            // Send data to our proxy API
+            fetch('/api/quiz-proxy', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                setIsLoading(false);
+               // window.location.href = `https://i.sendflow.pro/invite/oromar25${temperatura}1?force=true`
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                setIsLoading(false);
+                window.location.href = `https://i.sendflow.pro/invite/oromar25${temperatura}1?force=true`
+            });
         }
-    }, [completed, searchParams, answers, totalScore]);
+    }, [completed, searchParams, answers, totalScore, questions, tipo, versao, temperatura, domain, launch]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -305,8 +355,18 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
     return (
         <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] mb-[-50px] lg:mb-[-150px] h-full">
+            {/* Loading overlay */}
+            {isLoading && (
+                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+                    <div className="text-center">
+                        <div className="w-16 h-16 border-4 border-t-teal-600 border-r-transparent border-b-teal-600 border-l-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                        <p className="text-white text-lg font-medium">Processando suas respostas...</p>
+                        <p className="text-gray-300 text-sm mt-2">Aguarde um momento, você será redirecionado em breve.</p>
+                    </div>
+                </div>
+            )}
+            
             {/* Background com overlay */}
-
             <div className="container mx-auto relative h-full px-4">
                 <div className="flex flex-col items-center justify-center min-h-screen text-center py-8">
                     <div className="w-full max-w-xl mx-auto">
