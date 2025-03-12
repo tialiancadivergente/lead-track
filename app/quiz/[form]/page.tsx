@@ -275,7 +275,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
             .then(data => {
                 console.log('Success:', data);
                 setIsLoading(false);
-               // window.location.href = `https://i.sendflow.pro/invite/oromar25${temperatura}1?force=true`
+                window.location.href = `https://i.sendflow.pro/invite/oromar25${temperatura}1?force=true`
             })
             .catch((error) => {
                 console.error('Error:', error);
