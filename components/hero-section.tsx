@@ -205,7 +205,7 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="relative flex items-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] mb-[-50px] lg:mb-[-150px] z-0">
+    <section id="hero" className="relative flex items-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] mb-[-50px] lg:mb-[-150px] z-0">
       {/* Background com overlay */}
       <div className="absolute inset-0 bg-[url('/images/paper-texture.png')] bg-cover bg-center opacity-15"></div>
 

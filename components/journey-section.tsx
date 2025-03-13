@@ -7,11 +7,17 @@ export default function JourneySection() {
 
   const handleClick = () => {
     setIsSubmitting(true)
-    const element = document.getElementById("form-section")
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-    setTimeout(() => setIsSubmitting(false), 1000)
+    
+    // Pequeno atraso para garantir que a página tenha tempo de renderizar completamente
+    setTimeout(() => {
+      const element = document.getElementById("hero")
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      } else {
+        console.error("Elemento com id 'cadastro' não encontrado")
+      }
+      setIsSubmitting(false)
+    }, 100)
   }
 
   return (
