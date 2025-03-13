@@ -142,6 +142,7 @@ export default function HeroSection() {
         parametroCompleto: params.temperatura,
         domain,
         uri: domain,
+        path: window.location.pathname,
       };
       
       // Adicionar formFields ao payload apenas se existir

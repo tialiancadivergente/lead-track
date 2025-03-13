@@ -8,6 +8,7 @@ import SplashScreen from '../components/SplashScreen'
 import HomeContent from '../components/HomeContent'
 import LoadingFallback from '../components/LoadingFallback'
 
+
 export default function Home() {
   return (
     <SplashScreen>
