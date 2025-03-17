@@ -78,26 +78,30 @@ export default function HeroSection() {
     if (params && params.temperatura) {
       console.log('temperatura param', params.temperatura)
       
-      // Extrair os valores da string usando split
+      // Verificar se params.temperatura não é null ou undefined
       const paramValue = params.temperatura as string;
-      const parts = paramValue.split('-');
-      
-      if (parts.length >= 3) {
-        const tipoValue = parts[0];
-        const versaoValue = parts[1];
-        const temperaturaValue = parts[2];
+      if (paramValue) {
+        const parts = paramValue.split('-');
         
-        console.log('Tipo:', tipoValue);
-        console.log('Versão:', versaoValue);
-        console.log('Temperatura:', temperaturaValue);
-        
-        setTipo(tipoValue);
-        setVersao(versaoValue);
-        setTemperatura(temperaturaValue);
+        if (parts.length >= 3) {
+          const tipoValue = parts[0];
+          const versaoValue = parts[1];
+          const temperaturaValue = parts[2];
+          
+          console.log('Tipo:', tipoValue);
+          console.log('Versão:', versaoValue);
+          console.log('Temperatura:', temperaturaValue);
+          
+          setTipo(tipoValue);
+          setVersao(versaoValue);
+          setTemperatura(temperaturaValue);
+        } else {
+          // Caso o formato não seja o esperado, usar o valor completo como temperatura
+          console.log('Formato inesperado, usando valor completo');
+          setTemperatura(paramValue);
+        }
       } else {
-        // Caso o formato não seja o esperado, usar o valor completo como temperatura
-        console.log('Formato inesperado, usando valor completo');
-        setTemperatura(paramValue);
+        console.log('params.temperatura é null ou undefined');
       }
     }
   }, [params])
@@ -186,6 +190,11 @@ export default function HeroSection() {
 
       setSuccess(true)
       
+    } catch (error) {
+      console.error('Erro ao enviar dados:', error);
+    } finally {
+      setIsSubmitting(false)
+      
       // Redirecionar após um breve delay para mostrar a mensagem de sucesso
       setTimeout(() => {
         const redirectUrl = buildRedirectUrl();
@@ -196,11 +205,6 @@ export default function HeroSection() {
           window.location.href = redirectUrl;
         }
       }, 1500);
-      
-    } catch (error) {
-      console.error('Erro ao enviar dados:', error);
-    } finally {
-      setIsSubmitting(false)
     }
   }
 
