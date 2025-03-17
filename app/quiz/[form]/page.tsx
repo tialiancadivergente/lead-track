@@ -275,12 +275,12 @@ export default function Quiz({ params }: { params: { form: string } }) {
             .then(data => {
                 console.log('Success:', data);
                 setIsLoading(false);
-                window.location.href = `https://i.sendflow.pro/invite/oromar25${temperatura}1?force=true`
+                window.location.href = `https://sendflow.pro/i/oromar25${temperatura === 'f' ? 'f1' : temperatura}5` 
             })
             .catch((error) => {
                 console.error('Error:', error);
                 setIsLoading(false);
-                window.location.href = `https://i.sendflow.pro/invite/oromar25${temperatura}1?force=true`
+                window.location.href = `https://sendflow.pro/i/oromar25${temperatura === 'f' ? 'f1' : temperatura}5`
             });
         }
     }, [completed, searchParams, answers, totalScore, questions, tipo, versao, temperatura, domain, launch]);
@@ -437,7 +437,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
                             <Button 
                                 className="w-full py-4 md:py-6 text-base md:text-lg bg-green-600 hover:bg-green-700"
-                                onClick={() => window.location.href = `https://i.sendflow.pro/invite/oromar25${temperatura}1?force=true`}
+                                onClick={() => window.location.href = `https://sendflow.pro/i/oromar25${temperatura === 'f' ? 'f1' : temperatura}5`}
                             >
                                 <Phone className="mr-2 h-4 w-4 md:h-5 md:w-5" /> 
                                 Entrar no Grupo no WhatsApp
