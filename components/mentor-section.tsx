@@ -42,10 +42,10 @@ export default function MentorSection() {
               <span className="text-foreground">MENTOR NESSA JORNADA?</span>
             </h2>
 
-            <h3 className="text-custom-primary-gold text-xl md:text-2xl mb-2 font-bold">Elton Euler</h3>
-            <p className="text-custom-primary-gold mb-6">Líder e Idealizador da Aliança Divergente</p>
+            <h3 className="text-custom-primary-gold text-xl md:text-3xl mb-2 font-bold">Elton Euler</h3>
+            <p className="text-custom-primary-gold mb-6 text-xl">Líder e Idealizador da Aliança Divergente</p>
 
-            <div className="space-y-4 text-custom-foreground">
+            <div className="space-y-4 text-custom-foreground text-xl">
               <p>Elton Euler é um dos maiores exemplos de superação e transformação da atualidade.</p>
 
               <p>

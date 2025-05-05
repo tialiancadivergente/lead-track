@@ -22,6 +22,7 @@ export default function HeroSection() {
   const [domain, setDomain] = useState<string>("")
 
   const launch = "[ORO] [MAR25]"
+  
 
   // Capturar o domínio da página
   useEffect(() => {
@@ -83,7 +84,19 @@ export default function HeroSection() {
       if (paramValue) {
         const parts = paramValue.split('-');
         
-        if (parts.length >= 3) {
+        if (paramValue.indexOf('v1') != -1) {
+          const tipoValue = parts[2];
+          const versaoValue = parts[1];
+          const temperaturaValue = parts[parts.length - 1];
+          
+          console.log('Tipo:', tipoValue);
+          console.log('Versão:', versaoValue);
+          console.log('Temperatura:', temperaturaValue);
+          
+          setTipo(tipoValue);
+          setVersao(versaoValue);
+          setTemperatura(temperaturaValue);
+        } else if (paramValue.indexOf('v9') != -1) {
           const tipoValue = parts[0];
           const versaoValue = parts[1];
           const temperaturaValue = parts[2];
@@ -199,6 +212,40 @@ export default function HeroSection() {
       setTimeout(() => {
         const redirectUrl = buildRedirectUrl();
         console.log('Redirecionando para:', redirectUrl);
+
+        const funnels = {
+          q: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=48',
+          m: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=39',
+          f: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=31',
+        }
+        
+        // Adicionar parâmetros da URL atual
+        const currentUrl = new URL(window.location.href);
+        const currentParams = new URLSearchParams(currentUrl.search);
+        
+        // Construir URLs com parâmetros adicionais
+        Object.keys(funnels).forEach(key => {
+          const url = new URL(funnels[key as keyof typeof funnels]);
+          
+          // Adicionar todos os parâmetros da URL atual
+          currentParams.forEach((value, param) => {
+            url.searchParams.append(param, value);
+          });
+          
+          const fullPhone = whatsapp.replace(/\s+|-|\(|\)|\./g, "");
+          // Adicionar email, telefone e país
+          url.searchParams.append('email', email);
+          url.searchParams.append('phone', fullPhone);
+          url.searchParams.append('country', ddi.replace('+', ''));
+          
+          // Atualizar a URL no objeto funnels
+          funnels[key as keyof typeof funnels] = url.toString();
+        });
+
+        if (Object.keys(funnels).includes(temperatura || '')) {
+          window.location.href = funnels[temperatura as keyof typeof funnels];
+          return; // Interrompe a execução para evitar o redirecionamento padrão
+        }
         
         // Usar window.location.href para navegação completa
         if (typeof window !== 'undefined') {
@@ -208,8 +255,41 @@ export default function HeroSection() {
     }
   }
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    
+    if (name === "whatsapp") {
+      // Remove todos os caracteres não numéricos
+      const numericValue = value.replace(/\D/g, "");
+      
+      // Aplica a formatação de acordo com a quantidade de dígitos
+      let formattedValue = numericValue;
+      if (ddi === "+55") {
+        // Formato brasileiro: (XX) XXXXX-XXXX
+        if (numericValue.length <= 2) {
+          formattedValue = numericValue;
+        } else if (numericValue.length <= 7) {
+          formattedValue = `(${numericValue.slice(0, 2)}) ${numericValue.slice(2)}`;
+        } else {
+          formattedValue = `(${numericValue.slice(0, 2)}) ${numericValue.slice(2, 7)}-${numericValue.slice(7, 11)}`;
+        }
+      } else {
+        // Formato genérico para outros países
+        if (numericValue.length > 3 && numericValue.length <= 7) {
+          formattedValue = `${numericValue.slice(0, 3)}-${numericValue.slice(3)}`;
+        } else if (numericValue.length > 7) {
+          formattedValue = `${numericValue.slice(0, 3)}-${numericValue.slice(3, 7)}-${numericValue.slice(7)}`;
+        }
+      }
+      
+      setWhatsapp(formattedValue);
+    } else {
+      setWhatsapp(value);
+    }
+  };
+
   return (
-    <section id="hero" className="relative flex items-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] mb-[-50px] lg:mb-[-150px] z-0">
+    <section id="hero" className={`relative flex items-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#0a3a4a] to-[#000000] mb-[-50px] lg:mb-[-150px] z-0`}>
       {/* Background com overlay */}
       <div className="absolute inset-0 bg-[url('/images/paper-texture.png')] bg-cover bg-center opacity-15"></div>
 
@@ -235,8 +315,7 @@ export default function HeroSection() {
             <div className="my-8">
               <p className="text-[#f4f0e1] text-xl mb-1">Faça seu diagnóstico de</p>
               <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-1">DEPENDÊNCIA</h2>
-              <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-2">EMOCIONAL</h2>
-              <p className="text-[#f4f0e1]/90 mb-6">gratuito</p>
+              <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-2">EMOCIONAL <span className="text-[#D3CAC0] text-2xl block md:inline">gratuito</span></h2>
             </div>
 
             <p className="text-[#f4f0e1]/80 mb-8 max-w-md mx-auto md:mx-0">
@@ -289,7 +368,8 @@ export default function HeroSection() {
                     id="form-field-telefone"
                     className="flex-1 px-4 py-3 rounded-r-md bg-[#f4f0e1]/90 text-[#07242c] focus:outline-none"
                     value={whatsapp}
-                    onChange={(e) => setWhatsapp(e.target.value)}
+                    onChange={handleChange}
+                    name="whatsapp"
                     required
                   />
                 </div>
@@ -304,7 +384,7 @@ export default function HeroSection() {
               </button>
             </form>
 
-            <p className="text-[#C0964B] text-lg mt-4 text-center md:text-left" style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 17, 18 e 19/03 - 19h55</p>
+            <p className="text-[#C0964B] text-lg mt-4 text-center md:text-left" style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 2, 3 e 04/06 - 19h55</p>
           </div>
 
           {/* Coluna da direita - Imagem Hero */}

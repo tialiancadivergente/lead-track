@@ -31,7 +31,7 @@ export default function JourneySection() {
       <div className="container mx-auto px-4 relative z-10 max-w-4xl text-center">
         <h2 className="text-2xl md:text-4xl text-custom-accent font-bold mb-8">Que bom que você não desistiu.</h2>
 
-        <p className="text-background font-medium mb-8 md:text-lg max-w-3xl mx-auto">
+        <p className="text-background font-medium mb-8 md:text-2xl max-w-3xl mx-auto">
         <span className="font-bold">Chega de dar o seu máximo e só ficar se perguntando o que faltou.</span> Depois, fazer aquela velha mania inútil vai
           se perguntar o que falta para você ter o resultado merecido pelo seu esforço.
           <span className="font-bold"> Faça parte do Resgate dos Otimistas</span> ou continue se questionando e
