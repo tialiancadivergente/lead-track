@@ -215,11 +215,11 @@ export default function QuizFormInlead() {
 
   // Efeito para extrair parâmetros da URL
   useEffect(() => {
-    if (_params && _params.form) {
-      console.log('temperatura param', _params.form)
+    if (_params && _params.temperatura) {
+      console.log('temperatura param', _params.temperatura)
 
       // Extrair os valores da string usando split
-      const paramValue = _params.form as string;
+      const paramValue = _params.temperatura as string;
       const parts = paramValue.split('-');
 
       const tipoValue = parts[0];
