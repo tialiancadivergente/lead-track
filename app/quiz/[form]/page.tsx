@@ -12,6 +12,7 @@ import { useParams, useSearchParams } from "next/navigation"
 import TagManager from "react-gtm-module";
 import { LogoResgate } from "@/app/components/LogoResgate"
 import { Spectral } from 'next/font/google'
+import QuizFormInlead from "./inlead"
 // Definição das perguntas e respostas com seus respectivos pesos
 
 const spectral = Spectral({
@@ -389,6 +390,12 @@ export default function Quiz({ params }: { params: { form: string } }) {
     // Se não estamos no cliente, não renderize nada
     if (!isClient) {
         return null;
+    }
+
+    if (_params?.form?.indexOf('survey') != -1) {
+        return (
+            <QuizFormInlead />
+        )
     }
 
     if (versao === 'v1') {
