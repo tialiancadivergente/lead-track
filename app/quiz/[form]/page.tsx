@@ -392,12 +392,6 @@ export default function Quiz({ params }: { params: { form: string } }) {
         return null;
     }
 
-    if (_params?.form?.indexOf('survey') != -1) {
-        return (
-            <QuizFormInlead />
-        )
-    }
-
     if (versao === 'v1') {
         return (
             <div>

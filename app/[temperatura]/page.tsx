@@ -11,6 +11,7 @@ import HomeContent from '../components/HomeContent'
 import LoadingFallback from '../components/LoadingFallback'
 import { useParams, useSearchParams, useRouter } from "next/navigation"
 import Form from './form-v1'
+import QuizFormInlead from './inlead'
 
 
 export default function Home() {
@@ -21,6 +22,12 @@ export default function Home() {
     form = 'v1';
   } else {
     form = 'v9';
+  }
+
+  if (temperatura.indexOf('survey') != -1) {
+      return (
+          <QuizFormInlead />
+      )
   }
 
   if (form === 'v1') {
