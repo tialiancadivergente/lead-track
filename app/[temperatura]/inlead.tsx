@@ -772,6 +772,7 @@ export default function QuizFormInlead() {
 
                     <button
                       type="button"
+                      id="inicio-inlead"
                       onClick={nextStep}
                       className="w-full mt-4 p-4 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors btn-animate"
                     >
