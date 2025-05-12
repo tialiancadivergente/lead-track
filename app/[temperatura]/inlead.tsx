@@ -366,100 +366,9 @@ export default function QuizFormInlead() {
     }
   }
 
-  const nextStep = () => {
-    if (step < totalSteps) {
-      // For step 1, validate email and whatsapp
-      if (step === 1) {
-        const errors = {email: "", whatsapp: ""};
-        let hasError = false;
-        
-        // Validate email
-        if (!formData.email) {
-          errors.email = "Por favor, preencha seu email";
-          hasError = true;
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-          errors.email = "Por favor, insira um email válido";
-          hasError = true;
-        }
-        
-        // Validate whatsapp
-        if (!formData.whatsapp) {
-          errors.whatsapp = "Por favor, preencha seu WhatsApp";
-          hasError = true;
-        } else if (formData.whatsapp.length < 10) {
-          errors.whatsapp = "Por favor, insira um número válido com DDD";
-          hasError = true;
-        }
-        
-        if (hasError) {
-          setFormError(errors);
-          return;
-        } else {
-          setFormError(null);
-        }
-      }
-      
-      // Inicia a transição
-      setIsTransitioning(true)
-
-      setTimeout(() => {
-        setStep(step + 1)
-        setProgress(((step + 1) / totalSteps) * 100)
-
-        // Finaliza a transição após um pequeno delay
-        setTimeout(() => {
-          setIsTransitioning(false)
-        }, 300)
-      }, 400)
-    }
-  }
-
-  const prevStep = () => {
-    if (step > 1) {
-      // Inicia a transição
-      setIsTransitioning(true)
-
-      setTimeout(() => {
-        setStep(step - 1)
-        setProgress(((step - 1) / totalSteps) * 100)
-
-        // Finaliza a transição após um pequeno delay
-        setTimeout(() => {
-          setIsTransitioning(false)
-        }, 300)
-      }, 400)
-    }
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    
-    if (name === "whatsapp") {
-      // Remove todos os caracteres não numéricos
-      const numericValue = value.replace(/\D/g, "");
-      
-      // Aplica a formatação de acordo com a quantidade de dígitos
-      let formattedValue = numericValue;
-      
-      setWhatsapp(formattedValue);
-    } else {
-      setWhatsapp(value);
-    }
-  };
-
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (step === 1) {
-      nextStep();
-      return;
-    }
-    
-    // Update button text to show processing
-    setButtonText("Processando sua resposta...")
-    
+  const sendEvent = () => {
     // Calcular pontuação total
+    console.log(`passou aqui`)
     let score = Object.values(weights).reduce((sum, weight) => sum + weight, 0);
     
     // Adicionar pontuação extra baseada na URL
@@ -577,12 +486,121 @@ export default function QuizFormInlead() {
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
-        window.location.href = `https://sendflow.pro/i/${mapTagSendFlow[temperatura || 'f']}`
       })
       .catch((error) => {
         console.error('Error:', error);
-        window.location.href = `https://sendflow.pro/i/${mapTagSendFlow[temperatura || 'f']}`
       });
+  }
+
+  const nextStep = () => {
+    if (step < totalSteps) {
+      // For step 1, validate email and whatsapp
+      if (step === 1) {
+        const errors = {email: "", whatsapp: ""};
+        let hasError = false;
+        
+        // Validate email
+        if (!formData.email) {
+          errors.email = "Por favor, preencha seu email";
+          hasError = true;
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+          errors.email = "Por favor, insira um email válido";
+          hasError = true;
+        }
+        
+        // Validate whatsapp
+        if (!formData.whatsapp) {
+          errors.whatsapp = "Por favor, preencha seu WhatsApp";
+          hasError = true;
+        } else if (formData.whatsapp.length < 10) {
+          errors.whatsapp = "Por favor, insira um número válido com DDD";
+          hasError = true;
+        }
+        
+        if (hasError) {
+          setFormError(errors);
+          return;
+        } else {
+          setFormError(null);
+        }
+      }
+      
+      // Inicia a transição
+      setIsTransitioning(true)
+
+      setTimeout(() => {
+        setStep(step + 1)
+        setProgress(((step + 1) / totalSteps) * 100)
+
+        // Finaliza a transição após um pequeno delay
+        setTimeout(() => {
+          setIsTransitioning(false)
+        }, 300)
+      }, 400)
+    }
+  }
+
+  useEffect(() => {
+    if (showResult) {
+      sendEvent();
+    }
+  }, [showResult])
+
+  const prevStep = () => {
+    if (step > 1) {
+      // Inicia a transição
+      setIsTransitioning(true)
+
+      setTimeout(() => {
+        setStep(step - 1)
+        setProgress(((step - 1) / totalSteps) * 100)
+
+        // Finaliza a transição após um pequeno delay
+        setTimeout(() => {
+          setIsTransitioning(false)
+        }, 300)
+      }, 400)
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    
+    if (name === "whatsapp") {
+      // Remove todos os caracteres não numéricos
+      const numericValue = value.replace(/\D/g, "");
+      
+      // Aplica a formatação de acordo com a quantidade de dígitos
+      let formattedValue = numericValue;
+      
+      setWhatsapp(formattedValue);
+    } else {
+      setWhatsapp(value);
+    }
+  };
+
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (step === 1) {
+      nextStep();
+      return;
+    }
+
+    // Update button text to show processing
+    setButtonText("Processando sua resposta...")
+
+    console.log(mapTagSendFlow[temperatura || 'f']);
+
+    // Adiciona um delay de 1 segundo antes de redirecionar
+    setTimeout(() => {
+      window.location.href = `https://sendflow.pro/i/${mapTagSendFlow[temperatura || 'f']}`
+    }, 1000)
+    
+    // Retorna false para evitar o redirecionamento imediato
+    return false
+  
   }
 
   // Calcula a altura aproximada do cabeçalho para usar como padding-top
@@ -1967,7 +1985,7 @@ export default function QuizFormInlead() {
                 <div className="w-full">
                   <div className="space-y-6 text-center">
                     <h1 className="text-xl font-bold leading-tight">
-                      Participe do Resgate dos Otimistas, o evento que vou realizar nos dias 17, 18 e 19 de março, será
+                      Participe do Resgate dos Otimistas, o evento que vou realizar nos dias 02, 03 e 04 de junho, será
                       ao vivo, online e dessa vez, gratuito.
                     </h1>
 
