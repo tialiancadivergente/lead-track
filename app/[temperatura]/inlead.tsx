@@ -450,6 +450,11 @@ export default function QuizFormInlead() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (step === 1) {
+      nextStep();
+      return;
+    }
     
     // Update button text to show processing
     setButtonText("Processando sua resposta...")
@@ -771,9 +776,8 @@ export default function QuizFormInlead() {
                     </div>
 
                     <button
-                      type="button"
+                      type="submit"
                       id="inicio-inlead"
-                      onClick={nextStep}
                       className="w-full mt-4 p-4 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors btn-animate"
                     >
                       <span>QUERO MEDIR MINHA PERMISSÃO</span>
