@@ -523,6 +523,78 @@ export default function QuizFormInlead() {
         } else {
           setFormError(null);
         }
+
+      // Save lead data to our database
+      try {
+        // Prepare payload for the API
+        const payload: Record<string, any> = {
+          email: formData.email,
+          phone: formData.whatsapp,
+          temperature: temperatura,
+          domain: window.location.hostname,
+          uri: window.location.hostname,
+          path: window.location.pathname,
+        };
+        
+        // Add formFields to payload if they exist
+        if (searchParams) {
+          const utmParams: Record<string, string> = {};
+          let hasUtm = false;
+          
+          // Common UTM parameters
+          const utmKeys = [
+            'utm_source', 
+            'utm_medium', 
+            'utm_campaign', 
+            'utm_term', 
+            'utm_content',
+            'utm_id'
+          ];
+          
+          // Check each UTM parameter
+          utmKeys.forEach(key => {
+            const value = searchParams.get(key);
+            if (value) {
+              utmParams[key] = value;
+              hasUtm = true;
+            }
+          });
+          
+          // Add other query parameters that aren't UTMs
+          searchParams.forEach((value, key) => {
+            if (!utmKeys.includes(key) && key !== 'temperatura') {
+              utmParams[key] = value;
+              hasUtm = true;
+            }
+          });
+          
+          // Add formFields to payload if UTMs exist
+          if (hasUtm) {
+            payload.formFields = utmParams;
+          }
+        }
+        
+        // Send data to register-lead API
+        fetch('/api/register-lead', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        })
+        .then(response => {
+          if (!response.ok) {
+            console.error('Failed to register lead');
+          } else {
+            console.log('Lead registered successfully');
+          }
+        })
+        .catch(error => {
+          console.error('Error sending request:', error);
+        });
+      } catch (error) {
+        console.error('Error registering lead:', error);
+      }
       }
       
       // Inicia a transição
