@@ -31,10 +31,10 @@ const questions = [
     question: "Em qual faixa etária você se encaixa?",
     options: [
       { value: "18-24", label: "18-24", weight: 9.2 },
-      { value: "25-35", label: "25-35", weight: 15.9 },
-      { value: "36-45", label: "36-45", weight: 19.5 },
+      { value: "25-35", label: "25-35", weight: 19.5 },
+      { value: "36-45", label: "36-45", weight: 22.7 },
       { value: "46-55", label: "46-55", weight: 20.4 },
-      { value: "56+", label: "56 ou mais", weight: 22.7 },
+      { value: "56+", label: "56 ou mais", weight: 15.9 },
     ],
   },
   {
