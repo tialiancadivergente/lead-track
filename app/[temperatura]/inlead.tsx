@@ -797,7 +797,7 @@ export default function QuizFormInlead() {
             </div>
           </div>
 
-          {step <= totalSteps && (
+          {/* {step <= totalSteps && (
             <div className="mb-4">
               <div className="h-2 bg-gray-200 rounded-full overflow-hidden w-full">
                 <div
@@ -806,7 +806,7 @@ export default function QuizFormInlead() {
                 ></div>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
 
