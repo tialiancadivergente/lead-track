@@ -222,9 +222,15 @@ export default function QuizFormInlead() {
       const paramValue = _params.temperatura as string;
       const parts = paramValue.split('-');
 
-      const tipoValue = parts[0];
-      const versaoValue = parts[2];
-      const temperaturaValue = parts[1];
+      let tipoValue = parts[0];
+      let versaoValue = parts[2];
+      let temperaturaValue = parts[1];
+
+      if (paramValue.indexOf('ordo') !== -1) {
+        temperaturaValue = parts[parts.length - 1];
+        tipoValue = parts[1];
+        versaoValue = parts[2];
+      }
 
       console.log('Tipo:', tipoValue);
       console.log('Versão:', versaoValue);
