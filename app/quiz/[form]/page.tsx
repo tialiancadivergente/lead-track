@@ -12,7 +12,6 @@ import { useParams, useSearchParams } from "next/navigation"
 import TagManager from "react-gtm-module";
 import { LogoResgate } from "@/app/components/LogoResgate"
 import { Spectral } from 'next/font/google'
-import QuizFormInlead from "./inlead"
 // Definição das perguntas e respostas com seus respectivos pesos
 
 const spectral = Spectral({
@@ -61,10 +60,10 @@ const questions = [
         id: 4,
         question: "Qual seu estado civil?",
         options: [
-            { value: "solteiro", label: "Solteiro(a)", weight: 17.7 },
-            { value: "casado", label: "Casado(a)", weight: 17 },
-            { value: "separado", label: "Separado(a)", weight: 23.5 },
-            { value: "viuvo", label: "Viúvo(a)", weight: 15.7 },
+            { value: "solteiro", label: "Solteiro(o)", weight: 17.7 },
+            { value: "casado", label: "Casado(o)", weight: 17 },
+            { value: "separado", label: "Separado(o)", weight: 23.5 },
+            { value: "viuvo", label: "Viúvo(o)", weight: 15.7 },
         ],
     },
     {

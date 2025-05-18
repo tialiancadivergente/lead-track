@@ -45,10 +45,10 @@ const questions = [
     id: 4,
     question: "Qual seu estado civil?",
     options: [
-      { value: "solteiro", label: "Solteiro(a)", weight: 21.2 },
-      { value: "casado", label: "Casado(a)", weight: 25.4 },
-      { value: "separado", label: "Separado(a)", weight: 30.3 },
-      { value: "viuvo", label: "Viúvo(a)", weight: 23.2 },
+      { value: "solteiro", label: "Solteiro(o)", weight: 17.7 },
+      { value: "casado", label: "Casado(o)", weight: 17 },
+      { value: "separado", label: "Separado(o)", weight: 23.5 },
+      { value: "viuvo", label: "Viúvo(o)", weight: 15.7 },
     ],
   },
   {
