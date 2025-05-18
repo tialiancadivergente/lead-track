@@ -20,9 +20,42 @@ export default function HeroSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [domain, setDomain] = useState<string>("")
+  const [redLine, setRedLine] = useState<string | null>(null)
 
   const launch = "[ORO] [MAR25]"
-  
+
+  // Mapeamento dos benefícios para exibição
+  const benefitsMapping = [
+    {
+      id: 2,
+      text: "Descubra o padrão invisível que trava a sua vida — mesmo quando você se esforça."
+    },
+    {
+      id: 3,
+      text: "Você vai entender por que tenta tanto e ainda assim não tem o resultado que merece."
+    },
+    {
+      id: 4,
+      text: "A explicação que nenhuma terapia, mentor ou curso conseguiu te dar — até agora."
+    },
+    {
+      id: 5,
+      text: "Você vai ver que sua vida não travou por falta de esforço — travou por lealdades invisíveis que você nunca questionou."
+    },
+    {
+      id: 6,
+      text: "Entenda por que toda vez que sua vida melhora, algo acontece e te puxa de volta."
+    },
+    {
+      id: 7,
+      text: "Você vai descobrir o nome, a origem e o impacto do padrão invisível que tem sabotado silenciosamente sua vida — e vai aprender como quebrá-lo."
+    },
+    {
+      id: 8,
+      text: "Esse é o seu dia D. O divisor entre continuar repetindo o passado ou assumir que é possível, sim, viver de outro jeito — se você tiver coragem de quebrar o ciclo."
+    }
+  ];
+
 
   // Capturar o domínio da página
   useEffect(() => {
@@ -39,17 +72,17 @@ export default function HeroSection() {
     if (searchParams) {
       const utmParams: Record<string, string> = {};
       let hasUtm = false;
-      
+
       // Lista de parâmetros UTM comuns
       const utmKeys = [
-        'utm_source', 
-        'utm_medium', 
-        'utm_campaign', 
-        'utm_term', 
+        'utm_source',
+        'utm_medium',
+        'utm_campaign',
+        'utm_term',
         'utm_content',
         'utm_id'
       ];
-      
+
       // Verificar cada parâmetro UTM
       utmKeys.forEach(key => {
         const value = searchParams.get(key);
@@ -58,7 +91,7 @@ export default function HeroSection() {
           hasUtm = true;
         }
       });
-      
+
       // Adicionar outros parâmetros da query que não são UTM
       searchParams.forEach((value, key) => {
         if (!utmKeys.includes(key) && key !== 'temperatura') {
@@ -66,7 +99,7 @@ export default function HeroSection() {
           hasUtm = true;
         }
       });
-      
+
       // Definir formFields apenas se houver UTMs
       if (hasUtm) {
         console.log('UTM params:', utmParams);
@@ -78,33 +111,43 @@ export default function HeroSection() {
   useEffect(() => {
     if (params && params.temperatura) {
       console.log('temperatura param', params.temperatura)
-      
+
       // Verificar se params.temperatura não é null ou undefined
       const paramValue = params.temperatura as string;
       if (paramValue) {
         const parts = paramValue.split('-');
-        
+
         if (paramValue.indexOf('v1') != -1) {
           const tipoValue = parts[2];
           const versaoValue = parts[1];
           const temperaturaValue = parts[parts.length - 1];
-          
+
           console.log('Tipo:', tipoValue);
           console.log('Versão:', versaoValue);
           console.log('Temperatura:', temperaturaValue);
-          
+
           setTipo(tipoValue);
           setVersao(versaoValue);
           setTemperatura(temperaturaValue);
         } else if (paramValue.indexOf('v9') != -1) {
-          const tipoValue = parts[0];
+          let tipoValue = parts[0];
           const versaoValue = parts[1];
-          const temperaturaValue = parts[2];
-          
+          const temperaturaValue = parts[parts.length - 1];
+
+          if (parts.length === 5) {
+            const redLineVersion = parts[parts.length - 2];
+            tipoValue = `redline-${redLineVersion}`;
+            const redLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.text;
+            if (redLineText) {
+              setRedLine(redLineText);
+              console.log('RedLine:', redLineText);
+            }
+          }
+
           console.log('Tipo:', tipoValue);
           console.log('Versão:', versaoValue);
           console.log('Temperatura:', temperaturaValue);
-          
+
           setTipo(tipoValue);
           setVersao(versaoValue);
           setTemperatura(temperaturaValue);
@@ -123,19 +166,19 @@ export default function HeroSection() {
   const buildRedirectUrl = () => {
     // Construir o path base com os valores dinâmicos
     const basePath = `/quiz/${tipo || 'oro'}-${versao || 'v9'}-${temperatura || 'q'}-typ`;
-    
+
     // Iniciar com os parâmetros de email e telefone
     const queryParams = new URLSearchParams();
     queryParams.append('email', email);
     queryParams.append('phone', `${ddi}${whatsapp.replace(/\s+|-|\(|\)|\./g, "")}`);
-    
+
     // Adicionar UTMs se existirem
     if (formFields) {
       Object.entries(formFields).forEach(([key, value]) => {
         queryParams.append(key, value);
       });
     }
-    
+
     // Construir a URL completa
     return `${basePath}?${queryParams.toString()}`;
   };
@@ -146,9 +189,9 @@ export default function HeroSection() {
 
     try {
       const cleanedPhone = whatsapp.replace(/\s+|-|\(|\)|\./g, "");
-      
+
       const fullPhone = `${ddi}${cleanedPhone}`;
-      
+
       // Preparar o payload para a API
       const payload: Record<string, any> = {
         email,
@@ -161,12 +204,12 @@ export default function HeroSection() {
         uri: domain,
         path: window.location.pathname,
       };
-      
+
       // Adicionar formFields ao payload apenas se existir
       if (formFields) {
         payload.formFields = formFields;
       }
-      
+
       const response = await fetch('/api/register-lead', {
         method: 'POST',
         headers: {
@@ -180,34 +223,34 @@ export default function HeroSection() {
       }
 
       // Preparar dados para localStorage
-      const leadData: Record<string, any> = { 
-        email, 
-        whatsapp: fullPhone, 
+      const leadData: Record<string, any> = {
+        email,
+        whatsapp: fullPhone,
         temperature: temperatura,
         tipo,
         version: versao,
         launch,
         domain,
         parametroCompleto: params.temperatura,
-        date: new Date().toISOString() 
+        date: new Date().toISOString()
       };
-      
+
       // Adicionar formFields aos dados do localStorage apenas se existir
       if (formFields) {
         leadData.formFields = formFields;
       }
-      
+
       const leads = JSON.parse(localStorage.getItem("leads") || "[]")
       leads.push(leadData)
       localStorage.setItem("leads", JSON.stringify(leads))
 
       setSuccess(true)
-      
+
     } catch (error) {
       console.error('Erro ao enviar dados:', error);
     } finally {
       setIsSubmitting(false)
-      
+
       // Redirecionar após um breve delay para mostrar a mensagem de sucesso
       setTimeout(() => {
         const redirectUrl = buildRedirectUrl();
@@ -218,26 +261,26 @@ export default function HeroSection() {
           m: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=39',
           f: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=31',
         }
-        
+
         // Adicionar parâmetros da URL atual
         const currentUrl = new URL(window.location.href);
         const currentParams = new URLSearchParams(currentUrl.search);
-        
+
         // Construir URLs com parâmetros adicionais
         Object.keys(funnels).forEach(key => {
           const url = new URL(funnels[key as keyof typeof funnels]);
-          
+
           // Adicionar todos os parâmetros da URL atual
           currentParams.forEach((value, param) => {
             url.searchParams.append(param, value);
           });
-          
+
           const fullPhone = whatsapp.replace(/\s+|-|\(|\)|\./g, "");
           // Adicionar email, telefone e país
           url.searchParams.append('email', email);
           url.searchParams.append('phone', fullPhone);
           url.searchParams.append('country', ddi.replace('+', ''));
-          
+
           // Atualizar a URL no objeto funnels
           funnels[key as keyof typeof funnels] = url.toString();
         });
@@ -246,7 +289,7 @@ export default function HeroSection() {
           window.location.href = funnels[temperatura as keyof typeof funnels];
           return; // Interrompe a execução para evitar o redirecionamento padrão
         }
-        
+
         // Usar window.location.href para navegação completa
         if (typeof window !== 'undefined') {
           window.location.href = redirectUrl;
@@ -257,11 +300,11 @@ export default function HeroSection() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    
+
     if (name === "whatsapp") {
       // Remove todos os caracteres não numéricos
       const numericValue = value.replace(/\D/g, "");
-      
+
       // Aplica a formatação de acordo com a quantidade de dígitos
       let formattedValue = numericValue;
       if (ddi === "+55") {
@@ -281,7 +324,7 @@ export default function HeroSection() {
           formattedValue = `${numericValue.slice(0, 3)}-${numericValue.slice(3, 7)}-${numericValue.slice(7)}`;
         }
       }
-      
+
       setWhatsapp(formattedValue);
     } else {
       setWhatsapp(value);
@@ -298,18 +341,18 @@ export default function HeroSection() {
           {/* Coluna da esquerda - Formulário */}
           <div className="w-full md:w-1/2 lg:w-2/5 mb-12 md:mb-0 text-center md:text-left">
             <div className="mb-8 flex justify-center md:justify-start">
-            <Image
-                  src="/images/logo-resgate-dos-otimistas.png"
-                  alt="Logotipo Resgate dos otimistas"
-                  width={322}
-                  height={171}
-                  priority
-                  className="object-contain select-none pointer-events-none"
-                  style={{
-                    maxWidth: "100%",
-                    height: "auto",
-                  }}
-                />
+              <Image
+                src="/images/logo-resgate-dos-otimistas.png"
+                alt="Logotipo Resgate dos otimistas"
+                width={322}
+                height={171}
+                priority
+                className="object-contain select-none pointer-events-none"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
+              />
             </div>
 
             <div className="my-8">
@@ -319,8 +362,16 @@ export default function HeroSection() {
             </div>
 
             <p className="text-[#f4f0e1]/80 mb-8 max-w-md mx-auto md:mx-0">
-              Descubra como <span className="font-bold">AUMENTAR O SEU NÍVEL DE PERMISSÃO</span> e melhorar seus
-              resultados nas finanças, nos relacionamentos e na saúde.
+              {redLine ? (
+                <span className="text-[#f4f0e1] text-lg md:text-2xl">
+                  {redLine}
+                </span>
+              ) : (
+                <>
+                  Descubra como <span className="font-bold">AUMENTAR O SEU NÍVEL DE PERMISSÃO</span> e melhorar seus
+                  resultados nas finanças, nos relacionamentos e na saúde.
+                </>
+              )}
             </p>
 
             <form onSubmit={handleSubmit} id="cadastro" name={launch} className="space-y-4 max-w-md mx-auto md:mx-0">
@@ -341,7 +392,7 @@ export default function HeroSection() {
                   <Phone size={18} className="text-gray-500" />
                 </div>
                 <div className="flex">
-                  <select 
+                  <select
                     className="py-3 pl-10 pr-2 rounded-l-md bg-[#f4f0e1]/90 text-[#07242c] border-r border-gray-300 focus:ring-0 focus:outline-none"
                     value={ddi}
                     onChange={(e) => setDdi(e.target.value)}
@@ -375,9 +426,9 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <button 
-                type="submit" 
-                className="w-full bg-custom-primary-gold text-white font-medium py-3 px-6 rounded-md transition-all hover:brightness-110 uppercase text-sm tracking-wider" 
+              <button
+                type="submit"
+                className="w-full bg-custom-primary-gold text-white font-medium py-3 px-6 rounded-md transition-all hover:brightness-110 uppercase text-sm tracking-wider"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "PROCESSANDO..." : success ? "SUCESSO! AGUARDE..." : "PARTICIPAR GRATUITAMENTE"}
