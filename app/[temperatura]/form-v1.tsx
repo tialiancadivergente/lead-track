@@ -226,9 +226,9 @@ export default function Form() {
         console.log('Redirecionando para:', redirectUrl);
 
         const funnels = {
-          q: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=48',
-          m: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=39',
-          f: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=31',
+          q: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=64',
+          m: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=61',
+          f: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=57',
         }
         
         // Adicionar parâmetros da URL atual
