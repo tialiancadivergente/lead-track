@@ -254,11 +254,16 @@ export default function Form() {
           funnels[key as keyof typeof funnels] = url.toString();
         });
 
-        if (versao === 'v9') {
-          if (Object.keys(funnels).includes(temperatura || '')) {
-            window.location.href = funnels[temperatura as keyof typeof funnels];
-            return; // Interrompe a execução para evitar o redirecionamento padrão
-          }
+        // if (versao === 'v9') {
+        //   if (Object.keys(funnels).includes(temperatura || '')) {
+        //     window.location.href = funnels[temperatura as keyof typeof funnels];
+        //     return; // Interrompe a execução para evitar o redirecionamento padrão
+        //   }
+        // }
+
+        // Adicionar entrada ao histórico de navegação antes do redirecionamento completo
+        if (typeof window !== 'undefined') {
+          window.history.pushState({}, '', redirectUrl);
         }
         
         // Usar window.location.href para navegação completa
