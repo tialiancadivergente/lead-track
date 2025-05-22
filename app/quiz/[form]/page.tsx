@@ -195,9 +195,16 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 setVersao(versaoValue);
                 setTemperatura(temperaturaValue);
             } else if (paramValue.indexOf('v9') != -1) {
-                const tipoValue = parts[0];
-                const versaoValue = parts[1];
-                const temperaturaValue = parts[2];
+                let tipoValue = parts[0];
+                let versaoValue = parts[1];
+                let temperaturaValue = parts[2];
+
+                if (parts.length >= 5) {
+                    temperaturaValue = parts[3];
+                    versaoValue = parts[2];
+                    tipoValue = parts[1];
+                    console.log('Temperatura:', temperaturaValue);
+                }
 
                 console.log('Tipo:', tipoValue);
                 console.log('Versão:', versaoValue);
