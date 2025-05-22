@@ -53,6 +53,15 @@ export default function HeroSection() {
     {
       id: 8,
       text: "Esse é o seu dia D. O divisor entre continuar repetindo o passado ou assumir que é possível, sim, viver de outro jeito — se você tiver coragem de quebrar o ciclo."
+    },
+    {
+      id: 9,
+      text: (
+        <>
+          DE OTIMISTA A BEM SUCEDIDO <br />
+          Descubra como se sentir recompensado financeiramente e encontrar sentido naquilo que você decidiu fazer
+        </>
+      )
     }
   ];
 
@@ -137,6 +146,7 @@ export default function HeroSection() {
           if (parts.length === 5) {
             const redLineVersion = parts[parts.length - 2];
             tipoValue = `redline-${redLineVersion}`;
+            console.log('RedLine Version:', redLineVersion);
             const redLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.text;
             if (redLineText) {
               setRedLine(redLineText);
