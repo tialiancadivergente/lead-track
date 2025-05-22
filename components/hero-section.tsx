@@ -21,6 +21,7 @@ export default function HeroSection() {
   const [success, setSuccess] = useState(false)
   const [domain, setDomain] = useState<string>("")
   const [redLine, setRedLine] = useState<string | null>(null)
+  const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(null)
 
   const launch = "[ORO] [MAR25]"
 
@@ -58,8 +59,31 @@ export default function HeroSection() {
       id: 9,
       text: (
         <>
-          DE OTIMISTA A BEM SUCEDIDO <br />
           Descubra como se sentir recompensado financeiramente e encontrar sentido naquilo que você decidiu fazer
+        </>
+      )
+    },
+    {
+      id: 10,
+      title: <>
+        <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-1">DE OTIMISTA</h2>
+        <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-2"> A BEM SUCEDIDO </h2>
+      </>,
+      text: (
+        <>
+         Descubra porque você não foi mais longe na sua busca pelo sucesso e como aumentar sua permissão para poder conquistar mais
+        </>
+      )
+    },
+    {
+      id: 11,
+      title: <>
+        <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-1">DE OTIMISTA</h2>
+        <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-2"> A BEM SUCEDIDO</h2>
+      </>,
+      text: (
+        <>
+         Descubra o que falta para você se sentir recompensado financeiramente e encontrar sentido no que você decidiu fazer.
         </>
       )
     }
@@ -148,9 +172,15 @@ export default function HeroSection() {
             tipoValue = `redline-${redLineVersion}`;
             console.log('RedLine Version:', redLineVersion);
             const redLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.text;
+            const titleRedLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.title;
             if (redLineText) {
-              setRedLine(redLineText);
+              setRedLine(redLineText as string);
               console.log('RedLine:', redLineText);
+            }
+
+            if (titleRedLineText) {
+              setTitleRedLine(titleRedLineText);
+              console.log('Title RedLine:', titleRedLineText);
             }
           }
 
@@ -370,9 +400,17 @@ export default function HeroSection() {
             </div>
 
             <div className="my-8">
-              <p className="text-[#f4f0e1] text-xl mb-1">Faça seu diagnóstico de</p>
-              <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-1">DEPENDÊNCIA</h2>
-              <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-2">EMOCIONAL <span className="text-[#D3CAC0] text-2xl block md:inline">gratuito</span></h2>
+              {!titleRedLine ? (
+                <>
+                  <p className="text-[#f4f0e1] text-xl mb-1">Faça seu diagnóstico de</p>
+                  <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-1">DEPENDÊNCIA</h2>
+                  <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-2">EMOCIONAL <span className="text-[#D3CAC0] text-2xl block md:inline">gratuito</span></h2>
+                </>
+              ) : (
+                <>
+                  {titleRedLine}
+                </>
+              )}
             </div>
 
             <p className="text-[#f4f0e1]/80 mb-8 max-w-md mx-auto md:mx-0">
