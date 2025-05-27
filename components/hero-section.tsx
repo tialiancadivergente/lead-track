@@ -86,6 +86,42 @@ export default function HeroSection() {
          Descubra o que falta para você se sentir recompensado financeiramente e encontrar sentido no que você decidiu fazer.
         </>
       )
+    },
+    {
+      id: 12,
+      title: <></>,
+      text: (
+        <>
+         Receba um diagnóstico prático que esclarece por que sua vida financeira e emocional travou depois das indecisões amorosas.
+        </>
+      )
+    },
+    {
+      id: 13,
+      title: <></>,
+      text: (
+        <>
+         Receba um passo a passo claro para destravar seu financeiro em apenas 3 dias.
+        </>
+      )
+    },
+    {
+      id: 14,
+      title: <></>,
+      text: (
+        <>
+         Descubra exatamente o que trava seus ganhos financeiros e como superá-los sem precisar trabalhar mais ou estudar mais
+        </>
+      )
+    },
+    {
+      id: 15,
+      title: <></>,
+      text: (
+        <>
+          Descubra o diagnóstico que celebridades fazem escondido para destravar a vida!
+        </>
+      )
     }
   ];
 
