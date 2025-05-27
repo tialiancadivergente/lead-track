@@ -22,6 +22,7 @@ export default function HeroSection() {
   const [domain, setDomain] = useState<string>("")
   const [redLine, setRedLine] = useState<string | null>(null)
   const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(null)
+  const [isLogo, setIsLogo] = useState(true)
 
   const launch = "[ORO] [MAR25]"
 
@@ -29,34 +30,42 @@ export default function HeroSection() {
   const benefitsMapping = [
     {
       id: 2,
+      isLogo: true,
       text: "Descubra o padrão invisível que trava a sua vida — mesmo quando você se esforça."
     },
     {
       id: 3,
+      isLogo: true,
       text: "Você vai entender por que tenta tanto e ainda assim não tem o resultado que merece."
     },
     {
       id: 4,
+      isLogo: true,
       text: "A explicação que nenhuma terapia, mentor ou curso conseguiu te dar — até agora."
     },
     {
       id: 5,
+      isLogo: true,
       text: "Você vai ver que sua vida não travou por falta de esforço — travou por lealdades invisíveis que você nunca questionou."
     },
     {
       id: 6,
+      isLogo: true,
       text: "Entenda por que toda vez que sua vida melhora, algo acontece e te puxa de volta."
     },
     {
       id: 7,
+      isLogo: true,
       text: "Você vai descobrir o nome, a origem e o impacto do padrão invisível que tem sabotado silenciosamente sua vida — e vai aprender como quebrá-lo."
     },
     {
       id: 8,
+      isLogo: true,
       text: "Esse é o seu dia D. O divisor entre continuar repetindo o passado ou assumir que é possível, sim, viver de outro jeito — se você tiver coragem de quebrar o ciclo."
     },
     {
       id: 9,
+      isLogo: true,
       text: (
         <>
           Descubra como se sentir recompensado financeiramente e encontrar sentido naquilo que você decidiu fazer
@@ -65,6 +74,7 @@ export default function HeroSection() {
     },
     {
       id: 10,
+      isLogo: true,
       title: <>
         <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-1">DE OTIMISTA</h2>
         <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-2"> A BEM SUCEDIDO </h2>
@@ -77,6 +87,7 @@ export default function HeroSection() {
     },
     {
       id: 11,
+      isLogo: true,
       title: <>
         <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-1">DE OTIMISTA</h2>
         <h2 className="text-[#c0964b] text-3xl md:text-4xl font-bold mb-2"> A BEM SUCEDIDO</h2>
@@ -89,38 +100,72 @@ export default function HeroSection() {
     },
     {
       id: 12,
+      isLogo: true,
       title: <></>,
       text: (
-        <>
-         Receba um diagnóstico prático que esclarece por que sua vida financeira e emocional travou depois das indecisões amorosas.
-        </>
+        <span className="text-3xl md:text-4xl">
+          Receba um diagnóstico prático que esclarece por que sua vida <span className="text-[#c0964b]">financeira e emocional travou depois das indecisões amorosas.</span>
+        </span>
       )
     },
     {
       id: 13,
+      isLogo: true,
       title: <></>,
       text: (
-        <>
-         Receba um passo a passo claro para destravar seu financeiro em apenas 3 dias.
-        </>
+        <span className="text-3xl md:text-4xl">
+         Receba um passo a passo claro para <span className="text-[#c0964b]">destravar seu financeiro em apenas 3 dias.</span>
+        </span>
       )
     },
     {
       id: 14,
+      isLogo: true,
       title: <></>,
       text: (
-        <>
-         Descubra exatamente o que trava seus ganhos financeiros e como superá-los sem precisar trabalhar mais ou estudar mais
-        </>
+        <span className="text-3xl md:text-4xl">
+         Descubra exatamente o que trava seus ganhos financeiros e <span className="text-[#c0964b]">como superá-los sem precisar trabalhar mais ou estudar mais</span>
+        </span>
       )
     },
     {
       id: 15,
+      isLogo: true,
       title: <></>,
       text: (
-        <>
-          Descubra o diagnóstico que celebridades fazem escondido para destravar a vida!
-        </>
+        <span className="text-3xl md:text-4xl">
+          Descubra o diagnóstico que celebridades <span className="text-[#c0964b]">fazem escondido para destravar a vida!</span>
+        </span>
+      )
+    },
+    {
+      id: 16,
+      isLogo: false,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          VOCÊ VEIO ATÉ AQUI PORQUE <span className="text-[#c0964b]">ALGO CHAMOU SUA ATENÇÃO NO MEU VÍDEO</span>
+        </span>
+      )
+    },
+    {
+      id: 17,
+      isLogo: false,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          E, NOS PRÓXIMOS DIAS, EU VOU FAZER UM EVENTO <span className="text-[#c0964b]">PARA APROFUNDAR NESSE ASSUNTO</span>
+        </span>
+      )
+    },
+    {
+      id: 18,
+      isLogo: false,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          PREENCHA O FORMULÁRIO ABAIXO PARA TER<span className="text-[#c0964b]"> ACESSO AO EVENTO E SABER MAIS</span>
+        </span>
       )
     }
   ];
@@ -209,6 +254,7 @@ export default function HeroSection() {
             console.log('RedLine Version:', redLineVersion);
             const redLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.text;
             const titleRedLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.title;
+            const _isLogo = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.isLogo;
             if (redLineText) {
               setRedLine(redLineText as string);
               console.log('RedLine:', redLineText);
@@ -217,6 +263,10 @@ export default function HeroSection() {
             if (titleRedLineText) {
               setTitleRedLine(titleRedLineText);
               console.log('Title RedLine:', titleRedLineText);
+            }
+
+            if (_isLogo !== undefined) {
+              setIsLogo(_isLogo);
             }
           }
 
@@ -417,24 +467,25 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[url('/images/paper-texture.png')] bg-cover bg-center opacity-15"></div>
 
       <div className="container mx-auto px-4 py-20 md:py-32 relative">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 z-[0]">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-12 z-[0]">
           {/* Coluna da esquerda - Formulário */}
           <div className="w-full md:w-1/2 lg:w-2/5 mb-12 md:mb-0 text-center md:text-left">
-            <div className="mb-8 flex justify-center md:justify-start">
-              <Image
-                src="/images/logo-resgate-dos-otimistas.png"
-                alt="Logotipo Resgate dos otimistas"
-                width={322}
-                height={171}
-                priority
-                className="object-contain select-none pointer-events-none"
-                style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                }}
-              />
-            </div>
-
+            {isLogo && (
+              <div className="mb-8 flex justify-center md:justify-start">
+                <Image
+                  src="/images/logo-resgate-dos-otimistas.png"
+                  alt="Logotipo Resgate dos otimistas"
+                  width={322}
+                  height={171}
+                  priority
+                  className="object-contain select-none pointer-events-none"
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                  }}
+                />
+              </div>
+            )}
             <div className="my-8">
               {!titleRedLine ? (
                 <>
@@ -461,7 +512,9 @@ export default function HeroSection() {
                 </>
               )}
             </p>
-
+             <div className="text-[#f4f0e1] text-lg mb-4 font-medium">
+                <span className="text-[#f4f0e1]">Preencha os campos abaixo agora:</span>
+             </div>
             <form onSubmit={handleSubmit} id="cadastro" name={launch} className="space-y-4 max-w-md mx-auto md:mx-0">
               <div>
                 <input
