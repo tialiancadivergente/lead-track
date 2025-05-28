@@ -24,7 +24,7 @@ export default function HeroSection() {
   const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(null)
   const [isLogo, setIsLogo] = useState(true)
 
-  const launch = "[ORO] [MAR25]"
+  const launch = "[ORO] [JUN25]"
 
   // Mapeamento dos benefícios para exibição
   const benefitsMapping = [
