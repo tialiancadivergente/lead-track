@@ -106,7 +106,7 @@ export default function Formv10() {
         </p>
       ),
       text: (
-        <p className={`text-2xl md:text-2xl text-center`}>
+        <p className={`text-2xl md:text-2xl max-w-sm mx-auto text-center`}>
           E esse ciclo se repete pela sua falta de permissão
         </p>
       )
