@@ -182,10 +182,29 @@ export default function Quiz({ params }: { params: { form: string } }) {
             const paramValue = _params.form as string;
             const parts = paramValue.split('-');
 
-            if (paramValue.indexOf('v1') != -1) {
+            if (parts[2] === 'V10') {
+                let tipoValue = parts[0];
+                let versaoValue = parts[1];
+                let temperaturaValue = parts[2];
+
+                if (parts.length >= 5) {
+                    temperaturaValue = parts[3];
+                    versaoValue = parts[2];
+                    tipoValue = parts[1];
+                    console.log('Temperatura:', temperaturaValue);
+                }
+
+                console.log('Tipo:', tipoValue);
+                console.log('Versão:', versaoValue);
+                console.log('Temperatura:', temperaturaValue);
+
+                setTipo(tipoValue);
+                setVersao(versaoValue);
+                setTemperatura(temperaturaValue);  
+            } else if (paramValue.indexOf('v1') != -1) {
                 const tipoValue = parts[0];
                 const versaoValue = parts[1];
-                const temperaturaValue = parts[2];
+                const temperaturaValue = parts[parts.length - 2];
 
                 console.log('Tipo:', tipoValue);
                 console.log('Versão:', versaoValue);
@@ -213,7 +232,8 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 setTipo(tipoValue);
                 setVersao(versaoValue);
                 setTemperatura(temperaturaValue);
-            } else {
+            }
+            else {
                 // Caso o formato não seja o esperado, usar o valor completo como temperatura
                 console.log('Formato inesperado, usando valor completo');
                 setTemperatura(paramValue);

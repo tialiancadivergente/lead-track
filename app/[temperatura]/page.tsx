@@ -12,16 +12,28 @@ import LoadingFallback from '../components/LoadingFallback'
 import { useParams, useSearchParams, useRouter } from "next/navigation"
 import Form from './form-v1'
 import QuizFormInlead from './inlead'
+import Formv10 from './form-v10'
 
 
 export default function Home() {
   const params = useParams()
   const temperatura = params.temperatura as string;
+  const paramsSplit = temperatura.split('-');
+  const versao = params.versao as string;
   let form;
   if (temperatura.indexOf('v1') != -1) {
     form = 'v1';
   } else {
     form = 'v9';
+  }
+
+  if (paramsSplit[1] === 'v10') {
+    
+    return (
+        <SplashScreen>
+          <Formv10 />
+        </SplashScreen>
+    )
   }
 
   if (temperatura.indexOf('survey') != -1) {
