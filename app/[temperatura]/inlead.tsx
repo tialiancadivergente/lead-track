@@ -16,12 +16,13 @@ const montserrat = Montserrat({
   display: 'swap',
 })
 
+
 // Mapeamento para redirecionamento SendFlow
 const mapTagSendFlow = {
-  f: "oro-jun2598f",
+  f: "orofrio2-jun25",
   org: "oro-jun2598org",
   m: "oro-jun2598m",
-  q: "oro-jun2598q",
+  q: "oroquente2-jun24",
 } as any;
 
 // Objeto com as perguntas e pesos
