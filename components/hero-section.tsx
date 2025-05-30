@@ -167,7 +167,128 @@ export default function HeroSection() {
           PREENCHA O FORMULÁRIO ABAIXO PARA TER<span className="text-[#c0964b]"> ACESSO AO EVENTO E SABER MAIS</span>
         </span>
       )
-    }
+    },
+    //oro_junho25-leads-adv038-reels
+    {
+      id: 19,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Conheça o diagnóstico emocional secreto que famosos fazem para <span className="text-[#c0964b]">destravarem suas vidas sem exposição pública</span>
+        </span>
+      )
+    },
+    // oro_junho25-leads-adv061-reels
+    {
+      id: 20,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Faça o diagnóstico <span className="text-[#c0964b]">GRATUITO</span> que revela por que você não é bem remunerado!
+        </span>
+      )
+    },
+    // oro-leads-adv27-reels
+    {
+      id: 21,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Entenda exatamente por que cursos, livros e imersões anteriores <span className="text-[#c0964b]">não funcionaram para você até agora</span>
+        </span>
+      )
+    },
+    // oro_mar24-leads-adv95
+    {
+      id: 22,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Chega de aceitar menos do que você merece! <span className="text-[#c0964b]">Descubra por que você ainda não foi mais longe</span> e o que falta para ter a vida que sempre quis.
+        </span>
+      )
+    },
+    // oro-leads-adv25-reels
+    {
+      id: 23,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Você trabalha, trabalha e o dinheiro não vem?Descubra o motivo fazendo um <span className="text-[#c0964b]">diagnóstico gratuito!</span>
+        </span>
+      )
+    },
+    // oro_mar24-leads-adv94-v1
+    {
+      id: 24,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Faça seu diagnóstico de dependência emocional de forma gratuita e <span className="text-[#c0964b]">descubra o padrão controlador que bloqueia seus resultados</span>
+        </span>
+      )
+    },
+    // oro_mar24-cadastros-opc-adv02-reels
+    {
+      id: 25,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          <span className="text-[#c0964b]">Você está trabalhando duro e não vê dinheiro?</span> Descubra o que falta para resolver isso de uma vez por todas!
+        </span>
+      )
+    },
+    // oro-leads-adv26-reels
+    {
+      id: 26,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Descubra exatamente o nível de sua <span className="text-[#c0964b]">dependência emocional</span> e como isso afeta diretamente seu sucesso financeiro.
+        </span>
+      )
+    },
+    // oro_mar25-leads-adv014f-reels
+    {
+      id: 27,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Aprenda como lidar e resolver sua relação com pessoas narcisistas através de um <span className="text-[#c0964b]">método prático e comprovado</span>
+        </span>
+      )
+    },
+    // oro_mar25-leads-adv058f--reels
+    {
+      id: 28,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Faça <span className="text-[#c0964b]">GRATUITAMENTE o Diagnóstico</span> que revela por que você ainda não ganha o dinheiro que merece!
+        </span>
+      )
+    },
+    // oro_jun24-leads-adv54-feed + oro_mar25-leads-adv027f-reels
+    {
+      id: 29,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Tenha acesso a protocolos práticos que já <span className="text-[#c0964b]">transformaram a vida financeira, pessoal e emocional</span> de milhares de pessoas.
+        </span>
+      )
+    },
   ];
 
 
