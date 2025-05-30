@@ -25,6 +25,7 @@ export default function Formv10() {
   const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(null)
   const [isLogo, setIsLogo] = useState(true)
   const [isDark, setIsDark] = useState(true)
+  const [isPicture, setIsPicture] = useState(false);
 
   const launch = "[ORO] [JUN25]"
 
@@ -85,6 +86,7 @@ export default function Formv10() {
   const benefitsMapping = [
     {
       id: 1,
+      isPicture: false,
       isLogo: true,
       title: (
         <p className={`text-3xl md:text-4xl uppercase font-bold mx-auto leading-10 md:-leading-10 `}>
@@ -99,6 +101,7 @@ export default function Formv10() {
     },
     {
       id: 2,
+      isPicture: false,
       isLogo: true,
       title: (
         <p className={`text-3x max-w-xl md:text-4xl uppercase font-bold mx-auto leading-10 md:-leading-10 `}>
@@ -108,6 +111,21 @@ export default function Formv10() {
       text: (
         <p className={`text-2xl md:text-2xl max-w-sm mx-auto text-center`}>
           E esse ciclo se repete pela sua falta de permissão
+        </p>
+      )
+    },
+    {
+      id: 3,
+      isPicture: true,
+      isLogo: true,
+      title: (
+        <p className={`text-3x max-w-lg md:text-4xl uppercase font-bold mx-auto leading-10 md:-leading-10 text-center md:text-left`}>
+          Essa advogada saiu de R$3 mil para R$85 mil em menos de 60 dias
+        </p>
+      ),
+      text: (
+        <p className={`text-2xl md:text-2xl max-w-lg mx-auto text-center md:text-left`}>
+          Destrave o seu teto financeiro eliminando o seu bloqueio e permissão. Capacidade e força de vontade você já tem.
         </p>
       )
     }
@@ -141,6 +159,7 @@ export default function Formv10() {
             const redLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.text;
             const titleRedLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.title;
             const _isLogo = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.isLogo;
+            const _isPicture = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.isPicture;
             if (redLineText) {
               setRedLine(redLineText as unknown as string);
               console.log('RedLine:', redLineText);
@@ -149,6 +168,10 @@ export default function Formv10() {
             if (titleRedLineText) {
               setTitleRedLine(titleRedLineText);
               console.log('Title RedLine:', titleRedLineText);
+            }
+
+            if (_isPicture !== undefined) {
+              setIsPicture(_isPicture);
             }
 
             if (_isLogo !== undefined) {
@@ -348,7 +371,8 @@ export default function Formv10() {
   };
 
   return (
-    <section id="hero" className={`relative flex items-center p-4 md:p-0 justify-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#07242c] to-[#000000] z-0 ${isDark ? 'bg-gradient-to-r from-[#000000] via-[#07242c] to-[#000000]' : 'bg-gradient-to-r from-[#f4f0e1] via-[#f4f0e1] to-[#f4f0e1]'}`}>
+    <div>
+    <section id="hero" className={`relative flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#07242c] to-[#000000] z-0 ${isDark ? 'bg-gradient-to-r from-[#000000] via-[#07242c] to-[#000000]' : 'bg-gradient-to-r from-[#f4f0e1] via-[#f4f0e1] to-[#f4f0e1]'}`}>
       {/* Background com overlay */}
       <div className="absolute inset-0 bg-[url('/images/paper-texture.png')] bg-cover bg-center opacity-15"></div>
 
@@ -436,8 +460,8 @@ export default function Formv10() {
         />
       </div>
 
-      <div className="container mx-auto px-4 py-20 md:py-32 relative text-center">
-        {/* Coluna única centralizada */}
+      <div className={`container mx-auto px-4 py-20 md:py-32 relative ${isPicture ? 'grid grid-cols-1 md:grid-cols-2 gap-8' : 'text-center'}`}>
+        {/* Coluna única centralizada ou duas colunas */}
         <div className="w-full max-w-2xl mx-auto mb-12">
           {isLogo && (
             <div className="mb-8 flex justify-center">
@@ -483,10 +507,10 @@ export default function Formv10() {
               </>
             )}
           </p>
-          <div className={`${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'} max-w-md mx-auto text-lg mb-4 font-medium`}>
-            <span className={`${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'}`}>Preencha os dados abaixo para fazer o seu diagnóstico  de bloqueio de permissão gratuito</span>
+          <div className={`${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'} ${isPicture ? 'max-w-lg text-center md:text-left' : 'max-w-md'} mx-auto text-lg mb-4 font-medium`}>
+            <span className={`${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'}`}>Preencha os dados abaixo para fazer o seu diagnóstico  de bloqueio de permissão gratuito e destrave seu teto financeiro imediatamente</span>
           </div>
-          <form onSubmit={handleSubmit} id="cadastro" name={launch} className="space-y-4 max-w-md mx-auto">
+          <form onSubmit={handleSubmit} id="cadastro" name={launch} className={`space-y-4 ${isPicture ? 'max-w-lg' : 'max-w-md'} mx-auto`}>
             <div>
               <input
                 type="email"
@@ -547,9 +571,16 @@ export default function Formv10() {
             </button>
           </form>
 
-          <p className="text-[#C0964B] text-lg mt-4" style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 2, 3 e 04/06 - 19h55</p>
+          <p className={`text-[#C0964B] text-lg mt-4 ${isPicture ? 'hidden' : 'block'}`} style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 2, 3 e 04/06 - 19h55</p>
+        </div>
 
-          <footer className="w-full mt-16">
+        {isPicture && (
+          <div className="w-full h-full -mt-14 md:mt-6">
+            <Image src="/images/foto.png" alt="Picture" width={600} height={400} />
+          </div>
+        )}
+      </div>
+      <footer className="w-full mb-24 max-w-3xl mx-auto">
           <div className="w-full mb-6">
             <div className="border-t border-[#2a4447] w-full" style={{ background: 'linear-gradient(to right, transparent, #2a4447, transparent)' }}></div>
           </div>
@@ -558,9 +589,8 @@ export default function Formv10() {
             <div className={`${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'}`}>TODOS OS DIREITOS RESERVADOS.</div>
           </div>
         </footer>
-        </div>
-      </div>
     </section>
+    </div>
   )
 }
 
