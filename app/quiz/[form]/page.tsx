@@ -131,10 +131,10 @@ const questions = [
 ]
 
 const mapTagSendFlow = {
-    f: "orofrio22-jun25",
-    org: "oro-jun255498org",
-    m: "oro-jun253498m",
-    q: "oroquente22-jun24",
+    f: "orofrio23-jun25",
+    org: "oro-jun2554985org",
+    m: "oro-jun2534985m",
+    q: "oroquente23-jun24",
   } as any;
 
 
