@@ -571,7 +571,7 @@ export default function Formv10() {
             </button>
           </form>
 
-          <p className={`text-[#C0964B] text-lg mt-4 ${isPicture ? 'hidden' : 'block'}`} style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 2, 3 e 04/06 - 19h55</p>
+          <p className={`text-[#C0964B] text-lg mt-4 ${isPicture ? 'hidden' : 'block'}`} style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 01, 02 e 03/09 - 19h55</p>
         </div>
 
         {isPicture && (

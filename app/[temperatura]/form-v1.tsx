@@ -403,7 +403,7 @@ export default function Form() {
                             className="mb-3 p-3 w-full border border-white rounded bg-transparent text-white placeholder-white font-medium" />
                         <button type="submit" className="bg-[#F89500] w-full hover:bg-orange-600 text-white py-3 px-6 rounded font-bold">{isSubmitting ? "PROCESSANDO..." : success ? "SUCESSO! AGUARDE..." : "PARTICIPAR GRATUITAMENTE"}</button>
                     </form>
-                    <p className="mt-3 text-xl text-[#F89500] font-semibold">ONLINE E GRATUITO. 02, 03 e 04/06 – 19h55</p>
+                    <p className="mt-3 text-xl text-[#F89500] font-semibold">ONLINE E GRATUITO. 01, 02 e 03/09 - 19h55</p>
                 </div>
                 <div className="slice-2 min-h-screen w-full bg-[url('/images/Elton-Euler-Resgate-dos-Otimistas-Desktop-Slice-2.webp')] bg-cover bg-center bg-no-repeat m-0 p-0 border-none flex justify-center text-center">
                     <div className="mx-auto mt-40 max-w-[680px]">
