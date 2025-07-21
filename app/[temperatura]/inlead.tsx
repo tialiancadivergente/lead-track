@@ -1089,7 +1089,7 @@ export default function QuizFormInlead() {
                   <div className="flex flex-col items-center justify-center h-full">
                     <div className="text-center mb-10 mt-8">
                       <h1 className="text-2xl font-bold mb-4 leading-tight">
-                        + de 100 mil pessoas aumentaram o seu nível de permissão e estão vivendo vidas memoráveis, com
+                        + de 130 mil pessoas aumentaram o seu nível de permissão e estão vivendo vidas memoráveis, com
                         muito dinheiro, saúde e relacionamentos incríveis!
                       </h1>
                     </div>
