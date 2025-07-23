@@ -2063,7 +2063,7 @@ export default function QuizFormInlead() {
                 <div className="w-full">
                   <div className="space-y-6 text-center">
                     <h1 className="text-xl font-bold leading-tight">
-                      Participe do Resgate dos Otimistas, o evento que vou realizar nos dias 02, 03 e 04 de junho, será
+                      Participe do Resgate dos Otimistas, o evento que vou realizar nos dias 01, 02 e 03 de setembro, será
                       ao vivo, online e dessa vez, gratuito.
                     </h1>
 
