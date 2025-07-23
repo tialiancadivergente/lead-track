@@ -27,7 +27,7 @@ export default function Formv10() {
   const [isDark, setIsDark] = useState(true)
   const [isPicture, setIsPicture] = useState(false);
 
-  const launch = "[ORO] [JUN25]"
+  const launch = "[ORO] [SET25]"
 
 
   // Capturar o domínio da página

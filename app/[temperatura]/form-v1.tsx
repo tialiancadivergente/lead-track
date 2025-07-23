@@ -25,7 +25,7 @@ export default function Form() {
     const [success, setSuccess] = useState(false)
     const [domain, setDomain] = useState<string>("")
     const [internalVersion, setInternalVersion] = useState<number>();
-    const launch = "[ORO] [JUN25]"
+    const launch = "[ORO] [SET25]"
   
 
   // Capturar o domínio da página

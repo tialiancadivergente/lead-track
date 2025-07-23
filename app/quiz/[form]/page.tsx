@@ -158,7 +158,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
     const [domain, setDomain] = useState<string>("")
     const [isLoading, setIsLoading] = useState(false)
 
-    const launch = "[ORO] [JUN25]"
+    const launch = "[ORO] [SET25]"
 
     // Capturar o domínio da página
     useEffect(() => {

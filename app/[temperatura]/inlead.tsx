@@ -193,7 +193,7 @@ export default function QuizFormInlead() {
   const [temperatura, setTemperatura] = useState('');
   const [domain, setDomain] = useState('');
   const [totalScore, setTotalScore] = useState(0);
-  const launch = "[ORO] [JUN25]";
+  const launch = "[ORO] [SET25]";
 
   // Reduzido para 15 steps após remover a pergunta sobre saúde
   const totalSteps = 15
