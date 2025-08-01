@@ -4,6 +4,7 @@ import './globals.css'
 import { Spectral } from 'next/font/google'
 import "./globals.css"
 import GoogleTagManager from "./components/GoogleTagManager"
+import MicrosoftClarity from "./components/MicrosoftClarity"
 const GTM_ID = "GTM-NC7GGZBX"; // Substitua pelo seu GTM ID
 
 const spectral = Spectral({
@@ -42,6 +43,7 @@ export default function RootLayout({
       </head>
       <body className={`${spectral.className}`}>
         <GoogleTagManager />
+        <MicrosoftClarity />
         {children}
       </body>
     </html>
