@@ -18,10 +18,10 @@ const montserrat = Montserrat({
 
 // Mapeamento para redirecionamento SendFlow
 const mapTagSendFlow = {
-  f: "oroset25f",
-  org: "oroset25o",
-  m: "oroset25m",
-  q: "oroset25q",
+  f: "https://api.whatsapp.com/send?phone=5512936184013&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
+  org: "https://api.whatsapp.com/send?phone=5512936182704&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
+  m: "https://api.whatsapp.com/send?phone=5512936185472&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
+  q: "https://api.whatsapp.com/send?phone=5512936184799&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
 } as any;
 
 // Objeto com as perguntas e pesos
@@ -673,7 +673,7 @@ export default function QuizFormInlead() {
 
     // Adiciona um delay de 1 segundo antes de redirecionar
     setTimeout(() => {
-      window.location.href = `https://sendflow.pro/i/${mapTagSendFlow[temperatura || 'f']}`
+      window.location.href = `${mapTagSendFlow[temperatura || 'f']}`
     }, 1000)
     
     // Retorna false para evitar o redirecionamento imediato

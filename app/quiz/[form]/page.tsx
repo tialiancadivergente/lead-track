@@ -131,10 +131,10 @@ const questions = [
 ]
 
 const mapTagSendFlow = {
-    f: "oroset25f",
-    org: "oroset25o",
-    m: "oroset25m",
-    q: "oroset25q",
+    f: "https://api.whatsapp.com/send?phone=5512936184013&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
+    org: "https://api.whatsapp.com/send?phone=5512936182704&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
+    m: "https://api.whatsapp.com/send?phone=5512936185472&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
+    q: "https://api.whatsapp.com/send?phone=5512936184799&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
   } as any;
 
 
@@ -341,12 +341,12 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 .then(data => {
                     console.log('Success:', data);
                     setIsLoading(false);
-                    window.location.href = `https://sendflow.pro/i/${mapTagSendFlow[temperatura || 'f']}`
+                    window.location.href = `${mapTagSendFlow[temperatura || 'f']}`
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                     setIsLoading(false);
-                    window.location.href = `https://sendflow.pro/i/${mapTagSendFlow[temperatura || 'f']}`
+                    window.location.href = `${mapTagSendFlow[temperatura || 'f']}`
                 });
         }
     }, [completed, searchParams, answers, totalScore, questions, tipo, versao, temperatura, domain, launch]);
@@ -604,7 +604,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
                                 <Button
                                     className="w-full max-w-sm py-4 md:py-6 text-sm md:text-base hover:opacity-90 transition-opacity duration-300 rounded-3xl"
-                                    onClick={() => window.location.href = `https://sendflow.pro/i/${mapTagSendFlow[temperatura || 'f']}`}
+                                    onClick={() => window.location.href = `${mapTagSendFlow[temperatura || 'f']}`}
                                     style={{ background: 'linear-gradient(96.48deg, #065100 -18.33%, #49E413 159.75%)', fontFamily: '"Roboto", Sans-serif' }}
                                 >
                                     Clique aqui para entrar no Grupo no WhatsApp
