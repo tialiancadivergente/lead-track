@@ -496,7 +496,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
                                     <Button
                                         className="w-full py-4 md:py-6 text-sm md:text-base hover:opacity-90 transition-opacity duration-300 rounded-3xl max-w-sm"
-                                        onClick={() => window.location.href = `https://sendflow.pro/i/${mapTagSendFlow[temperatura || 'f']}`}
+                                        onClick={() => window.location.href = `${mapTagSendFlow[temperatura || 'f']}`}
                                         style={{ background: 'linear-gradient(96.48deg, #065100 -18.33%, #49E413 159.75%)' }}
                                     >
                                         Clique aqui para entrar no Grupo no WhatsApp
