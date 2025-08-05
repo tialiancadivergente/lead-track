@@ -391,12 +391,12 @@ export default function Quiz({ params }: { params: { form: string } }) {
             // Calcular pontuação total
             let score = Object.values(weights).reduce((sum, weight) => sum + weight, 0)
 
-            // Adicionar pontuação extra baseada na URL
-            const publicoScore = window.location.href.indexOf('f-typ') !== -1 ||
-                window.location.href.indexOf('m-typ') !== -1 ||
-                window.location.href.indexOf('q-typ') !== -1 ? 10 : 0;
+            // // Adicionar pontuação extra baseada na URL
+            // const publicoScore = window.location.href.indexOf('f-typ') !== -1 ||
+            //     window.location.href.indexOf('m-typ') !== -1 ||
+            //     window.location.href.indexOf('q-typ') !== -1 ? 10 : 0;
 
-            score += publicoScore;
+            // score += publicoScore;
             setTotalScore(score)
             setCompleted(true)
         }
