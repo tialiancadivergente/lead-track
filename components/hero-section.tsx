@@ -289,6 +289,42 @@ export default function HeroSection() {
         </span>
       )
     },
+    //  AD1 – https://www.instagram.com/p/DJibMCtMrtc/  
+    {
+      id: 30,
+      isLogo: true,
+      title: <></>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          <span className="text-[#c0964b]">Esqueça todas as técnicas, ferramentas e conceitos de negócio.</span> A primeira coisa a se fazer para alcançar o sucesso profissional e financeiro é um diagnóstico de dependência emocional. <span className="text-[#c0964b]">Forma gratuita.</span>
+        </span>
+      )
+    },
+    //  AD2 – https://www.instagram.com/p/DKQvRdqstur/   
+    {
+      id: 31,
+      isLogo: true,
+      title: <>
+      <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Quem vive sem limites nas relações, <span className="text-[#c0964b]">vive com limites nos resultados.</span> </h2>
+      </>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+          Faça o teste de dependência emocional para identificar os seus bloqueios de permissão e começar a viver uma vida memorável.  
+        </span>
+      )
+    },
+     //  AD3 – https://www.instagram.com/p/DJmkKLnsnRI/    
+     {
+      id: 32,
+      isLogo: true,
+      title: <>
+      </>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+           Teste seu nível de <span className="text-[#c0964b]">dependência emocional</span> e descubra como o peso dos problemas dos outros pode estar puxando seus resultados para baixo.  
+        </span>
+      )
+    },
   ];
 
 
@@ -371,7 +407,7 @@ export default function HeroSection() {
 
           if (parts.length === 5) {
             const redLineVersion = parts[parts.length - 2];
-            tipoValue = `redline-${redLineVersion}`;
+            tipoValue = `ordo-${redLineVersion}`;
             console.log('RedLine Version:', redLineVersion);
             const redLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.text;
             const titleRedLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.title;
