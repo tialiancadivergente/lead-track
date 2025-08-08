@@ -400,18 +400,39 @@ export default function HeroSection() {
           setTipo(tipoValue);
           setVersao(versaoValue);
           setTemperatura(temperaturaValue);
-        } else if (paramValue.indexOf('v9') != -1) {
+        } else if (paramValue.indexOf('v9') != -1 || paramValue.indexOf('adv58f') != -1) {
           let tipoValue = parts[0];
           const versaoValue = parts[1];
           const temperaturaValue = parts[parts.length - 1];
 
-          if (parts.length === 5) {
+          // Lógica especial para ordo-adv58f-f
+          if (versaoValue.indexOf('adv58f') != -1) {
+            const redLineId = 15;
+            tipoValue = `ordo-${redLineId}`;
+            const redLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.text;
+            const titleRedLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.title;
+            const _isLogo = benefitsMapping.find(benefit => benefit.id === redLineId)?.isLogo;
+            
+            if (redLineText) {
+              setRedLine(redLineText as string);
+              console.log('RedLine:', redLineText);
+            }
+
+            if (titleRedLineText) {
+              setTitleRedLine(titleRedLineText);
+              console.log('Title RedLine:', titleRedLineText);
+            }
+
+            if (_isLogo !== undefined) {
+              setIsLogo(_isLogo);
+            }
+          } else if (parts.length === 5) {
             const redLineVersion = parts[parts.length - 2];
             tipoValue = `ordo-${redLineVersion}`;
-            console.log('RedLine Version:', redLineVersion);
             const redLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.text;
             const titleRedLineText = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.title;
             const _isLogo = benefitsMapping.find(benefit => benefit.id === +redLineVersion)?.isLogo;
+            
             if (redLineText) {
               setRedLine(redLineText as string);
               console.log('RedLine:', redLineText);
