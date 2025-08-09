@@ -382,16 +382,17 @@ export default function HeroSection() {
   useEffect(() => {
     if (params && params.temperatura) {
       console.log('temperatura param', params.temperatura)
+      const versionsV9 = ['v9', 'adv058f', 'adv212', 'adv28'];
 
       // Verificar se params.temperatura não é null ou undefined
       const paramValue = params.temperatura as string;
       if (paramValue) {
         const parts = paramValue.split('-');
+        const tipoValue = parts[2];
+        const versaoValue = parts[1];
+        const temperaturaValue = parts[parts.length - 1];
 
         if (paramValue.indexOf('v1') != -1) {
-          const tipoValue = parts[2];
-          const versaoValue = parts[1];
-          const temperaturaValue = parts[parts.length - 1];
 
           console.log('Tipo:', tipoValue);
           console.log('Versão:', versaoValue);
@@ -400,14 +401,14 @@ export default function HeroSection() {
           setTipo(tipoValue);
           setVersao(versaoValue);
           setTemperatura(temperaturaValue);
-        } else if (paramValue.indexOf('v9') != -1 || paramValue.indexOf('adv58f') != -1) {
+        } else if (paramValue.indexOf('v9') != -1 || versionsV9.includes(versaoValue)) {
           let tipoValue = parts[0];
           const versaoValue = parts[1];
           const temperaturaValue = parts[parts.length - 1];
 
           // Lógica especial para ordo-adv58f-f
-          if (versaoValue.indexOf('adv58f') != -1) {
-            const redLineId = 15;
+          if (versaoValue.indexOf('adv058f') != -1) {
+            const redLineId = 32;
             tipoValue = `ordo-${redLineId}`;
             const redLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.text;
             const titleRedLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.title;
@@ -426,6 +427,58 @@ export default function HeroSection() {
             if (_isLogo !== undefined) {
               setIsLogo(_isLogo);
             }
+
+            setTipo(tipoValue);
+            setVersao(versaoValue);
+            setTemperatura(temperaturaValue);
+          } else if (versaoValue.indexOf('adv212') != -1) {
+            const redLineId = 31;
+            tipoValue = `ordo-${redLineId}`;
+            const redLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.text;
+            const titleRedLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.title;
+            const _isLogo = benefitsMapping.find(benefit => benefit.id === redLineId)?.isLogo;
+            
+            if (redLineText) {
+              setRedLine(redLineText as string);
+              console.log('RedLine:', redLineText);
+            }
+
+            if (titleRedLineText) {
+              setTitleRedLine(titleRedLineText);
+              console.log('Title RedLine:', titleRedLineText);
+            }
+
+            if (_isLogo !== undefined) {
+              setIsLogo(_isLogo);
+            }
+
+            setTipo(tipoValue);
+            setVersao(versaoValue);
+            setTemperatura(temperaturaValue);
+          }else if (versaoValue.indexOf('adv28') != -1) {
+            const redLineId = 30;
+            tipoValue = `ordo-${redLineId}`;
+            const redLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.text;
+            const titleRedLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.title;
+            const _isLogo = benefitsMapping.find(benefit => benefit.id === redLineId)?.isLogo;
+            
+            if (redLineText) {
+              setRedLine(redLineText as string);
+              console.log('RedLine:', redLineText);
+            }
+
+            if (titleRedLineText) {
+              setTitleRedLine(titleRedLineText);
+              console.log('Title RedLine:', titleRedLineText);
+            }
+
+            if (_isLogo !== undefined) {
+              setIsLogo(_isLogo);
+            }
+
+            setTipo(tipoValue);
+            setVersao(versaoValue);
+            setTemperatura(temperaturaValue);
           } else if (parts.length === 5) {
             const redLineVersion = parts[parts.length - 2];
             tipoValue = `ordo-${redLineVersion}`;
