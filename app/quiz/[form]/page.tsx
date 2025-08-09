@@ -182,6 +182,8 @@ export default function Quiz({ params }: { params: { form: string } }) {
             // Extrair os valores da string usando split
             const paramValue = _params.form as string;
             const parts = paramValue.split('-');
+            const versionsV9 = ['v9', 'adv058f', 'adv212', 'adv28'];
+            let versaoValueWithoutVersion = parts[2];
 
             if (parts[2] === 'V10') {
                 let tipoValue = parts[0];
@@ -214,7 +216,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 setTipo(tipoValue);
                 setVersao(versaoValue);
                 setTemperatura(temperaturaValue);
-            } else if (paramValue.indexOf('v9') != -1) {
+            } else if (paramValue.indexOf('v9') != -1 || versionsV9.includes(versaoValueWithoutVersion)) {
                 let tipoValue = parts[0];
                 let versaoValue = parts[1];
                 let temperaturaValue = parts[2];
