@@ -182,8 +182,8 @@ export default function Quiz({ params }: { params: { form: string } }) {
             // Extrair os valores da string usando split
             const paramValue = _params.form as string;
             const parts = paramValue.split('-');
-            const versionsV9 = ['v9', 'adv058f', 'adv212', 'adv28'];
-            let versaoValueWithoutVersion = parts[2];
+            const versionsV9 = ['v9', 'adv058f', 'adv212', 'adv28', 'adv58f'];
+            let versaoValueWithoutVersion = parts[1];
 
             if (parts[2] === 'V10') {
                 let tipoValue = parts[0];

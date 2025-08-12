@@ -382,7 +382,7 @@ export default function HeroSection() {
   useEffect(() => {
     if (params && params.temperatura) {
       console.log('temperatura param', params.temperatura)
-      const versionsV9 = ['v9', 'adv058f', 'adv212', 'adv28'];
+      const versionsV9 = ['v9', 'adv058f', 'adv212', 'adv28', 'adv58f'];
 
       // Verificar se params.temperatura não é null ou undefined
       const paramValue = params.temperatura as string;
@@ -391,6 +391,7 @@ export default function HeroSection() {
         const tipoValue = parts[2];
         const versaoValue = parts[1];
         const temperaturaValue = parts[parts.length - 1];
+        console.log('Tipo:', versaoValue);
 
         if (paramValue.indexOf('v1') != -1) {
 
@@ -404,11 +405,12 @@ export default function HeroSection() {
         } else if (paramValue.indexOf('v9') != -1 || versionsV9.includes(versaoValue)) {
           let tipoValue = parts[0];
           const versaoValue = parts[1];
-          const temperaturaValue = parts[parts.length - 1];
+          let temperaturaValue = parts[parts.length - 1];
 
           // Lógica especial para ordo-adv58f-f
           if (versaoValue.indexOf('adv058f') != -1) {
             const redLineId = 32;
+            temperaturaValue = parts[parts.length - 1];
             tipoValue = `ordo-${redLineId}`;
             const redLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.text;
             const titleRedLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.title;
