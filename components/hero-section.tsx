@@ -314,7 +314,7 @@ export default function HeroSection() {
       )
     },
      //  AD3 – https://www.instagram.com/p/DJmkKLnsnRI/    
-     {
+    {
       id: 32,
       isLogo: true,
       title: <>
@@ -322,6 +322,76 @@ export default function HeroSection() {
       text: (
         <span className="text-3xl md:text-4xl">
            Teste seu nível de <span className="text-[#c0964b]">dependência emocional</span> e descubra como o peso dos problemas dos outros pode estar puxando seus resultados para baixo.  
+        </span>
+      )
+    },
+    {
+      id: 33,
+      isLogo: true,
+      title: <>
+        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Já reparou que gente mais despreparada que você está indo mais longe?</h2>
+      </>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+           O que te faz ficar para trás não é falta de competência: é falta de permissão. 
+        </span>
+      )
+    },
+    {
+      id: 34,
+      isLogo: true,
+      title: <>
+        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Tem gente que estudou menos, errou mais e mesmo assim ganha mais do que você.</h2>
+      </>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+           Isso tem uma explicação. E você precisa descobrir qual é.
+        </span>
+      )
+    },
+    {
+      id: 35,
+      isLogo: true,
+      title: <>
+        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Você vê pessoas com metade da sua bagagem tendo o dobro de resultado?</h2>
+      </>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+           Isso só é normal pra quem ainda não entendeu o que é permissão.
+        </span>
+      )
+    },
+    {
+      id: 36,
+      isLogo: true,
+      title: <>
+      </>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+           Descubra exatamente o que está travando os seus ganhos financeiros e como superá-los sem precisar trabalhar mais ou estudar mais.
+        </span>
+      )
+    },
+    {
+      id: 37,
+      isLogo: true,
+      title: <>
+        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Chega de dar o seu máximo e no fim ficar se perguntando o que faltou.</h2>
+      </>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+           É hora de começar <span className="text-[#c0964b] font-bold">a vida memorável com que você sempre sonhou.</span>
+        </span>
+      )
+    },
+    {
+      id: 38,
+      isLogo: true,
+      title: <>
+      </>,
+      text: (
+        <span className="text-3xl md:text-4xl">
+           <span className="text-[#c0964b] font-bold">Eu quebrei 17 vezes. Na décima oitava vez, deu certo. E o segredo está aqui.</span>
         </span>
       )
     },
