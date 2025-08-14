@@ -6,131 +6,13 @@ import { Progress } from "@/components/ui/progress"
 import Image from "next/image"
 import { CustomRadio } from "@/app/components/custom-input"
 
-// Definição das perguntas e respostas com seus respectivos pesos
-const questions = [
-  {
-    id: 1,
-    question: "Em qual faixa etária você se encaixa?",
-    options: [
-      { value: "18-24", label: "18-24", weight: 9.2 },
-      { value: "25-35", label: "25-35", weight: 19.5 },
-      { value: "36-45", label: "36-45", weight: 22.7 },
-      { value: "46-55", label: "46-55", weight: 20.4 },
-      { value: "56+", label: "56 ou mais", weight: 15.9 },
-    ],
-  },
-  {
-    id: 2,
-    question: "Qual é o seu nível de escolaridade?",
-    options: [
-      { value: "fundamental1", label: "Ensino Fundamental 1 (1º ao 5º ano)", weight: 14.5 },
-      { value: "fundamental2", label: "Ensino Fundamental 2 (6º ao 9º ano)", weight: 18.6 },
-      { value: "medio", label: "Ensino Médio (1º ao 3º)", weight: 17.3 },
-      { value: "superior-incompleto", label: "Ensino Superior Incompleto", weight: 26.8 },
-      { value: "superior", label: "Ensino Superior (Graduação/Faculdade)", weight: 28.6 },
-      { value: "pos", label: "Pós-Graduação", weight: 35.8 },
-      { value: "mestrado", label: "Mestrado", weight: 54.1 },
-      { value: "doutorado", label: "Doutorado", weight: 56.8 },
-    ],
-  },
-  {
-    id: 3,
-    question: "Como você se identifica?",
-    options: [
-      { value: "feminino", label: "Feminino", weight: 24.8 },
-      { value: "masculino", label: "Masculino", weight: 28 },
-    ],
-  },
-  {
-    id: 4,
-    question: "Qual seu estado civil?",
-    options: [
-      { value: "solteiro", label: "Solteiro(o)", weight: 17.7 },
-      { value: "casado", label: "Casado(o)", weight: 17 },
-      { value: "separado", label: "Separado(o)", weight: 23.5 },
-      { value: "viuvo", label: "Viúvo(o)", weight: 15.7 },
-    ],
-  },
-  {
-    id: 5,
-    question: "Você tem filhos?",
-    options: [
-      { value: "sim", label: "Sim", weight: 24.6 },
-      { value: "nao", label: "Não", weight: 28.6 },
-    ],
-  },
-  {
-    id: 6,
-    question: "Qual das opções representa a sua renda mensal hoje?",
-    options: [
-      { value: "ate1000", label: "Até R$ 1.000,00", weight: 15.4 },
-      { value: "1001a2500", label: "De R$ 1.001,00 a R$ 2.500,00", weight: 18.2 },
-      { value: "2501a4000", label: "De R$ 2.501,00 a R$ 4.000,00", weight: 26.5 },
-      { value: "4001a10000", label: "De R$ 4.001,00 a R$ 10.000,00", weight: 36.5 },
-      { value: "acima10000", label: "Acima de R$ 10.000,00", weight: 51.5 },
-    ],
-  },
-  {
-    id: 7,
-    question: "Você trabalha como (marque o trabalho que te gera mais renda):",
-    options: [
-      { value: "clt", label: "Funcionário CLT", weight: 0 },
-      { value: "pj", label: "Funcionário PJ", weight: 0 },
-      { value: "publico", label: "Funcionário Público", weight: 0 },
-      { value: "autonomo", label: "Autônomo", weight: 0 },
-      { value: "aposentado", label: "Aposentado", weight: 0 },
-      { value: "liberal", label: "Profissional Liberal", weight: 0 },
-      { value: "empresario", label: "Empresário", weight: 0 },
-      { value: "desempregado", label: "Estou desempregado no momento", weight: 0 },
-    ],
-  },
-  {
-    id: 8,
-    question: "Com que frequência você lê livros ou conteúdos educativos?",
-    options: [
-      { value: "sempre", label: "Sempre", weight: 26.5 },
-      { value: "frequentemente", label: "Frequentemente", weight: 28 },
-      { value: "asvezes", label: "Às vezes", weight: 23.1 },
-      { value: "raramente", label: "Raramente", weight: 16.6 },
-      { value: "nunca", label: "Nunca", weight: 16.4 },
-    ],
-  },
-  {
-    id: 9,
-    question: "Você já fez algum curso online?",
-    options: [
-      { value: "sim", label: "Sim", weight: 34.6 },
-      { value: "nao", label: "Não", weight: 16.9 },
-    ],
-  },
-  {
-    id: 10,
-    question: "Com que frequência você se sente sozinho(a)/travado(a) e com baixos resultados?",
-    options: [
-      { value: "nunca", label: "Nunca", weight: 0 },
-      { value: "raramente", label: "Raramente", weight: 0 },
-      { value: "asvezes", label: "Às vezes", weight: 0 },
-      { value: "frequentemente", label: "Frequentemente", weight: 0 },
-      { value: "sempre", label: "Sempre", weight: 0 },
-    ],
-  },
-  {
-    id: 11,
-    question:
-      "Você já buscou algum tipo de ajuda ou suporte (terapia, coaching, grupos de apoio) para lidar com seus desafios emocionais?",
-    options: [
-      { value: "sim", label: "Sim", weight: 27.8 },
-      { value: "parcialmente", label: "Parcialmente", weight: 36.9 },
-      { value: "nao", label: "Não", weight: 24.9 },
-      { value: "nuncafiz", label: "Nunca fiz", weight: 17.3 },
-    ],
-  },
-]
+import { questions } from "@/lib/questions";
 
 export default function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [weights, setWeights] = useState<Record<number, number>>({})
+  const [weightsV2, setWeightsV2] = useState<Record<number, number>>({})
   const [completed, setCompleted] = useState(false)
   const [totalScore, setTotalScore] = useState(0)
 
@@ -141,9 +23,11 @@ export default function Quiz() {
     if (selectedOption) {
       const newAnswers = { ...answers, [question.id]: value }
       const newWeights = { ...weights, [question.id]: selectedOption.weight }
+      const newWeightsV2 = { ...weightsV2, [question.id]: selectedOption.weightV2 || 0 }
 
       setAnswers(newAnswers)
       setWeights(newWeights)
+      setWeightsV2(newWeightsV2)
     }
   }
 

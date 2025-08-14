@@ -12,7 +12,7 @@ import { useParams, useSearchParams } from "next/navigation"
 import TagManager from "react-gtm-module";
 import { LogoResgate } from "@/app/components/LogoResgate"
 import { Spectral } from 'next/font/google'
-// Definição das perguntas e respostas com seus respectivos pesos
+import { questions } from "@/lib/questions";
 
 const spectral = Spectral({
     subsets: ['latin'],
@@ -21,122 +21,12 @@ const spectral = Spectral({
     weight: ['400', '500', '600', '700']
 });
 
-
-const questions = [
-    {
-        id: 1,
-        question: "Em qual faixa etária você se encaixa?",
-        options: [
-            { value: "18-24", label: "18-24", weight: 9.2 },
-            { value: "25-35", label: "25-35", weight: 19.5 },
-            { value: "36-45", label: "36-45", weight: 22.7 },
-            { value: "46-55", label: "46-55", weight: 20.4 },
-            { value: "56+", label: "56 ou mais", weight: 15.9 },
-        ],
-    },
-    {
-        id: 2,
-        question: "Qual é o seu nível de escolaridade?",
-        options: [
-            { value: "fundamental1", label: "Ensino Fundamental 1 (1º ao 5º ano)", weight: 7.5 },
-            { value: "fundamental2", label: "Ensino Fundamental 2 (6º ao 9º ano)", weight: 7.7 },
-            { value: "medio", label: "Ensino Médio (1º ao 3º)", weight: 11 },
-            { value: "superior-incompleto", label: "Ensino Superior Incompleto", weight: 16.2 },
-            { value: "superior", label: "Ensino Superior (Graduação/Faculdade)", weight: 23.3 },
-            { value: "pos", label: "Pós-Graduação", weight: 28.7 },
-            { value: "mestrado", label: "Mestrado", weight: 37.4 },
-            { value: "doutorado", label: "Doutorado", weight: 41.4 },
-        ],
-    },
-    {
-        id: 3,
-        question: "Qual seu sexo?",
-        options: [
-            { value: "feminino", label: "Sou do sexo Feminino", weight: 15.8 },
-            { value: "masculino", label: "Sou do sexo Masculino", weight: 24.4 },
-        ],
-    },
-    {
-        id: 4,
-        question: "Qual seu estado civil?",
-        options: [
-            { value: "solteiro", label: "Solteiro(o)", weight: 17.7 },
-            { value: "casado", label: "Casado(o)", weight: 17 },
-            { value: "separado", label: "Separado(o)", weight: 23.5 },
-            { value: "viuvo", label: "Viúvo(o)", weight: 15.7 },
-        ],
-    },
-    {
-        id: 5,
-        question: "Você tem filhos?",
-        options: [
-            { value: "sim", label: "Sim", weight: 16.7 },
-            { value: "nao", label: "Não", weight: 23.5 },
-        ],
-    },
-    {
-        id: 6,
-        question: "Qual das opções representa a sua renda mensal hoje?",
-        options: [
-            { value: "ate1000", label: "Até R$ 1.000,00", weight: 8.3 },
-            { value: "1101a2500", label: "De R$ 1.101,00 a R$ 2.500,00", weight: 10.6 },
-            { value: "2501a4000", label: "De R$ 2.501,00 a R$ 4.000,00", weight: 18.4 },
-            { value: "4001a10000", label: "De R$ 4.001,00 a R$ 10.000,00", weight: 29.7 },
-            { value: "acima10000", label: "Acima de R$ 10.000,00", weight: 51.5 },
-        ],
-    },
-    {
-        id: 7,
-        question: "Você trabalha como (marque o trabalho que te gera mais renda):",
-        options: [
-            { value: "clt", label: "Funcionário CLT", weight: 12.7 },
-            { value: "pj", label: "Funcionário PJ", weight: 23.8 },
-            { value: "publico", label: "Funcionário Público", weight: 11.2 },
-            { value: "autonomo", label: "Autônomo", weight: 24.2 },
-            { value: "aposentado", label: "Aposentado", weight: 6.9 },
-            { value: "liberal", label: "Profissional Liberal", weight: 34.4 },
-            { value: "empresario", label: "Empresário", weight: 52 },
-            { value: "desempregado", label: "Estou desempregado no momento", weight: 12.6 },
-        ],
-    },
-    {
-        id: 8,
-        question: "Com que frequência você se sente sozinho(a)/travado(a) e com baixos resultados?",
-        options: [
-            { value: "as vezes", label: "Às vezes", weight: 16.7 },
-            { value: "frequentemente", label: "Frequentemente", weight: 28.8 },
-            { value: "sempre", label: "Sempre", weight: 27 },
-            { value: "raramente", label: "Raramente", weight: 10.8 },
-            { value: "nunca", label: "Nunca", weight: 6.3 },
-        ],
-    },
-    {
-        id: 9,
-        question: "Você já buscou algum tipo de ajuda ou suporte (terapia, coaching, grupos de apoio) para lidar com seus desafios emocionais?",
-        options: [
-            { value: "sim", label: "Sim", weight: 34 },
-            { value: "nao", label: "Não", weight: 9.3 },
-        ],
-    },
-    {
-        id: 10,
-        question: "Se sim, o método utilizado foi eficaz?",
-        options: [
-            { value: "sim", label: "Sim", weight: 16.3 },
-            { value: "parcialmente", label: "Parcialmente", weight: 31.7 },
-            { value: "nao", label: "Não", weight: 18.6 },
-            { value: "Nunca fiz", label: "Nunca fiz", weight: 12.6 },
-        ],
-    }
-]
-
 const mapTagSendFlow = {
     f: "https://api.whatsapp.com/send?phone=5512936184013&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
     org: "https://api.whatsapp.com/send?phone=5512936182704&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
     m: "https://api.whatsapp.com/send?phone=5512936185472&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
     q: "https://api.whatsapp.com/send?phone=5512936184799&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
-  } as any;
-
+} as any;
 
 export default function Quiz({ params }: { params: { form: string } }) {
     const searchParams = useSearchParams()
@@ -157,6 +47,8 @@ export default function Quiz({ params }: { params: { form: string } }) {
     const [versao, setVersao] = useState<string | null>(null)
     const [domain, setDomain] = useState<string>("")
     const [isLoading, setIsLoading] = useState(false)
+    const [weightsV2, setWeightsV2] = useState<Record<number, number>>({})
+    const [totalScoreV2, setTotalScoreV2] = useState(0)
 
     const launch = "[ORO] [SET25]"
 
@@ -287,6 +179,17 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 faixa = 'Faixa E';
             }
 
+            let faixaV2;
+            if (totalScoreV2 >= 200) {
+                faixaV2 = 'Faixa A';
+            } else if (totalScoreV2 >= 182) {
+                faixaV2 = 'Faixa B';
+            } else if (totalScoreV2 >= 151) {
+                faixaV2 = 'Faixa C';
+            } else {
+                faixaV2 = 'Faixa D';
+            }
+
             // Prepare detailed answers with questions and selected options
             const detailedAnswers: Record<string, string> = {};
             Object.entries(answers).forEach(([questionId, answerValue]) => {
@@ -304,7 +207,9 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 phone: phoneParam,
                 answers: answers,
                 totalScore: Math.round(totalScore),
+                totalScoreV2: Math.round(totalScoreV2),
                 faixa: faixa,
+                faixaV2: faixaV2,
                 tipo: tipo,
                 version: versao,
                 temperature: temperatura,
@@ -380,9 +285,11 @@ export default function Quiz({ params }: { params: { form: string } }) {
         if (selectedOption) {
             const newAnswers = { ...answers, [question.id]: value }
             const newWeights = { ...weights, [question.id]: selectedOption.weight }
+            const newWeightsV2: Record<number, number> = { ...weightsV2, [question.id]: selectedOption.weightV2 || 0 }
 
             setAnswers(newAnswers)
             setWeights(newWeights)
+            setWeightsV2(newWeightsV2)
         }
     }
 
@@ -392,6 +299,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
         } else {
             // Calcular pontuação total
             let score = Object.values(weights).reduce((sum, weight) => sum + weight, 0)
+            let scoreV2 = Object.values(weightsV2).reduce((sum, weight) => sum + weight, 0)
 
             // // Adicionar pontuação extra baseada na URL
             // const publicoScore = window.location.href.indexOf('f-typ') !== -1 ||
@@ -400,6 +308,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
             // score += publicoScore;
             setTotalScore(score)
+            setTotalScoreV2(scoreV2)
             setCompleted(true)
         }
     }
@@ -623,4 +532,3 @@ export default function Quiz({ params }: { params: { form: string } }) {
         </div>
     )
 }
-
