@@ -486,7 +486,7 @@ export default function HeroSection() {
           setTemperatura(temperaturaValue);
         } else if (paramValue.indexOf('v9') != -1 || versionsV9.includes(versaoValue)) {
           let tipoValue = parts[0];
-          const versaoValue = parts[1];
+          const versaoValue = parts[1] === 'set25' ? 'v9' : parts[1];
           let temperaturaValue = parts[parts.length - 1];
 
           // Lógica especial para ordo-adv58f-f
@@ -539,7 +539,7 @@ export default function HeroSection() {
             setTipo(tipoValue);
             setVersao(versaoValue);
             setTemperatura(temperaturaValue);
-          } else if (versaoValue.indexOf('set25') != -1) {
+          } else if (versaoValue.indexOf('v9') != -1 && paramValue.indexOf('set25-v9-tl-adv002') != -1) {
             const redLineId = 39;
             tipoValue = `ordo-${redLineId}`;
             const redLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.text;
@@ -669,6 +669,8 @@ export default function HeroSection() {
         uri: domain,
         path: window.location.pathname,
       };
+
+      console.log('payload ======>', payload)
 
       // Adicionar formFields ao payload apenas se existir
       if (formFields) {
