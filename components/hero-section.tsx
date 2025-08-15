@@ -329,11 +329,11 @@ export default function HeroSection() {
       id: 33,
       isLogo: true,
       title: <>
-        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Já reparou que gente mais despreparada que você está indo mais longe?</h2>
+        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Já reparou que gente mais despreparada que você <span className="text-[#c0964b] font-bold">está indo mais longe?</span></h2>
       </>,
       text: (
-        <span className="text-3xl md:text-4xl">
-           O que te faz ficar para trás não é falta de competência: é falta de permissão. 
+        <span className="text-xl md:text-2xl">
+           O que te faz ficar para trás não é falta de competência: <span className="text-[#c0964b] font-bold">é falta de permissão.</span> 
         </span>
       )
     },
@@ -341,11 +341,11 @@ export default function HeroSection() {
       id: 34,
       isLogo: true,
       title: <>
-        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Tem gente que estudou menos, errou mais e mesmo assim ganha mais do que você.</h2>
+        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Tem gente que estudou menos, errou mais e mesmo assim <span className="text-[#c0964b] font-bold">ganha mais do que você.</span></h2>
       </>,
       text: (
-        <span className="text-3xl md:text-4xl">
-           Isso tem uma explicação. E você precisa descobrir qual é.
+        <span className="text-xl md:text-2xl">
+           Isso tem uma explicação. <span className="text-[#c0964b] font-bold">E você precisa descobrir qual é.</span>
         </span>
       )
     },
@@ -353,11 +353,11 @@ export default function HeroSection() {
       id: 35,
       isLogo: true,
       title: <>
-        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Você vê pessoas com metade da sua bagagem tendo o dobro de resultado?</h2>
+        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Você vê pessoas com metade da sua bagagem tendo o <span className="text-[#c0964b]">dobro de resultado?</span></h2>
       </>,
       text: (
-        <span className="text-3xl md:text-4xl">
-           Isso só é normal pra quem ainda não entendeu o que é permissão.
+        <span className="text-xl md:text-2xl">
+           Isso só é normal pra quem ainda não entendeu o que é <span className="text-[#c0964b] font-bold">permissão.</span>
         </span>
       )
     },
@@ -368,7 +368,7 @@ export default function HeroSection() {
       </>,
       text: (
         <span className="text-3xl md:text-4xl">
-           Descubra exatamente o que está travando os seus ganhos financeiros e como superá-los sem precisar trabalhar mais ou estudar mais.
+           Descubra exatamente o que está travando os seus ganhos financeiros e como superá-los <span className="text-[#c0964b] font-bold">sem precisar trabalhar mais ou estudar mais.</span>
         </span>
       )
     },
@@ -379,7 +379,7 @@ export default function HeroSection() {
         <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">Chega de dar o seu máximo e no fim ficar se perguntando o que faltou.</h2>
       </>,
       text: (
-        <span className="text-3xl md:text-4xl">
+        <span className="text-xl md:text-2xl">
            É hora de começar <span className="text-[#c0964b] font-bold">a vida memorável com que você sempre sonhou.</span>
         </span>
       )
@@ -392,6 +392,18 @@ export default function HeroSection() {
       text: (
         <span className="text-3xl md:text-4xl">
            <span className="text-[#c0964b] font-bold">Eu quebrei 17 vezes. Na décima oitava vez, deu certo. E o segredo está aqui.</span>
+        </span>
+      )
+    },    
+    {
+      id: 39,
+      isLogo: true,
+      title: <>
+        <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">O RESULTADO QUE VOCÊ QUER ESTÁ NA PERMISSÃO <span className="text-[#c0964b]">QUE VOCÊ NÃO TEM</span></h2>
+      </>,
+      text: (
+        <span className="text-xl md:text-2xl">
+           Descubra como aumentar sua Permissão e quebrar os <span className="text-[#c0964b] font-bold">padrões que te impedem de conquistar o que você deseja</span>
         </span>
       )
     },
@@ -452,7 +464,7 @@ export default function HeroSection() {
   useEffect(() => {
     if (params && params.temperatura) {
       console.log('temperatura param', params.temperatura)
-      const versionsV9 = ['v9', 'adv058f', 'adv212', 'adv28', 'adv58f'];
+      const versionsV9 = ['v9', 'adv058f', 'adv212', 'adv28', 'adv58f', 'adv002'];
 
       // Verificar se params.temperatura não é null ou undefined
       const paramValue = params.temperatura as string;
@@ -527,7 +539,31 @@ export default function HeroSection() {
             setTipo(tipoValue);
             setVersao(versaoValue);
             setTemperatura(temperaturaValue);
-          }else if (versaoValue.indexOf('adv28') != -1) {
+          } else if (versaoValue.indexOf('set25') != -1) {
+            const redLineId = 39;
+            tipoValue = `ordo-${redLineId}`;
+            const redLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.text;
+            const titleRedLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.title;
+            const _isLogo = benefitsMapping.find(benefit => benefit.id === redLineId)?.isLogo;
+            
+            if (redLineText) {
+              setRedLine(redLineText as string);
+              console.log('RedLine:', redLineText);
+            }
+
+            if (titleRedLineText) {
+              setTitleRedLine(titleRedLineText);
+              console.log('Title RedLine:', titleRedLineText);
+            }
+
+            if (_isLogo !== undefined) {
+              setIsLogo(_isLogo);
+            }
+
+            setTipo(tipoValue);
+            setVersao(versaoValue);
+            setTemperatura(temperaturaValue);
+          } else if (versaoValue.indexOf('adv28') != -1) {
             const redLineId = 30;
             tipoValue = `ordo-${redLineId}`;
             const redLineText = benefitsMapping.find(benefit => benefit.id === redLineId)?.text;
@@ -769,7 +805,7 @@ export default function HeroSection() {
       {/* Background com overlay */}
       <div className="absolute inset-0 bg-[url('/images/paper-texture.png')] bg-cover bg-center opacity-15"></div>
 
-      <div className="container mx-auto px-4 py-20 md:py-32 relative">
+      <div className="container mx-auto px-4 pb-20 md:pb-32 pt-10 md:pt-16 relative">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-12 z-[0]">
           {/* Coluna da esquerda - Formulário */}
           <div className="w-full md:w-1/2 lg:w-2/5 mb-12 md:mb-0 text-center md:text-left">
@@ -789,7 +825,7 @@ export default function HeroSection() {
                 />
               </div>
             )}
-            <div className="my-8">
+            <div className="my-4">
               {!titleRedLine ? (
                 <>
                   <p className="text-[#f4f0e1] text-xl mb-1">Faça seu diagnóstico de</p>
