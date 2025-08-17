@@ -248,15 +248,21 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 .then(data => {
                     console.log('Success:', data);
                     setIsLoading(false);
-                    window.location.href = `${mapTagSendFlow[temperatura || 'f']}`
+                    // Adicionar um pequeno delay antes do redirecionamento
+                    setTimeout(() => {
+                        window.location.href = `${mapTagSendFlow[temperatura || 'f']}`
+                    }, 1000);
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                     setIsLoading(false);
-                    window.location.href = `${mapTagSendFlow[temperatura || 'f']}`
+                    // Adicionar um pequeno delay antes do redirecionamento
+                    setTimeout(() => {
+                        window.location.href = `${mapTagSendFlow[temperatura || 'f']}`
+                    }, 1000);
                 });
         }
-    }, [completed, searchParams, answers, totalScore, questions, tipo, versao, temperatura, domain, launch]);
+    }, [completed]); // Remover todas as outras dependências exceto 'completed'
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
