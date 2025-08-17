@@ -49,6 +49,14 @@ export default function Quiz({ params }: { params: { form: string } }) {
     const [isLoading, setIsLoading] = useState(false)
     const [weightsV2, setWeightsV2] = useState<Record<number, number>>({})
     const [totalScoreV2, setTotalScoreV2] = useState(0)
+    const [hasSent, setHasSent] = useState(false)
+
+    const getWhatsappUrl = () => {
+        const validKeys = ["f", "m", "q", "org"] as const;
+        const key = (temperatura || "").toLowerCase();
+        const resolvedKey = (validKeys as readonly string[]).includes(key) ? key : "f";
+        return mapTagSendFlow[resolvedKey] || mapTagSendFlow["f"];
+    }
 
     const launch = "[ORO] [SET25]"
 
@@ -159,6 +167,9 @@ export default function Quiz({ params }: { params: { form: string } }) {
     }, [currentQuestion])
 
     useEffect(() => {
+        if (!completed || hasSent) {
+            return;
+        }
         if (completed) {
             setIsLoading(true);
 
@@ -247,22 +258,16 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 .then(response => response.json())
                 .then(data => {
                     console.log('Success:', data);
-                    setIsLoading(false);
-                    // Adicionar um pequeno delay antes do redirecionamento
-                    setTimeout(() => {
-                        window.location.href = `${mapTagSendFlow[temperatura || 'f']}`
-                    }, 1000);
+                    setHasSent(true);
+                    window.location.replace(getWhatsappUrl())
                 })
                 .catch((error) => {
                     console.error('Error:', error);
-                    setIsLoading(false);
-                    // Adicionar um pequeno delay antes do redirecionamento
-                    setTimeout(() => {
-                        window.location.href = `${mapTagSendFlow[temperatura || 'f']}`
-                    }, 1000);
+                    setHasSent(true);
+                    window.location.replace(getWhatsappUrl())
                 });
         }
-    }, [completed]); // Remover todas as outras dependências exceto 'completed'
+    }, [completed, hasSent]); // envia apenas uma vez ao completar
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -304,6 +309,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
             setCurrentQuestion(currentQuestion + 1)
         } else {
             // Calcular pontuação total
+            setIsLoading(true)
             let score = Object.values(weights).reduce((sum, weight) => sum + weight, 0)
             let scoreV2 = Object.values(weightsV2).reduce((sum, weight) => sum + weight, 0)
 
@@ -413,7 +419,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
                                     <Button
                                         className="w-full py-4 md:py-6 text-sm md:text-base hover:opacity-90 transition-opacity duration-300 rounded-3xl max-w-sm"
-                                        onClick={() => window.location.href = `${mapTagSendFlow[temperatura || 'f']}`}
+                                        onClick={() => window.location.href = getWhatsappUrl()}
                                         style={{ background: 'linear-gradient(96.48deg, #065100 -18.33%, #49E413 159.75%)' }}
                                     >
                                         Clique aqui para entrar no Grupo no WhatsApp
@@ -521,7 +527,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
                                 <Button
                                     className="w-full max-w-sm py-4 md:py-6 text-sm md:text-base hover:opacity-90 transition-opacity duration-300 rounded-3xl"
-                                    onClick={() => window.location.href = `${mapTagSendFlow[temperatura || 'f']}`}
+                                    onClick={() => window.location.href = getWhatsappUrl()}
                                     style={{ background: 'linear-gradient(96.48deg, #065100 -18.33%, #49E413 159.75%)', fontFamily: '"Roboto", Sans-serif' }}
                                 >
                                     Clique aqui para entrar no Grupo no WhatsApp
