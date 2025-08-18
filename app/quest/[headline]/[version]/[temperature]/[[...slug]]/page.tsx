@@ -449,7 +449,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
                 <Button
                   className="w-full max-w-sm py-4 md:py-6 text-sm md:text-base hover:opacity-90 transition-opacity duration-300 rounded-3xl"
-                  onClick={() => (window.location.href = getWhatsappUrl())}
+                  onClick={() => window.open(getWhatsappUrl(), '_blank')}
                   style={{
                     background:
                       "linear-gradient(96.48deg, #065100 -18.33%, #49E413 159.75%)",
