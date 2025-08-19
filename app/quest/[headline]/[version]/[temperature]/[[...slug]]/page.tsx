@@ -56,7 +56,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
     return mapTagSendFlow[resolvedKey as keyof typeof mapTagSendFlow] || mapTagSendFlow["f"];
   };
 
-  const launch = "[ORO] [SET25] Frio 25%";
+  const launch = "[ORO] [SET25] Frio 25";
 
   // Capturar o domínio da página
   useEffect(() => {
@@ -78,7 +78,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
       console.log("temperatura param quest", _params.temperature);
 
       let tipoValue = _params.headline;
-      let versaoValue = _params.headline;
+      let versaoValue = _params.version;
       let temperaturaValue = _params.temperature;
 
       console.log("Tipo:", tipoValue);
