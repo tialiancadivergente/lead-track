@@ -34,7 +34,7 @@ export default function Formv10() {
 
   const fullUrl = Object.values(params).flat().join('/');
 	
-  const launch = "[ORO] [SET25] Frio 25";
+  const launch = "[ORO] [SET25] Frio 25pc";
 
   // Capturar o domínio da página
   useEffect(() => {
