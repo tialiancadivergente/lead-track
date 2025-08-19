@@ -56,7 +56,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
     return mapTagSendFlow[resolvedKey as keyof typeof mapTagSendFlow] || mapTagSendFlow["f"];
   };
 
-  const launch = "[ORO] [SET25] Frio 25pc";
+  const launch = "[ORO] [SET25] Frio25pc";
 
   // Capturar o domínio da página
   useEffect(() => {
