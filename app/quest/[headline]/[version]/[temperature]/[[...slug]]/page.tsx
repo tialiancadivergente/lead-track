@@ -56,7 +56,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
     return mapTagSendFlow[resolvedKey as keyof typeof mapTagSendFlow] || mapTagSendFlow["f"];
   };
 
-  const launch = "[ORO] [SET25] Frio25pc";
+  const launch = _params.slug?.includes("f25") ? "[ORO] [SET25] Frio25pc" : "[ORO] [SET25]";
 
   // Capturar o domínio da página
   useEffect(() => {
@@ -211,12 +211,12 @@ export default function Quiz({ params }: { params: { form: string } }) {
         .then((data) => {
           console.log("Success:", data);
           setHasSent(true);
-          window.location.replace(getWhatsappUrl());
+          // window.location.replace(getWhatsappUrl());
         })
         .catch((error) => {
           console.error("Error:", error);
           setHasSent(true);
-          window.location.replace(getWhatsappUrl());
+          // window.location.replace(getWhatsappUrl());
         });
     }
   }, [completed, hasSent]); // envia apenas uma vez ao completar
