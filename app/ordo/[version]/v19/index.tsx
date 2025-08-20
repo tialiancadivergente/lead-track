@@ -421,7 +421,7 @@ export default function Formv19() {
         className={`relative flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-[#021217] z-0`}
       >
 
-        <div className="absolute top-[-120px] md:top-[-50px] xl:left-36 lg:left-30 md:left-[-80px] sm:left-[-180px] left-[-300px] 2xl:w-[1542px] w-[1280px] bg-no-repeat">
+        <div className="absolute top-[-120px] md:top-[-50px] xl:left-36 lg:left-30 md:left-[-80px] sm:left-[-180px] left-[-320px] 2xl:w-[1542px] w-[1280px] bg-no-repeat">
           <Image
             src="/images/Elton-Euler-Resgate-dos-Otimistas-Dependencia.png"
             alt="DEPENDÊNCIA EMOCIONAL"
