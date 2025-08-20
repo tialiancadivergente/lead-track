@@ -460,7 +460,7 @@ export default function Formv10() {
         />
       </div>
 
-      <div className={`container mx-auto px-4 py-20 md:py-32 relative ${isPicture ? 'grid grid-cols-1 md:grid-cols-2 gap-8' : 'text-center'}`}>
+      <div className={`container mx-auto px-4 py-10 sm:py-20 md:py-32 relative ${isPicture ? 'grid grid-cols-1 md:grid-cols-2 gap-8' : 'text-center'}`}>
         {/* Coluna única centralizada ou duas colunas */}
         <div className="w-full max-w-2xl mx-auto mb-12">
           {isLogo && (
