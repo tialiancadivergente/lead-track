@@ -104,7 +104,7 @@ export default function Formv10() {
       isPicture: false,
       isLogo: true,
       title: (
-        <p className={`text-3x max-w-xl md:text-4xl uppercase font-bold mx-auto leading-10 md:-leading-10 `}>
+        <p className={`max-w-xl md:text-4xl uppercase font-bold mx-auto leading-10 md:-leading-10 `}>
           Tem gente que estudou menos que você e ganhando bem mais
         </p>
       ),
@@ -488,7 +488,7 @@ export default function Formv10() {
               </>
             ) : (
               <>
-                <div className={`text-2xl sm:text-5xl max-w-2xl mx-auto leading-none ${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'}`}>
+                <div className={`text-2xl sm:text-4xl max-w-2xl mx-auto leading-none ${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'}`}>
                   {titleRedLine}
                 </div>
               </>
