@@ -421,7 +421,7 @@ export default function Formv19() {
         className={`relative flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-[#021217] z-0`}
       >
 
-        <div className="absolute top-20 lg:top-2 md:top-28 lg:right-auto md:left-0 left-[-100px] max-w-[1542px] lg:min-w-[1280px] md:min-w-[1024px] min-w-[955px] bg-no-repeat">
+        <div className="absolute top-[-120px] md:top-[-50px] xl:left-36 lg:left-30 md:left-[-80px] sm:left-[-180px] left-[-300px] 2xl:w-[1542px] w-[1280px] bg-no-repeat">
           <Image
             src="/images/Elton-Euler-Resgate-dos-Otimistas-Dependencia-Emocional.png"
             alt="DEPENDÊNCIA EMOCIONAL"
@@ -446,7 +446,7 @@ export default function Formv19() {
         </div>
 
         <div
-          className={`container mx-auto px-4 py-20 md:py-32 relative grid grid-cols-1 gap-8`}
+          className={`container mx-auto px-4 py-10 sm:py-20 md:py-32 relative grid grid-cols-1 gap-8`}
         >
           {/* Coluna única centralizada ou duas colunas */}
           <div className="w-full">
@@ -495,7 +495,7 @@ export default function Formv19() {
               )}
             </div>
 
-            <p className="mb-8 text-[#f4f0e1] lg:text-xl text-[18px] max-w-[270px] lg:max-w-[350px] md:max-w-[350px]">
+            <p className="mb-12 sm:mt-0 mt-20 text-[#f4f0e1] lg:text-xl text-[18px] max-w-[270px] lg:max-w-[350px] md:max-w-[350px]">
               {redLine ? (
                 <span>
                   {redLine}
@@ -592,7 +592,7 @@ export default function Formv19() {
             </form>
 
             <p
-              className={`text-[#C0964B] text-lg mt-4 text-center`}
+              className={`text-[#C0964B] text-sm sm:text-lg mt-4 text-center`}
               style={{ color: "#C0964B" }}
             >
               100% GRATUITO | 01, 02 E 03/09 | 19H55
