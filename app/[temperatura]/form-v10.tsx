@@ -104,7 +104,7 @@ export default function Formv10() {
       isPicture: false,
       isLogo: true,
       title: (
-        <p className={`max-w-xl md:text-4xl uppercase font-bold mx-auto leading-10 md:-leading-10 `}>
+        <p className={`max-w-xl md:text-4xl uppercase font-bold mx-auto leading-7 md:-leading-10 `}>
           Tem gente que estudou menos que você e ganhando bem mais
         </p>
       ),
@@ -464,7 +464,7 @@ export default function Formv10() {
         {/* Coluna única centralizada ou duas colunas */}
         <div className="w-full max-w-2xl mx-auto mb-12">
           {isLogo && (
-            <div className="mb-8 flex justify-center">
+            <div className="mb-4 sm:mb-8 flex justify-center">
               <Image
                 src="/images/logo-resgate-dos-otimistas.png"
                 alt="Logotipo Resgate dos otimistas"
@@ -564,14 +564,14 @@ export default function Formv10() {
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-[#0a6d6d] to-[#0e7c7b] text-[#f4f0e1] font-bold py-5 px-6 rounded-full shadow-md text-base md:text-lg uppercase tracking-wide transition-all hover:brightness-110"
+              className="w-full bg-gradient-to-r from-[#0a6d6d] to-[#0e7c7b] text-[#f4f0e1] font-bold py-3 sm:py-5 px-6 rounded-full shadow-md text-base md:text-lg uppercase tracking-wide transition-all hover:brightness-110"
               disabled={isSubmitting}
             >
-              <span className="text-[#f4f0e1]">{isSubmitting ? "PROCESSANDO..." : success ? "SUCESSO! AGUARDE..." : "QUERO MEDIR MINHA PERMISSÃO"}</span>
+              <span className="text-[#f4f0e1] text-xs sm:text-base">{isSubmitting ? "PROCESSANDO..." : success ? "SUCESSO! AGUARDE..." : "QUERO MEDIR MINHA PERMISSÃO"}</span>
             </button>
           </form>
 
-          <p className={`text-[#C0964B] text-lg mt-4 ${isPicture ? 'hidden' : 'block'}`} style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 01, 02 e 03/09 - 19h55</p>
+          <p className={`text-[#C0964B] text-sm sm:text-lg mt-4 ${isPicture ? 'hidden' : 'block'}`} style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 01, 02 e 03/09 - 19h55</p>
         </div>
 
         {isPicture && (
