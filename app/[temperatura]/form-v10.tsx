@@ -109,7 +109,7 @@ export default function Formv10() {
         </p>
       ),
       text: (
-        <p className={`text-2xl md:text-2xl max-w-sm mx-auto text-center`}>
+        <p className={`text-lg md:text-2xl max-w-sm mx-auto text-center`}>
           E esse ciclo se repete pela sua falta de permissão
         </p>
       )
@@ -479,7 +479,7 @@ export default function Formv10() {
               />
             </div>
           )}
-          <div className="my-8">
+          <div className="my-4 sm:my-8">
             {!titleRedLine ? (
               <>
                 <p className="text-[#f4f0e1] text-2xl mb-1">Faça seu diagnóstico de</p>
@@ -488,14 +488,14 @@ export default function Formv10() {
               </>
             ) : (
               <>
-                <div className={`text-4xl md:text-5xl max-w-2xl mx-auto leading-none ${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'}`}>
+                <div className={`text-2xl sm:text-5xl max-w-2xl mx-auto leading-none ${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'}`}>
                   {titleRedLine}
                 </div>
               </>
             )}
           </div>
 
-          <p className="mb-8 max-w-xl mx-auto">
+          <p className="mb-4 sm:mb-8 max-w-xl mx-auto">
             {redLine ? (
               <span className={`text-xl md:text-3xl ${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'}`}>
                 {redLine}
@@ -507,7 +507,7 @@ export default function Formv10() {
               </>
             )}
           </p>
-          <div className={`${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'} ${isPicture ? 'max-w-lg text-center md:text-left' : 'max-w-md'} mx-auto text-lg mb-4 font-medium`}>
+          <div className={`${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'} ${isPicture ? 'max-w-lg text-center md:text-left' : 'max-w-md'} mx-auto sm:text-lg text-base mb-4 font-medium`}>
             <span className={`${isDark ? 'text-[#f4f0e1]' : 'text-[#07242c]'}`}>Preencha os dados abaixo para fazer o seu diagnóstico  de bloqueio de permissão gratuito e destrave seu teto financeiro imediatamente</span>
           </div>
           <form onSubmit={handleSubmit} id="cadastro" name={launch} className={`space-y-4 ${isPicture ? 'max-w-lg' : 'max-w-md'} mx-auto`}>
