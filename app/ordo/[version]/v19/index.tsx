@@ -423,7 +423,7 @@ export default function Formv19() {
 
         <div className="absolute top-[-120px] md:top-[-50px] xl:left-36 lg:left-30 md:left-[-80px] sm:left-[-180px] left-[-300px] 2xl:w-[1542px] w-[1280px] bg-no-repeat">
           <Image
-            src="/images/Elton-Euler-Resgate-dos-Otimistas-Dependencia-Emocional.png"
+            src="/images/Elton-Euler-Resgate-dos-Otimistas-Dependencia.png"
             alt="DEPENDÊNCIA EMOCIONAL"
             width={1542}
             height={867}
