@@ -569,59 +569,6 @@ export default function Formv13() {
                   }}
                 />
               </div>
-
-              {/* <div className="absolute w-full">
-            <div className="text-center">
-              {!titleRedLine ? (
-                <>
-                  <p className="text-[#0D313E] text-xl sm:text-7xl mb-1">
-                    FAÇA SEU DIAGNÓSTICO DE
-                  </p>
-                  <h2 className="text-[#0D313E] text-[32px] text-8xl font-bold mb-1 leading-none">
-                    DEPENDÊNCIA
-                  </h2>
-                  <h2 className="text-[#0D313E] text-[32px] text-8xl font-bold leading-none">
-                    EMOCIONAL{" "}
-                  </h2>
-                  <p className="text-[#0D313E] text-xl sm:text-7xl mt-10">
-                    GRATUITO
-                  </p>
-                </>
-              ) : (
-                <>
-                  <div
-                    className={`text-4xl md:text-5xl max-w-2xl mx-auto leading-none text-[#0D313E]`}
-                  >
-                    {titleRedLine}
-                  </div>
-                </>
-              )}
-            </div>
-
-            <p className="mb-6 mx-auto text-center text-[#0D313d] text-lg sm:text-5xl sm:max-w-[900px] max-w-[400px] mt-10">
-              {redLine ? (
-                <span>{redLine}</span>
-              ) : (
-                <>
-                  Descubra como{" "}
-                  <span className="font-bold">
-                    AUMENTAR O SEU NÍVEL DE PERMISSÃO
-                  </span>{" "}
-                  e melhorar seus resultados nas finanças, nos relacionamentos e
-                  na saúde.
-                </>
-              )}
-            </p>
-            
-            <footer className="w-full mt-20 max-w-3xl mx-auto z-10">
-              <p className={`text-[#0D313E] text-3xl mt-4 text-center font-bold`}>
-                100% GRATUITO | 01, 02 E 03/09 | 19H55
-              </p>
-              <div className="mt-10 text-center text-xl font-serif text-white">
-                © 2025 . All rights reserved. Política de Privacidade
-              </div>
-            </footer>
-          </div> */}
             </div>
           </>
         ) : (
@@ -716,14 +663,14 @@ export default function Formv13() {
               <div
                 className={`text-[#fff] flex items-center justify-center gap-2 text-sm mt-4 text-center`}
               >
-                <div className="flex items-center justify-center leading-none gap-1">
+                <div className="flex items-center justify-center leading-none gap-1 text-[#fff]">
                   <Award color="#C0964B" size={14} /> 100% GRATUITO
                 </div>
-                <div className="flex items-center justify-center leading-none gap-1">
+                <div className="flex items-center justify-center leading-none gap-1 text-[#fff]">
                   <Calendar color="#C0964B" size={14} />
                   01, 02 E 03/09
                 </div>
-                <div className="flex items-center justify-center leading-none gap-1">
+                <div className="flex items-center justify-center leading-none gap-1 text-[#fff]">
                   <Clock color="#C0964B" size={14} />
                   ÀS 19H55
                 </div>
