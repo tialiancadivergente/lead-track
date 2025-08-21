@@ -2,12 +2,12 @@
 
 import React from "react";
 import { useState, useEffect } from "react";
-import { Phone } from "lucide-react";
+import { Award, Calendar, Clock, Phone } from "lucide-react";
 import Image from "next/image";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { useScreenSize } from "@/hooks/use-screen-size";
 
-export default function Formv20() {
+export default function Formv13() {
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -417,115 +417,175 @@ export default function Formv20() {
     <div>
       <section
         id="hero"
-        className={`relative flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-[#D5CABB] bg-[url('/images/v20/bg.png')] bg-cover bg-center z-0`}
+        className={`relative flex flex-col items-center p-4 pb-0 md:p-0 justify-center overflow-hidden bg-black`}
       >
-        <div className={`absolute top-[-30px] sm:top-0 left-[-70px] sm:left-[-50px] lg:left-0 w-full bg-no-repeat block`}>
-          <Image
-            src="/images/v20/bg-top-left.png"
-            alt="Background top left"
-            width={width > 1024 ? 562 : 300}
-            height={width > 1024 ? 218 : 116}
-            className="object-contain"
-            style={{
-              transformOrigin: "center",
-              maxWidth: "100%",
-              height: "auto",
-            }}
-          />
-        </div>
-        
-        <div className="absolute bottom-28 left-0 w-full bg-no-repeat block lg:hidden">
-          <Image
-            src="/images/v20/torn-left-bottom.png"
-            alt="Background bottom left"
-            width={156}
-            height={317}
-            priority
-            className="object-contain"
-            style={{
-              transformOrigin: "center",
-            }}
-          />
-        </div>
+        {width > 768 ? (
+          <>
+            <div className={`absolute top-0 w-full bg-no-repeat block`}>
+              <Image
+                src="/images/v13/bg-top.png"
+                alt="Background top left"
+                width={1918}
+                height={90}
+                className="object-contain"
+                style={{
+                  transformOrigin: "center",
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
+              />
+            </div>
 
-        <div className="absolute bottom-0 left-[-100px] lg:left-0 w-full bg-no-repeat block">
-          <Image
-            src="/images/v20/bg-bottom-left.png"
-            alt="Background bottom left"
-            width={width > 1024 ? 670 : 450}
-            height={width > 1024 ? 880 : 600}
-            priority
-            className="object-contain"
-            style={{
-              transformOrigin: "center",
-            }}
-          />
-        </div>
+            <div
+              className={`container mx-auto px-4 pt-20 relative grid grid-cols-1`}
+            >
+              {/* Coluna única centralizada ou duas colunas */}
+              <div className="w-full z-50">
+                {isLogo && (
+                  <div className="flex justify-center">
+                    <Image
+                      src="/images/logo-resgate-dos-otimistas.png"
+                      alt="Logotipo Resgate dos otimistas"
+                      width={273}
+                      height={121}
+                      priority
+                      className="object-contain select-none pointer-events-none"
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto",
+                      }}
+                    />
+                  </div>
+                )}
 
-        <div className="absolute top-0 right-0 bg-no-repeat block lg:hidden">
-          <Image
-            src="/images/v20/torn-top-left.png"
-            alt="Background top right"
-            width={139}
-            height={120}
-            priority
-            className="object-contain"
-            style={{
-              transformOrigin: "center",
-            }}
-          />
-        </div>
+                <p className="text-center text-lg sm:text-3xl text-[#fff] max-w-[600px] mx-auto mt-9 mb-2">
+                  Preencha os campos abaixo agora:
+                </p>
+                <form
+                  onSubmit={handleSubmit}
+                  id="cadastro"
+                  name={launch}
+                  className={`space-y-4 max-w-[600px] mx-auto`}
+                >
+                  <div>
+                    <input
+                      type="email"
+                      id="form-field-email"
+                      placeholder="Seu melhor e-mail"
+                      className={`w-full px-4 py-5 rounded-md bg-[#737373] text-[#fff] border-[#D3CAC0]/75 border placeholder:text-[#fff]`}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
 
-        <div className="absolute top-0 right-[-120px] sm:right-[-80px] lg:right-0 bg-no-repeat block">
-          <Image
-            src="/images/v20/bg-top-right.png"
-            alt="Background top right"
-            width={width > 1024 ? 403 : 250}
-            height={width > 1024 ? 1069 : 680}
-            priority
-            className="object-contain"
-            style={{
-              transformOrigin: "center",
-            }}
-          />
-        </div>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Phone size={18} className="text-white" />
+                    </div>
+                    <div className="flex border-[#104448] border rounded-full">
+                      <select
+                        className={`py-5 pl-10 pr-2 rounded-l-md bg-[#737373] text-[#fff] border-[#D3CAC0]/75 border border-r-0 focus:ring-0 focus:outline-none`}
+                        value={ddi}
+                        onChange={(e) => setDdi(e.target.value)}
+                      >
+                        <option value="+55">🇧🇷 +55</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                        <option value="+351">🇵🇹 +351</option>
+                        <option value="+34">🇪🇸 +34</option>
+                        <option value="+33">🇫🇷 +33</option>
+                        <option value="+49">🇩🇪 +49</option>
+                        <option value="+39">🇮🇹 +39</option>
+                        <option value="+81">🇯🇵 +81</option>
+                        <option value="+86">🇨🇳 +86</option>
+                        <option value="+7">🇷🇺 +7</option>
+                        <option value="+52">🇲🇽 +52</option>
+                        <option value="+54">🇦🇷 +54</option>
+                        <option value="+56">🇨🇱 +56</option>
+                        <option value="+57">🇨🇴 +57</option>
+                      </select>
+                      <input
+                        type="tel"
+                        placeholder="Seu WhatsApp"
+                        id="form-field-telefone"
+                        className={`flex-1 px-4 py-5 rounded-r-md bg-[#737373] text-[#fff] border-[#D3CAC0]/75 border border-l-0 focus:outline-none placeholder:text-[#fff]`}
+                        value={whatsapp}
+                        onChange={handleChange}
+                        name="whatsapp"
+                        required
+                      />
+                    </div>
+                  </div>
 
-        <div
-          className={`container mx-auto px-4 py-10 relative grid grid-cols-1`}
-        >
-          {/* Coluna única centralizada ou duas colunas */}
-          <div className="w-full">
-            {isLogo && (
-              <div className="flex justify-center">
-                <Image
-                  src="/images/v20/logo-resgate-dos-otimistas.png"
-                  alt="Logotipo Resgate dos otimistas"
-                  width={348}
-                  height={152}
-                  priority
-                  className="object-contain select-none pointer-events-none"
+                  <button
+                    type="submit"
+                    className="w-full bg-[#C0964B] text-[#fff] font-bold py-5 px-6 rounded-[15px] text-base md:text-lg uppercase tracking-wide transition-all hover:brightness-110"
+                    style={{
+                      boxShadow: "0 10px 50px 10px rgba(192, 150, 75, 0.3)",
+                    }}
+                    disabled={isSubmitting}
+                  >
+                    <span className="text-[#f4f0e1]">
+                      {isSubmitting
+                        ? "PROCESSANDO..."
+                        : success
+                        ? "SUCESSO! AGUARDE..."
+                        : "PARTICIPAR GRATUITAMENTE"}
+                    </span>
+                  </button>
+                </form>
+
+                <div
+                  className={`text-[#fff] flex justify-center gap-6 text-base sm:text-xl mt-4 text-center`}
+                >
+                  <div className="flex items-center gap-1">
+                    <Award color="#C0964B" size={20} /> 100% GRATUITO
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Calendar color="#C0964B" size={20} />
+                    01, 02 E 03/09
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock color="#C0964B" size={20} />
+                    ÀS 19H55
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-full relative">
+              <div className={`top-0 bg-no-repeat bg-bottom z-0`}>
+                <img
+                  src="/images/v13/bg-v13.png"
+                  alt="Background top left"
+                  width={1920}
+                  height={1893}
+                  className="object-contain z-0"
                   style={{
+                    transformOrigin: "center",
                     maxWidth: "100%",
                     height: "auto",
+                    zIndex: 0,
                   }}
                 />
               </div>
-            )}
-            <div className="mb-6 mt-2 text-center">
+
+              {/* <div className="absolute w-full">
+            <div className="text-center">
               {!titleRedLine ? (
                 <>
-                  <p className="text-[#0D313E] text-xl sm:text-3xl mb-1">
+                  <p className="text-[#0D313E] text-xl sm:text-7xl mb-1">
                     FAÇA SEU DIAGNÓSTICO DE
                   </p>
-                  <h2 className="text-[#0D313E] text-[32px] sm:text-5xl font-bold mb-1 leading-none">
+                  <h2 className="text-[#0D313E] text-[32px] text-8xl font-bold mb-1 leading-none">
                     DEPENDÊNCIA
                   </h2>
-                  <h2 className="text-[#0D313E] text-[32px] sm:text-5xl font-bold leading-none">
+                  <h2 className="text-[#0D313E] text-[32px] text-8xl font-bold leading-none">
                     EMOCIONAL{" "}
                   </h2>
-                  <span className="text-[#0D313E] text-xl sm:text-3xl block md:inline">
+                  <p className="text-[#0D313E] text-xl sm:text-7xl mt-10">
                     GRATUITO
-                  </span>
+                  </p>
                 </>
               ) : (
                 <>
@@ -538,7 +598,7 @@ export default function Formv20() {
               )}
             </div>
 
-            <p className="text-[#0D313d] mb-6 mx-auto text-center text-lg sm:text-2xl sm:max-w-[600px] max-w-[400px]">
+            <p className="mb-6 mx-auto text-center text-[#0D313d] text-lg sm:text-5xl sm:max-w-[900px] max-w-[400px] mt-10">
               {redLine ? (
                 <span>{redLine}</span>
               ) : (
@@ -552,24 +612,46 @@ export default function Formv20() {
                 </>
               )}
             </p>
-
-            <p className="text-center text-lg sm:text-2xl text-[#0D313d] max-w-[400px] mx-auto mb-2">
-              Preencha os campos abaixo agora:
-            </p>
+            
+            <footer className="w-full mt-20 max-w-3xl mx-auto z-10">
+              <p className={`text-[#0D313E] text-3xl mt-4 text-center font-bold`}>
+                100% GRATUITO | 01, 02 E 03/09 | 19H55
+              </p>
+              <div className="mt-10 text-center text-xl font-serif text-white">
+                © 2025 . All rights reserved. Política de Privacidade
+              </div>
+            </footer>
+          </div> */}
+            </div>
+          </>
+        ) : (
+          <div className="flex flex-col items-center justify-center">
+            <div className={`top-0 bg-no-repeat bg-bottom z-0`}>
+              <img
+                src="/images/v13/bg-v13-mobile.png"
+                alt="Background top left"
+                width={657}
+                className="object-contain z-0"
+                style={{
+                  transformOrigin: "center",
+                  maxWidth: "100%",
+                  height: "auto",
+                  zIndex: 0,
+                }}
+              />
+            </div>
             <form
               onSubmit={handleSubmit}
               id="cadastro"
               name={launch}
-              className={`space-y-4 ${
-                isPicture ? "max-w-lg" : "max-w-md"
-              } mx-auto`}
+              className={`space-y-4 w-[90%] mx-auto top-[-70px] relative`}
             >
               <div>
                 <input
                   type="email"
                   id="form-field-email"
                   placeholder="Seu melhor e-mail"
-                  className={`w-full px-4 py-3 rounded-full bg-[#f4f0e1]/90 text-[#104448] border-[#104448] border placeholder:text-[#104448]`}
+                  className={`w-full px-4 py-5 rounded-md bg-[#737373]/50 text-[#fff] border-[#D3CAC0]/75 border placeholder:text-[#fff]`}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -578,13 +660,11 @@ export default function Formv20() {
 
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Phone size={18} className="text-gray-500" />
+                  <Phone size={18} className="text-white" />
                 </div>
-                <div className="flex border-[#104448] border rounded-full">
+                <div className="flex rounded-full">
                   <select
-                    className={`py-3 pl-10 pr-2 rounded-l-full bg-[#E8E4D6] text-[#07242c] border-r border-gray-300 focus:ring-0 focus:outline-none ${
-                      !isDark ? "border border-gray-300" : ""
-                    }`}
+                    className={`py-5 pl-10 pr-2 rounded-l-md bg-[#737373]/50 text-[#fff] border-[#D3CAC0]/75 border border-r-0 focus:ring-0 focus:outline-none`}
                     value={ddi}
                     onChange={(e) => setDdi(e.target.value)}
                   >
@@ -608,7 +688,7 @@ export default function Formv20() {
                     type="tel"
                     placeholder="Seu WhatsApp"
                     id="form-field-telefone"
-                    className={`flex-1 px-4 py-3 rounded-r-full bg-[#f4f0e1]/90 text-[#07242c] focus:outline-none placeholder:text-[#104448]`}
+                    className={`flex-1 px-2 py-5 rounded-r-md bg-[#737373]/50 text-[#fff] border-[#D3CAC0]/75 border border-l-0 focus:outline-none placeholder:text-[#fff]`}
                     value={whatsapp}
                     onChange={handleChange}
                     name="whatsapp"
@@ -619,7 +699,10 @@ export default function Formv20() {
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-[#0a6d6d] to-[#0e7c7b] text-[#f4f0e1] font-bold py-5 px-6 rounded-full shadow-md text-base md:text-lg uppercase tracking-wide transition-all hover:brightness-110"
+                className="w-full bg-[#C0964B] text-[#fff] font-bold py-5 px-6 rounded-[15px] text-base md:text-lg uppercase tracking-wide transition-all hover:brightness-110"
+                style={{
+                  boxShadow: "0 10px 50px 10px rgba(192, 150, 75, 0.3)",
+                }}
                 disabled={isSubmitting}
               >
                 <span className="text-[#f4f0e1]">
@@ -630,29 +713,29 @@ export default function Formv20() {
                     : "PARTICIPAR GRATUITAMENTE"}
                 </span>
               </button>
+              <div
+                className={`text-[#fff] flex items-center justify-center gap-2 text-sm mt-4 text-center`}
+              >
+                <div className="flex items-center justify-center leading-none gap-1">
+                  <Award color="#C0964B" size={14} /> 100% GRATUITO
+                </div>
+                <div className="flex items-center justify-center leading-none gap-1">
+                  <Calendar color="#C0964B" size={14} />
+                  01, 02 E 03/09
+                </div>
+                <div className="flex items-center justify-center leading-none gap-1">
+                  <Clock color="#C0964B" size={14} />
+                  ÀS 19H55
+                </div>
+              </div>
             </form>
-
-            <p className={`text-[#0D313E] text-base sm:text-xl mt-4 text-center font-bold`}>
-              100% GRATUITO | 01, 02 E 03/09 | 19H55
-            </p>
+            <footer className="w-full mb-10 mx-auto z-10">
+              <div className="mt-10 text-center text-sm font-serif text-white">
+                © 2025 . All rights reserved. Política de Privacidade
+              </div>
+            </footer>
           </div>
-
-          {isPicture && (
-            <div className="w-full h-full -mt-14 md:mt-6">
-              <Image
-                src="/images/foto.png"
-                alt="Picture"
-                width={600}
-                height={400}
-              />
-            </div>
-          )}
-        </div>
-        <footer className="w-full mb-20 mt-10 max-w-3xl mx-auto z-10">
-          <div className="text-center text-base sm:text-xl font-serif text-[#07242C]">
-            © 2025 . All rights reserved. Política de Privacidade
-          </div>
-        </footer>
+        )}
       </section>
     </div>
   );
