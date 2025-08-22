@@ -457,7 +457,7 @@ export default function Formv19() {
                   width={322}
                   height={171}
                   priority
-                  className="object-contain select-none pointer-events-none lg:w-[322px] w-[250px]"
+                  className="object-contain select-none pointer-events-none lg:w-[322px] sm:w-[250px] w-[200px]"
                   style={{
                     maxWidth: "100%",
                     height: "auto",
@@ -494,7 +494,7 @@ export default function Formv19() {
               )}
             </div>
 
-            <p className="mb-12 sm:mt-0 mt-14 text-[#f4f0e1] lg:text-xl text-[16px] max-w-[270px] lg:max-w-[350px] md:max-w-[350px]">
+            <p className="mb-12 sm:mt-0 mt-8 text-[#f4f0e1] lg:text-xl text-[16px] max-w-[270px] lg:max-w-[350px] md:max-w-[350px]">
               {redLine ? (
                 <span>{redLine}</span>
               ) : (
