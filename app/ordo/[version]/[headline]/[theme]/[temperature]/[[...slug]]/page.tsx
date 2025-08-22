@@ -3,6 +3,7 @@
 import SplashScreen from "@/app/components/SplashScreen";
 import Formv10 from "@/app/ordo/[version]/v10";
 import Formv13 from "@/app/ordo/[version]/v13";
+import Formv16 from "@/app/ordo/[version]/v16";
 import Formv19 from "@/app/ordo/[version]/v19";
 import Formv20 from "@/app/ordo/[version]/v20";
 import { useParams } from "next/navigation";
@@ -14,6 +15,14 @@ export default function Home() {
     return (
       <SplashScreen>
         <Formv13 />
+      </SplashScreen>
+    );
+  }
+
+  if (version === "v16") {
+    return (
+      <SplashScreen>
+        <Formv16 />
       </SplashScreen>
     );
   }

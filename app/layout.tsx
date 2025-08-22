@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import './globals.css'
-import { Spectral } from 'next/font/google'
+import { Spectral, Bebas_Neue } from 'next/font/google'
 import "./globals.css"
 import GoogleTagManager from "./components/GoogleTagManager"
 import MicrosoftClarity from "./components/MicrosoftClarity"
@@ -12,6 +12,13 @@ const spectral = Spectral({
   display: 'swap',
   variable: '--font-spectral',
   weight: ['400', '500', '600', '700']
+})
+
+const bebasNeue = Bebas_Neue({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-bebas-neue',
+  weight: ['400']
 })
 
 export const metadata: Metadata = {
@@ -41,7 +48,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/cropped-Alianca-Divergente-Logotipo-Favicon-32x32.png" type="image/png" />
         <link rel="apple-touch-icon" href="/cropped-Alianca-Divergente-Logotipo-Favicon-32x32.png" type="image/png" />
       </head>
-      <body className={`${spectral.className}`}>
+      <body className={`${spectral.className} ${bebasNeue.variable}`}>
         <GoogleTagManager />
         <MicrosoftClarity />
         {children}
