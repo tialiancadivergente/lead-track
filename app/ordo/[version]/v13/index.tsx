@@ -458,7 +458,36 @@ export default function Formv13() {
                   </div>
                 )}
 
-                <p className="text-center text-lg sm:text-3xl text-[#fff] max-w-[600px] mx-auto mt-9 mb-2">
+                <div className="mt-8 text-center text-[#fff]">
+                  {!titleRedLine ? (
+                    <>
+                      <p className="lg:text-2xl md:text-2xl text-xs mb-1">
+                        FAÇA SEU DIAGNÓSTICO DE
+                      </p>
+                      <h2 className="text-2xl lg:text-5xl md:text-5xl font-bold mb-1">
+                        DEPENDÊNCIA
+                      </h2>
+                      <h2 className="text-2xl lg:text-5xl md:text-5xl font-bold">
+                        EMOCIONAL{" "}
+                      </h2>
+                      <span className="text-2xl lg:text-3xl md:text-3xl block md:inline">
+                        GRATUITO
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <div
+                        className={`text-4xl md:text-5xl max-w-2xl mx-auto leading-none ${
+                          isDark ? "text-[#f4f0e1]" : "text-[#07242c]"
+                        }`}
+                      >
+                        {titleRedLine}
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <p className="text-center text-lg sm:text-3xl text-white max-w-[600px] mx-auto mt-9 mb-2">
                   Preencha os campos abaixo agora:
                 </p>
                 <form
@@ -553,13 +582,13 @@ export default function Formv13() {
                 </div>
               </div>
             </div>
-            <div className="w-full relative">
-              <div className={`top-0 bg-no-repeat bg-bottom z-0`}>
-                <img
+            <div className="mx-auto text-center relative">
+              <div className={`top-0 bg-no-repeat z-0`}>
+                <Image
                   src="/images/v13/bg-v13.png"
                   alt="Background top left"
-                  width={1920}
-                  height={1893}
+                  width={1529}
+                  height={1572}
                   className="object-contain z-0"
                   style={{
                     transformOrigin: "center",
@@ -572,12 +601,12 @@ export default function Formv13() {
             </div>
           </>
         ) : (
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center mt-5">
             <div className={`top-0 bg-no-repeat bg-bottom z-0`}>
               <img
                 src="/images/v13/bg-v13-mobile.png"
                 alt="Background top left"
-                width={657}
+                width={874}
                 className="object-contain z-0"
                 style={{
                   transformOrigin: "center",
@@ -587,11 +616,15 @@ export default function Formv13() {
                 }}
               />
             </div>
+            <p className={`text-center ${width < 420 ? 'text-sm' : 'text-base'} sm:text-2xl text-white max-w-[400px] mx-auto mt-[-50px] z-50`}>
+              Preencha os campos abaixo agora:
+            </p>
+
             <form
               onSubmit={handleSubmit}
               id="cadastro"
               name={launch}
-              className={`space-y-4 w-[90%] mx-auto top-[-70px] relative`}
+              className={`w-[90%] mx-auto relative`}
             >
               <div>
                 <input
@@ -605,7 +638,7 @@ export default function Formv13() {
                 />
               </div>
 
-              <div className="relative">
+              <div className="relative my-4">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Phone size={18} className="text-white" />
                 </div>
