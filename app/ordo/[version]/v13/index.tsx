@@ -694,7 +694,7 @@ export default function Formv13() {
                 </span>
               </button>
               <div
-                className={`text-[#fff] flex items-center justify-center gap-2 text-sm mt-4 text-center`}
+                className={`text-[#fff] flex items-center justify-center gap-2 ${width > 400 ? 'text-sm' : 'text-[12px]'} mt-4 text-center`}
               >
                 <div className="flex items-center justify-center leading-none gap-1 text-[#fff]">
                   <Award color="#C0964B" size={14} /> 100% GRATUITO
