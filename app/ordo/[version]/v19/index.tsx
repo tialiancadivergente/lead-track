@@ -420,10 +420,9 @@ export default function Formv19() {
         id="hero"
         className={`relative flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-[#021217] z-0`}
       >
-
-        <div className="absolute top-[-120px] md:top-[-50px] xl:left-36 lg:left-30 md:left-[-80px] sm:left-[-180px] left-[-320px] 2xl:w-[1542px] w-[1280px] bg-no-repeat">
+        <div className="absolute top-[-25px] 2xl:right-[-200px] xl:right-[-200px] lg:right-[-400px] md:right-[-500px] sm:right-[-525px] right-[-400px] lg:w-[1542px] sm:w-[1280px] w-[1000px] bg-no-repeat">
           <Image
-            src="/images/Elton-Euler-Resgate-dos-Otimistas-Dependencia.png"
+            src="/images/Elton-Euler-Resgate-dos-Otimistas-Dependencia-emocional.png"
             alt="DEPENDÊNCIA EMOCIONAL"
             width={1542}
             height={867}
@@ -431,7 +430,7 @@ export default function Formv19() {
           />
         </div>
 
-				<div className="absolute bottom-0 w-full bg-no-repeat block">
+        <div className="absolute bottom-0 w-full bg-no-repeat block">
           <Image
             src="/images/bg-bottom.png"
             alt="Background top right and left"
@@ -446,7 +445,7 @@ export default function Formv19() {
         </div>
 
         <div
-          className={`container mx-auto px-4 py-10 sm:py-20 md:py-32 relative grid grid-cols-1 gap-8`}
+          className={`container mx-auto px-4 py-10 sm:py-20 md:py-32 relative lg:w-[1080px] w-auto`}
         >
           {/* Coluna única centralizada ou duas colunas */}
           <div className="w-full">
@@ -461,7 +460,7 @@ export default function Formv19() {
                   className="object-contain select-none pointer-events-none lg:w-[322px] w-[250px]"
                   style={{
                     maxWidth: "100%",
-                    height: "auto"
+                    height: "auto",
                   }}
                 />
               </div>
@@ -478,9 +477,9 @@ export default function Formv19() {
                   <h2 className="text-[#c0964b] text-2xl lg:text-5xl md:text-5xl font-bold">
                     EMOCIONAL{" "}
                   </h2>
-									<span className="text-[#D3CAC0] text-2xl lg:text-3xl md:text-3xl block md:inline">
-										GRATUITO
-									</span>
+                  <span className="text-[#D3CAC0] text-2xl lg:text-3xl md:text-3xl block md:inline">
+                    GRATUITO
+                  </span>
                 </>
               ) : (
                 <>
@@ -495,11 +494,9 @@ export default function Formv19() {
               )}
             </div>
 
-            <p className="mb-12 sm:mt-0 mt-20 text-[#f4f0e1] lg:text-xl text-[18px] max-w-[270px] lg:max-w-[350px] md:max-w-[350px]">
+            <p className="mb-12 sm:mt-0 mt-14 text-[#f4f0e1] lg:text-xl text-[16px] max-w-[270px] lg:max-w-[350px] md:max-w-[350px]">
               {redLine ? (
-                <span>
-                  {redLine}
-                </span>
+                <span>{redLine}</span>
               ) : (
                 <>
                   Descubra como{" "}
@@ -515,9 +512,7 @@ export default function Formv19() {
               onSubmit={handleSubmit}
               id="cadastro"
               name={launch}
-              className={`space-y-4 ${
-                isPicture ? "max-w-lg" : "max-w-md"
-              } mx-auto`}
+              className={`space-y-4 max-w-md`}
             >
               <div>
                 <input
@@ -592,7 +587,7 @@ export default function Formv19() {
             </form>
 
             <p
-              className={`text-[#C0964B] text-sm sm:text-lg mt-4 text-center`}
+              className={`text-[#C0964B] text-base sm:text-2xl mt-4 sm:text-left text-center`}
               style={{ color: "#C0964B" }}
             >
               100% GRATUITO | 01, 02 E 03/09 | 19H55
@@ -622,7 +617,7 @@ export default function Formv19() {
           </div>
           <div className="text-center text-[#f4f0e1] text-xs md:text-sm font-serif tracking-wide pb-6">
             <div className={`${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}>
-						© 2025 . All rights reserved. Política de Privacidade
+              © 2025 . All rights reserved. Política de Privacidade
             </div>
           </div>
         </footer>
