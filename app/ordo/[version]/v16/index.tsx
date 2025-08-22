@@ -422,7 +422,7 @@ export default function Formv16() {
         id="hero"
         className={`relative flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-[url('/images/v16/bg.png')] bg-cover bg-center z-0`}
       >
-        <div className="absolute lg:top-0 top-[-300px] sm:right-0 right-[-180px] bg-no-repeat block lg:w-[545px] w-[350px]">
+        <div className="absolute lg:top-0 top-[-300px] lg:right-[-50px] right-[-180px] bg-no-repeat block lg:w-[545px] w-[350px]">
           <Image
             src="/images/v16/bg-right-top.png"
             alt="Background top right and left"
@@ -436,7 +436,7 @@ export default function Formv16() {
           />
         </div>
 
-        <div className="absolute lg:top-48 sm:top-28 top-36 2xl:right-36 xl:right-0 lg:right-[-100px] right-[-30px] lg:w-[764px] sm:w-[400px] w-[280px] bg-no-repeat">
+        <div className="absolute sm:top-28 top-24 xl:right-60 lg:right-[-100px] right-[-30px] lg:w-[680px] sm:w-[400px] w-[280px] bg-no-repeat">
           <Image
             src="/images/v16/Elton-Euler-Resgate-dos-Otimistas-Dependencia-emocional.png"
             alt="DEPENDÊNCIA EMOCIONAL"
@@ -489,7 +489,7 @@ export default function Formv16() {
         </div>
 
         <div
-          className={`container mx-auto sm:px-4 pt-16 relative lg:w-[1080px] w-auto`}
+          className={`container mx-auto sm:px-4 pt-6 relative lg:w-[1080px] w-auto`}
         >
           {/* Coluna única centralizada ou duas colunas */}
           <div className="w-full">
@@ -509,19 +509,19 @@ export default function Formv16() {
                 />
               </div>
             )}
-            <div className="my-8 font-bebas-neue">
+            <div className="mt-8 mb-2 font-bebas-neue">
               {!titleRedLine ? (
                 <>
-                  <p className="text-white/90 lg:text-4xl sm:text-2xl text-sm sm:mb-1 mb-0 ">
+                  <p className="text-white/90 lg:text-3xl sm:text-2xl text-sm sm:mb-1 mb-0 ">
                     FAÇA SEU DIAGNÓSTICO DE
                   </p>
-                  <h2 className="text-[#339F9B] text-3xl sm:text-7xl lg:text-8xl font-bold">
+                  <h2 className="text-[#339F9B] text-3xl sm:text-7xl lg:text-7xl">
                     DEPENDÊNCIA
                   </h2> 
-                  <h2 className="text-[#339F9B] text-3xl sm:text-7xl lg:text-8xl lg:mt-[-20px] mt-[-10px] mb-[-10px] font-bold">
+                  <h2 className="text-[#339F9B] text-3xl sm:text-7xl lg:text-7xl lg:mt-[-10px] mt-[-10px] mb-[-10px]">
                     EMOCIONAL{" "}
                   </h2>
-                  <span className="text-white/90 text-sm sm:text-2xl lg:text-4xl">
+                  <span className="text-white/90 text-sm sm:text-2xl lg:text-3xl">
                     GRATUITO
                   </span>
                 </>
@@ -566,7 +566,7 @@ export default function Formv16() {
                   type="email"
                   id="form-field-email"
                   placeholder="Seu melhor e-mail"
-                  className={`w-full flex flex-1 px-4 py-4 bg-[#f4f0e1]/90 text-[#07242c] ${
+                  className={`w-full flex rounded-none flex-1 px-4 py-4 bg-[#f4f0e1]/90 text-[#07242c] ${
                     !isDark ? "border border-gray-300" : ""
                   }`}
                   style={{ fontFamily: 'Arial, sans-serif' }}
@@ -582,7 +582,7 @@ export default function Formv16() {
                 </div>
                 <div className="flex">
                   <select
-                    className={`py-4 pl-10 pr-2 bg-[#f4f0e1]/90 text-[#07242c] border-r border-gray-300 focus:ring-0 focus:outline-none ${
+                    className={`py-4 pl-10 pr-2 bg-[#f4f0e1]/90 rounded-none text-[#07242c] border-r border-gray-300 focus:ring-0 focus:outline-none ${
                       !isDark ? "border border-gray-300" : ""
                     }`}
                     style={{ fontFamily: 'Arial, sans-serif' }}
@@ -609,7 +609,7 @@ export default function Formv16() {
                     type="tel"
                     placeholder="Seu WhatsApp"
                     id="form-field-telefone"
-                    className={`w-full px-4 py-4 bg-[#f4f0e1]/90 text-[#07242c] focus:outline-none ${
+                    className={`w-full px-4 py-4 rounded-none bg-[#f4f0e1]/90 text-[#07242c] focus:outline-none ${
                       !isDark ? "border border-gray-300" : ""
                     }`}
                     style={{ fontFamily: 'Arial, sans-serif' }}
@@ -638,7 +638,7 @@ export default function Formv16() {
             </form>
 
             <div
-              className={`text-[#fff] flex items-center mt-16 justify-start sm:gap-8 gap-2 2xl:text-3xl xl:text-2xl sm:text-2xl text-sm`}
+              className={`text-[#fff] flex items-center mt-8 justify-start sm:gap-8 gap-2 xl:text-2xl sm:text-2xl text-sm`}
             >
               <div className="flex items-center justify-center leading-none gap-1 text-[#fff]">
                 <Award color="#C0964B" size={16} /> 100% GRATUITO
