@@ -512,7 +512,7 @@ export default function Formv16() {
             <div className="my-8 font-bebas-neue">
               {!titleRedLine ? (
                 <>
-                  <p className="text-[#E3E9ED] lg:text-4xl sm:text-2xl text-sm mb-1 ">
+                  <p className="text-white/90 lg:text-4xl sm:text-2xl text-sm sm:mb-1 mb-0 ">
                     FAÇA SEU DIAGNÓSTICO DE
                   </p>
                   <h2 className="text-[#339F9B] text-3xl sm:text-7xl lg:text-8xl font-bold">
@@ -521,7 +521,7 @@ export default function Formv16() {
                   <h2 className="text-[#339F9B] text-3xl sm:text-7xl lg:text-8xl lg:mt-[-20px] mt-[-10px] mb-[-10px] font-bold">
                     EMOCIONAL{" "}
                   </h2>
-                  <span className="text-[#E3E9ED] text-sm sm:text-2xl lg:text-4xl">
+                  <span className="text-white/90 text-sm sm:text-2xl lg:text-4xl">
                     GRATUITO
                   </span>
                 </>
