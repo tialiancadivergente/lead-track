@@ -22,10 +22,13 @@ export default function Formv8() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [domain, setDomain] = useState<string>("");
+  const [isDark, setIsDark] = useState(true);	
+  const [isPicture, setIsPicture] = useState(false);
   const [redLine, setRedLine] = useState<string | null>(null);
   const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(
     null
   );
+	const fullUrl = Object.values(params).flat().join("/");
   const [isLogo, setIsLogo] = useState(true);
 
   const launch = "[ORO] [SET25]";
@@ -34,16 +37,19 @@ export default function Formv8() {
   const benefitsMapping = [
     {
       id: 2,
+      isPicture: false,
       isLogo: true,
       text: "Descubra o padrão invisível que trava a sua vida — mesmo quando você se esforça.",
     },
     {
       id: 3,
+      isPicture: false,
       isLogo: true,
       text: "Você vai entender por que tenta tanto e ainda assim não tem o resultado que merece.",
     },
     {
       id: 4,
+      isPicture: false,
       isLogo: true,
       text: "A explicação que nenhuma terapia, mentor ou curso conseguiu te dar — até agora.",
     },
@@ -535,6 +541,26 @@ export default function Formv8() {
         </span>
       ),
     },
+    {
+      id: "J1",
+      isLogo: true,
+      title: (
+        <>
+          <h2 className="text-[#e5e7eb] text-3xl md:text-4xl font-bold mb-1">
+            O RESULTADO QUE VOCÊ QUER ESTÁ NA PERMISSÃO{" "}
+            <span className="text-[#c0964b]">QUE VOCÊ NÃO TEM</span>
+          </h2>
+        </>
+      ),
+      text: (
+        <span className="text-xl md:text-2xl">
+          Descubra como aumentar sua Permissão e quebrar os{" "}
+          <span className="text-[#c0964b] font-bold">
+            padrões que te impedem de conquistar o que você deseja
+          </span>
+        </span>
+      ),
+    },
   ];
 
   // Capturar o domínio da página
@@ -589,219 +615,68 @@ export default function Formv8() {
   }, [searchParams]);
 
   useEffect(() => {
-    if (params && params.temperatura) {
-      console.log("temperatura param", params.temperatura);
-      const versionsV9 = [
-        "v9",
-        "adv058f",
-        "adv212",
-        "adv28",
-        "adv58f",
-        "adv002",
-      ];
+    if (params && params.temperature) {
+      console.log("temperatura param", params.temperature);
+      let tipoValue = params.headline;
+      const versaoValue = params.version;
+      const temperaturaValue = params.temperature;
+      const isDarkValue = params.theme;
 
-      // Verificar se params.temperatura não é null ou undefined
-      const paramValue = params.temperatura as string;
-      if (paramValue) {
-        const parts = paramValue.split("-");
-        const tipoValue = parts[2];
-        const versaoValue = parts[1];
-        const temperaturaValue = parts[parts.length - 1];
-        console.log("Tipo:", versaoValue);
-
-        if (paramValue.indexOf("v1") != -1) {
-          console.log("Tipo:", tipoValue);
-          console.log("Versão:", versaoValue);
-          console.log("Temperatura:", temperaturaValue);
-
-          setTipo(tipoValue);
-          setVersao(versaoValue);
-          setTemperatura(temperaturaValue);
-        } else if (
-          paramValue.indexOf("v9") != -1 ||
-          versionsV9.includes(versaoValue)
-        ) {
-          let tipoValue = parts[0];
-          const versaoValue = parts[1] === "set25" ? "v9" : parts[1];
-          let temperaturaValue = parts[parts.length - 1];
-
-          // Lógica especial para ordo-adv58f-f
-          if (versaoValue.indexOf("adv058f") != -1) {
-            const redLineId = 32;
-            temperaturaValue = parts[parts.length - 1];
-            tipoValue = `ordo-${redLineId}`;
-            const redLineText = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.text;
-            const titleRedLineText = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.title;
-            const _isLogo = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.isLogo;
-
-            if (redLineText) {
-              setRedLine(redLineText as string);
-              console.log("RedLine:", redLineText);
-            }
-
-            if (titleRedLineText) {
-              setTitleRedLine(titleRedLineText);
-              console.log("Title RedLine:", titleRedLineText);
-            }
-
-            if (_isLogo !== undefined) {
-              setIsLogo(_isLogo);
-            }
-
-            setTipo(tipoValue);
-            setVersao(versaoValue);
-            setTemperatura(temperaturaValue);
-          } else if (versaoValue.indexOf("adv212") != -1) {
-            const redLineId = 31;
-            tipoValue = `ordo-${redLineId}`;
-            const redLineText = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.text;
-            const titleRedLineText = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.title;
-            const _isLogo = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.isLogo;
-
-            if (redLineText) {
-              setRedLine(redLineText as string);
-              console.log("RedLine:", redLineText);
-            }
-
-            if (titleRedLineText) {
-              setTitleRedLine(titleRedLineText);
-              console.log("Title RedLine:", titleRedLineText);
-            }
-
-            if (_isLogo !== undefined) {
-              setIsLogo(_isLogo);
-            }
-
-            setTipo(tipoValue);
-            setVersao(versaoValue);
-            setTemperatura(temperaturaValue);
-          } else if (
-            versaoValue.indexOf("v9") != -1 &&
-            paramValue.indexOf("set25-v9-tl-adv002") != -1
-          ) {
-            const redLineId = 39;
-            tipoValue = `ordo-${redLineId}`;
-            const redLineText = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.text;
-            const titleRedLineText = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.title;
-            const _isLogo = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.isLogo;
-
-            if (redLineText) {
-              setRedLine(redLineText as string);
-              console.log("RedLine:", redLineText);
-            }
-
-            if (titleRedLineText) {
-              setTitleRedLine(titleRedLineText);
-              console.log("Title RedLine:", titleRedLineText);
-            }
-
-            if (_isLogo !== undefined) {
-              setIsLogo(_isLogo);
-            }
-
-            setTipo(tipoValue);
-            setVersao(versaoValue);
-            setTemperatura(temperaturaValue);
-          } else if (versaoValue.indexOf("adv28") != -1) {
-            const redLineId = 30;
-            tipoValue = `ordo-${redLineId}`;
-            const redLineText = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.text;
-            const titleRedLineText = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.title;
-            const _isLogo = benefitsMapping.find(
-              (benefit) => benefit.id === redLineId
-            )?.isLogo;
-
-            if (redLineText) {
-              setRedLine(redLineText as string);
-              console.log("RedLine:", redLineText);
-            }
-
-            if (titleRedLineText) {
-              setTitleRedLine(titleRedLineText);
-              console.log("Title RedLine:", titleRedLineText);
-            }
-
-            if (_isLogo !== undefined) {
-              setIsLogo(_isLogo);
-            }
-
-            setTipo(tipoValue);
-            setVersao(versaoValue);
-            setTemperatura(temperaturaValue);
-          } else if (parts.length === 5) {
-            const redLineVersion = parts[parts.length - 2];
-            tipoValue = `ordo-${redLineVersion}`;
-            const redLineText = benefitsMapping.find(
-              (benefit) => benefit.id === +redLineVersion
-            )?.text;
-            const titleRedLineText = benefitsMapping.find(
-              (benefit) => benefit.id === +redLineVersion
-            )?.title;
-            const _isLogo = benefitsMapping.find(
-              (benefit) => benefit.id === +redLineVersion
-            )?.isLogo;
-
-            if (redLineText) {
-              setRedLine(redLineText as string);
-              console.log("RedLine:", redLineText);
-            }
-
-            if (titleRedLineText) {
-              setTitleRedLine(titleRedLineText);
-              console.log("Title RedLine:", titleRedLineText);
-            }
-
-            if (_isLogo !== undefined) {
-              setIsLogo(_isLogo);
-            }
-          }
-
-          console.log("Tipo:", tipoValue);
-          console.log("Versão:", versaoValue);
-          console.log("Temperatura:", temperaturaValue);
-
-          setTipo(tipoValue);
-          setVersao(versaoValue);
-          setTemperatura(temperaturaValue);
-        } else {
-          // Caso o formato não seja o esperado, usar o valor completo como temperatura
-          console.log("Formato inesperado, usando valor completo");
-          setTemperatura(paramValue);
-        }
+      if (isDarkValue === "2") {
+        setIsDark(true);
       } else {
-        console.log("params.temperatura é null ou undefined");
+        setIsDark(false);
       }
+
+      const redLineVersion = params.headline;
+      tipoValue = `redline-${redLineVersion}`;
+      console.log("RedLine Version:", redLineVersion);
+      const redLineText = benefitsMapping.find(
+        (benefit) => benefit.id === redLineVersion
+      )?.text;
+      const titleRedLineText = benefitsMapping.find(
+        (benefit) => benefit.id === redLineVersion
+      )?.title;
+      const _isLogo = benefitsMapping.find(
+        (benefit) => benefit.id === redLineVersion
+      )?.isLogo;
+      const _isPicture = benefitsMapping.find(
+        (benefit) => benefit.id === redLineVersion
+      )?.isPicture;
+      if (redLineText) {
+        setRedLine(redLineText as unknown as string);
+        console.log("RedLine:", redLineText);
+      }
+
+      if (titleRedLineText) {
+        setTitleRedLine(titleRedLineText);
+        console.log("Title RedLine:", titleRedLineText);
+      }
+
+      if (_isPicture !== undefined) {
+        setIsPicture(_isPicture);
+      }
+
+      if (_isLogo !== undefined) {
+        setIsLogo(_isLogo);
+      }
+
+      console.log("Tipo:", tipoValue);
+      console.log("Versão:", versaoValue);
+      console.log("Temperatura:", temperaturaValue);
+
+      setTipo(tipoValue);
+      setVersao(versaoValue as string);
+      setTemperatura(temperaturaValue as string);
     }
   }, [params]);
 
   // Função para construir a URL de redirecionamento
   const buildRedirectUrl = () => {
     // Construir o path base com os valores dinâmicos
-    const basePath = `/quiz/${tipo || "oro"}-${versao || "v9"}-${
-      temperatura || "q"
-    }-typ`;
+    const basePath = `/quest/${params.headline}/${params.version}/${
+      params.temperature
+    }/${params.slug?.[0] || ""}/typ`;
 
     // Iniciar com os parâmetros de email e telefone
     const queryParams = new URLSearchParams();
@@ -838,7 +713,7 @@ export default function Formv8() {
         temperature: temperatura,
         tipo,
         version: versao,
-        parametroCompleto: params.temperatura,
+        parametroCompleto: fullUrl,
         domain,
         uri: domain,
         path: window.location.pathname,
@@ -872,7 +747,7 @@ export default function Formv8() {
         version: versao,
         launch,
         domain,
-        parametroCompleto: params.temperatura,
+        parametroCompleto: fullUrl,
         date: new Date().toISOString(),
       };
 
