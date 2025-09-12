@@ -12,66 +12,64 @@ import JourneySection from "@/components/journey-section"
 import MentorSection from "@/components/mentor-section"
 import Footer from "@/components/footer"
 import { useParams } from "next/navigation";
-import Formv0 from "@/app/ordo/[version]/v0";
 
 export default function Home() {
   const { version } = useParams();
 
-  // if (version === "v8") {
-  //   return (
-  //     <SplashScreen>
-  //       <Formv8 />
-  //       <JourneySection />
-  //       <MentorSection />
-  //       <Footer />
-  //     </SplashScreen>
-  //   );
-  // }
+  if (version === "v8") {
+    return (
+      <SplashScreen>
+        <Formv8 />
+        <JourneySection />
+        <MentorSection />
+        <Footer />
+      </SplashScreen>
+    );
+  }
 
-  // if (version === "v11") {
-  //   return (
-  //     <SplashScreen>
-  //       <Formv11 />
-  //     </SplashScreen>
-  //   );
-  // }
+  if (version === "v11") {
+    return (
+      <SplashScreen>
+        <Formv11 />
+      </SplashScreen>
+    );
+  }
 
-  // if (version === "v13") {
-  //   return (
-  //     <SplashScreen>
-  //       <Formv13 />
-  //     </SplashScreen>
-  //   );
-  // }
+  if (version === "v13") {
+    return (
+      <SplashScreen>
+        <Formv13 />
+      </SplashScreen>
+    );
+  }
 
-  // if (version === "v16") {
-  //   return (
-  //     <SplashScreen>
-  //       <Formv16 />
-  //     </SplashScreen>
-  //   );
-  // }
+  if (version === "v16") {
+    return (
+      <SplashScreen>
+        <Formv16 />
+      </SplashScreen>
+    );
+  }
 
-  // if (version === "v19") {
-  //   return (
-  //     <SplashScreen>
-  //       <Formv19 />
-  //     </SplashScreen>
-  //   );
-  // }
+  if (version === "v19") {
+    return (
+      <SplashScreen>
+        <Formv19 />
+      </SplashScreen>
+    );
+  }
 
-  // if (version === "v20") {
-  //   return (
-  //     <SplashScreen>
-  //       <Formv20 />
-  //     </SplashScreen>
-  //   );
-  // }
+  if (version === "v20") {
+    return (
+      <SplashScreen>
+        <Formv20 />
+      </SplashScreen>
+    );
+  }
 
   return (
     <SplashScreen>
-      <Formv0 />
-      {/* <Formv10 /> */}
+      <Formv10 />
     </SplashScreen>
   );
 }

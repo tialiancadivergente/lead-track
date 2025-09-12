@@ -13,7 +13,6 @@ import { useParams, useSearchParams, useRouter } from "next/navigation"
 import Form from './form-v1'
 import QuizFormInlead from './inlead'
 import Formv10 from './form-v10'
-import Formv0 from '../ordo/[version]/v0'
 
 
 export default function Home() {
@@ -32,8 +31,7 @@ export default function Home() {
     
     return (
         <SplashScreen>
-          <Formv0 />
-          {/* <Formv10 /> */}
+          <Formv10 />
         </SplashScreen>
     )
   }
@@ -52,11 +50,10 @@ export default function Home() {
     <SplashScreen>
       <main>
         <Header />
-        <Formv0 />
-        {/* <HeroSection />
+        <HeroSection />
         <JourneySection />
-        <MentorSection /> */}
-        {/* <Footer /> */}
+        <MentorSection />
+        <Footer />
       </main>
     </SplashScreen>
   )
