@@ -21,8 +21,8 @@ const GoogleTagManager = () => {
             // Mapeamento por subdomínio específico
             const map: Record<string, string> = {
                 mt: 'GTM-K72SR8R4',
-                gg: 'GTM-WD86PJNQ',
-                tt: 'GTM-NNCP73G5',
+                gg: 'GTM-NNCP73G5',
+                tt: 'GTM-WD86PJNQ',
             };
 
             // Se houver correspondência exata para o primeiro label, usa-a
