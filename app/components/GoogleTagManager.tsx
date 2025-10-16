@@ -34,7 +34,7 @@ const GoogleTagManager = () => {
 
         const host = typeof window !== 'undefined' ? window.location.hostname : '';
         const gtmId = host ? getGtmIdByHostname(host) : defaultGtmId;
-        console.log('gtmId ====> ', gtmId)
+        console.log('gtmId =====> ', gtmId)
         TagManager.initialize({ gtmId });
     }, []);
 
