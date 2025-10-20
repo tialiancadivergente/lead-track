@@ -12,6 +12,7 @@ import JourneySection from "@/components/journey-section"
 import MentorSection from "@/components/mentor-section"
 import Footer from "@/components/footer"
 import { useParams } from "next/navigation";
+import Formvt from "@/app/ordo/[version]/vt";
 
 export default function Home() {
   const { version } = useParams();
@@ -55,6 +56,14 @@ export default function Home() {
     return (
       <SplashScreen>
         <Formv19 />
+      </SplashScreen>
+    );
+  }
+
+  if (version === "vt") {
+    return (
+      <SplashScreen>
+        <Formvt />
       </SplashScreen>
     );
   }
