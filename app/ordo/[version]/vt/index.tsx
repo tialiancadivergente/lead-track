@@ -359,6 +359,7 @@ export default function Formvt() {
         //   return; // Interrompe a execução para evitar o redirecionamento padrão
         // }
 
+        
         // if (typeof window !== "undefined") {
         //   window.history.pushState({}, "", redirectUrl);
         // }
