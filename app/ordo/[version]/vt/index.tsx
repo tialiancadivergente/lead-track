@@ -359,9 +359,9 @@ export default function Formvt() {
         //   return; // Interrompe a execução para evitar o redirecionamento padrão
         // }
 
-        if (typeof window !== "undefined") {
-          window.history.pushState({}, "", redirectUrl);
-        }
+        // if (typeof window !== "undefined") {
+        //   window.history.pushState({}, "", redirectUrl);
+        // }
 
         // Usar window.location.href para navegação completa
         // if (typeof window !== "undefined") {
