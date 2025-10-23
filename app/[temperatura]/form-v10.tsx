@@ -6,6 +6,7 @@ import { Phone } from "lucide-react"
 import Image from "next/image"
 import { useParams, useSearchParams, useRouter } from "next/navigation"
 import { text } from "stream/consumers"
+import { getTagIdByTemperature } from "@/lib/temperature-utils"
 
 export default function Formv10() {
   const params = useParams()
@@ -26,9 +27,9 @@ export default function Formv10() {
   const [isLogo, setIsLogo] = useState(true)
   const [isDark, setIsDark] = useState(true)
   const [isPicture, setIsPicture] = useState(false);
+  const [tagId, setTagId] = useState<number | null>(null);  
 
-  const launch = "[ORO] [SET25]"
-
+  const launch = "[ORO][NOV25]";
 
   // Capturar o domínio da página
   useEffect(() => {
@@ -77,6 +78,11 @@ export default function Formv10() {
       if (hasUtm) {
         console.log('UTM params:', utmParams);
         setFormFields(utmParams);
+
+        // Definir tagId baseado na temperatura
+        const calculatedTagId = getTagIdByTemperature(temperatura as string);
+        setTagId(calculatedTagId);
+        console.log("TagId definido:", calculatedTagId);
       }
     }
   }, [searchParams]);
@@ -238,6 +244,8 @@ export default function Formv10() {
         domain,
         uri: domain,
         path: window.location.pathname,
+        tagId: tagId,
+        launch,
       };
 
       // Adicionar formFields ao payload apenas se existir
@@ -267,7 +275,8 @@ export default function Formv10() {
         launch,
         domain,
         parametroCompleto: params.temperatura,
-        date: new Date().toISOString()
+        date: new Date().toISOString(),
+        tagId: tagId,
       };
 
       // Adicionar formFields aos dados do localStorage apenas se existir

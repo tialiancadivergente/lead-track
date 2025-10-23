@@ -22,10 +22,10 @@ const spectral = Spectral({
 });
 
 const mapTagSendFlow = {
-    f: "https://api.whatsapp.com/send?phone=5512936184013&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
-    org: "https://api.whatsapp.com/send?phone=5512936182704&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
-    m: "https://api.whatsapp.com/send?phone=5512936185472&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
-    q: "https://api.whatsapp.com/send?phone=5512936184799&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
+    f: "https://sendflow.click/i/oronov25f1",
+    org: "https://sendflow.click/i/oronov25org",
+    m: "https://sendflow.click/i/oronov25m",
+    q: "https://sendflow.click/i/oronov25q1",
 } as any;
 
 export default function Quiz({ params }: { params: { form: string } }) {
@@ -58,7 +58,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
         return mapTagSendFlow[resolvedKey] || mapTagSendFlow["f"];
     }
 
-    const launch = "[ORO] [SET25]"
+    const launch = "[ORO][NOV25]";
 
     // Capturar o domínio da página
     useEffect(() => {

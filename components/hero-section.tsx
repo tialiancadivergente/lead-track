@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { Phone } from "lucide-react"
 import Image from "next/image"
 import { useParams, useSearchParams, useRouter } from "next/navigation"
+import { getTagIdByTemperature } from "@/lib/temperature-utils"
 
 export default function HeroSection() {
   const params = useParams()
@@ -23,8 +24,8 @@ export default function HeroSection() {
   const [redLine, setRedLine] = useState<string | null>(null)
   const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(null)
   const [isLogo, setIsLogo] = useState(true)
-
-  const launch = "[ORO] [SET25]"
+  const [tagId, setTagId] = useState<number | null>(null);  
+  const launch = "[ORO][NOV25]"
 
   // Mapeamento dos benefícios para exibição
   const benefitsMapping = [
@@ -624,6 +625,11 @@ export default function HeroSection() {
       } else {
         console.log('params.temperatura é null ou undefined');
       }
+
+      // Definir tagId baseado na temperatura
+      const calculatedTagId = getTagIdByTemperature(temperatura as string);
+      setTagId(calculatedTagId);
+      console.log("TagId definido:", calculatedTagId);
     }
   }, [params])
 
@@ -668,6 +674,8 @@ export default function HeroSection() {
         domain,
         uri: domain,
         path: window.location.pathname,
+        tagId: tagId,
+        launch,
       };
 
       console.log('payload ======>', payload)
@@ -699,7 +707,8 @@ export default function HeroSection() {
         launch,
         domain,
         parametroCompleto: params.temperatura,
-        date: new Date().toISOString()
+        date: new Date().toISOString(),
+        tagId: tagId,
       };
 
       // Adicionar formFields aos dados do localStorage apenas se existir
