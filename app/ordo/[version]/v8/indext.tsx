@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
 import Image from "next/image";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
+import { getTagIdByTemperature } from "@/lib/temperature-utils";
 
 export default function Formv8() {
   const params = useParams();
@@ -30,8 +31,9 @@ export default function Formv8() {
   );
 	const fullUrl = Object.values(params).flat().join("/");
   const [isLogo, setIsLogo] = useState(true);
+  const [tagId, setTagId] = useState<number | null>(null);
 
-  const launch = "[ORO] [SET25]";
+  const launch = "[ORO][NOV25]";
 
   // Mapeamento dos benefícios para exibição
   const benefitsMapping = [
@@ -668,6 +670,11 @@ export default function Formv8() {
       setTipo(tipoValue);
       setVersao(versaoValue as string);
       setTemperatura(temperaturaValue as string);
+
+      // Definir tagId baseado na temperatura
+      const calculatedTagId = getTagIdByTemperature(temperaturaValue as string);
+      setTagId(calculatedTagId);
+      console.log("TagId definido:", calculatedTagId);
     }
   }, [params]);
 
@@ -716,6 +723,8 @@ export default function Formv8() {
         parametroCompleto: fullUrl,
         domain,
         uri: domain,
+        tagId: tagId,
+        launch,
         path: window.location.pathname,
       };
 

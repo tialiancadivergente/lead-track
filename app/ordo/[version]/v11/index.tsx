@@ -6,7 +6,7 @@ import { Phone } from "lucide-react";
 import Image from "next/image";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { text } from "stream/consumers";
-
+import { getTagIdByTemperature } from "@/lib/temperature-utils";
 export default function Formv19() {
   const params = useParams();
   const searchParams = useSearchParams();
@@ -31,10 +31,10 @@ export default function Formv19() {
   const [isDark, setIsDark] = useState(true);
   const [isPicture, setIsPicture] = useState(false);
   const [percent, setPercent] = useState<string | null>(null);
-
+  const [tagId, setTagId] = useState<number | null>(null);
   const fullUrl = Object.values(params).flat().join("/");
 
-  const launch = "[ORO] [SET25]";
+  const launch = "[ORO][NOV25]";
 
   // Capturar o domínio da página
   useEffect(() => {
@@ -226,6 +226,11 @@ export default function Formv19() {
       setTipo(tipoValue);
       setVersao(versaoValue as string);
       setTemperatura(temperaturaValue as string);
+      
+      // Definir tagId baseado na temperatura
+      const calculatedTagId = getTagIdByTemperature(temperaturaValue as string);
+      setTagId(calculatedTagId);
+      console.log("TagId definido:", calculatedTagId);
     }
   }, [params]);
 
@@ -274,6 +279,8 @@ export default function Formv19() {
         parametroCompleto: fullUrl,
         domain,
         uri: domain,
+        tagId: tagId,
+        launch,
         path: window.location.pathname,
       };
 

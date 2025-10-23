@@ -6,6 +6,7 @@ import { Award, Calendar, Clock, Phone } from "lucide-react";
 import Image from "next/image";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { useScreenSize } from "@/hooks/use-screen-size";
+import { getTagIdByTemperature } from "@/lib/temperature-utils";
 
 export default function Formv13() {
   const params = useParams();
@@ -32,8 +33,8 @@ export default function Formv13() {
   const [isPicture, setIsPicture] = useState(false);
   const { width } = useScreenSize();
   const fullUrl = Object.values(params).flat().join("/");
-
-  const launch = "[ORO] [SET25]";
+  const [tagId, setTagId] = useState<number | null>(null);  
+  const launch = "[ORO][NOV25]";
 
   // Capturar o domínio da página
   useEffect(() => {
@@ -223,6 +224,11 @@ export default function Formv13() {
       setTipo(tipoValue);
       setVersao(versaoValue as string);
       setTemperatura(temperaturaValue as string);
+      
+      // Definir tagId baseado na temperatura
+      const calculatedTagId = getTagIdByTemperature(temperaturaValue as string);
+      setTagId(calculatedTagId);
+      console.log("TagId definido:", calculatedTagId);
     }
   }, [params]);
 
@@ -271,6 +277,8 @@ export default function Formv13() {
         parametroCompleto: fullUrl,
         domain,
         uri: domain,
+        tagId: tagId,
+        launch,
         path: window.location.pathname,
       };
 

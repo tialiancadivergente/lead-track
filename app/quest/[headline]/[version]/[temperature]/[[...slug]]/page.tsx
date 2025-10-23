@@ -41,10 +41,10 @@ export default function Quiz({ params }: { params: { form: string } }) {
   const [hasSent, setHasSent] = useState(false);
 
 	const mapTagSendFlow = useCallback(() => ({
-		f: _params.slug?.includes("f25") ? "https://sndflw.com/i/oroset25ft" : "https://api.whatsapp.com/send?phone=5512936184013&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
-		org: "https://api.whatsapp.com/send?phone=5512936182704&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
-		m: "https://api.whatsapp.com/send?phone=5512936185472&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
-		q: "https://api.whatsapp.com/send?phone=5512936184799&text=Quero%20fazer%20meu%20diagn%C3%B3stico%20gratuito",
+		f: "https://sendflow.click/i/oronov25f1",
+		org: "https://sendflow.click/i/oronov25org",
+		m: "https://sendflow.click/i/oronov25m",
+		q: "https://sendflow.click/i/oronov25q1",
 	}), [_params.slug])();
 
   const getWhatsappUrl = () => {
@@ -56,7 +56,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
     return mapTagSendFlow[resolvedKey as keyof typeof mapTagSendFlow] || mapTagSendFlow["f"];
   };
 
-  const launch = _params.slug?.includes("f25") ? "[ORO] [SET25] Frio25pc" : "[ORO] [SET25]";
+  const launch = "[ORO][NOV25]";
 
   // Capturar o domínio da página
   useEffect(() => {
