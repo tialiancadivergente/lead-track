@@ -9,7 +9,7 @@ const GoogleTagManager = () => {
     const userIp = useUserIP(); // Captura o IP no carregamento
     console.log('meu ip =>', userIp);
     useEffect(() => {
-        const defaultGtmId = 'GTM-NC7GGZBX';
+        const defaultGtmId = 'GTM-PT8FKTDN';
 
         const getGtmIdByHostname = (hostname: string) => {
             // Normaliza host (ignora porta, se houver)
