@@ -626,8 +626,10 @@ export default function HeroSection() {
         console.log('params.temperatura é null ou undefined');
       }
 
+      const paramTemperatura = paramValue.split("-");
+
       // Definir tagId baseado na temperatura
-      const calculatedTagId = getTagIdByTemperature(temperatura as string);
+      const calculatedTagId = getTagIdByTemperature(paramTemperatura[paramTemperatura.length - 1]);
       setTagId(calculatedTagId);
       console.log("TagId definido:", calculatedTagId);
     }
