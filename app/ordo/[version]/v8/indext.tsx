@@ -1002,7 +1002,7 @@ export default function Formv8() {
             </form>
 
             <p className="text-[#07242C] text-lg font-bold mt-4 text-center md:text-left">
-              ONLINE E GRATUITO. 01, 02 e 03/09 - 19h55
+              ONLINE E GRATUITO. 24, 25 e 26/11 - 19h55
             </p>
           </div>
 

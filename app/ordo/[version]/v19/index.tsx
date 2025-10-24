@@ -599,7 +599,7 @@ export default function Formv19() {
               className={`text-[#C0964B] text-base sm:text-2xl mt-4 sm:text-left text-center`}
               style={{ color: "#C0964B" }}
             >
-              100% GRATUITO | 01, 02 E 03/09 | 19H55
+              100% GRATUITO | 24, 25 E 26/11 | 19H55
             </p>
           </div>
 

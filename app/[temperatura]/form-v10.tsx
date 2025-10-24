@@ -693,7 +693,7 @@ export default function Formv10() {
               }`}
               style={{ color: "#C0964B" }}
             >
-              ONLINE E GRATUITO. 01, 02 e 03/09 - 19h55
+              ONLINE E GRATUITO. 24, 25 e 26/11 - 19h55
             </p>
           </div>
 

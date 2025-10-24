@@ -642,7 +642,7 @@ export default function Formv20() {
             </form>
 
             <p className={`text-[#0D313E] text-base sm:text-xl mt-4 text-center font-bold`}>
-              100% GRATUITO | 01, 02 E 03/09 | 19H55
+              100% GRATUITO | 24, 25 E 26/11 | 19H55
             </p>
           </div>
 

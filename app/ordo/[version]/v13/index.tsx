@@ -581,7 +581,7 @@ export default function Formv13() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar color="#C0964B" size={20} />
-                    01, 02 E 03/09
+                    24, 25 E 26/11
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock color="#C0964B" size={20} />
@@ -709,7 +709,7 @@ export default function Formv13() {
                 </div>
                 <div className="flex items-center justify-center leading-none gap-1 text-[#fff]">
                   <Calendar color="#C0964B" size={14} />
-                  01, 02 E 03/09
+                  24, 25 E 26/11
                 </div>
                 <div className="flex items-center justify-center leading-none gap-1 text-[#fff]">
                   <Clock color="#C0964B" size={14} />

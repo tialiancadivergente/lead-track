@@ -161,13 +161,13 @@ export default function Formv16() {
       isLogo: true,
       title: (
         <p
-          className={`text-3x max-w-xl md:text-4xl uppercase font-bold mx-auto leading-10 md:-leading-10 `}
+          className={`text-3x max-w-xl md:text-4xl uppercase font-bold leading-10 md:-leading-10 `}
         >
           Tem gente que estudou menos que você e ganhando bem mais
         </p>
       ),
       text: (
-        <p className={`text-2xl md:text-2xl max-w-sm mx-auto text-center`}>
+        <p className={`text-2xl md:text-2xl max-w-sm text-left`}>
           E esse ciclo se repete pela sua falta de permissão
         </p>
       ),
@@ -429,7 +429,7 @@ export default function Formv16() {
     <div>
       <section
         id="hero"
-        className={`relative flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-[url('/images/v16/bg.png')] bg-cover bg-center z-0`}
+        className={`relative h-screen flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-[url('/images/v16/bg.png')] bg-cover bg-center z-0`}
       >
         <div className="absolute lg:top-0 top-[-300px] lg:right-[-50px] right-[-180px] bg-no-repeat block lg:w-[545px] w-[350px]">
           <Image
@@ -518,7 +518,7 @@ export default function Formv16() {
                 />
               </div>
             )}
-            <div className="mt-8 mb-2 font-bebas-neue">
+            <div className="mt-8 mb-2 font-bebas-neue text-left">
               {!titleRedLine ? (
                 <>
                   <p className="text-white/90 lg:text-3xl sm:text-2xl text-sm sm:mb-1 mb-0 ">
@@ -537,7 +537,7 @@ export default function Formv16() {
               ) : (
                 <>
                   <div
-                    className={`text-4xl md:text-5xl max-w-2xl mx-auto leading-none ${
+                    className={`text-4xl md:text-5xl max-w-2xl leading-none text-left ${
                       isDark ? "text-[#f4f0e1]" : "text-[#07242c]"
                     }`}
                   >
@@ -654,7 +654,7 @@ export default function Formv16() {
               </div>
               <div className="flex items-center justify-center leading-none gap-1 text-[#fff]">
                 <Calendar color="#C0964B" size={16} />
-                01, 02 E 03/09
+                24, 25 E 26/11
               </div>
               <div className="flex items-center justify-center leading-none gap-1 text-[#fff]">
                 <Clock color="#C0964B" size={16} />
@@ -674,8 +674,8 @@ export default function Formv16() {
             </div>
           )}
         </div>
-        <footer className="w-full mb-24 mt-8 max-w-3xl mx-auto">
-          <div className="text-center text-[#f4f0e1] text-xs md:text-sm font-serif tracking-wide">
+        <footer className="container mb-24 mt-8 sm:px-4 z-10 mx-auto lg:w-[1080px] w-auto">
+          <div className="text-left text-[#f4f0e1] text-xs md:text-sm font-serif tracking-wide">
             <div
               className={`${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}
               style={{ fontFamily: 'Arial, sans-serif' }}

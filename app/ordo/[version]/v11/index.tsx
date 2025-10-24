@@ -593,7 +593,7 @@ export default function Formv19() {
               className={`text-[#C0964B] text-base lg:text-2xl mt-4 lg:text-left text-center`}
               style={{ color: "#C0964B" }}
             >
-              ONLINE E GRATUITO | 01 A 03/09 - 19H55
+              ONLINE E GRATUITO | 24 A 26/11 - 19H55
             </p>
           </div>
 
