@@ -429,7 +429,7 @@ export default function Formv16() {
     <div>
       <section
         id="hero"
-        className={`relative h-screen flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-[url('/images/v16/bg.png')] bg-cover bg-center z-0`}
+        className={`relative min-h-screen flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-[url('/images/v16/bg.png')] bg-cover bg-center z-0`}
       >
         <div className="absolute lg:top-0 top-[-300px] lg:right-[-50px] right-[-180px] bg-no-repeat block lg:w-[545px] w-[350px]">
           <Image
