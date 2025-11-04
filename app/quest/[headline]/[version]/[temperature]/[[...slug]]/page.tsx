@@ -125,13 +125,13 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
       // Calculate the faixa based on totalScore
       let faixa;
-      if (totalScore >= 215) {
+      if (totalScore >= 180.3) {
         faixa = "Faixa A";
-      } else if (totalScore >= 194) {
+      } else if (totalScore >= 162.7) {
         faixa = "Faixa B";
-      } else if (totalScore >= 162) {
+      } else if (totalScore >= 136.3) {
         faixa = "Faixa C";
-      } else if (totalScore >= 148) {
+      } else if (totalScore >= 124.9) {
         faixa = "Faixa D";
       } else {
         faixa = "Faixa E";
@@ -243,6 +243,15 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
   const handleAnswer = (value: string) => {
     const question = questions[currentQuestion];
+    
+    // Se for uma pergunta aberta (open), apenas salva a resposta
+    if (question.type === "open") {
+      const newAnswers = { ...answers, [question.id]: value };
+      setAnswers(newAnswers);
+      return;
+    }
+    
+    // Para perguntas com opções (radio), busca a opção selecionada
     const selectedOption = question.options.find(
       (option) => option.value === value
     );
@@ -401,12 +410,23 @@ export default function Quiz({ params }: { params: { form: string } }) {
                     {currentQuestionData.question}
                   </h3>
 
-                  <CustomRadio
-                    style={{ fontFamily: '"Roboto", Sans-serif' }}
-                    options={currentQuestionData.options}
-                    value={selectedValue}
-                    onChange={handleAnswer}
-                  />
+                  {currentQuestionData.type === "open" ? (
+                    <input
+                      type="text"
+                      value={selectedValue}
+                      onChange={(e) => handleAnswer(e.target.value)}
+                      placeholder="Digite sua resposta aqui..."
+                      className="w-full px-4 py-3 rounded-lg border border-white bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                      style={{ fontFamily: '"Roboto", Sans-serif' }}
+                    />
+                  ) : (
+                    <CustomRadio
+                      style={{ fontFamily: '"Roboto", Sans-serif' }}
+                      options={currentQuestionData.options}
+                      value={selectedValue}
+                      onChange={handleAnswer}
+                    />
+                  )}
 
                   <div className="grid grid-cols-2 gap-3 md:gap-5 mt-5 md:mt-7">
                     {currentQuestion > 0 && (

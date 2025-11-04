@@ -178,16 +178,16 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
             // Calculate the faixa based on totalScore
             let faixa;
-            if (totalScore >= 215) {
-                faixa = 'Faixa A';
-            } else if (totalScore >= 194) {
-                faixa = 'Faixa B';
-            } else if (totalScore >= 162) {
-                faixa = 'Faixa C';
-            } else if (totalScore >= 148) {
-                faixa = 'Faixa D';
-            } else {
-                faixa = 'Faixa E';
+            if (totalScore >= 180.3) {
+                faixa = "Faixa A";
+              } else if (totalScore >= 162.7) {
+                faixa = "Faixa B";
+              } else if (totalScore >= 136.3) {
+                faixa = "Faixa C";
+              } else if (totalScore >= 124.9) {
+                faixa = "Faixa D";
+              } else {
+                faixa = "Faixa E";
             }
 
             let faixaV2;
@@ -217,7 +217,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 email: emailParam,
                 phone: phoneParam,
                 answers: answers,
-                totalScore: Math.round(totalScore),
+                totalScore: Number(totalScore.toFixed(1)),
                 totalScoreV2: Math.round(totalScoreV2),
                 faixa: faixa,
                 faixaV2: faixaV2,
@@ -291,6 +291,15 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
     const handleAnswer = (value: string) => {
         const question = questions[currentQuestion]
+
+        // Se for uma pergunta aberta (open), apenas salva a resposta
+        if (question.type === "open") {
+            const newAnswers = { ...answers, [question.id]: value };
+            setAnswers(newAnswers);
+            return;
+        }
+        
+      // Para perguntas com opções (radio), busca a opção selecionada
         const selectedOption = question.options.find((option) => option.value === value)
 
         if (selectedOption) {
@@ -388,7 +397,23 @@ export default function Quiz({ params }: { params: { form: string } }) {
                                 <div className="rounded-lg p-4 md:p-7 mb-6 md:mb-8 border border-white max-w-xl mx-auto" style={{ backgroundColor: 'rgba(0, 0, 0, 0.79)' }}>
                                     <h3 className="text-white text-base md:text-lg font-medium mb-4 md:mb-5 text-left" style={{ color: "#fff" }}>{currentQuestionData.question}</h3>
 
-                                    <CustomRadio options={currentQuestionData.options} value={selectedValue} onChange={handleAnswer} />
+                                    {currentQuestionData.type === "open" ? (
+                                        <input
+                                        type="text"
+                                        value={selectedValue}
+                                        onChange={(e) => handleAnswer(e.target.value)}
+                                        placeholder="Digite sua resposta aqui..."
+                                        className="w-full px-4 py-3 rounded-lg border border-white bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                        style={{ fontFamily: '"Roboto", Sans-serif' }}
+                                        />
+                                    ) : (
+                                        <CustomRadio
+                                        style={{ fontFamily: '"Roboto", Sans-serif' }}
+                                        options={currentQuestionData.options}
+                                        value={selectedValue}
+                                        onChange={handleAnswer}
+                                        />
+                                    )}
 
                                     <div className="grid grid-cols-2 gap-3 md:gap-2 mt-5 md:mt-7">
                                         {currentQuestion > 0 && (
@@ -491,9 +516,23 @@ export default function Quiz({ params }: { params: { form: string } }) {
                             <div className="w-full max-w-2xl mx-auto">
                                 <div className="bg-zinc-900 rounded-lg border border-white p-4 md:p-7 mb-6 md:mb-8 ">
                                     <h3 className="text-white text-base md:text-lg font-medium mb-4 md:mb-5 md:text-left text-center" style={{ color: "#fff", fontFamily: '"Roboto", Sans-serif' }}>{currentQuestionData.question}</h3>
-
-                                    <CustomRadio style={{ fontFamily: '"Roboto", Sans-serif' }} options={currentQuestionData.options} value={selectedValue} onChange={handleAnswer} />
-
+                                    {currentQuestionData.type === "open" ? (
+                                        <input
+                                        type="text"
+                                        value={selectedValue}
+                                        onChange={(e) => handleAnswer(e.target.value)}
+                                        placeholder={currentQuestionData.placeholder || "Digite sua resposta aqui..."}
+                                        className="w-full px-4 py-3 rounded-lg border border-white bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                                        style={{ fontFamily: '"Roboto", Sans-serif' }}
+                                        />
+                                    ) : (
+                                        <CustomRadio
+                                        style={{ fontFamily: '"Roboto", Sans-serif' }}
+                                        options={currentQuestionData.options}
+                                        value={selectedValue}
+                                        onChange={handleAnswer}
+                                        />
+                                    )}
                                     <div className="grid grid-cols-2 gap-3 md:gap-5 mt-5 md:mt-7">
                                         {currentQuestion > 0 && (
                                             <Button
