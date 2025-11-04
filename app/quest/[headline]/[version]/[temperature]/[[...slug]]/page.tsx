@@ -41,10 +41,10 @@ export default function Quiz({ params }: { params: { form: string } }) {
   const [hasSent, setHasSent] = useState(false);
 
 	const mapTagSendFlow = useCallback(() => ({
-		f: "https://sendflow.click/i/oronov25f1",
-		org: "https://sendflow.click/i/oronov25org",
-		m: "https://sendflow.click/i/oronov25m",
-		q: "https://sendflow.click/i/oronov25q1",
+		f: "https://api.whatsapp.com/send?phone=5512936251574&text=Quero%20validar%20meu%20cadastro%20no%20Resgate%20dos%20Otimistas",
+    org: "https://api.whatsapp.com/send?phone=5512936256086&text=Quero%20validar%20meu%20cadastro%20no%20Resgate%20dos%20Otimistas",
+    m: "https://api.whatsapp.com/send?phone=5512936182793&text=Quero%20validar%20meu%20cadastro%20no%20Resgate%20dos%20Otimistas",
+    q: "https://api.whatsapp.com/send?phone=5512936180651&text=Quero%20validar%20meu%20cadastro%20no%20Resgate%20dos%20Otimistas",
 	}), [_params.slug])();
 
   const getWhatsappUrl = () => {
