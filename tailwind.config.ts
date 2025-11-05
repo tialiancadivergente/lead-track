@@ -11,6 +11,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         'bebas-neue': ['var(--font-bebas-neue)', 'sans-serif'],
+        'roboto': ['var(--font-roboto)', 'sans-serif'],
+        'sans': ['var(--font-roboto)', 'sans-serif'], // Define Roboto como fonte sans padrão
       },
       colors: {
         border: "hsl(var(--border))",

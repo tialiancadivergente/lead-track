@@ -13,9 +13,19 @@ import MentorSection from "@/components/mentor-section"
 import Footer from "@/components/footer"
 import { useParams } from "next/navigation";
 import Formvt from "@/app/ordo/[version]/vt";
+import Formv4 from "@/app/ordo/[version]/v4";
+import SplashScreenV4 from "@/app/components/SplashScreen/SplashScreenV4";
 
 export default function Home() {
   const { version } = useParams();
+
+  if (version === "v4") {
+    return (
+      <SplashScreenV4>
+        <Formv4 />
+      </SplashScreenV4>
+    );
+  }
 
   if (version === "v8") {
     return (

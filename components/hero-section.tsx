@@ -297,7 +297,7 @@ export default function HeroSection() {
       title: <></>,
       text: (
         <span className="text-3xl md:text-4xl">
-          <span className="text-[#c0964b]">Esqueça todas as técnicas, ferramentas e conceitos de negócio.</span> A primeira coisa a se fazer para alcançar o sucesso profissional e financeiro é um diagnóstico de dependência emocional. <span className="text-[#c0964b]">Forma gratuita.</span>
+          <span className="text-[#c0964b]">Esqueça todas as técnicas, ferramentas e conceitos de negócio.</span> A primeira coisa a se fazer para alcançar o sucesso profissional e financeiro é um diagnóstico de dependência emocional.
         </span>
       )
     },
