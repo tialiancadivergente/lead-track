@@ -366,7 +366,7 @@ export default function Formv4() {
     <div>
       <section
         id="hero"
-        className={`relative flex flex-col items-center p-2 md:p-0 justify-center overflow-hidden z-0 bg-[#021217] sm:bg-[url('/images/v4/BG-ORO.webp')] bg-[url('/images/v4/ORO-Mobile.webp')] sm:bg-center bg-top bg-cover bg-no-repeat w-full h-full min-h-screen`}
+        className={`relative flex flex-col items-center p-2 md:p-0 justify-center overflow-hidden z-0 bg-[#D3CAC0] sm:bg-[url('/images/v4/BG-ORO.webp')] bg-[url('/images/v4/ORO-Mobile.webp')] sm:bg-center bg-top bg-cover bg-no-repeat w-full h-full min-h-screen`}
       >
 
         <div
