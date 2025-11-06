@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useParams } from "next/navigation";
 
 // Lista de assets críticos para pré-carregar
 const criticalAssets = {
@@ -14,9 +15,19 @@ const criticalAssets = {
 }
 
 export default function SplashScreenV4({ children }: { children: React.ReactNode }) {
+  const params = useParams();
   const [loading, setLoading] = useState(true)
   const [progress, setProgress] = useState(0)
-  
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    if (params.theme === "2") {
+      setIsDark(false);
+    } else {
+      setIsDark(true);
+    }
+  }, [params.theme]);
+
   useEffect(() => {
     let totalAssets = criticalAssets.images.length
     let loadedAssets = 0
@@ -58,10 +69,11 @@ export default function SplashScreenV4({ children }: { children: React.ReactNode
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 flex flex-col items-center justify-center bg-[url('/images/v4/SplashScreenV4.webp')] sm:bg-center bg-left bg-cover bg-no-repeat z-50"
+          className="fixed inset-0 flex flex-col items-center justify-center sm:bg-center bg-left bg-cover bg-no-repeat z-50"
+          style={{ backgroundImage: `${isDark ? "url('/images/v4/SplashScreenV4Dark.webp')" : "url('/images/v4/SplashScreenV4.webp')"}` }}
         >
           <motion.img 
-            src="/images/logo-o-resgate-dos-otimistas.png" 
+            src={isDark ? "/images/logo-o-resgate-dos-otimistas-white.png" : "/images/logo-o-resgate-dos-otimistas.png"} 
             alt="Logo"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}

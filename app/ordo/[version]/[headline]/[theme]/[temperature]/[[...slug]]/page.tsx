@@ -17,12 +17,12 @@ import Formv4 from "@/app/ordo/[version]/v4";
 import SplashScreenV4 from "@/app/components/SplashScreen/SplashScreenV4";
 
 export default function Home() {
-  const { version } = useParams();
+  const { version, theme } = useParams();
 
   if (version === "v4") {
     return (
       <SplashScreenV4>
-        <Formv4 />
+        <Formv4 theme={theme as string} />
       </SplashScreenV4>
     );
   }

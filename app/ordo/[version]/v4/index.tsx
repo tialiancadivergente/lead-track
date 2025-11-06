@@ -8,7 +8,7 @@ import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { text } from "stream/consumers";
 import { getTagIdByTemperature } from "@/lib/temperature-utils";
 
-export default function Formv4() {
+export default function Formv4({ theme = "2" }: { theme?: string }) {
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -33,9 +33,21 @@ export default function Formv4() {
   const [isPicture, setIsPicture] = useState(false);
   const [percent, setPercent] = useState<string | null>(null);
   const [tagId, setTagId] = useState<number | null>(null);
+  const [themeValue, setThemeValue] = useState<string>(theme);
   const fullUrl = Object.values(params).flat().join("/");
 
   const launch = "[ORO][NOV25]";
+
+  // Mapeamento do theme para a imagem de background
+  const themeBackgroundMap: Record<string, string> = {
+    "1": "/images/v4/BG-ORO-DARK.webp",
+    "2": "/images/v4/BG-ORO.webp",
+  };
+
+  const themeMobileBackgroundMap: Record<string, string> = {
+    "2": "/images/v4/ORO-Mobile.webp",
+    "1": "/images/v4/ORO-Mobile-DARK.webp",
+  };
 
   // Capturar o domínio da página
   useEffect(() => {
@@ -96,7 +108,7 @@ export default function Formv4() {
       isLogo: true,
       title: (
         <p
-          className={`text-[#07242c] max-w-md sm:text-xl text-base uppercase font-normal leading-7 md:-leading-10 `}
+          className={`max-w-md sm:text-xl text-base uppercase font-normal leading-7 md:-leading-10 `}
         >
           Faça seu diagnóstico de{" "}
           <span className="text-[#c0964b] sm:text-4xl text-2xl font-bold ">DEPENDÊNCIA
@@ -104,7 +116,7 @@ export default function Formv4() {
         </p>
       ),
       text: (
-        <p className={`text-[#07242c] sm:text-xl text-base`}>
+        <p className={`sm:text-xl text-base`}>
           Descubra como AUMENTAR O SEU NÍVEL DE PERMISSÃO e melhorar seus resultados nas finanças, nos relacionamentos e na saúde.
         </p>
       ),
@@ -119,10 +131,14 @@ export default function Formv4() {
       const temperaturaValue = params.temperature;
       const isDarkValue = params.theme;
 
+      // Atualizar themeValue com base nos params ou props
+      const currentTheme = theme;
+      setThemeValue(currentTheme);
+
       if (isDarkValue === "2") {
-        setIsDark(true);
-      } else {
         setIsDark(false);
+      } else {
+        setIsDark(true);
       }
 
       const redLineVersion = params.headline;
@@ -176,9 +192,9 @@ export default function Formv4() {
   // Função para construir a URL de redirecionamento
   const buildRedirectUrl = () => {
     // Construir o path base com os valores dinâmicos
-    const basePath = `/quest/${params.headline}/${params.version}/${
+    const basePath = `/quest-v4/${params.headline}/${params.version}/${
       params.temperature
-    }/${params.slug?.[0] || ""}/typ`;
+    }/${params.slug?.[0] || ""}/${isDark ? "1" : "2"}/typ`;
 
     // Iniciar com os parâmetros de email e telefone
     const queryParams = new URLSearchParams();
@@ -271,7 +287,6 @@ export default function Formv4() {
       // Redirecionar após um breve delay para mostrar a mensagem de sucesso
       setTimeout(() => {
         const redirectUrl = buildRedirectUrl();
-        console.log("Redirecionando para:", redirectUrl);
 
         const funnels = {
           q: "https://sf.aliancadivergente.com.br/sf/?sfunnel=48",
@@ -362,11 +377,27 @@ export default function Formv4() {
     }
   };
 
+  // Obter o caminho da imagem de background baseado no theme
+  const backgroundImage = themeBackgroundMap[themeValue] || themeBackgroundMap["2"];
+  const backgroundImageMobile = themeMobileBackgroundMap[themeValue] || themeMobileBackgroundMap["2"];
+
   return (
     <div>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          #hero-section {
+            background-image: url('${backgroundImage}');
+          }
+          @media (max-width: 640px) {
+            #hero-section {
+              background-image: url('${backgroundImageMobile}');
+            }
+          }
+        `
+      }} />
       <section
-        id="hero"
-        className={`relative flex flex-col items-center p-2 md:p-0 justify-center overflow-hidden z-0 bg-[#D3CAC0] sm:bg-[url('/images/v4/BG-ORO.webp')] bg-[url('/images/v4/ORO-Mobile.webp')] sm:bg-center bg-top bg-cover bg-no-repeat w-full h-full min-h-screen`}
+        id="hero-section"
+        className="relative flex flex-col items-center p-2 md:p-0 justify-center overflow-hidden z-0 bg-[#D3CAC0] bg-top sm:bg-center bg-cover bg-no-repeat w-full h-full min-h-screen"
       >
 
         <div
@@ -377,7 +408,7 @@ export default function Formv4() {
             {isLogo && (
               <div className="mb-8 flex sm:justify-start justify-center sm:mt-0 mt-80">
                 <Image
-                  src="/images/logo-o-resgate-dos-otimistas.png"
+                  src={isDark ? "/images/logo-o-resgate-dos-otimistas-white.png" : "/images/logo-o-resgate-dos-otimistas.png"}
                   alt="Logotipo Resgate dos otimistas"
                   width={621}
                   height={181}
@@ -390,7 +421,7 @@ export default function Formv4() {
                 />
               </div>
             )}
-            <div className="mt-8 text-left">
+            <div className={`mt-8 text-left ${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}>
               {!titleRedLine ? (
                 <>
                   <p className="text-[#f4f0e1] lg:text-2xl md:text-2xl text-xs mb-1">
@@ -409,9 +440,7 @@ export default function Formv4() {
               ) : (
                 <>
                   <div
-                    className={`text-2xl lg:text-5xl max-w-2xl leading-none ${
-                      isDark ? "text-[#f4f0e1]" : "text-[#07242c]"
-                    }`}
+                    className={`text-2xl lg:text-5xl max-w-2xl leading-none ${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}
                   >
                     {titleRedLine}
                   </div>
@@ -419,7 +448,7 @@ export default function Formv4() {
               )}
             </div>
 
-            <p className="mb-8 mt-6 flex items-center text-left md:max-w-[486px] max-w-[420px]">
+            <p className={`mb-8 mt-6 flex items-center text-left md:max-w-[486px] max-w-[420px] ${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}>
               {redLine ? (
                 <span>{redLine}</span>
               ) : (
@@ -433,7 +462,7 @@ export default function Formv4() {
                 </>
               )}
             </p>
-            <p className="text-base lg:text-xl text-left max-w-[486px] text-[#07242c] mb-4">
+            <p className={`text-base lg:text-xl text-left max-w-[486px] ${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"} mb-4`}>
               Preencha os campos abaixo agora:
             </p>
             <form
@@ -513,7 +542,8 @@ export default function Formv4() {
             </form>
 
             <p
-              className={`text-[#07242c] sm:text-xl text-lg mt-4 sm:ml-10 ml-0 sm:text-left text-center`}
+              className={`sm:text-xl text-lg mt-4 sm:ml-10 ml-0 sm:text-left text-center`}
+              style={{ color: isDark ? "#c0964b" : "#07242c" }}
             >
               ONLINE E GRATUITO | 24, 25 e 26/11 - 19h55
             </p>
