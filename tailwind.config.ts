@@ -69,6 +69,11 @@ const config: Config = {
         "mentor-pattern": "url('/images/mentor-bg.jpg')",
         "torn-paper": "url('/images/torn-paper.png')",
       },
+      // Adicione breakpoints customizados aqui usando extend
+      screens: {
+        'xs': '420px', // exemplo: novo breakpoint customizado 'xs'
+        // você pode adicionar outros breakpoints customizados aqui
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

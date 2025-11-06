@@ -16,14 +16,25 @@ import Formvt from "@/app/ordo/[version]/vt";
 import Formv4 from "@/app/ordo/[version]/v4";
 import SplashScreenV4 from "@/app/components/SplashScreen/SplashScreenV4";
 import Formv3 from "@/app/ordo/[version]/v3";
+import Formv4_2 from "@/app/ordo/[version]/v4-2";
 
 export default function Home() {
-  const { version, theme } = useParams();
+  const { version, theme, slug } = useParams();
+
+  const model = slug?.[0] || null;
 
   if (version === "v3") {
     return (
       <SplashScreenV4>
         <Formv3 />
+      </SplashScreenV4>
+    );
+  }
+
+  if (version === "v4" && model === "2") {
+    return (
+      <SplashScreenV4>
+        <Formv4_2 />
       </SplashScreenV4>
     );
   }
