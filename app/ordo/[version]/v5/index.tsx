@@ -44,7 +44,7 @@ export default function Formv5({ theme = "2" }: { theme?: string }) {
   };
 
   const themeMobileBackgroundMap: Record<string, string> = {
-    "2": "/images/V5/O-Resgate-O-Mobile.webp",
+    "2": "/images/v5/O-Resgate-O-Mobile.webp",
   };
 
   // Capturar o domínio da página
