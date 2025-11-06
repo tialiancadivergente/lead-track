@@ -15,9 +15,18 @@ import { useParams } from "next/navigation";
 import Formvt from "@/app/ordo/[version]/vt";
 import Formv4 from "@/app/ordo/[version]/v4";
 import SplashScreenV4 from "@/app/components/SplashScreen/SplashScreenV4";
+import Formv3 from "@/app/ordo/[version]/v3";
 
 export default function Home() {
   const { version, theme } = useParams();
+
+  if (version === "v3") {
+    return (
+      <SplashScreenV4>
+        <Formv3 />
+      </SplashScreenV4>
+    );
+  }
 
   if (version === "v4") {
     return (
