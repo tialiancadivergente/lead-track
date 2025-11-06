@@ -379,8 +379,8 @@ export default function Formv5({ theme = "2" }: { theme?: string }) {
   };
 
   // Obter o caminho da imagem de background baseado no theme
-  const backgroundImage = themeBackgroundMap[themeValue] || themeBackgroundMap["2"];
-  const backgroundImageMobile = themeMobileBackgroundMap[themeValue] || themeMobileBackgroundMap["2"];
+  const backgroundImage = themeBackgroundMap["2"];
+  const backgroundImageMobile = themeMobileBackgroundMap["2"];
 
   return (
     <div>
