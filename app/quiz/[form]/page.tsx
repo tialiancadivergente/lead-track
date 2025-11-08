@@ -22,10 +22,10 @@ const spectral = Spectral({
 });
 
 const mapTagSendFlow = {
-    f: "https://sendflow.click/i/oronov25f1",
-    org: "https://api.whatsapp.com/send?phone=5512936256086&text=Quero%20validar%20meu%20cadastro%20no%20Resgate%20dos%20Otimistas",
-    m: "https://api.whatsapp.com/send?phone=5512936182793&text=Quero%20validar%20meu%20cadastro%20no%20Resgate%20dos%20Otimistas",
-    q: "https://api.whatsapp.com/send?phone=5512936180651&text=Quero%20validar%20meu%20cadastro%20no%20Resgate%20dos%20Otimistas",
+    f: "https://redirects.aliancadivergente.com.br/oro-pages-f",
+    org: "https://redirects.aliancadivergente.com.br/oro-pages-org",
+    m: "https://redirects.aliancadivergente.com.br/oro-pages-m",
+    q: "https://redirects.aliancadivergente.com.br/oro-pages-q",
 } as any;
 
 export default function Quiz({ params }: { params: { form: string } }) {
