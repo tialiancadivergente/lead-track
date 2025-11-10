@@ -116,7 +116,7 @@ export default function Formv5({ theme = "2" }: { theme?: string }) {
         </p>
       ),
       text: (
-        <p className={`sm:text-xl text-base`}>
+        <p className={`sm:text-xl xs:text-base text-[14px]`}>
           Descubra como AUMENTAR O SEU NÍVEL DE PERMISSÃO e melhorar seus
           resultados nas finanças, nos relacionamentos e na saúde.
         </p>
@@ -407,7 +407,7 @@ export default function Formv5({ theme = "2" }: { theme?: string }) {
           {/* Coluna única centralizada ou duas colunas */}
           <div className="w-full">
             {isLogo && (
-              <div className="mb-8 flex sm:justify-start justify-center sm:mt-0 mt-80">
+              <div className="sm:mb-8 mb-0 flex sm:justify-start justify-center sm:mt-0 mt-32">
                 <Image
                   src={isDark ? "/images/logo-o-resgate-dos-otimistas-white.png" : "/images/logo-o-resgate-dos-otimistas.png"}
                   alt="Logotipo Resgate dos otimistas"
@@ -453,7 +453,7 @@ export default function Formv5({ theme = "2" }: { theme?: string }) {
               )}
             </div>
 
-            <p className={`mb-8 mt-6 flex items-center sm:text-left text-center sm:max-w-[486px] max-w-full ${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}>
+            <p className={`sm:mb-8 mb-2 sm:mt-6 mt-2 flex items-center sm:text-left text-center sm:max-w-[486px] max-w-full ${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}>
               {redLine ? (
                 <span>{redLine}</span>
               ) : (
@@ -468,7 +468,7 @@ export default function Formv5({ theme = "2" }: { theme?: string }) {
               )}
             </p>
             <p
-              className={`sm:text-base text-xs ml-0 sm:text-left text-center w-full max-w-full sm:max-w-[486px] font-roboto py-2 mb-8 uppercase flex flex-col xs:flex-row xs:gap-0 gap-2 items-center justify-center sm:justify-start`}
+              className={`sm:text-base text-xs ml-0 sm:text-left text-center w-full max-w-full sm:max-w-[486px] font-roboto py-2 sm:mb-8 mb-4 uppercase flex flex-col xs:flex-row xs:gap-0 gap-2 items-center justify-center sm:justify-start`}
               style={{ color: "#c0964b" }}
             >
               <div className="flex items-center justify-center sm:justify-start">

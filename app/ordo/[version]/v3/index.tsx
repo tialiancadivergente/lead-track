@@ -411,7 +411,7 @@ export default function Formv3() {
                 />
               </div>
             )}
-          <div className="w-full md:max-w-[350px] md:mt-0 mt-96 lg:min-w-full flex flex-col md:items-start items-center">
+          <div className="w-full md:max-w-[350px] md:mt-0 mt-40 lg:min-w-full flex flex-col md:items-start items-center">
             <div className={`mt-8 md:text-left text-center text-[#f4f0e1]`}>
               {!titleRedLine ? (
                 <>
@@ -440,7 +440,7 @@ export default function Formv3() {
             </div>
 
             <p
-              className={`mb-8 mt-6 flex items-center md:text-left text-center md:max-w-[486px] max-w-[420px] text-[#f4f0e1]`}
+              className={`sm:mb-8 mb-4 sm:mt-6 mt-2 flex items-center md:text-left text-center md:max-w-[486px] max-w-[420px] text-[#f4f0e1]`}
             >
               {redLine ? (
                 <span>{redLine}</span>
@@ -459,7 +459,7 @@ export default function Formv3() {
               Preencha os campos abaixo agora:
             </p> */}
             <p
-              className={`sm:text-base text-xs ml-0 text-center w-full max-w-[420px] lg:max-w-[486px] font-semibold font-roboto border-t border-b py-2 mb-8 uppercase`}
+              className={`sm:text-base text-xs ml-0 text-center w-full max-w-[420px] lg:max-w-[486px] font-semibold font-roboto border-t border-b py-2 sm:mb-8 mb-4 uppercase`}
               style={{ color: "#c0964b" }}
             >
               <span className="text-[#12ED28]">100% gratuito </span>

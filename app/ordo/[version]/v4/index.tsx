@@ -406,7 +406,7 @@ export default function Formv4({ theme = "2" }: { theme?: string }) {
           {/* Coluna única centralizada ou duas colunas */}
           <div className="w-full">
             {isLogo && (
-              <div className="mb-8 flex sm:justify-start justify-center sm:mt-0 mt-80">
+              <div className={`sm:mb-8 mb-0 flex sm:justify-start justify-center sm:mt-0 ${isDark ? "mt-36" : "mt-44"}`}>
                 <Image
                   src={isDark ? "/images/logo-o-resgate-dos-otimistas-white.png" : "/images/logo-o-resgate-dos-otimistas.png"}
                   alt="Logotipo Resgate dos otimistas"
@@ -421,7 +421,7 @@ export default function Formv4({ theme = "2" }: { theme?: string }) {
                 />
               </div>
             )}
-            <div className={`mt-8 text-left ${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}>
+            <div className={`sm:mt-8 mt-4 text-left ${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}>
               {!titleRedLine ? (
                 <>
                   <p className="text-[#f4f0e1] lg:text-2xl md:text-2xl text-xs mb-1">
@@ -448,7 +448,7 @@ export default function Formv4({ theme = "2" }: { theme?: string }) {
               )}
             </div>
 
-            <p className={`mb-8 mt-6 flex items-center text-left md:max-w-[486px] max-w-[420px] ${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}>
+            <p className={`mb-4 sm:mb-8 sm:mt-6 mt-2 flex items-center text-left md:max-w-[486px] max-w-[420px] ${isDark ? "text-[#f4f0e1]" : "text-[#07242c]"}`}>
               {redLine ? (
                 <span>{redLine}</span>
               ) : (
