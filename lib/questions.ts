@@ -121,15 +121,22 @@ export const questions: Question[] = [
   },
   {
     id: 11,
-    question: "Há quanto tempo você conhece o Elton ou O Resgate dos Otimistas?",
+    question: "Você conhece o Elton Euler?",
     options: [
-      { value: "acabei-de-conhecer", label: "Acabei de conhecer", weight: 0, weightV2: 0 },
-      { value: "conheci-faz-pouco-tempo", label: "Conheci faz pouco tempo", weight: 0, weightV2: 0 },
-      { value: "conheci-ha-algum-tempo", label: "Conheci há algum tempo", weight: 0, weightV2: 0 },
+      { value: "sim", label: "Sim", weight: 0, weightV2: 0 },
+      { value: "nao", label: "Não", weight: 0, weightV2: 0 },
     ],
   },
   {
     id: 12,
+    question: "Você conhece a Aliança Divergente?",
+    options: [
+      { value: "sim", label: "Sim", weight: 0, weightV2: 0 },
+      { value: "nao", label: "Não", weight: 0, weightV2: 0 },
+    ],
+  },
+  {
+    id: 13,
     question: "O que você mais espera mudar ou resolver participando d'O Resgate dos Otimistas?",
     type: "open",
     placeholder: "Digite aqui...",
