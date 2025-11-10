@@ -8,6 +8,15 @@ import { useState, useEffect } from "react"
 import { Phone } from "lucide-react"
 import Image from "next/image"
 import { useParams, useSearchParams, useRouter } from "next/navigation"
+import useLeadTracking from "../hooks/useLeadTracking"
+import { sendLeadTracking } from "@/lib/tracking/leadTracking"
+import {
+  TRACKING_BASE_URL,
+  TRACKING_EVENT_ID,
+  TRACKING_EVENT_NAME,
+  TRACKING_GA_PROPERTY_ID,
+  TRACKING_SECONDARY_WEBHOOK,
+} from "@/lib/config/tracking"
 
 
 export default function Form() {
@@ -26,6 +35,15 @@ export default function Form() {
     const [domain, setDomain] = useState<string>("")
     const [internalVersion, setInternalVersion] = useState<number>();
     const launch = "[ORO] [SET25]"
+    const { trackLead, userIp } = useLeadTracking({
+      baseUrl: TRACKING_BASE_URL,
+      eventId: TRACKING_EVENT_ID,
+      eventName: TRACKING_EVENT_NAME,
+      gaPropertyId: TRACKING_GA_PROPERTY_ID,
+      defaultExtraParams: {
+        launch,
+      },
+    })
   
 
   // Capturar o domínio da página
@@ -212,6 +230,38 @@ export default function Form() {
       const leads = JSON.parse(localStorage.getItem("leads") || "[]")
       leads.push(leadData)
       localStorage.setItem("leads", JSON.stringify(leads))
+
+      const extraTrackingParams = {
+        temperature: temperatura ?? undefined,
+        tipo: tipo ?? undefined,
+        version: versao ?? undefined,
+        domain,
+        parametroCompleto: (params.temperatura as string) ?? undefined,
+        path: typeof window !== "undefined" ? window.location.pathname : undefined,
+      }
+
+      await trackLead({
+        leadEmail: email,
+        leadPhone: fullPhone,
+        extraParams: extraTrackingParams,
+      })
+
+      if (TRACKING_SECONDARY_WEBHOOK) {
+        await sendLeadTracking(
+          {
+            baseUrl: TRACKING_SECONDARY_WEBHOOK,
+            eventId: TRACKING_EVENT_ID,
+            eventName: TRACKING_EVENT_NAME,
+            gaPropertyId: TRACKING_GA_PROPERTY_ID,
+          },
+          {
+            leadEmail: email,
+            leadPhone: fullPhone,
+            ipAddress: userIp ?? null,
+            extraParams: extraTrackingParams,
+          },
+        )
+      }
 
       setSuccess(true)
       

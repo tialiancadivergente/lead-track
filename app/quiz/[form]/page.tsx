@@ -13,6 +13,16 @@ import TagManager from "react-gtm-module";
 import { LogoResgate } from "@/app/components/LogoResgate"
 import { Spectral } from 'next/font/google'
 import { questions } from "@/lib/questions";
+import { sendLeadScoreTracking } from "@/lib/tracking/leadScoreTracking";
+import {
+    TRACKING_GA_PROPERTY_ID,
+    TRACKING_LEADSCORE_RESPONSES_WEBHOOK,
+    TRACKING_LEADSCORE_SUMMARY_WEBHOOK,
+    TRACKING_LEADSCORE_EVENT_ID,
+    TRACKING_LEADSCORE_EVENT_NAME,
+} from "@/lib/config/tracking";
+import { sendLeadTracking } from "@/lib/tracking/leadTracking";
+import useUserIP from "@/app/hooks/useUserIP";
 
 const spectral = Spectral({
     subsets: ['latin'],
@@ -50,6 +60,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
     const [weightsV2, setWeightsV2] = useState<Record<number, number>>({})
     const [totalScoreV2, setTotalScoreV2] = useState(0)
     const [hasSent, setHasSent] = useState(false)
+    const userIp = useUserIP();
 
     const getWhatsappUrl = () => {
         const validKeys = ["f", "m", "q", "org"] as const;
@@ -170,7 +181,8 @@ export default function Quiz({ params }: { params: { form: string } }) {
         if (!completed || hasSent) {
             return;
         }
-        if (completed) {
+
+        const executeTracking = async () => {
             setIsLoading(true);
 
             const emailParam = searchParams.get('email');
@@ -180,13 +192,13 @@ export default function Quiz({ params }: { params: { form: string } }) {
             let faixa;
             if (totalScore >= 180.3) {
                 faixa = "Faixa A";
-              } else if (totalScore >= 162.7) {
+            } else if (totalScore >= 162.7) {
                 faixa = "Faixa B";
-              } else if (totalScore >= 136.3) {
+            } else if (totalScore >= 136.3) {
                 faixa = "Faixa C";
-              } else if (totalScore >= 124.9) {
+            } else if (totalScore >= 124.9) {
                 faixa = "Faixa D";
-              } else {
+            } else {
                 faixa = "Faixa E";
             }
 
@@ -239,35 +251,114 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 path: window.location.pathname,
             }
 
-            // Still send to GTM as before
-            TagManager.dataLayer({
-                dataLayer: {
-                    event: "leadscore",
-                    ...gtmData
-                },
+            const leadScoreAnswers = questions.slice(0, 10).map((question) => {
+                const answerValue = answers[question.id];
+                if (answerValue === undefined || answerValue === null) {
+                    return "";
+                }
+
+                if (question.type === "open") {
+                    return String(answerValue);
+                }
+
+                const selectedOption = question.options?.find(opt => opt.value === answerValue);
+                return selectedOption?.label || answerValue || "";
             });
 
-            // Send data to our proxy API
-            fetch('/api/quiz-proxy', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    setHasSent(true);
-                    window.location.replace(getWhatsappUrl())
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    setHasSent(true);
-                    window.location.replace(getWhatsappUrl())
+            // Still send to GTM as before
+            if (TagManager.dataLayer) {
+                TagManager.dataLayer({
+                    dataLayer: {
+                        event: "leadscore",
+                        ...gtmData
+                    },
                 });
-        }
-    }, [completed, hasSent]); // envia apenas uma vez ao completar
+            }
+
+            const eventId = TRACKING_LEADSCORE_EVENT_ID || `${Date.now()}.${Math.random().toString().slice(2, 8)}`;
+
+            try {
+                await sendLeadTracking(
+                    {
+                        baseUrl: TRACKING_LEADSCORE_SUMMARY_WEBHOOK,
+                        eventName: TRACKING_LEADSCORE_EVENT_NAME,
+                        eventId,
+                        gaPropertyId: TRACKING_GA_PROPERTY_ID,
+                    },
+                    {
+                        leadEmail: emailParam ?? undefined,
+                        leadPhone: phoneParam ?? undefined,
+                        ipAddress: userIp ?? null,
+                        extraParams: {
+                            faixa,
+                            faixaV2,
+                            totalScore: totalScore.toFixed(1),
+                            totalScoreV2: Math.round(totalScoreV2).toString(),
+                            tipo: tipo ?? undefined,
+                            version: versao ?? undefined,
+                            temperature: temperatura ?? undefined,
+                            domain,
+                            launch,
+                            path: window.location.pathname,
+                        },
+                    },
+                );
+            } catch (error) {
+                console.error("Erro ao enviar leadscore resumo:", error);
+            }
+
+            try {
+                await sendLeadScoreTracking({
+                    baseUrl: TRACKING_LEADSCORE_RESPONSES_WEBHOOK,
+                    gaPropertyId: TRACKING_GA_PROPERTY_ID,
+                    answers: leadScoreAnswers,
+                    resultadoV2: faixaV2,
+                    pontuacaoV2: Math.round(totalScoreV2),
+                    extras: {
+                        email: emailParam ?? undefined,
+                        phone: phoneParam ?? undefined,
+                        faixa,
+                        totalScore: Number(totalScore.toFixed(1)),
+                    },
+                });
+            } catch (error) {
+                console.error("Erro ao enviar leadscore tracking:", error);
+            }
+
+            try {
+                const response = await fetch('/api/quiz-proxy', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+                const data = await response.json();
+                console.log('Success:', data);
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                setHasSent(true);
+                window.location.replace(getWhatsappUrl())
+            }
+        };
+
+        void executeTracking();
+    }, [
+        answers,
+        completed,
+        hasSent,
+        launch,
+        questions,
+        searchParams,
+        temperatura,
+        userIp,
+        tipo,
+        totalScore,
+        totalScoreV2,
+        versao,
+        domain,
+    ]); // envia apenas uma vez ao completar
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()

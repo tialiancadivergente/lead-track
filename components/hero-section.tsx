@@ -6,6 +6,19 @@ import { Phone } from "lucide-react"
 import Image from "next/image"
 import { useParams, useSearchParams, useRouter } from "next/navigation"
 import { getTagIdByTemperature } from "@/lib/temperature-utils"
+import useLeadTracking from "@/app/hooks/useLeadTracking"
+import { sendLeadTracking } from "@/lib/tracking/leadTracking"
+import {
+  TRACKING_BASE_URL,
+  TRACKING_EVENT_ID,
+  TRACKING_EVENT_NAME,
+  TRACKING_GA_PROPERTY_ID,
+  TRACKING_SECONDARY_WEBHOOK,
+  TRACKING_PAGEVIEW_EVENT_ID,
+  TRACKING_PAGEVIEW_EVENT_NAME,
+  TRACKING_PAGEVIEW_WEBHOOK,
+  TRACKING_PAGEVIEW_DELAYED_WEBHOOK,
+} from "@/lib/config/tracking"
 
 export default function HeroSection() {
   const params = useParams()
@@ -25,7 +38,107 @@ export default function HeroSection() {
   const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(null)
   const [isLogo, setIsLogo] = useState(true)
   const [tagId, setTagId] = useState<number | null>(null);  
+  const [hasTrackedPageView, setHasTrackedPageView] = useState(false)
+  const [hasTrackedDelayedPageView, setHasTrackedDelayedPageView] = useState(false)
   const launch = "[ORO][NOV25]"
+  const { trackLead, userIp } = useLeadTracking({
+    baseUrl: TRACKING_BASE_URL,
+    eventId: TRACKING_EVENT_ID,
+    eventName: TRACKING_EVENT_NAME,
+    gaPropertyId: TRACKING_GA_PROPERTY_ID,
+    defaultExtraParams: {
+      launch,
+    },
+  })
+
+  useEffect(() => {
+    if (hasTrackedPageView) {
+      return
+    }
+
+    const run = async () => {
+      try {
+        const eventId =
+          TRACKING_PAGEVIEW_EVENT_ID || `${Date.now()}.${Math.random().toString().slice(2, 8)}`
+
+        await sendLeadTracking(
+          {
+            baseUrl: TRACKING_PAGEVIEW_WEBHOOK,
+            eventName: TRACKING_PAGEVIEW_EVENT_NAME,
+            eventId,
+            gaPropertyId: TRACKING_GA_PROPERTY_ID,
+          },
+          {
+            ipAddress: userIp ?? null,
+            extraParams: {
+              launch,
+              temperature: temperatura ?? undefined,
+              tipo: tipo ?? undefined,
+              version: versao ?? undefined,
+            },
+          },
+        )
+      } catch (error) {
+        console.error("Erro ao enviar page_view tracking:", error)
+      } finally {
+        setHasTrackedPageView(true)
+      }
+    }
+
+    run()
+  }, [
+    hasTrackedPageView,
+    launch,
+    temperatura,
+    tipo,
+    versao,
+    userIp,
+  ])
+
+  useEffect(() => {
+    if (hasTrackedDelayedPageView) {
+      return
+    }
+
+    const timeout = setTimeout(async () => {
+      try {
+        const delayedEventId = TRACKING_PAGEVIEW_EVENT_ID
+          ? `${TRACKING_PAGEVIEW_EVENT_ID}-delay`
+          : `${Date.now()}.${Math.random().toString().slice(2, 8)}`
+
+        await sendLeadTracking(
+          {
+            baseUrl: TRACKING_PAGEVIEW_DELAYED_WEBHOOK,
+            eventName: TRACKING_PAGEVIEW_EVENT_NAME,
+            eventId: delayedEventId,
+            gaPropertyId: TRACKING_GA_PROPERTY_ID,
+          },
+          {
+            ipAddress: userIp ?? null,
+            extraParams: {
+              launch,
+              temperature: temperatura ?? undefined,
+              tipo: tipo ?? undefined,
+              version: versao ?? undefined,
+            },
+          },
+        )
+      } catch (error) {
+        console.error("Erro ao enviar page_view delayed tracking:", error)
+      } finally {
+        setHasTrackedDelayedPageView(true)
+      }
+    }, 1500)
+
+    return () => clearTimeout(timeout)
+  }, [
+    hasTrackedDelayedPageView,
+    launch,
+    temperatura,
+    tipo,
+    versao,
+    userIp,
+  ])
 
   // Mapeamento dos benefícios para exibição
   const benefitsMapping = [
@@ -722,7 +835,40 @@ export default function HeroSection() {
       leads.push(leadData)
       localStorage.setItem("leads", JSON.stringify(leads))
 
-      setSuccess(true)
+      const extraTrackingParams = {
+        temperature: temperatura ?? undefined,
+        tipo: tipo ?? undefined,
+        version: versao ?? undefined,
+        domain,
+        parametroCompleto: (params.temperatura as string) ?? undefined,
+        path: typeof window !== "undefined" ? window.location.pathname : undefined,
+      }
+
+      await trackLead({
+        leadEmail: email,
+        leadPhone: fullPhone,
+        extraParams: extraTrackingParams,
+      })
+
+      if (TRACKING_SECONDARY_WEBHOOK) {
+        console.log('TRACKING_SECONDARY_WEBHOOK ======>', TRACKING_SECONDARY_WEBHOOK)
+        await sendLeadTracking(
+          {
+            baseUrl: TRACKING_SECONDARY_WEBHOOK,
+            eventId: TRACKING_EVENT_ID,
+            eventName: TRACKING_EVENT_NAME,
+            gaPropertyId: TRACKING_GA_PROPERTY_ID,
+          },
+          {
+            leadEmail: email,
+            leadPhone: fullPhone,
+            ipAddress: userIp ?? null,
+            extraParams: extraTrackingParams,
+          },
+        )
+      }
+
+      setSuccess(true) 
 
     } catch (error) {
       console.error('Erro ao enviar dados:', error);
@@ -763,10 +909,10 @@ export default function HeroSection() {
           funnels[key as keyof typeof funnels] = url.toString();
         });
 
-        // if (Object.keys(funnels).includes(temperatura || '')) {
-        //   window.location.href = funnels[temperatura as keyof typeof funnels];
-        //   return; // Interrompe a execução para evitar o redirecionamento padrão
-        // }
+        if (Object.keys(funnels).includes(temperatura || '')) {
+          window.location.href = funnels[temperatura as keyof typeof funnels];
+          return; // Interrompe a execução para evitar o redirecionamento padrão
+        }
 
         if (typeof window !== 'undefined') {
           window.history.pushState({}, '', redirectUrl);
