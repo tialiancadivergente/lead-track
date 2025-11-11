@@ -920,7 +920,7 @@ export default function HeroSection() {
           }
 
           const origin = `${window.location.protocol}//${window.location.host}`;
-          console.log('origin ======>', origin,redirectUrl)
+          console.log('origin =======>', origin,redirectUrl)
           return `${origin}${redirectUrl}`;
         };
 
