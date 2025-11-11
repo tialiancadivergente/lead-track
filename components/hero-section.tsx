@@ -750,23 +750,8 @@ export default function HeroSection() {
 
   // Função para construir a URL de redirecionamento
   const buildRedirectUrl = () => {
-    const resolveOrigin = () => {
-      if (typeof window !== 'undefined') {
-        const { protocol, host } = window.location;
-        return `${protocol}//${host}`;
-      }
-
-      if (domain) {
-        return `https://${domain}`;
-      }
-
-      return '';
-    };
-
-    const origin = resolveOrigin();
-
     // Construir o path base com os valores dinâmicos
-    const basePath = `${origin}/quiz/${tipo || 'oro'}-${versao || 'v9'}-${temperatura || 'q'}-typ`;
+    const basePath = `/quiz/${tipo || 'oro'}-${versao || 'v9'}-${temperatura || 'q'}-typ`;
 
     // Iniciar com os parâmetros de email e telefone
     const queryParams = new URLSearchParams();
@@ -929,13 +914,25 @@ export default function HeroSection() {
           return; // Interrompe a execução para evitar o redirecionamento padrão
         }
 
+        const getAbsoluteUrl = () => {
+          if (typeof window === 'undefined') {
+            return redirectUrl;
+          }
+
+          const origin = `${window.location.protocol}//${window.location.host}`;
+          console.log('origin ======>', origin,redirectUrl)
+          return `${origin}${redirectUrl}`;
+        };
+
+        const absoluteRedirectUrl = getAbsoluteUrl();
+
         if (typeof window !== 'undefined') {
-          window.history.pushState({}, '', redirectUrl);
+          window.history.pushState({}, '', absoluteRedirectUrl);
         }
 
         // Usar window.location.href para navegação completa
         if (typeof window !== 'undefined') {
-          window.location.href = redirectUrl;
+          window.location.href = absoluteRedirectUrl;
         }
       }, 1500);
     }
