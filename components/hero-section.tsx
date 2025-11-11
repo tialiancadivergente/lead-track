@@ -909,10 +909,10 @@ export default function HeroSection() {
           funnels[key as keyof typeof funnels] = url.toString();
         });
 
-        if (Object.keys(funnels).includes(temperatura || '')) {
-          window.location.href = funnels[temperatura as keyof typeof funnels];
-          return; // Interrompe a execução para evitar o redirecionamento padrão
-        }
+        // if (Object.keys(funnels).includes(temperatura || '')) {
+        //   window.location.href = funnels[temperatura as keyof typeof funnels];
+        //   return; // Interrompe a execução para evitar o redirecionamento padrão
+        // }
 
         if (typeof window !== 'undefined') {
           window.history.pushState({}, '', redirectUrl);
