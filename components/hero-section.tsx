@@ -914,26 +914,13 @@ export default function HeroSection() {
           return; // Interrompe a execução para evitar o redirecionamento padrão
         }
 
-        const getAbsoluteUrl = () => {
-          const origin = `${window.location.protocol}//${window.location.host}`;
-          if (typeof window === 'undefined') {
-            console.log('origin 2 =======>', origin,redirectUrl)
-            return `${origin}${redirectUrl}`;
-          }
-
-          console.log('origin =======>', origin,redirectUrl)
-          return `${origin}${redirectUrl}`;
-        };
-
-        const absoluteRedirectUrl = getAbsoluteUrl();
-
         if (typeof window !== 'undefined') {
-          window.history.pushState({}, '', absoluteRedirectUrl);
+          window.history.pushState({}, '', redirectUrl);
         }
 
         // Usar window.location.href para navegação completa
         if (typeof window !== 'undefined') {
-          window.location.href = absoluteRedirectUrl;
+          window.location.href = redirectUrl;
         }
       }, 1500);
     }
