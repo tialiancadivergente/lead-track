@@ -750,16 +750,23 @@ export default function HeroSection() {
 
   // Função para construir a URL de redirecionamento
   const buildRedirectUrl = () => {
-    const origin =
-      typeof window !== 'undefined'
-        ? window.location.origin
-        : domain
-          ? `https://${domain}`
-          : '';
+    const resolveOrigin = () => {
+      if (typeof window !== 'undefined') {
+        const { protocol, host } = window.location;
+        return `${protocol}//${host}`;
+      }
+
+      if (domain) {
+        return `https://${domain}`;
+      }
+
+      return '';
+    };
+
+    const origin = resolveOrigin();
 
     // Construir o path base com os valores dinâmicos
     const basePath = `${origin}/quiz/${tipo || 'oro'}-${versao || 'v9'}-${temperatura || 'q'}-typ`;
-    console.log('basePath ======>', basePath)
 
     // Iniciar com os parâmetros de email e telefone
     const queryParams = new URLSearchParams();
