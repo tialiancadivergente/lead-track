@@ -759,6 +759,7 @@ export default function HeroSection() {
 
     // Construir o path base com os valores dinâmicos
     const basePath = `${origin}/quiz/${tipo || 'oro'}-${versao || 'v9'}-${temperatura || 'q'}-typ`;
+    console.log('basePath ======>', basePath)
 
     // Iniciar com os parâmetros de email e telefone
     const queryParams = new URLSearchParams();
