@@ -877,8 +877,8 @@ export default function HeroSection() {
 
       // Redirecionar após um breve delay para mostrar a mensagem de sucesso
       setTimeout(() => {
-        const redirectUrl = buildRedirectUrl();
-        console.log('Redirecionando para:', redirectUrl);
+        const redirectPath = buildRedirectUrl();
+        console.log('Redirecionando para:', redirectPath);
 
         const funnels = {
           q: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=48',
@@ -915,12 +915,11 @@ export default function HeroSection() {
         }
 
         if (typeof window !== 'undefined') {
-          window.history.pushState({}, '', redirectUrl);
-        }
+          const currentOrigin = window.location.origin;
+          const absoluteRedirectUrl = new URL(redirectPath, currentOrigin).toString();
 
-        // Usar window.location.href para navegação completa
-        if (typeof window !== 'undefined') {
-          window.location.href = redirectUrl;
+          window.history.pushState({}, '', absoluteRedirectUrl);
+          window.location.href = absoluteRedirectUrl;
         }
       }, 1500);
     }
