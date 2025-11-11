@@ -750,8 +750,15 @@ export default function HeroSection() {
 
   // Função para construir a URL de redirecionamento
   const buildRedirectUrl = () => {
+    const origin =
+      typeof window !== 'undefined'
+        ? window.location.origin
+        : domain
+          ? `https://${domain}`
+          : '';
+
     // Construir o path base com os valores dinâmicos
-    const basePath = `/quiz/${tipo || 'oro'}-${versao || 'v9'}-${temperatura || 'q'}-typ`;
+    const basePath = `${origin}/quiz/${tipo || 'oro'}-${versao || 'v9'}-${temperatura || 'q'}-typ`;
 
     // Iniciar com os parâmetros de email e telefone
     const queryParams = new URLSearchParams();
@@ -877,8 +884,8 @@ export default function HeroSection() {
 
       // Redirecionar após um breve delay para mostrar a mensagem de sucesso
       setTimeout(() => {
-        const redirectPath = buildRedirectUrl();
-        console.log('Redirecionando para:', redirectPath);
+        const redirectUrl = buildRedirectUrl();
+        console.log('Redirecionando para:', redirectUrl);
 
         const funnels = {
           q: 'https://sf.aliancadivergente.com.br/sf/?sfunnel=48',
@@ -915,11 +922,12 @@ export default function HeroSection() {
         }
 
         if (typeof window !== 'undefined') {
-          const currentOrigin = window.location.origin;
-          const absoluteRedirectUrl = new URL(redirectPath, currentOrigin).toString();
+          window.history.pushState({}, '', redirectUrl);
+        }
 
-          window.history.pushState({}, '', absoluteRedirectUrl);
-          window.location.href = absoluteRedirectUrl;
+        // Usar window.location.href para navegação completa
+        if (typeof window !== 'undefined') {
+          window.location.href = redirectUrl;
         }
       }, 1500);
     }
