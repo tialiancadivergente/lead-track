@@ -915,11 +915,12 @@ export default function HeroSection() {
         }
 
         const getAbsoluteUrl = () => {
+          const origin = `${window.location.protocol}//${window.location.host}`;
           if (typeof window === 'undefined') {
-            return redirectUrl;
+            console.log('origin 2 =======>', origin,redirectUrl)
+            return `${origin}${redirectUrl}`;
           }
 
-          const origin = `${window.location.protocol}//${window.location.host}`;
           console.log('origin =======>', origin,redirectUrl)
           return `${origin}${redirectUrl}`;
         };
