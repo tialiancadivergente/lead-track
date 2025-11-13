@@ -18,11 +18,20 @@ import SplashScreenV4 from "@/app/components/SplashScreen/SplashScreenV4";
 import Formv3 from "@/app/ordo/[version]/v3";
 import Formv4_2 from "@/app/ordo/[version]/v4-2";
 import Formv5 from "@/app/ordo/[version]/v5";
+import QuizV1 from "@/app/ordo/[version]/vq-1";
 
 export default function Home() {
   const { version, theme, slug } = useParams();
 
   const model = slug?.[0] || null;
+
+  if (version === "vq-1") {
+    return (
+      <SplashScreenV4>
+        <QuizV1 />
+      </SplashScreenV4>
+    );
+  }
 
   if (version === "v3") {
     return (
