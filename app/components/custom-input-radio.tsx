@@ -22,11 +22,11 @@ export function CustomInputRadio({
         <div
           key={option.value}
           className={`
-            relative cursor-pointer mb-3 px-4 py-2 rounded-lg border transition-all duration-200 text-left bg-[#F4F0E1]
+            relative cursor-pointer mb-3 px-4 py-2 rounded-lg border transition-all duration-200 text-left
             ${
               value === option.value
-                ? "border-red-700 bg-[#07242c]/80 shadow-md"
-                : "border-[#C0964B]  bg-transparent hover:bg-[#F4F0E1]/70 hover:border-[#C0964B]"
+                ? "border-red-700 bg-[#07242c] shadow-md"
+                : "border-[#C0964B] bg-[#F4F0E1] hover:bg-[#F4F0E1]/70 hover:border-[#C0964B]"
             }
           `}
           onClick={() => onChange(option.value)}

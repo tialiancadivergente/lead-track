@@ -661,7 +661,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
           className={`relative flex flex-col items-end justify-center pt-10 overflow-hidden h-full sm:bg-[url('/images/vq-1/bg-quiz-oro.webp')] bg-[url('/images/vq-1/bg-quiz-oro-mobile.webp')] bg-top bg-cover bg-no-repeat w-full min-h-screen `}
         >
           <div className="container mx-auto relative w-full h-full px-4 flex items-center justify-end mt-60 sm:mt-0">
-            <div className="w-full lg:max-w-[520px] max-w-[400px] flex flex-col items-start justify-start gap-4">
+            <div className="w-full lg:max-w-[520px] max-w-[400px] flex flex-col items-start justify-start gap-4 sm:pb-0 pb-10">
               <h1 className="sm:text-4xl text-2xl text-[#D3CAC0]">
                 E quem vai ser o seu mentor nessa jornada?
               </h1>
