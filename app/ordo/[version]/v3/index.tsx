@@ -463,7 +463,7 @@ export default function Formv3() {
               style={{ color: "#c0964b" }}
             >
               <span className="text-[#12ED28]">100% gratuito </span>
-              <span className="text-white">| 24, 25 e 26 de outubro | </span> às
+              <span className="text-white">| 24, 25 e 26 de novembro | </span> às
               19h55
             </p>
             <form

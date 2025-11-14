@@ -474,7 +474,7 @@ export default function Formv5({ theme = "2" }: { theme?: string }) {
               <div className="flex items-center justify-center sm:justify-start">
                 <Calendar size={16} className="inline-block mr-1" />
                 <span className="text-[#07242c]">
-                  | 24, 25 e 26 de outubro, às 19h55{" "}
+                  | 24, 25 e 26 de novembro, às 19h55{" "}
                 </span>
               </div>
               <span className="text-black bg-[#12ED28] px-1 rounded-[4px] ml-2">
