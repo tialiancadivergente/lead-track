@@ -919,7 +919,7 @@ export default function HeroSectionV2() {
   // Função para construir a URL de redirecionamento
   const buildRedirectUrl = () => {
     // Construir o path base com os valores dinâmicos
-    const basePath = `/quiz-v2/${tipo || "oro"}-${versao || "v9"}-${
+    const basePath = `/quiz-v${isDark ? "3" : "2"}/${tipo || "oro"}-${versao || "v9"}-${
       temperatura || "q"
     }-typ`;
 
