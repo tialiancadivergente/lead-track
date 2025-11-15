@@ -15,6 +15,7 @@ import QuizFormInlead from "./inlead";
 import Formv10 from "./form-v10";
 import HeroSectionV3 from "@/components/hero-section-v3";
 import SplashScreenV4 from "../components/SplashScreen/SplashScreenV4";
+import HeroSectionV2 from "@/components/hero-section-v2";
 
 export default function Home() {
   const params = useParams();
@@ -24,6 +25,8 @@ export default function Home() {
   let form;
   if (temperatura.indexOf("v1") != -1) {
     form = "v1";
+  } else if (paramsSplit[1] === "v2") {
+    form = "v2";
   } else if (paramsSplit[1] === "v3") {
     form = "v3";
   } else {
@@ -44,6 +47,16 @@ export default function Home() {
 
   if (form === "v1") {
     return <Form />;
+  }
+
+  if (form === "v2") {
+    return (
+      <SplashScreenV4>
+        <main>
+          <HeroSectionV2 />
+        </main>
+      </SplashScreenV4>
+    );
   }
 
   if (form === "v3") {

@@ -21,7 +21,11 @@ export default function SplashScreenV4({ children }: { children: React.ReactNode
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    if (params.theme === "2") {
+    const paramValue = params.temperatura as string || "";
+    const parts = paramValue.split("-") || [];
+    const isDarkValue = parts[2] || "";
+
+    if (params.theme === "2" || isDarkValue === "h2") {
       setIsDark(false);
     } else {
       setIsDark(true);
