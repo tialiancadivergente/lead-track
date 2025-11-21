@@ -28,7 +28,7 @@ export const questionsQv: Question[] = [
   },
   {
     id: 2,
-    question: "Qual o seu nível de escolaridade?",
+    question: "Qual é o seu nível de escolaridade?",
     options: [
       { value: "fundamental1", label: "Ensino Fundamental 1 (1º ao 5º ano)", weight: 0, weightV2: 0},
       { value: "fundamental2", label: "Ensino Fundamental 2 (6º ao 9º ano)", weight: 0, weightV2: 0},
