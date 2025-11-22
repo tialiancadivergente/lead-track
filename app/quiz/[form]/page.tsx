@@ -23,6 +23,7 @@ import {
 } from "@/lib/config/tracking";
 import { sendLeadTracking } from "@/lib/tracking/leadTracking";
 import useUserIP from "@/app/hooks/useUserIP";
+import { getTagByTemperatureOro } from "@/lib/temperature-utils";
 
 const spectral = Spectral({
     subsets: ['latin'],
@@ -60,6 +61,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
     const [weightsV2, setWeightsV2] = useState<Record<number, number>>({})
     const [totalScoreV2, setTotalScoreV2] = useState(0)
     const [hasSent, setHasSent] = useState(false)
+    const [launch, setLaunch] = useState<string>("[ORO][NOV25]");
     const userIp = useUserIP();
 
     const getWhatsappUrl = () => {
@@ -68,8 +70,6 @@ export default function Quiz({ params }: { params: { form: string } }) {
         const resolvedKey = (validKeys as readonly string[]).includes(key) ? key : "f";
         return mapTagSendFlow[resolvedKey] || mapTagSendFlow["f"];
     }
-
-    const launch = "[ORO][NOV25]";
 
     // Capturar o domínio da página
     useEffect(() => {
@@ -154,6 +154,17 @@ export default function Quiz({ params }: { params: { form: string } }) {
             }
         }
     }, [_params])
+
+    // Calcular launch baseado na temperatura usando getTagByTemperatureOro
+    useEffect(() => {
+        if (temperatura) {
+            const calculatedLaunch = getTagByTemperatureOro(temperatura);
+            if (calculatedLaunch) {
+                setLaunch(calculatedLaunch);
+                console.log("Launch definido:", calculatedLaunch);
+            }
+        }
+    }, [temperatura])
 
     // Capturar email e telefone da URL
     useEffect(() => {

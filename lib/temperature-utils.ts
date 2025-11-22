@@ -6,6 +6,14 @@ export const TEMPERATURE_TAG_MAP: Record<string, number> = {
   'org': 120098
 };
 
+export const TEMPERATURE_TAG_MAP_ORO: Record<string, string> = {
+  'q': '[ORO][NOV25] Quente',
+  'm': '[ORO][NOV25] Morno',
+  'f': '[ORO][NOV25] Frio',
+  'o': '[ORO][NOV25] Organico',
+  'org': '[ORO][NOV25] Organico'
+};
+
 /**
  * Retorna o ID da tag baseado na temperatura fornecida
  * @param temperature - Valor da temperatura (q, m, f, o)
@@ -13,6 +21,10 @@ export const TEMPERATURE_TAG_MAP: Record<string, number> = {
  */
 export const getTagIdByTemperature = (temperature: string): number | null => {
   return TEMPERATURE_TAG_MAP[temperature] || null;
+};
+
+export const getTagByTemperatureOro = (temperature: string): string | null => {
+  return TEMPERATURE_TAG_MAP_ORO[temperature] || null;
 };
 
 /**

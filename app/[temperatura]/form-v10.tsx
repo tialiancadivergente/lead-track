@@ -6,7 +6,7 @@ import { Phone } from "lucide-react";
 import Image from "next/image";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { text } from "stream/consumers";
-import { getTagIdByTemperature } from "@/lib/temperature-utils";
+import { getTagIdByTemperature, getTagByTemperatureOro } from "@/lib/temperature-utils";
 
 export default function Formv10() {
   const params = useParams();
@@ -32,10 +32,7 @@ export default function Formv10() {
   const [isDark, setIsDark] = useState(true);
   const [isPicture, setIsPicture] = useState(false);
   const [tagId, setTagId] = useState<number | null>(null);
-
-  const launch = "[ORO][NOV25]";
-  console.log("launch ======>", launch);
-  console.log("tagId ======>", tagId);
+  const [launch, setLaunch] = useState<string>("[ORO][NOV25]");
 
   // Capturar o domínio da página
   useEffect(() => {
@@ -232,6 +229,13 @@ export default function Formv10() {
       const calculatedTagId = getTagIdByTemperature(paramTemperatura[paramTemperatura.length - 1]);
       setTagId(calculatedTagId);
       console.log("TagId definido:", calculatedTagId);
+
+      // Definir launch baseado na temperatura usando getTagByTemperatureOro
+      const calculatedLaunch = getTagByTemperatureOro(paramTemperatura[paramTemperatura.length - 1]);
+      if (calculatedLaunch) {
+        setLaunch(calculatedLaunch);
+        console.log("Launch definido:", calculatedLaunch);
+      }
     }
   }, [params]);
 
