@@ -5,6 +5,7 @@ import { Spectral, Bebas_Neue, Roboto } from 'next/font/google'
 import "./globals.css"
 import GoogleTagManager from "./components/GoogleTagManager"
 import MicrosoftClarity from "./components/MicrosoftClarity"
+import AliancaTrackingScript from "./components/AliancaTrackingScript"
 const GTM_ID = "GTM-NC7GGZBX"; // Substitua pelo seu GTM ID
 
 const spectral = Spectral({
@@ -58,6 +59,7 @@ export default function RootLayout({
       <body className={`${spectral.className} ${bebasNeue.variable} ${roboto.variable}`}>
         <GoogleTagManager />
         <MicrosoftClarity />
+        <AliancaTrackingScript />
         {children}
       </body>
     </html>
