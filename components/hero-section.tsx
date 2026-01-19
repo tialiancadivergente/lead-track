@@ -1074,7 +1074,7 @@ export default function HeroSection() {
               </button>
             </form>
 
-            <p className="text-[#C0964B] text-lg mt-4 text-center md:text-left" style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 24, 25 e 26/11 - 19h55</p>
+            <p className="text-[#C0964B] text-lg mt-4 text-center md:text-left" style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 09, 10 e 11/03 - 19h55</p>
           </div>
 
           {/* Coluna da direita - Imagem Hero */}

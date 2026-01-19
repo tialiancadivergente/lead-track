@@ -33,7 +33,7 @@ const spectral = Spectral({
 });
 
 const mapTagSendFlow = {
-    f: "https://redirects.aliancadivergente.com.br/oro-pages-f",
+    f: "https://redirects.aliancadivergente.com.br/q6xh",
     org: "https://redirects.aliancadivergente.com.br/oro-pages-org",
     m: "https://redirects.aliancadivergente.com.br/oro-pages-m",
     q: "https://redirects.aliancadivergente.com.br/oro-pages-q",
