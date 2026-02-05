@@ -40,7 +40,7 @@ export default function HeroSection() {
   const [tagId, setTagId] = useState<number | null>(null);  
   const [hasTrackedPageView, setHasTrackedPageView] = useState(false)
   const [hasTrackedDelayedPageView, setHasTrackedDelayedPageView] = useState(false)
-  const launch = "[ORO][NOV25]"
+  const launch = "oro";
   const { trackLead, userIp } = useLeadTracking({
     baseUrl: TRACKING_BASE_URL,
     eventId: TRACKING_EVENT_ID,

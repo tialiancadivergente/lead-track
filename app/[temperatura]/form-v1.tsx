@@ -34,7 +34,7 @@ export default function Form() {
     const [success, setSuccess] = useState(false)
     const [domain, setDomain] = useState<string>("")
     const [internalVersion, setInternalVersion] = useState<number>();
-    const launch = "[ORO] [SET25]"
+    const launch = "oro"
     const { trackLead, userIp } = useLeadTracking({
       baseUrl: TRACKING_BASE_URL,
       eventId: TRACKING_EVENT_ID,

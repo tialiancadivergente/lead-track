@@ -47,7 +47,7 @@ export default function HeroSectionV2() {
   const [hasTrackedDelayedPageView, setHasTrackedDelayedPageView] =
     useState(false);
 
-  const launch = "[ORO][NOV25]";
+  const launch = "oro";
 
   const { trackLead, userIp } = useLeadTracking({
     baseUrl: TRACKING_BASE_URL,

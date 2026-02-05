@@ -74,7 +74,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
     );
   };
 
-  const launch = "[ORO][NOV25]";
+  const launch = "oro";
 
   // Capturar o domínio da página
   useEffect(() => {

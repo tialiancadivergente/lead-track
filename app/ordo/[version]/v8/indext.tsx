@@ -33,7 +33,7 @@ export default function Formv8() {
   const [isLogo, setIsLogo] = useState(true);
   const [tagId, setTagId] = useState<number | null>(null);
 
-  const launch = "[ORO][NOV25]";
+  const launch = "oro";
 
   // Mapeamento dos benefícios para exibição
   const benefitsMapping = [

@@ -32,7 +32,7 @@ export default function Formv10() {
   const [isDark, setIsDark] = useState(true);
   const [isPicture, setIsPicture] = useState(false);
   const [tagId, setTagId] = useState<number | null>(null);
-  const [launch, setLaunch] = useState<string>("[ORO][NOV25]");
+  const [launch, setLaunch] = useState<string>("oro");
 
   // Capturar o domínio da página
   useEffect(() => {

@@ -34,7 +34,7 @@ export default function Formv19() {
   const [tagId, setTagId] = useState<number | null>(null);
   const fullUrl = Object.values(params).flat().join("/");
 
-  const launch = "[ORO][NOV25]";
+  const launch = "oro";
 
   // Capturar o domínio da página
   useEffect(() => {

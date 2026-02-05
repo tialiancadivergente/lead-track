@@ -34,7 +34,7 @@ export default function Formv3() {
   const [tagId, setTagId] = useState<number | null>(null);
   const fullUrl = Object.values(params).flat().join("/");
 
-  const launch = "[ORO][NOV25]";
+  const launch = "oro";
 
   // Mapeamento do theme para a imagem de background
   const themeBackgroundMap: Record<string, string> = {

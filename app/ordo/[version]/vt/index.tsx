@@ -34,7 +34,7 @@ export default function Formvt() {
 
   const fullUrl = Object.values(params).flat().join("/");
 
-  const launch = "[ORO] [SET25]";
+  const launch = "oro";
 
   // Capturar o domínio da página
   useEffect(() => {

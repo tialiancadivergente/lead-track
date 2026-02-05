@@ -33,7 +33,7 @@ export default function QuizV1({ theme = "2" }: { theme?: string }) {
   const [tagId, setTagId] = useState<number | null>(null);
   const fullUrl = Object.values(params).flat().join("/");
 
-  const launch = "[ORO][NOV25]";
+  const launch = "oro";
 
   // Capturar o domínio da página
   useEffect(() => {

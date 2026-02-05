@@ -34,7 +34,7 @@ export default function Formv13() {
   const { width } = useScreenSize();
   const fullUrl = Object.values(params).flat().join("/");
   const [tagId, setTagId] = useState<number | null>(null);  
-  const launch = "[ORO][NOV25]";
+  const launch = "oro";
 
   // Capturar o domínio da página
   useEffect(() => {

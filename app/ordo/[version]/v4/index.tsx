@@ -36,7 +36,7 @@ export default function Formv4({ theme = "2" }: { theme?: string }) {
   const [themeValue, setThemeValue] = useState<string>(theme);
   const fullUrl = Object.values(params).flat().join("/");
 
-  const launch = "[ORO][NOV25]";
+  const launch = "oro";
 
   // Mapeamento do theme para a imagem de background
   const themeBackgroundMap: Record<string, string> = {
