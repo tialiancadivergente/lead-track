@@ -4,7 +4,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Award, Calendar, Clock, Phone } from "lucide-react";
 import Image from "next/image";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { getTagIdByTemperature } from "@/lib/temperature-utils";
 
 const TRACKING_COOKIE_KEYS = [
@@ -18,7 +18,6 @@ const TRACKING_COOKIE_KEYS = [
 
 export default function FormvTeste() {
   const params = useParams();
-  const searchParams = useSearchParams();
   const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(
     null
   );
@@ -236,12 +235,19 @@ export default function FormvTeste() {
       const currentPath = window.location.pathname;
       const currentPage = window.location.hostname;
 
+      const normalizedSearch = window.location.search.replace(/^\?+/, "?");
+      const urlParams = new URLSearchParams(normalizedSearch);
+
       const utmObject: Record<string, string> = {};
-      searchParams.forEach((value, key) => {
+      urlParams.forEach((value, rawKey) => {
+        const key = rawKey.replace(/^\?+/, "").trim();
         if (key.toLowerCase().startsWith("utm_")) {
           utmObject[key] = value;
         }
       });
+
+      const getUtmValue = (key: string): string =>
+        utmObject[key] || urlParams.get(key) || urlParams.get(`?${key}`) || "";
 
       const cookies = TRACKING_COOKIE_KEYS.reduce<Record<string, string>>(
         (acc, key) => {
@@ -259,12 +265,12 @@ export default function FormvTeste() {
         tag_id,
         page: currentPage,
         path: currentPath,
-        utm_source: searchParams.get("utm_source") ?? "",
-        utm_medium: searchParams.get("utm_medium") ?? "",
-        utm_campaign: searchParams.get("utm_campaign") ?? "",
-        utm_content: searchParams.get("utm_content") ?? "",
-        utm_term: searchParams.get("utm_term") ?? "",
-        utm_id: searchParams.get("utm_id") ?? "",
+        utm_source: getUtmValue("utm_source"),
+        utm_medium: getUtmValue("utm_medium"),
+        utm_campaign: getUtmValue("utm_campaign"),
+        utm_content: getUtmValue("utm_content"),
+        utm_term: getUtmValue("utm_term"),
+        utm_id: getUtmValue("utm_id"),
         utms: utmObject,
         metadados: {
           url: currentUrl,
