@@ -19,6 +19,7 @@ import Formv3 from "@/app/ordo/[version]/v3";
 import Formv4_2 from "@/app/ordo/[version]/v4-2";
 import Formv5 from "@/app/ordo/[version]/v5";
 import QuizV1 from "@/app/ordo/[version]/vq-1";
+import FormvTeste from "@/app/ordo/[version]/teste";
 
 export default function Home() {
   const { version, theme, slug } = useParams();
@@ -120,6 +121,14 @@ export default function Home() {
     return (
       <SplashScreen>
         <Formv20 />
+      </SplashScreen>
+    );
+  }
+
+  if (version === "teste") {
+    return (
+      <SplashScreen>
+        <FormvTeste />
       </SplashScreen>
     );
   }
