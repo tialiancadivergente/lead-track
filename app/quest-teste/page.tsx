@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { CustomRadio } from "@/app/components/custom-input";
-import { useSearchParams } from "next/navigation";
 import { Spectral } from "next/font/google";
 
 const DEFAULT_FORM_VERSION_ID = "2f76bc57-57a2-41fd-9c2c-18a726dd4fe0";
@@ -93,7 +92,6 @@ function isBooleanInputType(inputType: string): boolean {
 }
 
 export default function QuestTestePage() {
-  const searchParams = useSearchParams();
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -102,26 +100,40 @@ export default function QuestTestePage() {
   const [isSubmittingAnswers, setIsSubmittingAnswers] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [formVersionId, setFormVersionId] = useState<string>("");
+  const [leadRegistrationRequestId, setLeadRegistrationRequestId] = useState("");
   const [temperature, setTemperature] = useState("f");
 
-  const formVersionId =
-    searchParams.get("formVersionId") || DEFAULT_FORM_VERSION_ID;
-  const leadRegistrationRequestId =
-    searchParams.get("requestId") ||
-    searchParams.get("request_id") ||
-    searchParams.get("lead_registration_request_id") ||
-    "";
-
   useEffect(() => {
-    const temperatureFromUrl =
-      (searchParams.get("temperature") || searchParams.get("temperatura") || "")
-        .toLowerCase()
-        .trim();
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const normalizedSearch = window.location.search.replace(/^\?+/, "?");
+    const urlParams = new URLSearchParams(normalizedSearch);
+
+    setFormVersionId(
+      urlParams.get("formVersionId") || DEFAULT_FORM_VERSION_ID
+    );
+    setLeadRegistrationRequestId(
+      urlParams.get("requestId") ||
+        urlParams.get("request_id") ||
+        urlParams.get("lead_registration_request_id") ||
+        ""
+    );
+
+    const temperatureFromUrl = (
+      urlParams.get("temperature") ||
+      urlParams.get("temperatura") ||
+      ""
+    )
+      .toLowerCase()
+      .trim();
 
     if (temperatureFromUrl) {
       setTemperature(temperatureFromUrl);
     }
-  }, [searchParams]);
+  }, []);
 
   const getWhatsappUrl = useCallback(() => {
     const mapTagSendFlow = {
@@ -140,6 +152,10 @@ export default function QuestTestePage() {
   }, [temperature]);
 
   const fetchQuestions = useCallback(async () => {
+    if (!formVersionId) {
+      return;
+    }
+
     setIsFetchingQuestions(true);
     setFetchError(null);
 
