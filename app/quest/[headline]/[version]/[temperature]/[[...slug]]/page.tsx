@@ -40,280 +40,6 @@ export default function Quiz({ params }: { params: { form: string } }) {
   const [totalScoreV2, setTotalScoreV2] = useState(0);
   const [hasSent, setHasSent] = useState(false);
 
-	const mapTagSendFlow = useCallback(() => ({
-		f: "https://redirects.aliancadivergente.com.br/oro-pages-f",
-    org: "https://redirects.aliancadivergente.com.br/oro-pages-org",
-    m: "https://redirects.aliancadivergente.com.br/oro-pages-m",
-    q: "https://redirects.aliancadivergente.com.br/oro-pages-q",
-	}), [_params.slug])();
-
-  const getWhatsappUrl = () => {
-    const validKeys = ["f", "m", "q", "org"] as const;
-    const key = (temperatura || "").toLowerCase();
-    const resolvedKey = (validKeys as readonly string[]).includes(key)
-      ? key
-      : "f";
-    return mapTagSendFlow[resolvedKey as keyof typeof mapTagSendFlow] || mapTagSendFlow["f"];
-  };
-
-  const launch = "oro";
-
-  // Capturar o domínio da página
-  useEffect(() => {
-    // Verificar se estamos no navegador
-    if (typeof window !== "undefined") {
-      const currentDomain = window.location.hostname;
-      console.log("Current domain:", currentDomain);
-      setDomain(currentDomain);
-    }
-  }, []);
-
-  // Verificar se estamos no cliente
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (_params && _params.temperature) {
-      console.log("temperatura param quest", _params.temperature);
-
-      let tipoValue = _params.headline;
-      let versaoValue = _params.version;
-      let temperaturaValue = _params.temperature;
-
-      console.log("Tipo:", tipoValue);
-      console.log("Versão:", versaoValue);
-      console.log("Temperatura:", temperaturaValue);
-
-      setTipo(tipoValue as string);
-      setVersao(versaoValue as string);
-      setTemperatura(temperaturaValue as string);
-    }
-  }, [_params]);
-
-  // Capturar email e telefone da URL
-  useEffect(() => {
-    if (searchParams) {
-      const emailParam = searchParams.get("email");
-      const phoneParam = searchParams.get("phone");
-
-      if (emailParam) {
-        setEmail(emailParam);
-      }
-
-      if (phoneParam) {
-        setWhatsapp(phoneParam);
-      }
-    }
-  }, [searchParams]);
-
-  useEffect(() => {
-    // Atualiza o valor do progresso quando a pergunta atual muda
-    const newProgress = ((currentQuestion + 1) / questions.length) * 100;
-    setProgressValue(newProgress);
-  }, [currentQuestion]);
-
-  useEffect(() => {
-    if (!completed || hasSent) {
-      return;
-    }
-    if (completed) {
-      setIsLoading(true);
-
-      const emailParam = searchParams.get("email");
-      const phoneParam = searchParams.get("phone");
-
-      // Calculate the faixa based on totalScore
-      let faixa;
-      if (totalScore >= 180.3) {
-        faixa = "Faixa A";
-      } else if (totalScore >= 162.7) {
-        faixa = "Faixa B";
-      } else if (totalScore >= 136.3) {
-        faixa = "Faixa C";
-      } else if (totalScore >= 124.9) {
-        faixa = "Faixa D";
-      } else {
-        faixa = "Faixa E";
-      }
-
-      let faixaV2;
-      if (totalScoreV2 >= 200) {
-        faixaV2 = "Faixa A";
-      } else if (totalScoreV2 >= 182) {
-        faixaV2 = "Faixa B";
-      } else if (totalScoreV2 >= 151) {
-        faixaV2 = "Faixa C";
-      } else {
-        faixaV2 = "Faixa D";
-      }
-
-      // Prepare detailed answers with questions and selected options
-      const detailedAnswers: Record<string, string> = {};
-      Object.entries(answers).forEach(([questionId, answerValue]) => {
-        const questionObj = questions.find(
-          (q) => q.id === parseInt(questionId)
-        );
-        const selectedOption = questionObj?.options.find(
-          (opt) => opt.value === answerValue
-        );
-
-        if (questionObj) {
-          detailedAnswers[questionObj.question] =
-            selectedOption?.label || answerValue;
-        }
-      });
-
-      // Prepare the data to be sent to GTM
-      const gtmData = {
-        email: emailParam,
-        phone: phoneParam,
-        answers: answers,
-        totalScore: Math.round(totalScore),
-        totalScoreV2: Math.round(totalScoreV2),
-        faixa: faixa,
-        faixaV2: faixaV2,
-        tipo: tipo,
-        version: versao,
-        temperature: temperatura,
-      };
-
-      const payload = {
-        ...gtmData,
-        detailedAnswers: detailedAnswers,
-        domain: domain,
-        launch: launch,
-        utm_source: searchParams.get("utm_source") || "",
-        utm_medium: searchParams.get("utm_medium") || "",
-        utm_campaign: searchParams.get("utm_campaign") || "",
-        utm_content: searchParams.get("utm_content") || "",
-        utm_term: searchParams.get("utm_term") || "",
-        path: window.location.pathname,
-      };
-
-      // Still send to GTM as before
-      TagManager.dataLayer({
-        dataLayer: {
-          event: "leadscore",
-          ...gtmData,
-        },
-      });
-
-      // Send data to our proxy API
-      fetch("/api/quiz-proxy", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Success:", data);
-          setHasSent(true);
-          window.location.replace(getWhatsappUrl());
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          setHasSent(true);
-          window.location.replace(getWhatsappUrl());
-        });
-    }
-  }, [completed, hasSent]); // envia apenas uma vez ao completar
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    const leads = JSON.parse(localStorage.getItem("leads") || "[]");
-    leads.push({ email, whatsapp, date: new Date().toISOString() });
-    localStorage.setItem("leads", JSON.stringify(leads));
-
-    setSuccess(true);
-    setIsSubmitting(false);
-
-    setTimeout(() => {
-      setSuccess(false);
-      setEmail("");
-      setWhatsapp("");
-    }, 3000);
-  };
-
-  const handleAnswer = (value: string) => {
-    const question = questions[currentQuestion];
-    
-    // Se for uma pergunta aberta (open), apenas salva a resposta
-    if (question.type === "open") {
-      const newAnswers = { ...answers, [question.id]: value };
-      setAnswers(newAnswers);
-      return;
-    }
-    
-    // Para perguntas com opções (radio), busca a opção selecionada
-    const selectedOption = question.options.find(
-      (option) => option.value === value
-    );
-
-    if (selectedOption) {
-      const newAnswers = { ...answers, [question.id]: value };
-      const newWeights = { ...weights, [question.id]: selectedOption.weight };
-      const newWeightsV2: Record<number, number> = {
-        ...weightsV2,
-        [question.id]: selectedOption.weightV2 || 0,
-      };
-
-      setAnswers(newAnswers);
-      setWeights(newWeights);
-      setWeightsV2(newWeightsV2);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      // Calcular pontuação total
-      setIsLoading(true);
-      let score = Object.values(weights).reduce(
-        (sum, weight) => sum + weight,
-        0
-      );
-      let scoreV2 = Object.values(weightsV2).reduce(
-        (sum, weight) => sum + weight,
-        0
-      );
-
-      // // Adicionar pontuação extra baseada na URL
-      // const publicoScore = window.location.href.indexOf('f-typ') !== -1 ||
-      //     window.location.href.indexOf('m-typ') !== -1 ||
-      //     window.location.href.indexOf('q-typ') !== -1 ? 10 : 0;
-
-      // score += publicoScore;
-      setTotalScore(score);
-      setTotalScoreV2(scoreV2);
-      setCompleted(true);
-    }
-  };
-
-  const handleBack = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1);
-    }
-  };
-
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
-
-  const currentQuestionData = questions[currentQuestion];
-  const selectedValue = answers[currentQuestionData.id] || "";
-  const isLastQuestion = currentQuestion === questions.length - 1;
-
-  // Se não estamos no cliente, não renderize nada
-  if (!isClient) {
-    return null;
-  }
-
   return (
     <div>
       <section
@@ -407,10 +133,10 @@ export default function Quiz({ params }: { params: { form: string } }) {
                       fontFamily: '"Roboto", Sans-serif',
                     }}
                   >
-                    {currentQuestionData.question}
+                    {/* {currentQuestionData.question} */}
                   </h3>
 
-                  {currentQuestionData.type === "open" ? (
+                  {/* {currentQuestionData.type === "open" ? (
                     <input
                       type="text"
                       value={selectedValue}
@@ -426,9 +152,9 @@ export default function Quiz({ params }: { params: { form: string } }) {
                       value={selectedValue}
                       onChange={handleAnswer}
                     />
-                  )}
+                  )} */}
 
-                  <div className="grid grid-cols-2 gap-3 md:gap-5 mt-5 md:mt-7">
+                  {/* <div className="grid grid-cols-2 gap-3 md:gap-5 mt-5 md:mt-7">
                     {currentQuestion > 0 && (
                       <Button
                         variant="outline"
@@ -450,7 +176,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
                     >
                       {isLastQuestion ? "ENVIAR" : "PRÓXIMA"}
                     </Button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -469,7 +195,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
 
                 <Button
                   className="w-full max-w-sm py-4 md:py-6 text-sm md:text-base hover:opacity-90 transition-opacity duration-300 rounded-3xl"
-                  onClick={() => window.open(getWhatsappUrl(), '_blank')}
+                  // onClick={() => window.open(getWhatsappUrl(), '_blank')}
                   style={{
                     background:
                       "linear-gradient(96.48deg, #065100 -18.33%, #49E413 159.75%)",

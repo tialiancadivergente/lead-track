@@ -295,6 +295,24 @@ export default function FormvTeste() {
         throw new Error(errorBody || "Falha ao registrar lead");
       }
 
+      let responseData: any = null;
+      try {
+        responseData = await response.json();
+      } catch {
+        responseData = null;
+      }
+
+      const requestId =
+        responseData?.requestId ||
+        responseData?.request_id ||
+        responseData?.data?.requestId ||
+        responseData?.data?.request_id ||
+        "";
+
+      if (!requestId) {
+        throw new Error("requestId nao retornado na resposta.");
+      }
+
       const leads = JSON.parse(localStorage.getItem("leads") || "[]");
       leads.push({
         email,
@@ -305,6 +323,10 @@ export default function FormvTeste() {
         date: new Date().toISOString(),
       });
       localStorage.setItem("leads", JSON.stringify(leads));
+
+      window.location.href = `/quest-teste/?requestId=${encodeURIComponent(
+        requestId
+      )}`;
     } catch (error) {
       console.error("Erro ao enviar cadastro:", error);
       setSubmitError("Nao foi possivel enviar seu cadastro agora.");
