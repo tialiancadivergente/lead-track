@@ -1,44 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import {
+  TRACKING_COOKIE_KEYS,
+} from "@/lib/tracking/lead-tracking-cookie";
+import { LeadRegistrationPayload } from "@/app/modules/lead-capture/lead-capture.model";
 
-const EXTERNAL_ENDPOINT =
-  "https://leads-api.aliancadivergente.com.br/lead-registration/start";
-
-const TRACKING_COOKIE_KEYS = [
-  "_fbc",
-  "_fbp",
-  "_gcl_au",
-  "_gcl_aw",
-  "_ga",
-  "ttclid",
-] as const;
-
-type TrackingCookieKey = (typeof TRACKING_COOKIE_KEYS)[number];
-
-interface LeadStartRequestBody {
-  email?: string;
-  telefone?: string;
-  launch?: string;
-  season?: string;
-  tag_id?: string;
-  page?: string;
-  path?: string;
-  utm_source?: string;
-  utm_medium?: string;
-  utm_campaign?: string;
-  utm_content?: string;
-  utm_term?: string;
-  utm_id?: string;
-  utms?: Record<string, string>;
-  metadados?: {
-    url?: string;
-    referer?: string;
-    ip?: string;
-    user_agent?: string;
-    cookies?: Partial<Record<TrackingCookieKey, string>>;
-    temperature?: string;
-  };
-  [key: string]: unknown;
-}
+const EXTERNAL_ENDPOINT = `${process.env.NEXT_PUBLIC_API_URL}/lead-registration/start`;
 
 function getRequestIp(request: NextRequest): string {
   const xForwardedFor = request.headers.get("x-forwarded-for");
@@ -58,7 +24,7 @@ function getRequestIp(request: NextRequest): string {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = (await request.json()) as LeadStartRequestBody;
+    const body = (await request.json()) as LeadRegistrationPayload;
 
     if (!body?.email || !body?.telefone) {
       return NextResponse.json(

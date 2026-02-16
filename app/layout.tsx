@@ -6,6 +6,7 @@ import "./globals.css"
 import GoogleTagManager from "./components/GoogleTagManager"
 import MicrosoftClarity from "./components/MicrosoftClarity"
 import AliancaTrackingScript from "./components/AliancaTrackingScript"
+import Providers from "./providers"
 const GTM_ID = "GTM-NC7GGZBX"; // Substitua pelo seu GTM ID
 
 const spectral = Spectral({
@@ -60,7 +61,7 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <AliancaTrackingScript />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
