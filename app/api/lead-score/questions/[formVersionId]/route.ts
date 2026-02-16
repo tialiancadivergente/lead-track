@@ -2,12 +2,20 @@ import { NextResponse } from "next/server";
 
 const QUESTIONS_API_BASE =
   "https://leads-api.aliancadivergente.com.br/lead-score/questions";
+const BBF_X_API_KEY = process.env.BBF_X_API_KEY?.trim();
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ formVersionId: string }> }
 ) {
   try {
+    if (!BBF_X_API_KEY) {
+      return NextResponse.json(
+        { message: "BBF_X_API_KEY nao configurada no servidor." },
+        { status: 500 }
+      );
+    }
+
     const { formVersionId } = await params;
 
     if (!formVersionId) {
@@ -23,6 +31,7 @@ export async function GET(
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          "x-api-key": BBF_X_API_KEY,
         },
         cache: "no-store",
       }

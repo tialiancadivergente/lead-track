@@ -5,6 +5,7 @@ import {
 import { LeadRegistrationPayload } from "@/app/modules/lead-capture/lead-capture.model";
 
 const EXTERNAL_ENDPOINT = `${process.env.NEXT_PUBLIC_API_URL}/lead-registration/start`;
+const BBF_X_API_KEY = process.env.BBF_X_API_KEY?.trim();
 
 function getRequestIp(request: NextRequest): string {
   const xForwardedFor = request.headers.get("x-forwarded-for");
@@ -24,6 +25,13 @@ function getRequestIp(request: NextRequest): string {
 
 export async function POST(request: NextRequest) {
   try {
+    if (!BBF_X_API_KEY) {
+      return NextResponse.json(
+        { message: "BBF_X_API_KEY nao configurada no servidor." },
+        { status: 500 }
+      );
+    }
+
     const body = (await request.json()) as LeadRegistrationPayload;
 
     if (!body?.email || !body?.telefone) {
@@ -58,6 +66,7 @@ export async function POST(request: NextRequest) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-api-key": BBF_X_API_KEY,
       },
       body: JSON.stringify(payloadToExternalApi),
       cache: "no-store",
