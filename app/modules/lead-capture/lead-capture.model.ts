@@ -70,7 +70,7 @@ export interface LeadCaptureStartResponse {
 export const leadCaptureFormSchema = z.object({
   email: z.string().trim().email("Informe um e-mail valido."),
   ddi: z.string().min(1, "Selecione um DDI."),
-  whatsapp: z.string().trim().min(8, "Informe um WhatsApp valido."),
+  whatsapp: z.string().trim().min(15, "Informe um WhatsApp valido."),
 });
 
 export type LeadCaptureFormValues = z.infer<typeof leadCaptureFormSchema>;

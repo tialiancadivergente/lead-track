@@ -10,7 +10,7 @@ interface IHeadline {
 
 export const Headline: IHeadline[] = [
   {
-    id: 1,
+    id: "h2",
     isPicture: false,
     isLogo: true,
     title: (
@@ -68,7 +68,7 @@ export const Headline: IHeadline[] = [
     ),
   },
   {
-    id: "h2",
+    id: "h1",
     isPicture: false,
     isLogo: true,
     title: (

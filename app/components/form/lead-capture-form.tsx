@@ -3,7 +3,6 @@
 import { Phone } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { PHONE_DDI_OPTIONS } from "@/lib/config/phone-ddi-options";
 import { cn } from "@/lib/utils";
@@ -105,7 +104,7 @@ export function LeadCaptureForm({
     <form
       id={formId}
       name={formName}
-      className={cn("space-y-4 sm:max-w-md", className)}
+      className={cn("space-y-4 w-full", className)}
       onSubmit={handleSubmit(submitHandler)}
     >
       <div>
@@ -117,7 +116,7 @@ export function LeadCaptureForm({
           {...register("email")}
         />
         {errors.email ? (
-          <p className="mt-1 text-sm text-red-300">{errors.email.message}</p>
+          <p className="mt-1 text-sm !text-red-300">{errors.email.message}</p>
         ) : null}
       </div>
 
@@ -155,10 +154,10 @@ export function LeadCaptureForm({
         </div>
 
         {errors.ddi ? (
-          <p className="mt-1 text-sm text-red-300">{errors.ddi.message}</p>
+          <p className="mt-1 text-sm !text-red-300">{errors.ddi.message}</p>
         ) : null}
         {errors.whatsapp ? (
-          <p className="mt-1 text-sm text-red-300">{errors.whatsapp.message}</p>
+          <p className="mt-1 text-sm !text-red-300">{errors.whatsapp.message}</p>
         ) : null}
       </div>
 

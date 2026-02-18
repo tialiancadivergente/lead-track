@@ -77,7 +77,7 @@ export const FormTextInput = <T extends FieldValues>({
                 </span>
               ) : null}
             </div>
-            {error ? <p className="mt-1 text-sm text-red-500">{error}</p> : null}
+            {error ? <p className="mt-1 text-sm !text-red-500">{error}s</p> : null}
           </div>
         )}
       />

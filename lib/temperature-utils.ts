@@ -1,5 +1,5 @@
 export const TEMPERATURE_TAG_MAP: Record<string, number> = {
-  'q': 120095,
+  'q': 120566,
   'm': 120096,
   'f': 120566,
   'o': 120098,
@@ -12,9 +12,9 @@ export type NormalizedTemperature =
   (typeof NORMALIZED_TEMPERATURE_VALUES)[number];
 
 export const TEMPERATURE_TAG_MAP_ORO: Record<string, string> = {
-  'q': '[ORO][NOV25] Quente',
+  'q': '[ORO][MAR26] Quente',
   'm': '[ORO][NOV25] Morno',
-  'f': '[ORO][MAR26][FRIO]',
+  'f': '[ORO][MAR26] FRIO',
   'o': '[ORO][NOV25] Organico',
   'org': '[ORO][NOV25] Organico'
 };

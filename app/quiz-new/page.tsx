@@ -18,7 +18,7 @@ import {
 } from "@/lib/config/quest-config";
 import ContainerQuest from "./container";
 
-export default function QuestTestePage() {
+export default function QuizNewPage() {
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -38,6 +38,11 @@ export default function QuestTestePage() {
         window.location.search,
         DEFAULT_QUEST_FORM_VERSION_ID
       );
+
+    if (!leadRegistrationRequestId) {
+      window.history.back();
+      return;
+    }
 
     setFormVersionId(formVersionId);
     setLeadRegistrationRequestId(leadRegistrationRequestId);

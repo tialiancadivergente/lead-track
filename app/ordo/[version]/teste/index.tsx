@@ -36,8 +36,6 @@ export default function FormvTeste() {
 
   const mutationCreate = useCreateLeadCapture();
 
-  console.log("API:", process.env.NEXT_PUBLIC_API_URL);
-
   useEffect(() => {
     if (params && params.temperature) {
       const temperaturaValue = normalizeTemperature(params.temperature);
