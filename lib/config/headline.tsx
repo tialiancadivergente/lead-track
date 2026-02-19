@@ -68,6 +68,23 @@ export const Headline: IHeadline[] = [
     ),
   },
   {
+    id: "h0",
+    isPicture: false,
+    isLogo: true,
+    title: (
+      <p
+        className="text-3x md:text-[40px] uppercase font-spectral text-[#D3CAC0] font-extrabold"
+      >
+        Faça seu diagnóstico de <span className="text-[#C0964B]">dependência emocional</span> gratuito
+      </p>
+    ),
+    text: (
+      <p>
+        Descubra como <span className="uppercase font-bold">aumentar o seu nível de permissão</span> e melhorar seus resultados nas finanças, nos relacionamentos e na saúde.
+      </p>
+    ),
+  },
+  {
     id: "h1",
     isPicture: false,
     isLogo: true,

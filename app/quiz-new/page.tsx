@@ -9,6 +9,10 @@ import {
   buildLeadScoreAnswerItems,
   readQuestTesteUrlContext,
 } from "@/app/modules/lead-score/lead-score-transformers";
+import {
+  calculateTotalScore,
+  formatAnswersForTracking,
+} from "@/app/modules/lead-score/lead-score-tracking-helpers";
 import type { AnswerValue } from "@/app/modules/lead-score/lead-score.types";
 import { useGetLeadScoreQuestions } from "@/app/modules/lead-score/hook/use-get-lead-score-questions";
 import { useCreateLeadScoreStart } from "@/app/modules/lead-score/hook/use-create-lead-score-start";
@@ -17,6 +21,7 @@ import {
   resolveQuestTesteWhatsappUrl,
 } from "@/lib/config/quest-config";
 import ContainerQuest from "./container";
+import TagManager from "react-gtm-module";
 
 export default function QuizNewPage() {
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
@@ -26,6 +31,8 @@ export default function QuizNewPage() {
   const [formVersionId, setFormVersionId] = useState<string>("");
   const [leadRegistrationRequestId, setLeadRegistrationRequestId] = useState("");
   const [temperature, setTemperature] = useState("f");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const mutationCreateLeadScoreStart = useCreateLeadScoreStart();
 
   useEffect(() => {
@@ -44,9 +51,13 @@ export default function QuizNewPage() {
       return;
     }
 
+    const urlParams = new URLSearchParams(window.location.search);
+
     setFormVersionId(formVersionId);
     setLeadRegistrationRequestId(leadRegistrationRequestId);
     setTemperature(temperature);
+    setEmail(urlParams.get("email") || "");
+    setPhone(urlParams.get("phone") || urlParams.get("telefone") || "");
   }, []);
 
   const {
@@ -160,6 +171,16 @@ export default function QuizNewPage() {
       throw new Error("requestId nao encontrado na URL.");
     }
 
+    const totalScore = calculateTotalScore(questions, answers);
+    const formattedAnswers = formatAnswersForTracking(questions, answers);
+
+    const gtmData = {
+      email,
+      phone,
+      answers: formattedAnswers,
+      totalScore,
+    };
+
     const payload = {
       lead_registration_request_id: leadRegistrationRequestId,
       form_version_id: formVersionId,
@@ -168,10 +189,20 @@ export default function QuizNewPage() {
       raw_payload: {
         source: "frontend",
         step: "quiz",
+        gtmData,
       },
     };
 
     await mutationCreateLeadScoreStart.mutateAsync(payload);
+
+    if (TagManager.dataLayer) {
+      TagManager.dataLayer({
+        dataLayer: {
+          event: "leadscore",
+          ...gtmData
+        },
+      });
+    }
   };
 
   const handleNext = async () => {

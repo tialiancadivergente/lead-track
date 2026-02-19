@@ -165,9 +165,8 @@ export function LeadCaptureForm({
         type="submit"
         className={buttonClassName}
         disabled={isSubmitting}
-        style={{ fontFamily: "Arial, sans-serif" }}
       >
-        <span className="text-[#f4f0e1]">
+        <span>
           {isSubmitting ? submittingLabel : submitLabel}
         </span>
       </button>

@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import './globals.css'
-import { Spectral, Bebas_Neue, Roboto } from 'next/font/google'
+import { Spectral, Bebas_Neue, Roboto, Raleway } from 'next/font/google'
 import "./globals.css"
 import GoogleTagManager from "./components/GoogleTagManager"
 import MicrosoftClarity from "./components/MicrosoftClarity"
@@ -28,6 +28,13 @@ const roboto = Roboto({
   display: 'swap',
   variable: '--font-roboto',
   weight: ['300', '400', '500', '700']
+})
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-raleway',
+  weight: ['300', '400', '500', '600', '700']
 })
 
 export const metadata: Metadata = {
@@ -57,7 +64,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/cropped-Alianca-Divergente-Logotipo-Favicon-32x32.png" type="image/png" />
         <link rel="apple-touch-icon" href="/cropped-Alianca-Divergente-Logotipo-Favicon-32x32.png" type="image/png" />
       </head>
-      <body className={`${spectral.className} ${bebasNeue.variable} ${roboto.variable}`}>
+      <body className={`${spectral.className} ${spectral.variable} ${bebasNeue.variable} ${roboto.variable} ${raleway.variable}`}>
         <GoogleTagManager />
         <MicrosoftClarity />
         <AliancaTrackingScript />

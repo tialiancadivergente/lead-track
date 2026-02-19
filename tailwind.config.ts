@@ -10,8 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
+        'spectral': ['var(--font-spectral)', 'serif'],
         'bebas-neue': ['var(--font-bebas-neue)', 'sans-serif'],
         'roboto': ['var(--font-roboto)', 'sans-serif'],
+        'raleway': ['var(--font-raleway)', 'sans-serif'],
         'sans': ['var(--font-roboto)', 'sans-serif'], // Define Roboto como fonte sans padrão
       },
       colors: {

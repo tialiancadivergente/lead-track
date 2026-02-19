@@ -134,7 +134,7 @@ export default function ContainerQuest({
                         </p>
                       )}
                       {submitSuccess && (
-                        <p className="text-green-300 text-sm mb-3 text-left">
+                        <p className="!text-green-300 text-sm mb-3 text-left">
                           Respostas enviadas com sucesso.
                         </p>
                       )}

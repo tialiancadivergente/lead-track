@@ -5,6 +5,10 @@ export interface BackendOption {
   option_key: string;
   option_text: string;
   display_order: number;
+  weight?: number | string | null;
+  option_score?: number | string | null;
+  option_weight?: number | string | null;
+  points?: number | string | null;
 }
 
 export interface BackendQuestion {
@@ -26,6 +30,7 @@ export interface QuizOption {
   value: string;
   label: string;
   optionId: string;
+  points?: number;
 }
 
 export interface QuizQuestion {

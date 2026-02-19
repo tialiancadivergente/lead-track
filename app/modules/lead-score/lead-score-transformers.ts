@@ -6,11 +6,47 @@ import {
 } from "@/app/modules/lead-score/lead-score-input-type";
 import type {
   AnswerValue,
+  BackendOption,
   BackendQuestion,
   LeadScoreAnswerPayload,
   QuestTesteUrlContext,
   QuizQuestion,
 } from "@/app/modules/lead-score/lead-score.types";
+
+function parseOptionalNumber(value: unknown): number | undefined {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return value;
+  }
+
+  if (typeof value !== "string") {
+    return undefined;
+  }
+
+  const parsedValue = Number(value.replace(",", ".").trim());
+  return Number.isFinite(parsedValue) ? parsedValue : undefined;
+}
+
+function resolveBackendOptionPoints(option: BackendOption): number | undefined {
+  const optionRecord = option as BackendOption & Record<string, unknown>;
+  const pointsCandidates: unknown[] = [
+    option.points,
+    option.option_score,
+    option.option_weight,
+    option.weight,
+    optionRecord.option_value,
+    optionRecord.value,
+    option.option_key,
+  ];
+
+  for (const candidate of pointsCandidates) {
+    const parsedValue = parseOptionalNumber(candidate);
+    if (parsedValue !== undefined) {
+      return parsedValue;
+    }
+  }
+
+  return undefined;
+}
 
 export function mapBackendQuestionsToQuizQuestions(
   questions: BackendQuestion[]
@@ -31,6 +67,8 @@ export function mapBackendQuestionsToQuizQuestions(
           value: option.option_key || option.option_id,
           label: option.option_text || option.option_key || "Opcao",
           optionId: option.option_id,
+          points: resolveBackendOptionPoints(option),
+          score: resolveBackendOptionPoints(option),
         })),
     }));
 }

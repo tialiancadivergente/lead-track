@@ -117,7 +117,7 @@ export default function HeroSection() {
 
       window.location.href = `/quiz-new/?temperature=${temperatura}&requestId=${encodeURIComponent(
         requestId
-      )}`;
+      )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}`;
     } catch (error) {
       console.error("Erro ao enviar cadastro:", error);
       setSubmitError("Nao foi possivel enviar seu cadastro agora.");
