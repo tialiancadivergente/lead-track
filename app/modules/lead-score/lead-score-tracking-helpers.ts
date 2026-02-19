@@ -66,6 +66,26 @@ export function calculateTotalScore(
   }, 0);
 }
 
+export function resolveFaixaByTotalScore(totalScore: number): string {
+  if (totalScore >= 180.3) {
+    return "Faixa A";
+  }
+
+  if (totalScore >= 162.7) {
+    return "Faixa B";
+  }
+
+  if (totalScore >= 136.3) {
+    return "Faixa C";
+  }
+
+  if (totalScore >= 124.9) {
+    return "Faixa D";
+  }
+
+  return "Faixa E";
+}
+
 export function formatAnswersForTracking(
   questions: QuizQuestion[],
   answers: Record<string, AnswerValue>

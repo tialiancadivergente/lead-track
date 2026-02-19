@@ -12,6 +12,7 @@ import {
 import {
   calculateTotalScore,
   formatAnswersForTracking,
+  resolveFaixaByTotalScore,
 } from "@/app/modules/lead-score/lead-score-tracking-helpers";
 import type { AnswerValue } from "@/app/modules/lead-score/lead-score.types";
 import { useGetLeadScoreQuestions } from "@/app/modules/lead-score/hook/use-get-lead-score-questions";
@@ -172,6 +173,7 @@ export default function QuizNewPage() {
     }
 
     const totalScore = calculateTotalScore(questions, answers);
+    const faixa = resolveFaixaByTotalScore(totalScore);
     const formattedAnswers = formatAnswersForTracking(questions, answers);
 
     const gtmData = {
@@ -179,6 +181,7 @@ export default function QuizNewPage() {
       phone,
       answers: formattedAnswers,
       totalScore,
+      faixa,
     };
 
     const payload = {
