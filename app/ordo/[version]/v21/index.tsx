@@ -103,7 +103,7 @@ export default function Formv21() {
         throw new Error("requestId nao retornado na resposta.");
       }
 
-      window.location.href = `/quiz-new/?temperature=${temperatura}&requestId=${encodeURIComponent(
+      window.location.href = `/quiz-oro/?temperature=${temperatura}&requestId=${encodeURIComponent(
         requestId
       )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}`;
     } catch (error) {

@@ -93,11 +93,7 @@ export default function Biography() {
 					priority
 					className="object-contain"
 				/>
-				<div className="flex items-center">
-					<Button variant={"link"} className="font-normal font-raleway text-[14px] text-white underline">Termos de Uso</Button>
-					<div className="h-4 border-l border border-white/50 mt-1" />
-					<Button variant={"link"} className="font-normal font-raleway text-[14px] text-white underline">Políticas de Privacidade</Button>
-				</div>
+				
 				<div className="font-normal font-raleway text-[14px] text-white text-center lg:hidden block">
 					<p>
 						Copyright © O Resgate Dos Otimistas.
