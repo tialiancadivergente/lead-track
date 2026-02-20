@@ -73,7 +73,7 @@ export const Headline: IHeadline[] = [
     isLogo: true,
     title: (
       <p
-        className="text-3x md:text-[40px] uppercase font-spectral text-[#D3CAC0] font-extrabold"
+        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
       >
         Faça seu diagnóstico de <span className="text-[#C0964B]">dependência emocional</span> gratuito
       </p>
@@ -90,7 +90,7 @@ export const Headline: IHeadline[] = [
     isLogo: true,
     title: (
       <p
-        className={`text-3x max-w-xl md:text-4xl uppercase font-bold leading-10 md:-leading-10 `}
+        className={`max-w-xl uppercase font-bold leading-10 md:-leading-10 `}
       >
         Tem gente que estudou menos que você e ganhando bem mais
       </p>

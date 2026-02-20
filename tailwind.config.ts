@@ -73,8 +73,9 @@ const config: Config = {
       },
       // Adicione breakpoints customizados aqui usando extend
       screens: {
-        'xs': '420px', // exemplo: novo breakpoint customizado 'xs'
-        // você pode adicionar outros breakpoints customizados aqui
+        'xs': '480px', // exemplo: novo breakpoint customizado 'xs'
+        '2xs': '580px', // exemplo: novo breakpoint customizado 'xs'
+        '2md': '900px',
       },
     },
   },
