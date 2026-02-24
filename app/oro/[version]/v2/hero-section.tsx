@@ -32,7 +32,7 @@ export default function HeroSection({
 				className={`mx-auto sm:px-4 2md:pt-6 pt-2 relative lg:w-[1080px] w-full flex justify-center md:justify-start`}
 			>
 				<div className="w-full 2md:max-w-[528px] max-w-[440px]">
-					<div className="mt-[235px] mb-8 flex justify-center md:justify-start md:hidden">
+					<div className="mt-[225px] mb-2 flex justify-center md:justify-start md:hidden">
 						<Image
 							src="/images/logo-oro-dark.webp"
 							alt="Logotipo Resgate dos otimistas"
@@ -47,7 +47,7 @@ export default function HeroSection({
 						/>
 					</div>
 					<div
-						className={`text-[#fff] font-raleway font-medium text-[14px] flex items-center mt-8 justify-start sm:gap-8 gap-2 xl:text-2xl sm:text-2xl text-sm`}
+						className={`text-[#fff] font-raleway font-medium text-[14px] flex items-center justify-start sm:gap-8 gap-2 xl:text-2xl sm:text-2xl text-sm`}
 					>
 						<div className="flex items-center justify-center leading-none gap-2 text-[#07242C] font-raleway font-medium text-xs md:text-[14px]">
 							<CalendarDays className="text-[#006D71]" size={18} />
@@ -58,7 +58,7 @@ export default function HeroSection({
 							Online e Gratuito
 						</div>
 					</div>
-					<div className="mt-6 mb-2 font-bebas-neue text-left">
+					<div className="mt-4 mb-2 font-bebas-neue text-left">
 						<div
 							className={`2md:text-[40px] text-2xl leading-none text-left !text-[#07242C] font-spectral font-extrabold`}
 						>
@@ -67,7 +67,7 @@ export default function HeroSection({
 					</div>
 
 					<div
-						className="mb-8 mt-4 text-[#07242C] 2md:text-2xl text-base font-extralight font-spectral"
+						className="mb-4 mt-4 text-[#07242C] 2md:text-2xl text-base font-extralight font-spectral"
 					>
 						{redLine ? (
 							redLine
