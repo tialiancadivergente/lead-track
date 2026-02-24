@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import './globals.css'
-import { Spectral, Bebas_Neue, Roboto, Raleway } from 'next/font/google'
+import { Spectral, Bebas_Neue, Roboto, Raleway, Mulish } from 'next/font/google'
 import "./globals.css"
 import GoogleTagManager from "./components/GoogleTagManager"
 import MicrosoftClarity from "./components/MicrosoftClarity"
@@ -37,6 +37,13 @@ const raleway = Raleway({
   weight: ['200', '300', '400', '500', '600', '700', '800']
 })
 
+const mulish = Mulish({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mulish',
+  weight: ['300', '400', '500', '600', '700', '800']
+})
+
 export const metadata: Metadata = {
   title: "O Resgate dos Otimistas - Diagnóstico de Dependência Emocional",
   description:
@@ -64,7 +71,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/cropped-Alianca-Divergente-Logotipo-Favicon-32x32.png" type="image/png" />
         <link rel="apple-touch-icon" href="/cropped-Alianca-Divergente-Logotipo-Favicon-32x32.png" type="image/png" />
       </head>
-      <body className={`${spectral.className} ${spectral.variable} ${bebasNeue.variable} ${roboto.variable} ${raleway.variable}`}>
+      <body className={`${spectral.className} ${spectral.variable} ${bebasNeue.variable} ${roboto.variable} ${raleway.variable} ${mulish.variable}`}>
         <GoogleTagManager />
         <MicrosoftClarity />
         <AliancaTrackingScript />

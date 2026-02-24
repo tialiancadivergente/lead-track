@@ -14,6 +14,7 @@ const config: Config = {
         'bebas-neue': ['var(--font-bebas-neue)', 'sans-serif'],
         'roboto': ['var(--font-roboto)', 'sans-serif'],
         'raleway': ['var(--font-raleway)', 'sans-serif'],
+        'mulish': ['var(--font-mulish)', 'sans-serif'],
         'sans': ['var(--font-roboto)', 'sans-serif'], // Define Roboto como fonte sans padrão
       },
       colors: {
