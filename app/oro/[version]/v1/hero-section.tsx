@@ -87,9 +87,9 @@ export default function HeroSection({
 							formName={formName}
 							onSubmit={onSubmit}
 							submitError={submitError}
-							emailInputClassName="w-full border border-[#6F6F6F] flex rounded-[8px] flex-1 px-4 py-4 bg-[#FFFFFF0A] text-[#F4F0E1]"
-							ddiSelectClassName="py-4 pl-10 pr-2 bg-[#D9CFC31A] rounded-l-[8px] border border-[#6F6F6F] border-r-[0px] text-[#F4F0E1] focus:outline-none"
-							phoneInputClassName="w-full px-4 py-4 rounded-r-[8px] bg-[#FFFFFF0A] text-[#F4F0E1] focus:outline-none h-[53px] border border-[#6F6F6F] border-l-[0px]"
+							emailInputClassName="w-full h-[58px] border border-[#6F6F6F] flex rounded-[8px] flex-1 px-4 py-4 bg-[#FFFFFF0A] text-[#F4F0E1]"
+							ddiSelectClassName="h-[58px] py-4 pl-10 pr-2 bg-[#D9CFC31A] rounded-l-[8px] border border-[#6F6F6F] border-r-[0px] text-[#F4F0E1] focus:outline-none"
+							phoneInputClassName="w-full !h-[58px] px-4 py-4 rounded-r-[8px] bg-[#FFFFFF0A] text-[#F4F0E1] focus:outline-none h-[53px] border border-[#6F6F6F] border-l-[0px]"
 							buttonClassName="w-full h-14 font-raleway font-extrabold text-[#FFFFFF] rounded-[8px] px-6 text-base uppercase tracking-wide transition-all hover:brightness-110 border border-solid border-transparent [background:linear-gradient(90deg,_#6F0B08_0%,_#E82223_100%)_padding-box,_linear-gradient(180deg,_rgba(255,98,99,0.25)_0%,_#FF6263_100%)_border-box] shadow-[0px_6px_13px_0px_#CC1C1C33,_0px_23px_23px_0px_#CC1C1C2B,_0px_52px_31px_0px_#CC1C1C1A,_0px_93px_37px_0px_#CC1C1C08,_0px_145px_41px_0px_#CC1C1C00]"
 						/>
 					</div>
