@@ -60,7 +60,7 @@ export default function HeroSection({
 					</div>
 					<div className="mt-6 mb-2 font-bebas-neue text-left">
 						<div
-							className={`2md:text-[40px] text-2xl leading-none text-left text-[#f4f0e1] font-spectral font-extrabold`}
+							className={`2md:text-[40px] text-2xl leading-none text-left !text-[#07242C] font-spectral font-extrabold`}
 						>
 							{titleRedLine}
 						</div>
