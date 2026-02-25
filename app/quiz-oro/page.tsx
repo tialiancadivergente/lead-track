@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { formatRequestErrorMessage } from "@/app/modules/format-request-error-message";
 import {
   isMultipleInputType,
@@ -31,8 +31,8 @@ import useUserIP from "../hooks/useUserIP";
 import { sendLeadScoreTracking } from "@/lib/tracking/leadScoreTracking";
 import { sendLeadTracking } from "@/lib/tracking/leadTracking";
 
-export default function QuizNewPage() {
-  const searchParams = useSearchParams()
+function QuizNewPageContent() {
+  const searchParams = useSearchParams();
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -437,5 +437,13 @@ export default function QuizNewPage() {
       isSubmittingAnswers={isSubmittingAnswers}
       whatsappUrl={whatsappUrl}
     />
+  );
+}
+
+export default function QuizNewPage() {
+  return (
+    <Suspense fallback={null}>
+      <QuizNewPageContent />
+    </Suspense>
   );
 }
