@@ -15,9 +15,9 @@ export const Headline: IHeadline[] = [
     isLogo: true,
     title: (
       <p
-        className="uppercase font-spectral text-[#07242C] font-extrabold"
+        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
       >
-        Faça seu diagnóstico de <span className="text-[#006D71]">dependência emocional</span> gratuito
+        Faça seu diagnóstico de <span className="text-[#C0964B]">dependência emocional</span> gratuito
       </p>
     ),
     text: (
@@ -26,16 +26,16 @@ export const Headline: IHeadline[] = [
       </p>
     ),
   },
-    {
+  {
     id: "h1",
     isPicture: false,
     isLogo: true,
     title: (
       <p
-        className="uppercase font-spectral text-[#07242C] font-extrabold"
+        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
       >
         Você já percebeu que sempre fica no “quase”?<br />
-        <span className="text-[#006D71]">Quase cresce. Quase prospera. Quase dá certo.</span>
+        <span className="text-[#C0964B]">Quase cresce. Quase prospera. Quase dá certo.</span>
       </p>
     ),
     text: (
@@ -51,10 +51,10 @@ export const Headline: IHeadline[] = [
     isLogo: true,
     title: (
       <p
-        className="uppercase font-spectral text-[#07242C] font-extrabold"
+        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
       >
         Você não está atrasado<br />
-        <span className="text-[#006D71]">Está emocionalmente preso.</span>
+        <span className="text-[#C0964B]">Está emocionalmente preso.</span>
       </p>
     ),
     text: (
@@ -69,10 +69,10 @@ export const Headline: IHeadline[] = [
     isLogo: true,
     title: (
       <p
-        className="uppercase font-spectral text-[#07242C] font-extrabold"
+        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
       >
         Tem gente menos preparada vivendo melhor que você.<br />
-        <span className="text-[#006D71]">E isso não é injustiça.</span>
+        <span className="text-[#C0964B]">E isso não é injustiça.</span>
       </p>
     ),
     text: (

@@ -4,7 +4,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { type LeadCaptureSubmitData } from "@/app/components/form/lead-capture-form";
-import { Headline } from "@/lib/config/headline";
 import { LEAD_TRACK_CONFIG } from "@/lib/config/lead-track-config";
 import {
   getTrackingCookies,
@@ -20,6 +19,7 @@ import type {
   LeadRegistrationPayload,
 } from "@/app/modules/lead-capture/lead-capture.model";
 import ContainerTeste from "./container";
+import { Headline } from "./headline";
 
 export default function Formv1() {
   const params = useParams();
