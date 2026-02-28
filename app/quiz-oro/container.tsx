@@ -8,6 +8,7 @@ import {
   isOpenInputType,
 } from "@/app/modules/lead-score/lead-score-input-type";
 import type { QuizQuestion } from "@/app/modules/lead-score/lead-score.types";
+import { useEffect } from "react";
 
 interface ContainerQuestProps {
   isFetchingQuestions: boolean;
@@ -27,6 +28,7 @@ interface ContainerQuestProps {
   isCurrentQuestionAnswered: boolean;
   isSubmittingAnswers: boolean;
   whatsappUrl: string;
+  theme: string;
 }
 
 export default function ContainerQuest({
@@ -47,23 +49,35 @@ export default function ContainerQuest({
   isCurrentQuestionAnswered,
   isSubmittingAnswers,
   whatsappUrl,
+  theme,
 }: ContainerQuestProps) {
   const progress = totalQuestions
     ? ((currentQuestion + 1) / totalQuestions) * 100
     : 0;
   const isLastQuestion = currentQuestion === totalQuestions - 1;
 
+  useEffect(() => {
+    const html = document.documentElement;
+    if (theme === "2") {
+      html.classList.add("light");
+      html.classList.remove("dark");
+    } else {
+      html.classList.add("dark");
+      html.classList.remove("light");
+    }
+  }, [theme]);
+
   return (
     <div>
       <section
-        className={`relative flex items-center justify-center overflow-hidden h-full bg-[url('/images/v21/bg_leadscore.webp')] bg-cover bg-center`}
+        className={`relative flex items-center justify-center overflow-hidden h-full dark:bg-[url('/images/v21/bg_leadscore.webp')] light:bg-[url('/images/oro/splashScreen.webp')] bg-cover bg-center`}
       >
         <div className="container mx-auto relative h-full px-4">
           <div className="flex flex-col items-center justify-center text-center py-8">
             <div className="w-full max-w-4xl mx-auto">
               <div className="mb-6 md:mb-8 flex justify-center">
                 <Image
-                  src="/images/v21/logo_o_resgate_dos_otimistas.webp"
+                  src={theme === "1" ? "/images/v21/logo_o_resgate_dos_otimistas.webp" : "/images/logo-o-resgate-dos-otimistas.png"}
                   alt="Logotipo Resgate dos otimistas"
                   width={424}
                   height={164}
@@ -77,19 +91,19 @@ export default function ContainerQuest({
               </div>
 
               <h1
-                className={`text-2xl md:text-5xl font-bold text-custom-primary-gold -mt-4 mb-1 md:mb-2 text-center`}
+                className={`text-2xl md:text-5xl font-bold dark:text-custom-primary-gold -mt-4 mb-1 md:mb-2 text-center light:text-[#006D71]`}
               >
                 FALTA APENAS UM PASSO
               </h1>
               <h2
-                className={`text-2xl md:text-5xl font-bold text-custom-primary-gold mb-4 md:mb-7 text-center`}
+                className={`text-2xl md:text-5xl font-bold dark:text-custom-primary-gold mb-4 md:mb-7 text-center light:text-[#006D71]`}
               >
                 PARA GARANTIR SUA VAGA!
               </h2>
 
               <p
-                className="text-white text-base md:text-lg mb-5 md:mb-7 text-center"
-                style={{ color: "#fff", fontFamily: '"Roboto", Sans-serif' }}
+                className="dark:text-[#fff] light:text-[#07242C] text-base md:text-lg mb-5 md:mb-7 text-center"
+                style={{ fontFamily: '"Roboto", Sans-serif' }}
               >
                 Para concluir sua inscrição, responda:
               </p>
@@ -224,9 +238,9 @@ export default function ContainerQuest({
                 </div>
               </div>
 
-              <div className="mb-6 md:mb-8 text-center" style={{ color: "#fff" }}>
+              <div className="mb-6 md:mb-8 text-center text-white">
                 <p
-                  className="text-white text-xs md:text-sm mb-4 md:mb-5"
+                  className="dark:text-white light:text-[#07242C] text-xs md:text-sm mb-4 md:mb-5"
                   style={{ fontFamily: '"Roboto", Sans-serif' }}
                 >
                   Apos responder as questoes, toque no botao abaixo

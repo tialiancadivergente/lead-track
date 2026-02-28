@@ -47,6 +47,7 @@ function QuizNewPageContent() {
   const [temperatura, setTemperatura] = useState<string | null>(null)
   const [launch, setLaunch] = useState<string>("[ORO][MAR26]");
   const [hasSent, setHasSent] = useState(false)
+  const [theme, setTheme] = useState("1");
 
   const userIp = useUserIP();
 
@@ -91,8 +92,6 @@ function QuizNewPageContent() {
       }
     }
   }, [temperatura])
-
-  console.log('temperatura <=>', temperatura)
   // *********** FINAL - CODIGO LEGADO *********** 
 
   useEffect(() => {
@@ -100,7 +99,7 @@ function QuizNewPageContent() {
       return;
     }
 
-    const { formVersionId, leadRegistrationRequestId, temperature } =
+    const { formVersionId, leadRegistrationRequestId, temperature, theme } =
       readQuestTesteUrlContext(
         window.location.search,
         DEFAULT_QUEST_FORM_VERSION_ID
@@ -116,6 +115,7 @@ function QuizNewPageContent() {
     setFormVersionId(formVersionId);
     setLeadRegistrationRequestId(leadRegistrationRequestId);
     setTemperature(temperature);
+    setTheme(theme);
     setEmail(urlParams.get("email") || "");
     setPhone(urlParams.get("phone") || urlParams.get("telefone") || "");
   }, []);
@@ -436,6 +436,7 @@ function QuizNewPageContent() {
       isCurrentQuestionAnswered={isCurrentQuestionAnswered}
       isSubmittingAnswers={isSubmittingAnswers}
       whatsappUrl={whatsappUrl}
+      theme={theme}
     />
   );
 }

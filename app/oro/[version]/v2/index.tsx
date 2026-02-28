@@ -32,6 +32,7 @@ export default function Formv2() {
   const [temperatura, setTemperatura] = useState<NormalizedTemperature | undefined>(
     undefined
   );
+  const [theme, setTheme] = useState<string>("1");
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [formFields, setFormFields] = useState<Record<string, string> | null>(
     null
@@ -106,6 +107,7 @@ export default function Formv2() {
       }
 
       setTemperatura(temperaturaValue);
+      setTheme(params.theme as string);
     }
   }, [params]);
 
@@ -184,7 +186,7 @@ export default function Formv2() {
         throw new Error("requestId nao retornado na resposta.");
       }
 
-      window.location.href = `/quiz-oro/?temperature=${temperatura}&requestId=${encodeURIComponent(
+      window.location.href = `/quiz-oro/?temperature=${temperatura}&theme=${theme}&requestId=${encodeURIComponent(
         requestId
       )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}`;
     } catch (error) {

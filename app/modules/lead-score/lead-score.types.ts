@@ -66,4 +66,5 @@ export interface QuestTesteUrlContext {
   formVersionId: string;
   leadRegistrationRequestId: string;
   temperature: string;
+  theme: string;
 }
