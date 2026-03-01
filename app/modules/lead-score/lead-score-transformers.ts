@@ -167,5 +167,6 @@ export function readQuestTesteUrlContext(
       urlParams.get("lead_registration_request_id") ||
       "",
     temperature: temperatureFromUrl || "f",
+    theme: urlParams.get("theme") || "1",
   };
 }
