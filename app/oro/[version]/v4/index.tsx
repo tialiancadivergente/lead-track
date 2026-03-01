@@ -35,6 +35,7 @@ export default function Formv4() {
   const [formFields, setFormFields] = useState<Record<string, string> | null>(
     null
   );
+  const [theme, setTheme] = useState<string>("1");
 
   const { launch, season, tag_id } = LEAD_TRACK_CONFIG;
 
@@ -105,6 +106,7 @@ export default function Formv4() {
       }
 
       setTemperatura(temperaturaValue);
+      setTheme(params.theme as string);
     }
   }, [params]);
 
@@ -183,7 +185,7 @@ export default function Formv4() {
         throw new Error("requestId nao retornado na resposta.");
       }
 
-      window.location.href = `/quiz-oro/?temperature=${temperatura}&requestId=${encodeURIComponent(
+     window.location.href = `/quiz-oro/?temperature=${temperatura}&theme=${theme}&requestId=${encodeURIComponent(
         requestId
       )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}`;
     } catch (error) {
