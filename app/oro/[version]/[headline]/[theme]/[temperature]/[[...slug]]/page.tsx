@@ -6,10 +6,19 @@ import Formv2 from "@/app/oro/[version]/v2";
 import SplashScreenOro from "@/app/components/SplashScreen/SplashScreenOro";
 import Formv3 from "@/app/oro/[version]/v3";
 import Formv4 from "@/app/oro/[version]/v4";
+import Formv5 from "@/app/oro/[version]/v5";
 
 
 export default function Home() {
   const { version } = useParams();
+
+   if (version === "v5") {
+    return (
+      <SplashScreenOro>
+        <Formv5 />
+      </SplashScreenOro>
+    );
+  }
 
  if (version === "v4") {
     return (
