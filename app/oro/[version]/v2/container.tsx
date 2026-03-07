@@ -32,7 +32,6 @@ export default function ContainerTeste({
 				onSubmit={onSubmit}
 				submitError={submitError}
 			/>
-			<Biography />
 			<Footer />
 		</>
 	);
