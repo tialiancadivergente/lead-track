@@ -34,13 +34,12 @@ export const Headline: IHeadline[] = [
       <p
         className="uppercase font-spectral text-[#07242C] font-extrabold"
       >
-        Você já percebeu que sempre fica no “quase”?<br />
-        <span className="text-[#006D71]">Quase cresce. Quase prospera. Quase dá certo.</span>
+        Você está vivendo tudo <span className="text-[#006D71]">o que poderia viver?</span>
       </p>
     ),
     text: (
       <p>
-        Descubra quais <span className="uppercase font-bold">bloqueios invisíveis</span> te puxam de volta toda vez em um diagnóstico gratuito.
+        Participe de uma imersão prática <span className="uppercase font-bold">focada em desenvolvimento pessoal</span> para quem sente que pode viver mais e quer clareza, direção e evolução real na carreira, nos relacionamentos e nas decisões da vida.
       </p>
     ),
   },
