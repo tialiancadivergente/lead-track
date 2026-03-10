@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { useParams } from "next/navigation"
+import { useParams, useSearchParams } from "next/navigation"
 import { NormalizedTemperature, normalizeTemperature } from "@/lib/temperature-utils"
 import { LEAD_TRACK_CONFIG } from "@/lib/config/lead-track-config"
 import { useCreateLeadCapture } from "@/app/modules/lead-capture/hook/use-create-lead-capture"
@@ -14,7 +14,11 @@ import { HeadlineV9 } from "@/lib/config/headline/headline-v9"
 
 export default function HeroSection() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(
+    null
+  );
+  const [formFields, setFormFields] = useState<Record<string, string> | null>(
     null
   );
   const [redLine, setRedLine] = useState<React.ReactNode | null>(null);
@@ -35,6 +39,49 @@ export default function HeroSection() {
 
     return undefined;
   };
+
+  // ************* INICIO - CODIGO LEGADO ************* 
+  // Capturar UTMs da queryString
+  useEffect(() => {
+    if (searchParams) {
+      const utmParams: Record<string, string> = {};
+      let hasUtm = false;
+
+      // Lista de parâmetros UTM comuns
+      const utmKeys = [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_term",
+        "utm_content",
+        "utm_id",
+      ];
+
+      // Verificar cada parâmetro UTM
+      utmKeys.forEach((key) => {
+        const value = searchParams.get(key);
+        if (value) {
+          utmParams[key] = value;
+          hasUtm = true;
+        }
+      });
+
+      // Adicionar outros parâmetros da query que não são UTM
+      searchParams.forEach((value, key) => {
+        if (!utmKeys.includes(key) && key !== "temperatura") {
+          utmParams[key] = value;
+          hasUtm = true;
+        }
+      });
+
+      // Definir formFields apenas se houver UTMs
+      if (hasUtm) {
+        console.log("UTM params:", utmParams);
+        setFormFields(utmParams);
+      }
+    }
+  }, [searchParams]);
+  // ************* FINAL - CODIGO LEGADO ************* 
 
   useEffect(() => {
     if (params && params.temperatura) {
@@ -81,6 +128,39 @@ export default function HeroSection() {
       const { currentUrl, currentPath, currentPage } = getTrackingPageInfo();
       const { utmObject, getUtmValue } = getTrackingUtmInfo();
       const cookies = getTrackingCookies();
+
+      // ************* INICIO - CODIGO LEGADO *************
+      const payloadDynamo: Record<string, any> = {
+        email: data.email,
+        phone: data.normalizedPhone,
+        temperature: temperatura,
+        tipo: `redline-${params.headline}`,
+        version: params.version,
+        parametroCompleto: `${currentPage}${currentPath}`,
+        domain: currentPage,
+        uri: currentPage,
+        tagId: resolvedTagId,
+        launch,
+        path: window.location.pathname,
+      };
+
+      // Adicionar formFields ao payload apenas se existir
+      if (formFields) {
+        payloadDynamo.formFields = formFields;
+      }
+
+      const responseDynamo = await fetch("/api/register-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payloadDynamo),
+      });
+
+      if (!responseDynamo.ok) {
+        throw new Error("Falha ao registrar lead no dynamo");
+      }
+      // ************* FINAL - CODIGO LEGADO *************
 
       const payload: LeadRegistrationPayload = {
         email: data.email,
