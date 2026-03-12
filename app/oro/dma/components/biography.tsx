@@ -30,10 +30,10 @@ export default function Biography() {
 	}
 	return (
 		<section
-			className={`min-h-[1297px] md:h-[1608px] md:min-h-[1608px] flex flex-col items-center p-4 md:p-0 justify-start overflow-hidden bg-[#D3CAC0] bg-[url('/images/oro/v6/biografia_elton_clara_mobile.webp')] md:bg-[url('/images/oro/v4/biografia_elton_clara.webp')] bg-cover bg-top md:bg-center z-0`}		>
+			className={`min-h-[1297px] md:h-[948px] md:min-h-[948px] flex flex-col items-center p-4 md:p-0 justify-start overflow-hidden bg-[#D3CAC0] bg-[url('/images/oro/v6/biografia_elton_clara_mobile.webp')] md:bg-[url('/images/oro/v6/biografia_elton_clara.webp')] bg-cover bg-top md:bg-center z-0`}		>
 			<div className="mx-auto px-4 w-full max-w-[1200px]">
 
-				<div className="flex justify-center md:justify-start mt-[450px] md:mt-[245px] w-full">
+				<div className="flex justify-center md:justify-start mt-[450px] md:mt-[125px] w-full">
 					<div className="w-full max-w-[512px] text-[#07242C]">
 						<div className="font-spectral text-2xl md:text-[32px] font-bold">
 							QUEM VAI SER O SEU MENTOR NESSA JORNADA?

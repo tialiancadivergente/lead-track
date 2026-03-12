@@ -25,7 +25,7 @@ export default function HeroSection({
 	return (
 		<section
 			id="hero"
-			className={`relative h-[1171px] md:h-[901px] flex flex-col items-center p-4 md:p-0 justify-start md:justify-center overflow-hidden bg-[#D3CAC0] bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara_mobile.webp')] md:bg-[url('/images/oro/v4/o_resgate_dos_otimistas_clara.webp')] bg-cover bg-top md:bg-center z-0`}		>
+			className={`relative h-[1171px] md:h-[901px] flex flex-col items-center p-4 md:p-0 justify-start md:justify-center overflow-hidden bg-[#D3CAC0] bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara_mobile.webp')] md:bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara.webp')] bg-cover bg-top md:bg-center z-0`}		>
 			<div
 				className={`mx-auto sm:px-4 2md:pt-6 pt-2 relative lg:w-[1080px] w-full flex justify-center md:justify-start`}
 			>
