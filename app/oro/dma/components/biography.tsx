@@ -46,7 +46,7 @@ export default function Biography() {
 								Líder e Idealizador da Aliança Divergente
 							</p>
 						</div>
-						<div className="flex flex-col gap-6 font-extralight font-raleway">
+						<div className="flex flex-col gap-6 font-raleway">
 							<p>
 								Elton Euler é um dos maiores exemplos de superação e transformação da atualidade
 							</p>
