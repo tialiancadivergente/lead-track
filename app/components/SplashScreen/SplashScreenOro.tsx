@@ -14,7 +14,7 @@ const criticalAssets = {
   ]
 }
 
-export default function SplashScreenOro({ children }: { children: React.ReactNode }) {
+export default function SplashScreenOro({ children, theme }: { children: React.ReactNode; theme?: string }) {
   const params = useParams();
   const [loading, setLoading] = useState(true)
   const [progress, setProgress] = useState(0)
@@ -25,7 +25,7 @@ export default function SplashScreenOro({ children }: { children: React.ReactNod
     const parts = paramValue.split("-") || [];
     const isDarkValue = parts[2] || "";
 
-    if (params.theme === "2" || isDarkValue === "h2") {
+    if (params.theme === "2" || isDarkValue === "h2" || theme === "2") {
       setIsDark(false);
     } else {
       setIsDark(true);
