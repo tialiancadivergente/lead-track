@@ -25,17 +25,17 @@ export default function HeroSection({
 	return (
 		<section
 			id="hero"
-			className={`relative h-[1019px] md:h-[901px] flex flex-col items-center p-4 md:p-0 justify-start md:justify-center overflow-hidden bg-[#D3CAC0] bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara_mobile_teste.webp')] md:bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara_teste.webp')] bg-cover bg-top md:bg-center z-0`}
+			className={`relative h-[726px] md:h-[901px] flex flex-col items-center p-4 md:p-0 justify-start md:justify-center overflow-hidden bg-[#D3CAC0] bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara_mobile_teste.webp')] md:bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara_teste.webp')] bg-cover bg-top md:bg-center z-0`}
 		>
 			<div
 				className={`mx-auto sm:px-4 2md:pt-6 pt-2 relative lg:w-[1080px] w-full flex justify-center md:justify-start`}
 			>
-				<div className="w-full md:max-w-[528px] max-w-[440px] pt-[450px] md:pt-32">
+				<div className="w-full md:max-w-[528px] max-w-[440px] pt-[300px] md:pt-32">
 
 					{/* TÍTULO */}
-					<div className="md:mt-6 mt-3 mb-2 font-bebas-neue text-left">
+					<div className="md:mt-6 mt-3 mb-2 font-bebas-neue text-center md:text-left">
 						<div
-							className={`2md:text-[40px] text-xl leading-none text-left text-[#f4f0e1] font-spectral font-extrabold`}
+							className={`2md:text-[40px] text-xl leading-none text-center md:text-left text-[#f4f0e1] font-spectral font-extrabold`}
 						>
 							{titleRedLine}
 						</div>
@@ -43,7 +43,7 @@ export default function HeroSection({
 
 					{/* DATAS + ÍCONES (MOVIDO PARA CÁ) */}
 					<div
-						className={`text-[#fff] font-raleway font-medium text-[14px] flex items-center mt-4 justify-start sm:gap-8 gap-2 xl:text-2xl sm:text-2xl text-sm`}
+						className={`text-[#fff] font-raleway font-medium text-[14px] flex items-center mt-4 justify-center md:justify-start sm:gap-8 gap-2 xl:text-2xl sm:text-2xl text-sm`}
 					>
 						<div className="flex items-center justify-center leading-none gap-2 text-[#07242C] font-raleway font-medium text-xs md:text-[14px]">
 							<CalendarDays className="text-[#006D71]" size={18} />
