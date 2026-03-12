@@ -25,23 +25,14 @@ export default function HeroSection({
 	return (
 		<section
 			id="hero"
-			className={`relative h-[1171px] md:h-[901px] flex flex-col items-center p-4 md:p-0 justify-start md:justify-center overflow-hidden bg-[#D3CAC0] bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara_mobile.webp')] md:bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara.webp')] bg-cover bg-top md:bg-center z-0`}		>
+			className={`relative h-[1019px] md:h-[901px] flex flex-col items-center p-4 md:p-0 justify-start md:justify-center overflow-hidden bg-[#D3CAC0] bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara_mobile_teste.webp')] md:bg-[url('/images/oro/v6/o_resgate_dos_otimistas_clara_teste.webp')] bg-cover bg-top md:bg-center z-0`}
+		>
 			<div
 				className={`mx-auto sm:px-4 2md:pt-6 pt-2 relative lg:w-[1080px] w-full flex justify-center md:justify-start`}
 			>
-				<div className="w-full 2md:max-w-[528px] max-w-[440px] pt-44 2md:pt-32">
-					<div
-						className={`text-[#fff] font-raleway font-medium text-[14px] flex items-center mt-20 justify-start sm:gap-8 gap-2 xl:text-2xl sm:text-2xl text-sm`}
-					>
-						<div className="flex items-center justify-center leading-none gap-2 text-[#07242C] font-raleway font-medium text-xs md:text-[14px]">
-							<CalendarDays className="text-[#006D71]" size={18} />
-							16, 17 e 18/03 - 19h55
-						</div>
-						<div className="flex items-center justify-center leading-none gap-2 text-[#07242C] font-raleway font-medium text-xs md:text-[14px]">
-							<Smartphone className="text-[#006D71]" size={18} />
-							Online e Gratuito
-						</div>
-					</div>
+				<div className="w-full md:max-w-[528px] max-w-[440px] pt-[450px] md:pt-32">
+
+					{/* TÍTULO */}
 					<div className="md:mt-6 mt-3 mb-2 font-bebas-neue text-left">
 						<div
 							className={`2md:text-[40px] text-xl leading-none text-left text-[#f4f0e1] font-spectral font-extrabold`}
@@ -50,22 +41,28 @@ export default function HeroSection({
 						</div>
 					</div>
 
+					{/* DATAS + ÍCONES (MOVIDO PARA CÁ) */}
+					<div
+						className={`text-[#fff] font-raleway font-medium text-[14px] flex items-center mt-4 justify-start sm:gap-8 gap-2 xl:text-2xl sm:text-2xl text-sm`}
+					>
+						<div className="flex items-center justify-center leading-none gap-2 text-[#07242C] font-raleway font-medium text-xs md:text-[14px]">
+							<CalendarDays className="text-[#006D71]" size={18} />
+							16, 17 e 18/03 - 19h55
+						</div>
+
+						<div className="flex items-center justify-center leading-none gap-2 text-[#07242C] font-raleway font-medium text-xs md:text-[14px]">
+							<Smartphone className="text-[#006D71]" size={18} />
+							Online e Gratuito
+						</div>
+					</div>
+
+					{/* TEXTO ABAIXO DO TÍTULO */}
 					<div
 						className="md:mb-8 mb-4 mt-4 text-[#07242C] 2md:text-2xl text-base font-extralight font-spectral"
 					>
-						{redLine ? (
-							redLine
-						) : (
-							<>
-								Descubra como{" "}
-								<span className="font-bold text-[#07242C]">
-									AUMENTAR O SEU NÍVEL DE PERMISSÃO
-								</span>{" "}
-								e melhorar seus resultados nas finanças, nos relacionamentos e
-								na saúde.
-							</>
-						)}
+						{redLine}
 					</div>
+
 					<div className="max-w-lg mt-8">
 						<LeadCaptureForm
 							formName={formName}
@@ -83,6 +80,7 @@ export default function HeroSection({
 							buttonClassName="w-full max-w-[512px] h-[46px] md:h-[56px] flex items-center justify-center gap-2 whitespace-nowrap font-raleway font-extrabold text-[#FFFFFF] rounded-[10px] px-[48px] py-[16px] text-base uppercase tracking-wide transition-all hover:brightness-110 border border-transparent bg-[linear-gradient(88.53deg,_#D10C10_0%,_#9B0609_100%)] shadow-[0px_6px_13px_0px_#00000033]"
 						/>
 					</div>
+
 				</div>
 			</div>
 		</section>
