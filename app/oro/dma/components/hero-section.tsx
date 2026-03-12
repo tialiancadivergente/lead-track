@@ -30,7 +30,7 @@ export default function HeroSection({
 			<div
 				className={`mx-auto sm:px-4 2md:pt-6 pt-2 relative lg:w-[1080px] w-full flex justify-center md:justify-start`}
 			>
-				<div className="w-full md:max-w-[528px] max-w-[440px] pt-[300px] md:pt-32">
+				<div className="w-full md:max-w-[528px] max-w-[440px] pt-[330px] md:pt-32">
 
 					{/* TÍTULO */}
 					<div className="md:mt-6 mt-3 mb-2 font-bebas-neue text-center md:text-left">
