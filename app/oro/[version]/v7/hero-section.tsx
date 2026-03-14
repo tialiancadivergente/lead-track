@@ -26,10 +26,10 @@ export default function HeroSection({
 	return (
 		<section
 			id="hero"
-			className={`relative h-[1100px] md:h-[902px] flex flex-col items-center p-4 md:p-0 justify-start overflow-hidden bg-[#071117] bg-[url('/images/oro/v7/o_resgate_dos_otimistas_mobile.webp')] md:bg-[url('/images/oro/v7/o_resgate_dos_otimistas_desktop.webp')] bg-cover bg-center z-0`}
+			className={`relative h-[1100px] md:h-[902px] flex flex-col items-center p-4 md:p-0 justify-start overflow-hidden bg-[#071117] bg-[url('/images/oro/v7/o_resgate_dos_otimistas_cida_elton_mobile.webp')] md:bg-[url('/images/oro/v7/o_resgate_dos_otimistas_cida_elton_desktop.webp')] bg-cover bg-center z-0`}
 		>
 			<div
-				className={`mx-auto sm:px-4 2md:pt-6 -mt-4 relative lg:w-[1080px] w-full flex justify-center md:justify-start`}
+				className={`mx-auto md:ml-[180px] md:mr-auto sm:px-4 2md:pt-6 -mt-4 relative lg:w-[1080px] w-full flex justify-center md:justify-start`}
 			>
 				<div className="w-full 2md:max-w-[580px] max-w-[440px]">
 					<div className="mt-[10px] md:mt-[30px] flex justify-center md:justify-start">

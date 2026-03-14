@@ -23,32 +23,27 @@ export default function HeroSection({
 	onSubmit,
 	submitError
 }: ContainerProps) {
-	const [countdown, setCountdown] = useState("00:00:00");
+	const [countdown, setCountdown] = useState("01:00");
 
 	useEffect(() => {
-		// Ajuste aqui a data/hora final do contador, se precisar
-		const targetDate = new Date("2026-03-16T19:55:00");
+		let timeLeft = 60; // 1 minuto
 
-		const updateCountdown = () => {
-			const now = new Date().getTime();
-			const distance = targetDate.getTime() - now;
+		const interval = setInterval(() => {
+			timeLeft--;
 
-			if (distance <= 0) {
-				setCountdown("00:00:00");
+			if (timeLeft <= 0) {
+				clearInterval(interval);
+				setCountdown("00:00");
 				return;
 			}
 
-			const hours = Math.floor(distance / (1000 * 60 * 60));
-			const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-			const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			const minutes = Math.floor(timeLeft / 60);
+			const seconds = timeLeft % 60;
 
 			setCountdown(
-				`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
+				`${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
 			);
-		};
-
-		updateCountdown();
-		const interval = setInterval(updateCountdown, 1000);
+		}, 1000);
 
 		return () => clearInterval(interval);
 	}, []);
@@ -56,7 +51,7 @@ export default function HeroSection({
 	return (
 		<section
 			id="hero"
-			className={`relative h-[1100px] md:h-[902px] flex flex-col items-center p-4 md:p-0 pt-[50px] md:pt-[69px] justify-start overflow-hidden bg-[#071117] bg-[url('/images/oro/v8/o_resgate_dos_otimistas_mobile.webp')] md:bg-[url('/images/oro/v8/o_resgate_dos_otimistas_desktop.webp')] bg-cover bg-center z-0`}
+			className={`relative h-[1100px] md:h-[902px] flex flex-col items-center p-4 md:p-0 pt-[50px] md:pt-[69px] justify-start overflow-hidden bg-[#071117] bg-[url('/images/oro/v8/o_resgate_dos_otimistas_cida_elton_mobile.webp')] md:bg-[url('/images/oro/v8/o_resgate_dos_otimistas_cida_elton_desktop.webp')] bg-cover bg-center z-0`}
 		>
 			<div
 				className="
@@ -88,7 +83,7 @@ export default function HeroSection({
 			</div>
 
 			<div
-				className={`mx-auto sm:px-4 2md:pt-6 -mt-4 md:-mt-[60px] relative lg:w-[1080px] w-full flex justify-center md:justify-start`}
+				className={`mx-auto md:ml-[180px] md:mr-auto sm:px-4 2md:pt-6 -mt-4 md:-mt-[60px] relative lg:w-[1080px] w-full flex justify-center md:justify-start`}
 			>
 				<div className="w-full 2md:max-w-[580px] max-w-[440px]">
 					<div className="mt-[10px] md:mt-[30px] flex justify-center md:justify-start">
@@ -145,7 +140,8 @@ export default function HeroSection({
 							emailInputClassName="w-full h-[58px] border border-[#D9D3BA] flex rounded-[200px] flex-1 px-4 py-4 bg-[#F4F0E11A] placeholder:text-[#F4F0E1] text-[#F4F0E1] font-raleway font-medium text-[16px]"
 							ddiSelectClassName="h-[58px] py-4 pl-10 pr-2 bg-[#F4F0E11A] rounded-l-[200px] border border-[#D9D3BA] border-r-[0px] text-[#F4F0E1] font-raleway font-medium text-[16px] focus:outline-none"
 							phoneInputClassName="w-full !h-[58px] px-4 py-4 rounded-r-[200px] bg-[#F4F0E11A] placeholder:text-[#F4F0E1] text-[#F4F0E1] font-raleway font-medium text-[16px] focus:outline-none border border-[#D9D3BA] border-l-[0px]"
-							buttonClassName="w-full h-14 font-raleway font-extrabold text-[#000000] rounded-[50px] px-6 text-base uppercase tracking-wide transition-all hover:brightness-110 border-2 border-transparent [background:linear-gradient(88.53deg,_#FFD17E_0%,_#B37E21_100%)_padding-box,_linear-gradient(180deg,_#FFDA99_0%,_#AD7512_100%)_border-box] shadow-[0px_6px_13px_0px_rgba(179,126,33,0.25)]" />
+							buttonClassName="w-full h-14 font-raleway font-extrabold text-[#000000] rounded-[50px] px-6 text-base uppercase tracking-wide transition-all hover:brightness-110 border-2 border-transparent [background:linear-gradient(88.53deg,_#FFD17E_0%,_#B37E21_100%)_padding-box,_linear-gradient(180deg,_#FFDA99_0%,_#AD7512_100%)_border-box] shadow-[0px_6px_13px_0px_rgba(179,126,33,0.25)]"
+						/>
 					</div>
 				</div>
 			</div>
