@@ -23,7 +23,7 @@ export default function HeroSection({
 	onSubmit,
 	submitError
 }: ContainerProps) {
-	const [countdown, setCountdown] = useState("00:00");
+	const [countdown, setCountdown] = useState("00:00:00");
 
 	useEffect(() => {
 		// Ajuste aqui a data/hora final do contador, se precisar
@@ -34,14 +34,17 @@ export default function HeroSection({
 			const distance = targetDate.getTime() - now;
 
 			if (distance <= 0) {
-				setCountdown("00:00");
+				setCountdown("00:00:00");
 				return;
 			}
 
-			const totalMinutes = Math.floor(distance / 1000 / 60);
-			const seconds = Math.floor((distance / 1000) % 60);
+			const hours = Math.floor(distance / (1000 * 60 * 60));
+			const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-			setCountdown(`${totalMinutes}:${String(seconds).padStart(2, "0")}`);
+			setCountdown(
+				`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
+			);
 		};
 
 		updateCountdown();
