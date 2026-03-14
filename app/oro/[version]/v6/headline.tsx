@@ -95,6 +95,7 @@ export const Headline: IHeadline[] = [
     ),
     text: (
       <p>
+        Participe gratuitamente do evento que revela <span className="uppercase font-bold">o que realmente está por trás dos bloqueios que surgem quando sua vida está prestes a avançar.</span> Cadastre-se abaixo para garantir sua vaga.
       </p>
     ),
   },
