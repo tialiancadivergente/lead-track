@@ -7,9 +7,36 @@ import SplashScreenOro from "@/app/components/SplashScreen/SplashScreenOro";
 import Formv3 from "@/app/oro/[version]/v3";
 import Formv4 from "@/app/oro/[version]/v4";
 import Formv5 from "@/app/oro/[version]/v5";
+import Formv6 from "@/app/oro/[version]/v6";
+import Formv7 from "@/app/oro/[version]/v7";
+import Formv8 from "@/app/oro/[version]/v8";
 
 export default function Home() {
   const { version } = useParams();
+
+        if (version === "v8") {
+    return (
+      <SplashScreenOro>
+        <Formv8 />
+      </SplashScreenOro>
+    );
+  }
+
+      if (version === "v7") {
+    return (
+      <SplashScreenOro>
+        <Formv7 />
+      </SplashScreenOro>
+    );
+  }
+
+    if (version === "v6") {
+    return (
+      <SplashScreenOro>
+        <Formv6 />
+      </SplashScreenOro>
+    );
+  }
 
   if (version === "v5") {
     return (
