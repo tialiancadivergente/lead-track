@@ -3,6 +3,7 @@
 import React from "react";
 import { CalendarDays, Smartphone } from "lucide-react";
 import Image from "next/image";
+import Script from "next/script";
 import {
 	LeadCaptureForm,
 	LeadCaptureSubmitData,
@@ -23,11 +24,23 @@ export default function HeroSection({
 	onSubmit,
 	submitError
 }: ContainerProps) {
+	const [videoSrc, setVideoSrc] = React.useState("about:blank");
+
+	React.useEffect(() => {
+		const search = window.location.search || "?";
+		const source = `https://scripts.converteai.net/38ceed6c-8f63-40f6-95cd-d6fd1194b3c6/players/69bd47beb1f8e9f7f4f1822e/v4/embed.html${search}&vl=${encodeURIComponent(window.location.href)}`;
+		setVideoSrc(source);
+	}, []);
+
 	return (
 		<section
 			id="hero"
 			className={`relative h-[894px] md:h-[902px] flex flex-col items-center p-4 md:p-0 justify-start overflow-hidden bg-[#071117] bg-[url('/images/cida/v1/background_mobile.webp')] md:bg-[url('/images/cida/v1/background_desktop.webp')] bg-cover bg-center z-0`}
 		>
+			<Script
+				src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js"
+				strategy="afterInteractive"
+			/>
 
 			<div className="mt-[350px] mb-[16px] text-center">
 				<h1
@@ -108,20 +121,22 @@ export default function HeroSection({
 				"
 			>
 				<div
-					className="
-						w-[45px]
-						h-[45px]
-						flex
-						items-center
-						justify-center
-						rounded-full
-						bg-[#007A7EB2]
-						border-[0.5px]
-						border-[rgba(0,122,126,0.7)]
-						backdrop-blur-[5px]
-					"
+					id="ifr_69bd47beb1f8e9f7f4f1822e_wrapper"
+					className="w-full"
 				>
-					<div className="ml-[2px] border-l-[12px] border-l-white border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent"></div>
+					<div
+						id="ifr_69bd47beb1f8e9f7f4f1822e_aspect"
+						className="relative pt-[56.25%]"
+					>
+						<iframe
+							id="ifr_69bd47beb1f8e9f7f4f1822e"
+							frameBorder="0"
+							allowFullScreen
+							referrerPolicy="origin"
+							src={videoSrc}
+							className="absolute left-0 top-0 h-full w-full rounded-[14px]"
+						/>
+					</div>
 				</div>
 			</div>
 
