@@ -1,13 +1,27 @@
 "use client";
 
+import { useMemo } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function Application() {
+	const searchParams = useSearchParams();
+
+	const iframeSrc = useMemo(() => {
+		const typeformUrl = new URL("https://aliancadivergentead.typeform.com/to/ctOpWA5Y");
+		const queryString = searchParams.toString();
+
+		if (queryString) {
+			typeformUrl.search = queryString;
+		}
+
+		return typeformUrl.toString();
+	}, [searchParams]);
 
 	return (
 		<div className="min-h-screen w-full bg-[#01251e]">
 			<iframe
-				src="https://aliancadivergentead.typeform.com/to/ctOpWA5Y"
+				src={iframeSrc}
 				title="Ficha de Interesse - ORO"
 				className="min-h-screen h-full w-full border-0"
 				allow="camera; microphone; autoplay; encrypted-media;"
