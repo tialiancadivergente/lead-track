@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo } from "react";
+import { Suspense, useMemo } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-export default function Application() {
+function TypeformIframe() {
 	const searchParams = useSearchParams();
 
 	const iframeSrc = useMemo(() => {
@@ -19,14 +19,23 @@ export default function Application() {
 	}, [searchParams]);
 
 	return (
+		<iframe
+			src={iframeSrc}
+			title="Ficha de Interesse - ORO"
+			className="min-h-screen h-full w-full border-0"
+			allow="camera; microphone; autoplay; encrypted-media;"
+			allowFullScreen
+		/>
+	);
+}
+
+export default function Application() {
+
+	return (
 		<div className="min-h-screen w-full bg-[#01251e]">
-			<iframe
-				src={iframeSrc}
-				title="Ficha de Interesse - ORO"
-				className="min-h-screen h-full w-full border-0"
-				allow="camera; microphone; autoplay; encrypted-media;"
-				allowFullScreen
-			/>
+			<Suspense fallback={<div className="min-h-screen h-full w-full" />}>
+				<TypeformIframe />
+			</Suspense>
 			<footer className="w-full bg-[#02201a]" aria-label="Rodapé principal">
 				<div className="w-full max-w-[1024px] mx-auto flex flex-col md:flex-row justify-between items-center p-4 text-white/50 text-sm font-mulish">
 					<p className="mb-2 md:mb-0 text-center md:text-left" tabIndex={0}>
