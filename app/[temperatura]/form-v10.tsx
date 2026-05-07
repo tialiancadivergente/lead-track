@@ -11,8 +11,15 @@ import { Headline } from "@/lib/config/headline";
 import { LeadCaptureForm, LeadCaptureSubmitData } from "../components/form/lead-capture-form";
 import { getTrackingCookies, getTrackingPageInfo, getTrackingUtmInfo } from "@/lib/tracking/lead-tracking-browser";
 import { LeadRegistrationPayload } from "../modules/lead-capture/lead-capture.model";
+import Link from "next/link";
 
-export default function Formv10() {
+type LogoVariant = "default" | "dark";
+
+type Formv10Props = {
+  logoVariant?: LogoVariant;
+};
+
+export default function Formv10({ logoVariant = "default" }: Formv10Props) {
   const params = useParams();
   const searchParams = useSearchParams();
   const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(
@@ -44,6 +51,13 @@ export default function Formv10() {
 
     return undefined;
   };
+  
+  const LOGO_BY_VARIANT: Record<LogoVariant, string> = {
+    default: "/images/logo.png",
+    dark: "/images/v5/LOGO OLDI.png",
+  };
+
+  const logoSrc = LOGO_BY_VARIANT[logoVariant];
 
   // ************* INICIO - CODIGO LEGADO ************* 
   // Capturar UTMs da queryString
@@ -216,8 +230,8 @@ export default function Formv10() {
       <section
         id="hero"
         className={`relative flex flex-col items-center p-4 md:p-0 justify-center overflow-hidden bg-gradient-to-r from-[#000000] via-[#07242c] to-[#000000] z-0 ${isDark
-            ? "bg-gradient-to-r from-[#000000] via-[#07242c] to-[#000000]"
-            : "bg-gradient-to-r from-[#f4f0e1] via-[#f4f0e1] to-[#f4f0e1]"
+          ? "bg-gradient-to-r from-[#000000] via-[#07242c] to-[#000000]"
+          : "bg-gradient-to-r from-[#f4f0e1] via-[#f4f0e1] to-[#f4f0e1]"
           }`}
       >
         {/* Background com overlay */}
@@ -313,19 +327,19 @@ export default function Formv10() {
           {/* Coluna única centralizada ou duas colunas */}
           <div className="w-full max-w-2xl mx-auto mb-12">
             <div className="mb-4 sm:mb-8 flex justify-center">
-                <Image
-                  src="/images/logo-resgate-dos-otimistas.png"
-                  alt="Logotipo Resgate dos otimistas"
-                  width={322}
-                  height={171}
-                  priority
-                  className="object-contain select-none pointer-events-none"
-                  style={{
-                    maxWidth: "100%",
-                    height: "auto",
-                  }}
-                />
-              </div>
+              <Image
+                src="/images/logo-resgate-dos-otimistas.png"
+                alt="Logotipo Resgate dos otimistas"
+                width={322}
+                height={171}
+                priority
+                className="object-contain select-none pointer-events-none"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
+              />
+            </div>
             <div className="text-center my-4 sm:my-8">
               {!titleRedLine ? (
                 <>
@@ -400,11 +414,11 @@ export default function Formv10() {
               className={`text-[#C0964B] text-sm sm:text-lg mt-4 block text-center`}
               style={{ color: "#C0964B" }}
             >
-              ONLINE E GRATUITO. 16, 17 e 18/03 - 19h55
+              ONLINE E GRATUITO. 15, 16 e 17 de JUNHO ÀS 19H55
             </p>
           </div>
         </div>
-        <footer className="w-full mb-24 max-w-3xl mx-auto">
+        {/* <footer className="w-full mb-24 max-w-3xl mx-auto">
           <div className="w-full mb-6">
             <div
               className="border-t border-[#2a4447] w-full"
@@ -422,7 +436,72 @@ export default function Formv10() {
               TODOS OS DIREITOS RESERVADOS.
             </div>
           </div>
-        </footer>
+        </footer> */}
+        <div className="w-full pb-6">
+          <footer
+            className="
+          container mx-auto
+          flex md:flex-row flex-col
+          items-center justify-between
+          gap-6 w-full md:gap-2
+        "
+          >
+            <div
+              className="text-[14px] text-center md:text-left leading-[135%] font-mulish hidden md:block">
+              Copyright © O Levante dos Improváveis. <br />
+              Todos os direitos reservados.
+            </div>
+
+            <Image src={logoSrc} alt="Risk" width={250} height={32} />
+
+            <div className="text-[14px] text-center md:text-left leading-[135%] font-mulish block md:hidden">
+              Copyright © O Levante dos Improváveis. <br />
+              Todos os direitos reservados.
+            </div>
+
+            <div className="flex flex-col items-center md:items-start space-x-2">
+              <div className="flex items-center space-x-2">
+                <Link
+                  href="/politica-de-privacidade"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[14px] text-center md:text-left leading-[135%] font-mulish transition-colors duration-200 hover:text-[#C0964B]"
+                >
+                  Política de privacidade
+                </Link>
+
+                <span className="text-[14px] text-center md:text-left leading-[135%] font-mulish">|</span>
+
+                <Link
+                  href="/termos-de-uso"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[14px] text-center md:text-left leading-[135%] font-mulish transition-colors duration-200 hover:text-[#C0964B]"
+                >
+                  Termos de uso
+                </Link>
+              </div>
+
+              <p className="text-[12px] text-center md:text-left leading-[135%] font-mulish">
+                AEON LTDA CNPJ nº 48.424.807/0001-88
+              </p>
+            </div>
+          </footer>
+
+          <div className="container mx-auto w-full mt-6 md:mt-8 px-4 md:px-0">
+            <p className="font-mulish font-bold text-[14px] text-center md:text-left leading-[135%] mb-2">
+              AVISO LEGAL:
+            </p>
+
+            <p className="font-mulish text-[14px] text-center md:text-left leading-[135%]">
+              Os resultados podem variar de pessoa para pessoa. Este método tem
+              caráter educacional e de desenvolvimento pessoal, não garantindo
+              ganhos financeiros imediatos ou específicos. O sucesso depende da
+              aplicação prática de cada participante. Este site não é afiliado,
+              endossado ou patrocinado pelo Google ou Meta.
+            </p>
+          </div>
+        </div>
       </section>
     </div>
   );

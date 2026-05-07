@@ -1,22 +1,24 @@
 export const TEMPERATURE_TAG_MAP: Record<string, number> = {
-  'q': 120566,
-  'm': 120096,
-  'f': 120566,
-  'o': 120632,
-  'org': 120632
+  'q': 120806,
+  'm': 120806,
+  'f': 120806,
+  't': 120806,
+  'o': 120806,
+  'org': 120806
 };
 
-export const NORMALIZED_TEMPERATURE_VALUES = ["q", "f", "m", "org"] as const;
+export const NORMALIZED_TEMPERATURE_VALUES = ["q", "f", "m", "t", "org"] as const;
 
 export type NormalizedTemperature =
   (typeof NORMALIZED_TEMPERATURE_VALUES)[number];
 
 export const TEMPERATURE_TAG_MAP_ORO: Record<string, string> = {
-  'q': '[ORO][MAR26] Quente',
-  'm': '[ORO][NOV25] Morno',
-  'f': '[ORO][MAR26] FRIO',
-  'o': '[ORO][MAR26][ORGANICO]',
-  'org': '[ORO][MAR26][ORGANICO]'
+  'q': '[ORO][JUN26][TRAFEGO]',
+  'm': '[ORO][JUN26][TRAFEGO]',
+  'f': '[ORO][JUN26][TRAFEGO]',
+  't': '[ORO][JUN26][TRAFEGO]',
+  'o': '[ORO][JUN26][ORGANICO]',
+  'org': '[ORO][JUN26][ORGANICO]'
 };
 
 export const getTagIdByTemperature = (temperature: string): number | null => {
@@ -49,6 +51,7 @@ export const normalizeTemperature = (
     rawValue === "q" ||
     rawValue === "f" ||
     rawValue === "m" ||
+    rawValue === "t" ||
     rawValue === "org"
   ) {
     return rawValue;

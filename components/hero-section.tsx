@@ -269,7 +269,7 @@ export default function HeroSection() {
                 buttonClassName="w-full bg-custom-primary-gold text-white font-medium py-3 px-6 rounded-md transition-all hover:brightness-110 uppercase text-sm tracking-wider"
               />
             </div>
-            <p className="text-[#C0964B] text-lg mt-4 text-center md:text-left" style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 16, 17 e 18/03 - 19h55</p>
+            <p className="text-[#C0964B] text-lg mt-4 text-center md:text-left" style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 15, 16 e 17 de JUNHO ÀS 19H55</p>
           </div>
 
           {/* Coluna da direita - Imagem Hero */}
