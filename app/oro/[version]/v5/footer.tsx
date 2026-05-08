@@ -32,7 +32,9 @@ export default function Footer() {
 
 						<div className="flex items-center justify-center lg:justify-end gap-3 flex-wrap">
 							<a
-								href="/politicas-de-privacidade"
+								href="https://www.oresgatedosotimistas.com.br/politica-de-privacidade"
+								target="_blank"
+								rel="noopener noreferrer"
 								className="hover:opacity-80 transition-opacity"
 							>
 								Política de privacidade
@@ -41,7 +43,9 @@ export default function Footer() {
 							<span>|</span>
 
 							<a
-								href="/termos-de-uso"
+								href="https://www.oresgatedosotimistas.com.br/termos-de-uso"
+								target="_blank"
+								rel="noopener noreferrer"
 								className="hover:opacity-80 transition-opacity"
 							>
 								Termos de uso
