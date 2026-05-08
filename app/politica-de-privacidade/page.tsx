@@ -22,11 +22,11 @@ export default function PoliticaDePrivacidade() {
           </p>
 
           <p>
-            A <strong>AEON LTDA</strong> valoriza a privacidade e tem o compromisso de proteger e processar suas informações pessoais de forma responsável. Esta declaração de privacidade descreve como a <strong>AEON LTDA</strong> coleta, utiliza e compartilha suas informações.
+            A <strong>ALIANCA DIVERGENTE LTDA</strong> valoriza a privacidade e tem o compromisso de proteger e processar suas informações pessoais de forma responsável. Esta declaração de privacidade descreve como a <strong>ALIANCA DIVERGENTE LTDA</strong> coleta, utiliza e compartilha suas informações.
           </p>
 
           <p>
-            Este site (aliancadivergente.com.br), todo o seu conteúdo e seus sub endereços (o "WEBSITE") são de propriedade de <strong>AEON LTDA</strong>, inscrita no CNPJ nº 48.424.807/0001-88, com sede em AV PAULISTA, 1471 EDIF BARAO DE CRISTINA, CJ 1110, BELA VISTA, SÃO PAULO - SP, 01311-927, Brasil (o "Controlador") e segue a Política de Privacidade a seguir descrita:
+            Este site (aliancadivergente.com.br), todo o seu conteúdo e seus sub endereços (o "WEBSITE") são de propriedade de <strong>ALIANCA DIVERGENTE LTDA</strong>, inscrita no CNPJ nº 59.301.463.0001-36, com sede em Rua Salviano José da Silva, Eldorado, São José dos Campos - SP, CEP 12238-573, Brasil (o "Controlador") e segue a Política de Privacidade a seguir descrita:
           </p>
 
           <p>
@@ -46,7 +46,7 @@ export default function PoliticaDePrivacidade() {
           </h2>
 
           <p>
-            Para que seja possível entregar os nossos serviços e proporcionar uma melhor experiência de navegação, a <strong>AEON LTDA</strong> coletará dos Usuários alguns dados pessoais quando efetuarem o cadastro ou estiverem navegando na plataforma. Todos os dados coletados são utilizados apenas para as finalidades de prestação dos serviços oferecidos pela <strong>AEON LTDA</strong> e para as finalidades descritas nesta Política.
+            Para que seja possível entregar os nossos serviços e proporcionar uma melhor experiência de navegação, a <strong>ALIANCA DIVERGENTE LTDA</strong> coletará dos Usuários alguns dados pessoais quando efetuarem o cadastro ou estiverem navegando na plataforma. Todos os dados coletados são utilizados apenas para as finalidades de prestação dos serviços oferecidos pela <strong>ALIANCA DIVERGENTE LTDA</strong> e para as finalidades descritas nesta Política.
           </p>
 
           <p>
@@ -70,7 +70,7 @@ export default function PoliticaDePrivacidade() {
           </p>
 
           <p>
-            Algumas transações on-line podem envolver chamadas telefônicas realizadas entre a <strong>AEON LTDA</strong> e o titular dos dados. Também podem envolver bate-papos on-line via WhatsApp.
+            Algumas transações on-line podem envolver chamadas telefônicas realizadas entre a <strong>ALIANCA DIVERGENTE LTDA</strong> e o titular dos dados. Também podem envolver bate-papos on-line via WhatsApp.
           </p>
 
           <p>
@@ -86,7 +86,7 @@ export default function PoliticaDePrivacidade() {
           </p>
 
           <p>
-            Você também será adicionado a um infoproduto <strong>AEON LTDA</strong>: esse é um grupo no WhatsApp com outros alunos, cuja troca de informações pessoais nesse ambiente não é de responsabilidade do "Controlador".
+            Você também será adicionada a um infoproduto <strong>ALIANCA DIVERGENTE LTDA</strong>: esse é um grupo no WhatsApp com outros alunos, cuja troca de informações pessoais nesse ambiente não é de responsabilidade do "Controlador".
           </p>
 
           <p>
@@ -118,7 +118,7 @@ export default function PoliticaDePrivacidade() {
           </p>
 
           <p>
-            A qualquer momento, é possível optar por não receber materiais de marketing da <strong>AEON LTDA</strong>, seguindo as instruções de cancelamento de subscrição incluídas em cada e-mail recebido.
+            A qualquer momento, é possível optar por não receber materiais de marketing da <strong>ALIANCA DIVERGENTE LTDA</strong>, seguindo as instruções de cancelamento de subscrição incluídas em cada e-mail recebido.
           </p>
 
           <p>
@@ -138,7 +138,7 @@ export default function PoliticaDePrivacidade() {
           </p>
 
           <p>
-            Apenas o Controlador possui acesso aos dados pessoais coletados por meio de seus portais eletrônicos para os fins contratados, razão pela qual tal acesso é restrito à <strong>AEON LTDA</strong>, seus parceiros e demais prestadores de serviços, e está restrito às funções e atividades por cada um desempenhadas.
+            Apenas o Controlador possui acesso aos dados pessoais coletados por meio de seus portais eletrônicos para os fins contratados, razão pela qual tal acesso é restrito à <strong>ALIANCA DIVERGENTE LTDA</strong>, seus parceiros e demais prestadores de serviços, e está restrito às funções e atividades por cada um desempenhadas.
           </p>
 
           <p>
@@ -150,11 +150,11 @@ export default function PoliticaDePrivacidade() {
           </h2>
 
           <p>
-            A <strong>AEON LTDA</strong> armazenará os dados pessoais coletados pelo tempo necessário para cumprimento das finalidades para as quais eles são coletados, incluindo obrigações legais, contratuais, de prestação de contas ou requisição de autoridades competentes.
+            A <strong>ALIANCA DIVERGENTE LTDA</strong> armazenará os dados pessoais coletados pelo tempo necessário para cumprimento das finalidades para as quais eles são coletados, incluindo obrigações legais, contratuais, de prestação de contas ou requisição de autoridades competentes.
           </p>
 
           <p>
-            Em caso de o titular dos dados desejar solicitar que a <strong>AEON LTDA</strong> não utilize mais suas informações de registro para fornecer serviços, entre em contato com o Controlador por meio do e-mail: dpo@aliancadivergente.com.br.
+            Em caso de o titular dos dados desejar solicitar que a <strong>ALIANCA DIVERGENTE LTDA</strong> não utilize mais suas informações de registro para fornecer serviços, entre em contato com o Controlador por meio do e-mail: dpo@aliancadivergente.com.br.
           </p>
 
           <p>
@@ -166,7 +166,7 @@ export default function PoliticaDePrivacidade() {
           </p>
 
           <p>
-            Em caso de pedido de exclusão pelo titular, a Lei Geral de Proteção de Dados autoriza a conservação de tais dados, razão pela qual o controlador reserva para si o direito de preservar e divulgar todo e qualquer dado, a seu exclusivo critério, necessário para o cumprimento de obrigação legal, regulatória, derivada de ordem judicial, ou para proteger os direitos, propriedades ou segurança da <strong>AEON LTDA</strong> e seus usuários.
+            Em caso de pedido de exclusão pelo titular, a Lei Geral de Proteção de Dados autoriza a conservação de tais dados, razão pela qual o controlador reserva para si o direito de preservar e divulgar todo e qualquer dado, a seu exclusivo critério, necessário para o cumprimento de obrigação legal, regulatória, derivada de ordem judicial, ou para proteger os direitos, propriedades ou segurança da <strong>ALIANCA DIVERGENTE LTDA</strong> e seus usuários.
           </p>
 
         </div>
