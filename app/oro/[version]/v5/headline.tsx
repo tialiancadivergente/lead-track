@@ -22,7 +22,7 @@ export const Headline: IHeadline[] = [
     ),
     text: (
       <p>
-        Descubra como <span className="uppercase font-bold">aumentar o seu nível de permissão</span> e melhorar seus resultados nas finanças, nos relacionamentos e na saúde.
+        Descubra exatamente os padrões invisíveis que travam o <span className="uppercase font-bold">seu crescimento financeiro</span>    e aprenda como superá-los com clareza e direção.
       </p>
     ),
   },
@@ -40,7 +40,7 @@ export const Headline: IHeadline[] = [
     ),
     text: (
       <p>
-        Descubra quais <span className="uppercase font-bold">bloqueios invisíveis</span> te puxam de volta toda vez em um diagnóstico gratuito.
+        Descubra exatamente os padrões invisíveis que travam o <span className="uppercase font-bold">seu crescimento financeiro</span>    e aprenda como superá-los com clareza e direção.
       </p>
     ),
   },
@@ -59,7 +59,7 @@ export const Headline: IHeadline[] = [
     ),
     text: (
       <p>
-        Descubra o bloqueio invisível <span className="uppercase font-bold">bloqueio invisível</span> que está limitando seus resultados pessoais e financeiros em um diagnóstico gratuito e personalizado.
+        Descubra exatamente os padrões invisíveis que travam o <span className="uppercase font-bold">seu crescimento financeiro</span>    e aprenda como superá-los com clareza e direção.
       </p>
     ),
   },
