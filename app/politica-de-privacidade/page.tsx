@@ -22,7 +22,7 @@ export default function PoliticaDePrivacidade() {
           </p>
 
           <p>
-            A <strong>ALIANCA DIVERGENTE LTDA</strong> valoriza a privacidade e tem o compromisso de proteger e processar suas informações pessoais de forma responsável. Esta declaração de privacidade descreve como a <strong>ALIANCA DIVERGENTE LTDA</strong> coleta, utiliza e compartilha suas informações.
+            A <strong>AEON LTDA</strong> valoriza a privacidade e tem o compromisso de proteger e processar suas informações pessoais de forma responsável. Esta declaração de privacidade descreve como a <strong>AEON LTDA</strong> coleta, utiliza e compartilha suas informações.
           </p>
 
           <p>
@@ -46,7 +46,7 @@ export default function PoliticaDePrivacidade() {
           </h2>
 
           <p>
-            Para que seja possível entregar os nossos serviços e proporcionar uma melhor experiência de navegação, a <strong>ALIANCA DIVERGENTE LTDA</strong> coletará dos Usuários alguns dados pessoais quando efetuarem o cadastro ou estiverem navegando na plataforma. Todos os dados coletados são utilizados apenas para as finalidades de prestação dos serviços oferecidos pela <strong>ALIANCA DIVERGENTE LTDA</strong> e para as finalidades descritas nesta Política.
+            Para que seja possível entregar os nossos serviços e proporcionar uma melhor experiência de navegação, a <strong>AEON LTDA</strong> coletará dos Usuários alguns dados pessoais quando efetuarem o cadastro ou estiverem navegando na plataforma. Todos os dados coletados são utilizados apenas para as finalidades de prestação dos serviços oferecidos pela <strong>AEON LTDA</strong> e para as finalidades descritas nesta Política.
           </p>
 
           <p>
@@ -70,7 +70,7 @@ export default function PoliticaDePrivacidade() {
           </p>
 
           <p>
-            Algumas transações on-line podem envolver chamadas telefônicas realizadas entre a <strong>ALIANCA DIVERGENTE LTDA</strong> e o titular dos dados. Também podem envolver bate-papos on-line via WhatsApp.
+            Algumas transações on-line podem envolver chamadas telefônicas realizadas entre a <strong>AEON LTDA</strong> e o titular dos dados. Também podem envolver bate-papos on-line via WhatsApp.
           </p>
 
           <p>
@@ -86,87 +86,11 @@ export default function PoliticaDePrivacidade() {
           </p>
 
           <p>
-            Você também será adicionada a um infoproduto <strong>ALIANCA DIVERGENTE LTDA</strong>: esse é um grupo no WhatsApp com outros alunos, cuja troca de informações pessoais nesse ambiente não é de responsabilidade do "Controlador".
+            Você também será adicionado a um infoproduto <strong>AEON LTDA</strong>: esse é um grupo no WhatsApp com outros alunos, cuja troca de informações pessoais nesse ambiente não é de responsabilidade do "Controlador".
           </p>
 
           <p>
             Você também será adicionado ao Instagram no Perfil da Tribo, e esse será o ambiente que complementará o Marca-Passo e será utilizado para interação entre os alunos.
-          </p>
-
-          <h2 className="text-2xl font-bold pt-6">
-            FINALIDADE DA COLETA DOS DADOS
-          </h2>
-
-          <p>
-            Ao acessar o endereço eletrônico do Controlador é solicitado ao usuário o nome, e-mail e telefone celular com DDD.
-          </p>
-
-          <p>
-            Os dados como CPF, endereço completo, data de nascimento e dados de cartão de crédito são solicitados na página de checkout.
-          </p>
-
-          <p>
-            Todos esses dados coletados são para a entrega do conteúdo ora contratado, processamento de pagamentos e direcionamento de Serviços do seu interesse.
-          </p>
-
-          <h2 className="text-2xl font-bold pt-6">
-            SOBRE O CANCELAMENTO DO ENVIO DE INFORMAÇÕES
-          </h2>
-
-          <p>
-            As informações pessoais fornecidas ao Controlador, assim como as informações pessoais que são coletadas indiretamente, podem ser usadas para fins de marketing, ou seja, para mantê-lo informado sobre eventos e produtos a serem vendidos.
-          </p>
-
-          <p>
-            A qualquer momento, é possível optar por não receber materiais de marketing da <strong>ALIANCA DIVERGENTE LTDA</strong>, seguindo as instruções de cancelamento de subscrição incluídas em cada e-mail recebido.
-          </p>
-
-          <p>
-            É importante mencionar que, ao preencher qualquer novo formulário, ficará caracterizada a reinserção do seu e-mail à lista. Portanto, caso seja de seu interesse, a requisição de cancelamento deverá ser feita novamente.
-          </p>
-
-          <p>
-            Para alterar suas informações pessoais ou mesmo excluí-las do nosso banco de dados, basta enviar um e-mail para dpo@aliancadivergente.com.br.
-          </p>
-
-          <h2 className="text-2xl font-bold pt-6">
-            COMPARTILHAMENTO E TRATAMENTO DE INFORMAÇÕES PESSOAIS
-          </h2>
-
-          <p>
-            Como o Controlador possui sua sede no Brasil, todos os dados pessoais e tratamentos realizados seguem essa jurisdição.
-          </p>
-
-          <p>
-            Apenas o Controlador possui acesso aos dados pessoais coletados por meio de seus portais eletrônicos para os fins contratados, razão pela qual tal acesso é restrito à <strong>ALIANCA DIVERGENTE LTDA</strong>, seus parceiros e demais prestadores de serviços, e está restrito às funções e atividades por cada um desempenhadas.
-          </p>
-
-          <p>
-            O Controlador não compartilha com terceiros, sob nenhuma forma (aluguel, venda ou cessão), os dados pessoais dos usuários visitantes ou dos usuários das áreas restritas. É facultado ao Controlador a contratação de Operadores para tratamento desses dados com o objetivo estrito de fornecimento de infraestrutura de Tecnologia da Informação.
-          </p>
-
-          <h2 className="text-2xl font-bold pt-6">
-            ARMAZENAMENTO DOS DADOS
-          </h2>
-
-          <p>
-            A <strong>ALIANCA DIVERGENTE LTDA</strong> armazenará os dados pessoais coletados pelo tempo necessário para cumprimento das finalidades para as quais eles são coletados, incluindo obrigações legais, contratuais, de prestação de contas ou requisição de autoridades competentes.
-          </p>
-
-          <p>
-            Em caso de o titular dos dados desejar solicitar que a <strong>ALIANCA DIVERGENTE LTDA</strong> não utilize mais suas informações de registro para fornecer serviços, entre em contato com o Controlador por meio do e-mail: dpo@aliancadivergente.com.br.
-          </p>
-
-          <p>
-            O titular dos dados pessoais pode exercer o direito de obter do controlador, em relação aos dados do titular por ele tratados, a qualquer momento e mediante requisição: confirmação da existência de tratamento; acesso aos dados; correção de dados incompletos, inexatos ou desatualizados; anonimização, bloqueio ou eliminação de dados desnecessários, excessivos ou tratados em desconformidade com o disposto na Lei Geral de Proteção de Dados (LGPD); eliminação dos dados pessoais tratados com o consentimento do titular; informação das entidades públicas e privadas com as quais o controlador realizou uso compartilhado de dados; informação sobre a possibilidade de não fornecer consentimento e sobre as consequências da negativa; e revogação do consentimento nos exatos termos da LGPD.
-          </p>
-
-          <p>
-            Os dados pessoais serão eliminados após o término de seu tratamento, no âmbito e nos limites técnicos das atividades.
-          </p>
-
-          <p>
-            Em caso de pedido de exclusão pelo titular, a Lei Geral de Proteção de Dados autoriza a conservação de tais dados, razão pela qual o controlador reserva para si o direito de preservar e divulgar todo e qualquer dado, a seu exclusivo critério, necessário para o cumprimento de obrigação legal, regulatória, derivada de ordem judicial, ou para proteger os direitos, propriedades ou segurança da <strong>ALIANCA DIVERGENTE LTDA</strong> e seus usuários.
           </p>
 
         </div>
