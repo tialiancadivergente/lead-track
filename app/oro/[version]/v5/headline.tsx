@@ -9,23 +9,32 @@ interface IHeadline {
 }
 
 export const Headline: IHeadline[] = [
-  {
-    id: "h0",
-    isPicture: false,
-    isLogo: true,
-    title: (
-      <p
-        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
-      >
-        Faça seu diagnóstico de <span className="text-[#C0964B]">dependência emocional</span> gratuito
-      </p>
-    ),
-    text: (
-      <p>
-        Descubra exatamente os padrões invisíveis que travam o <span className="uppercase font-bold">seu crescimento financeiro</span>    e aprenda como superá-los com clareza e direção.
-      </p>
-    ),
-  },
+{
+  id: "h0",
+  isPicture: false,
+  isLogo: true,
+  title: (
+    <p
+      className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
+    >
+      Faça seu diagnóstico
+      <br />
+      <span className="text-[#C0964B]">
+        de dependência
+      </span>
+      <br />
+      <span className="text-[#C0964B]">
+        emocional
+      </span>{" "}
+      gratuito
+    </p>
+  ),
+  text: (
+    <p>
+      Descubra exatamente os padrões invisíveis que travam o <span className="uppercase font-bold">seu crescimento financeiro</span> e aprenda como superá-los com clareza e direção.
+    </p>
+  ),
+},
   {
     id: "h1",
     isPicture: false,
