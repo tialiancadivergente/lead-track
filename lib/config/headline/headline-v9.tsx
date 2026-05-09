@@ -126,7 +126,7 @@ export const HeadlineV9: IHeadline[] = [
     title: <></>,
     text: (
       <span className="text-3xl md:text-4xl">
-        Descubra exatamente o que trava seus ganhos financeiros e <span className="text-[#c0964b]">como superá-los sem precisar trabalhar mais ou estudar mais</span>
+        Descubra exatamente os padrões invisíveis que travam o seu crescimento financeiro <span className="text-[#c0964b]">e aprenda como superá-los com clareza e direção.</span>
       </span>
     )
   },

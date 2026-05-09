@@ -32,8 +32,7 @@ export default function JourneySection() {
         <h2 className="text-2xl md:text-4xl text-custom-accent font-bold mb-8">Que bom que você não desistiu.</h2>
 
         <p className="text-background font-medium mb-8 md:text-2xl max-w-3xl mx-auto">
-        <span className="font-bold">Chega de dar o seu máximo e só ficar se perguntando o que faltou.</span> Depois, fazer aquela velha mania inútil vai
-          se perguntar o que falta para você ter o resultado merecido pelo seu esforço.
+        <span className="font-bold">Chega de dar o seu máximo e só ficar se perguntando o que faltou.</span> Pare de cometer o erro de sempre se perguntar o que falta para você ter o resultado que o seu esforço realmente merece.
           <span className="font-bold"> Faça parte do Resgate dos Otimistas</span> ou continue se questionando e
           justificando o seu "quase sucesso".
         </p>

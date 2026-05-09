@@ -55,10 +55,10 @@ export default function FooterOro({
           Todos os direitos reservados.
         </div>
 
-        <div className="flex flex-col items-center md:items-start space-x-2">
+        <div className="flex flex-col items-center md:items-start">
           <div className="flex items-center space-x-2">
             <Link
-              href="/politica-de-privacidade"
+              href="https://www.oresgatedosotimistas.com.br/politica-de-privacidade"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
@@ -79,7 +79,7 @@ export default function FooterOro({
             </span>
 
             <Link
-              href="/termos-de-uso"
+              href="https://www.oresgatedosotimistas.com.br/termos-de-uso"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
@@ -97,7 +97,8 @@ export default function FooterOro({
               textColorClass
             )}
           >
-            AEON LTDA CNPJ nº 48.424.807/0001-88
+            ALIANCA DIVERGENTE LTDA - CNPJ: 59.301.463.0001-36
+            <br />
           </p>
         </div>
       </footer>

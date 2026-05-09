@@ -59,8 +59,7 @@ export default function MentorSection() {
               </p>
 
               <p>
-                Hoje, já ajudou mais de 160 mil pessoas em 60 países a destraverem suas vidas financeiras, relacionais,
-                emocionais e sua saúde com técnicas práticas e poderosas.
+                Hoje, já ajudou mais de 160 mil pessoas em 60 países a destravarem suas vidas financeiras, suas carreiras e suas relações emocionais com técnicas práticas e poderosas.
               </p>
 
               <p>
