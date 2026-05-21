@@ -3,8 +3,8 @@ export const TEMPERATURE_TAG_MAP: Record<string, number> = {
   'm': 120806,
   'f': 120806,
   't': 120806,
-  'o': 120806,
-  'org': 120806
+  'o': 120873,
+  'org': 120873
 };
 
 export const NORMALIZED_TEMPERATURE_VALUES = ["q", "f", "m", "t", "org"] as const;
