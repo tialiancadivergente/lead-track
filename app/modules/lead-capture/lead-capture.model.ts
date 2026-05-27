@@ -32,7 +32,7 @@ export interface LeadRegistrationMetadados {
   ip?: string;
   user_agent?: string;
   cookies?: LeadRegistrationCookies;
-  temperature?: 'f' | 'm' | 'q' | 'org' | 't';
+  temperature?: 'f' | 'm' | 'q' | 'org' | 't' | 'ind';
   form_version_id?: string;
 }
 

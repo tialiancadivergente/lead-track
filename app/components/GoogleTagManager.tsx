@@ -7,13 +7,21 @@ import { useParams } from "next/navigation";
 
 
 const GoogleTagManager = () => {
-    const { temperature } = useParams();
+    const { temperature, slug } = useParams();
     const userIp = useUserIP(); // Captura o IP no carregamento
     console.log('meu ip =>', userIp);
     useEffect(() => {
         const defaultGtmId = 'GTM-PT8FKTDN';
         const oroOrgGtmId = 'GTM-KDPHP732';
         const normalizedTemperature = (Array.isArray(temperature) ? temperature[0] : temperature || '').toLowerCase();
+        const normalizedSlug = (Array.isArray(slug) ? slug : slug ? [slug] : [])
+            .map((segment) => segment.toLowerCase());
+        const isNomineesSlug = normalizedSlug.length === 1 && normalizedSlug[0] === 'nominees';
+
+        if (isNomineesSlug) {
+            console.log('gtmId =====> ', '');
+            return;
+        }
 
         const getGtmIdByHostname = (hostname: string) => {
             // Normaliza host (ignora porta, se houver)
@@ -54,7 +62,7 @@ const GoogleTagManager = () => {
                 : defaultGtmId;
         console.log('gtmId =====> ', gtmId)
         TagManager.initialize({ gtmId });
-    }, [temperature]);
+    }, [temperature, slug]);
 
     return null; // Esse componente não precisa renderizar nada
 };
