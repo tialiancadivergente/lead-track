@@ -17,7 +17,7 @@ export const Headline: IHeadline[] = [
       <p
         className="uppercase font-spectral text-[#07242C] font-extrabold"
       >
-        Faça seu diagnóstico de <span className="text-[#006D71]">dependência emocional</span> gratuito
+        Você foi indicado para fazer <span className="text-[#006D71]">seu diagnóstico de dependência emocional</span> gratuito
       </p>
     ),
     text: (
