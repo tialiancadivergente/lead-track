@@ -7,6 +7,7 @@ import {
 	LeadCaptureForm,
 	LeadCaptureSubmitData,
 } from "@/app/components/form/lead-capture-form";
+import BuzzleadFormScripts from "@/app/components/BuzzleadFormScripts";
 
 interface ContainerProps {
 	titleRedLine: React.ReactNode | null,
@@ -82,7 +83,7 @@ export default function HeroSection({
 							</>
 						)}
 					</div>
-					<div className="max-w-lg">
+					<div id="buzzlead-form" className="max-w-lg">
 						<LeadCaptureForm
 							formName={formName}
 							onSubmit={onSubmit}
@@ -95,6 +96,7 @@ export default function HeroSection({
 					</div>
 				</div>
 			</div>
+			<BuzzleadFormScripts />
 		</section>
 	);
 }

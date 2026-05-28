@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import BuzzleadLeadTracker from "@/app/components/BuzzleadLeadTracker";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,7 @@ export default function QuizLayout({ children }: { children: ReactNode }) {
   return (
     <div className={inter.className}>
       <main>{children}</main>
+      <BuzzleadLeadTracker />
       <Analytics />
     </div>
   );
