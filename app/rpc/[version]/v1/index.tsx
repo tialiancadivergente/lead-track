@@ -113,13 +113,15 @@ function RpcV1Content() {
   // *********** INICIO - CODIGO LEGADO *********** 
   const mapTagSendFlow = {
     f: "https://redirects.aliancadivergente.com.br/q6xh",
-    org: "https://redirects.aliancadivergente.com.br/oro-pages-org",
+    org: "https://sendflow.click/i/oro-jun26-org",
+    o: "https://sendflow.click/i/oro-jun26-org",
     m: "https://redirects.aliancadivergente.com.br/oro-pages-m",
     q: "https://redirects.aliancadivergente.com.br/oro-pages-q",
+    t: "https://redirects.aliancadivergente.com.br/oro-pages-t",
 } as any;
 
   const getWhatsappUrl = () => {
-    const validKeys = ["f", "m", "q", "org"] as const;
+    const validKeys = ["f", "m", "q", "t", "org", "o"] as const;
     const key = (temperatura || "").toLowerCase();
     const resolvedKey = (validKeys as readonly string[]).includes(key) ? key : "f";
     return mapTagSendFlow[resolvedKey] || mapTagSendFlow["f"];
@@ -136,7 +138,7 @@ function RpcV1Content() {
   }, []);
 
   useEffect(() => {
-    const tem = normalizeTemperature(searchParams.get('temperature') || undefined)
+    const tem = normalizeTemperature(searchParams.get('temperatura') || undefined)
     setTemperatura(tem)
   }, [searchParams])
   // *********** FINAL - CODIGO LEGADO *********** 
@@ -282,8 +284,8 @@ function RpcV1Content() {
   }, [questionsDataUpdatedAt]);
 
   const whatsappUrl = useMemo(() => {
-    return resolveQuestTesteWhatsappUrl(temperature);
-  }, [temperature]);
+    return resolveQuestTesteWhatsappUrl(temperatura ?? "f");
+  }, [temperatura]);
 
   const fetchQuestions = useCallback(async () => {
     await refetchQuestions();
