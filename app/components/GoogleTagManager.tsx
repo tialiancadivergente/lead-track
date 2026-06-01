@@ -47,8 +47,10 @@ const GoogleTagManager = () => {
         const getGtmIdByPathname = (pathname: string) => {
             const normalizedPath = pathname.toLowerCase();
             const isOroRoute = normalizedPath.includes('/oro');
+            const isRpcRoute = normalizedPath.includes('/rpc');
             const isEligibleTemperature = normalizedTemperature === 'o' || normalizedTemperature === 'org';
             if (isOroRoute && isEligibleTemperature) return oroOrgGtmId;
+            if (isRpcRoute && isEligibleTemperature) return oroOrgGtmId;
             return defaultGtmId;
         };
 
