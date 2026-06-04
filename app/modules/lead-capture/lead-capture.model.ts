@@ -67,10 +67,26 @@ export interface LeadCaptureStartResponse {
   requestId: string
 }
 
-export const leadCaptureFormSchema = z.object({
-  email: z.string().trim().email("Informe um e-mail valido."),
-  ddi: z.string().min(1, "Selecione um DDI."),
-  whatsapp: z.string().trim().min(15, "Informe um WhatsApp valido."),
-});
+const BRAZIL_DDI = "+55";
+
+export const leadCaptureFormSchema = z
+  .object({
+    email: z.string().trim().email("Informe um e-mail valido."),
+    ddi: z.string().min(1, "Selecione um DDI."),
+    whatsapp: z.string().trim(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.ddi !== BRAZIL_DDI) {
+      return;
+    }
+
+    if (data.whatsapp.length < 15) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Informe um WhatsApp valido.",
+        path: ["whatsapp"],
+      });
+    }
+  });
 
 export type LeadCaptureFormValues = z.infer<typeof leadCaptureFormSchema>;
