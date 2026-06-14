@@ -7,7 +7,7 @@ export const TEMPERATURE_TAG_MAP: Record<string, number> = {
   'org': 120873
 };
 
-export const NORMALIZED_TEMPERATURE_VALUES = ["q", "f", "m", "t", "org"] as const;
+export const NORMALIZED_TEMPERATURE_VALUES = ["q", "f", "m", "t", "org", "ind"] as const;
 
 export type NormalizedTemperature =
   (typeof NORMALIZED_TEMPERATURE_VALUES)[number];
@@ -52,6 +52,7 @@ export const normalizeTemperature = (
     rawValue === "f" ||
     rawValue === "m" ||
     rawValue === "t" ||
+    rawValue === "ind" ||
     rawValue === "org"
   ) {
     return rawValue;

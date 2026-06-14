@@ -12,6 +12,7 @@ import Formv7 from "@/app/oro/[version]/v7";
 import Formv8 from "@/app/oro/[version]/v8";
 import Formv9 from "@/app/oro/[version]/v9";
 import Formv10 from "@/app/oro/[version]/v10";
+import Ind from "@/app/oro/[version]/group";
 
 export default function Home() {
   const { version } = useParams();
@@ -24,7 +25,15 @@ export default function Home() {
     );
   }
 
-         if (version === "v9") {
+  if (version === "group") {
+    return (
+      <SplashScreenOro>
+        <Ind />
+      </SplashScreenOro>
+    );
+  }
+
+  if (version === "v9") {
     return (
       <SplashScreenOro>
         <Formv9 />
@@ -32,7 +41,7 @@ export default function Home() {
     );
   }
 
-        if (version === "v8") {
+  if (version === "v8") {
     return (
       <SplashScreenOro>
         <Formv8 />
@@ -40,7 +49,7 @@ export default function Home() {
     );
   }
 
-      if (version === "v7") {
+  if (version === "v7") {
     return (
       <SplashScreenOro>
         <Formv7 />
@@ -48,7 +57,7 @@ export default function Home() {
     );
   }
 
-    if (version === "v6") {
+  if (version === "v6") {
     return (
       <SplashScreenOro>
         <Formv6 />
@@ -64,7 +73,7 @@ export default function Home() {
     );
   }
 
- if (version === "v4") {
+  if (version === "v4") {
     return (
       <SplashScreenOro>
         <Formv4 />
