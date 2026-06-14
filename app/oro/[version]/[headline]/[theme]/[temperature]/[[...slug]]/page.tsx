@@ -16,7 +16,7 @@ import Formv10 from "@/app/oro/[version]/v10";
 export default function Home() {
   const { version } = useParams();
 
-            if (version === "v10") {
+  if (version === "v10") {
     return (
       <SplashScreenOro>
         <Formv10 />
@@ -24,7 +24,7 @@ export default function Home() {
     );
   }
 
-          if (version === "v9") {
+         if (version === "v9") {
     return (
       <SplashScreenOro>
         <Formv9 />

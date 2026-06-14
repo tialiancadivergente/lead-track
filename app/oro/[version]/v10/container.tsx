@@ -4,11 +4,8 @@ import React from "react";
 import {
 	LeadCaptureSubmitData,
 } from "@/app/components/form/lead-capture-form";
-
 import HeroSection from "./hero-section";
 import Biography from "./biography";
-import BiographyElton from "./biography-elton";
-import BiographyRamon from "./biography-ramon";
 import Footer from "./footer";
 
 interface ContainerProps {
@@ -35,13 +32,7 @@ export default function ContainerTeste({
 				onSubmit={onSubmit}
 				submitError={submitError}
 			/>
-
 			<Biography />
-
-			<BiographyElton />
-
-			<BiographyRamon />
-
 			<Footer />
 		</>
 	);

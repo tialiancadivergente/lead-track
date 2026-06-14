@@ -1,49 +1,34 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Footer() {
-	return (
-		<div className="bg-[#07242C] py-[40px] px-4">
-			<footer className="mx-auto lg:w-[1080px] w-full flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-0">
+    return (
+        <div className="bg-[#031B22] bg-[radial-gradient(50%_75.08%_at_50%_100.2%,_rgba(16,68,72,0.5)_0%,_rgba(16,68,72,0.2)_34.73%,_rgba(16,68,72,0)_100%)] py-[100px]">            <footer className="container mx-auto sm:px-4 lg:w-[1080px] w-auto flex flex-col lg:flex-row items-center justify-between gap-2 lg:gap-0">
+            <div className="font-normal font-raleway text-[14px] text-white hidden lg:block">
+                <p>
+                    Copyright © O Resgate Dos Otimistas.
+                </p>
+                <p>
+                    Todos os direitos reservados.
+                </p>
+            </div>
+            <Image
+                src="/images//v21/logo-alianca-divergente.png"
+                alt="Logomarca Aliança Divergente"
+                width={250}
+                height={32}
+                priority
+                className="object-contain"
+            />
 
-				<div className="font-normal font-raleway text-[14px] leading-[22px] text-white text-center lg:text-left order-2 lg:order-1">
-					<p>
-						Copyright © O Destrave.
-					</p>
-
-					<p>
-						Todos os direitos reservados.
-					</p>
-				</div>
-
-				<div className="order-1 lg:order-2">
-					<Image
-						src="/images/oro/v9/o-destrave-logotipo.webp"
-						alt="Logotipo O Destrave"
-						width={150}
-						height={50}
-						priority
-						className="object-contain"
-					/>
-				</div>
-
-				<div className="font-normal font-raleway text-[14px] leading-[22px] text-white text-center lg:text-right order-3 lg:order-3 flex flex-col">
-					<Link
-						href="COLE_O_LINK_DA_POLITICA_AQUI"
-						className="hover:opacity-80 transition-opacity"
-					>
-						Política de privacidade
-					</Link>
-
-					<Link
-						href="COLE_O_LINK_DOS_TERMOS_AQUI"
-						className="hover:opacity-80 transition-opacity"
-					>
-						Termos de uso
-					</Link>
-				</div>
-
-			</footer>
-		</div>
-	);
+            <div className="font-normal font-raleway text-[14px] text-white text-center lg:hidden block">
+                <p>
+                    Copyright © O Resgate Dos Otimistas.
+                </p>
+                <p>
+                    Todos os direitos reservados.
+                </p>
+            </div>
+        </footer>
+        </div>
+    )
 }

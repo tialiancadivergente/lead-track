@@ -14,31 +14,89 @@ export const Headline: IHeadline[] = [
     isPicture: false,
     isLogo: true,
     title: (
-      <p className="uppercase font-spectral text-[#D3CAC0] text-[38px] font-extrabold">
-        <span className="text-[#C0964B]">
-          Destrave sua profissão e alcance promoção,
-          reconhecimento e liberdade em 1 dia.
-        </span>
+      <p
+        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
+      >
+        Faça seu diagnóstico de <span className="text-[#C0964B]">dependência emocional</span> gratuito
       </p>
     ),
-
     text: (
-      <div className="flex flex-col gap-6 text-[#F4F0E1] font-spectral">
-        
-        <p className="text-[24px] leading-[120%] font-bold">
-          Sem trocar de carreira, sem mais
-          cursos, sem continuar travado.
-        </p>
+      <p>
+        Descubra como <span className="uppercase font-bold">aumentar o seu nível de permissão</span> e melhorar seus resultados nas finanças, nos relacionamentos e na saúde.
+      </p>
+    ),
+  },
+  {
+    id: "h1",
+    isPicture: false,
+    isLogo: true,
+    title: (
+      <p
+        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
+      >
+        Você já percebeu que sempre fica no “quase”?<br />
+        <span className="text-[#C0964B]">Quase cresce. Quase prospera. Quase dá certo.</span>
+      </p>
+    ),
+    text: (
+      <p>
+        Descubra quais <span className="uppercase font-bold">bloqueios invisíveis</span> te puxam de volta toda vez em um diagnóstico gratuito.
+      </p>
+    ),
+  },
 
-        <p className="text-[20px] leading-[140%] font-normal">
-          Descubra o que está te bloqueando de evoluir e vire essa chave de forma definitiva.
-        </p>
-
-        <p className="text-[20px] leading-[140%] font-bold">
-          Faça sua inscrição 100% grátis para o evento online:
-        </p>
-
-      </div>
+    {
+    id: "h2",
+    isPicture: false,
+    isLogo: true,
+    title: (
+      <p
+        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
+      >
+        Você não está atrasado<br />
+        <span className="text-[#C0964B]">Está emocionalmente preso.</span>
+      </p>
+    ),
+    text: (
+      <p>
+        Descubra o bloqueio invisível <span className="uppercase font-bold">bloqueio invisível</span> que está limitando seus resultados pessoais e financeiros em um diagnóstico gratuito e personalizado.
+      </p>
+    ),
+  },
+  {
+    id: "h3",
+    isPicture: false,
+    isLogo: true,
+    title: (
+      <p
+        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
+      >
+        Tem gente menos preparada vivendo melhor que você.<br />
+        <span className="text-[#C0964B]">E isso não é injustiça.</span>
+      </p>
+    ),
+    text: (
+      <p>
+        Identifique o bloqueio invisível que <span className="uppercase font-bold">impede sua evolução e o seu sucesso financeiro</span> e descubra como destravá-lo.
+      </p>
+    ),
+  },
+  {
+    id: "h4",
+    isPicture: false,
+    isLogo: true,
+    title: (
+      <p
+        className="uppercase font-spectral text-[#D3CAC0] font-extrabold"
+      >
+        Descubra como a dependência emocional está impedindo você de avançar na sua carreira<br />
+        <span className="text-[#C0964B]">e ganhar mais dinheiro.</span>
+      </p>
+    ),
+    text: (
+      <p>
+        Participe gratuitamente do evento que revela <span className="uppercase font-bold">o que realmente está por trás dos bloqueios que surgem quando sua vida está prestes a avançar.</span> Cadastre-se abaixo para garantir sua vaga.
+      </p>
     ),
   },
 ];
