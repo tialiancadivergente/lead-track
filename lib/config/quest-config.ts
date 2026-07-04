@@ -4,8 +4,9 @@ export const DEFAULT_QUEST_FORM_VERSION_ID =
 const QUEST_WHATSAPP_URL_BY_TEMPERATURE = {
   f: "https://sendflow.click/i/oro-jul26-traf",
   org: "https://sendflow.click/i/oro-jul26-org",
-  m: "https://sendflow.click/i/oro-jul26-traf", 
+  m: "https://sendflow.click/i/oro-jul26-traf",
   q: "https://sendflow.click/i/oro-jul26-traf",
+  t: "https://sendflow.click/i/oro-jul26-traf",
 } as const;
 
 type QuestTesteTemperatureKey = keyof typeof QUEST_WHATSAPP_URL_BY_TEMPERATURE;
