@@ -10,7 +10,7 @@ import Footer from "./footer";
 
 interface ContainerProps {
 	titleRedLine: React.ReactNode | null,
-	redLine: React.ReactNode | null,
+	redLine: React.ReactNode | string | null,
 	formName: string,
 	onSubmit: (data: LeadCaptureSubmitData) => void | Promise<void>;
 	submitError?: string | null;
@@ -32,7 +32,7 @@ export default function ContainerTeste({
 				onSubmit={onSubmit}
 				submitError={submitError}
 			/>
-			{/* <Biography /> */}
+			<Biography />
 			<Footer />
 		</>
 	);

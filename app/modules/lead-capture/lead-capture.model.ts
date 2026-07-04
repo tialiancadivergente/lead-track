@@ -34,6 +34,8 @@ export interface LeadRegistrationMetadados {
   cookies?: LeadRegistrationCookies;
   temperature?: 'f' | 'm' | 'q' | 'org' | 't' | 'ind';
   form_version_id?: string;
+  page_version_id?: string;
+  page_headline_id?: string;
 }
 
 export interface LeadRegistrationPayload {

@@ -36,7 +36,7 @@ export default function HeroSection({
 					>
 						<div className="flex items-center justify-center leading-none gap-2 text-[#F4F0E1] font-raleway font-medium text-xs md:text-[14px]">
 							<CalendarDays className="text-[#C0964B]" size={18} />
-							15, 16 e 17/06 | Às 19h55
+							20, 21 e 22/07 | Às 19h55
 						</div>
 						<div className="flex items-center justify-center leading-none gap-2 text-[#F4F0E1] font-raleway font-medium text-xs md:text-[14px]">
 							<Smartphone className="text-[#C0964B]" size={18} />

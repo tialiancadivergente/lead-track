@@ -103,7 +103,7 @@ export function LeadCaptureForm({
   return (
     <form
       id={formId}
-      name={formName}
+      name={formName || ''}
       className={cn("space-y-4 w-full", className)}
       onSubmit={handleSubmit(submitHandler)}
     >
