@@ -56,7 +56,7 @@ function QuizNewPageContent() {
   // *********** INICIO - CODIGO LEGADO *********** 
   const mapTagSendFlow = {
     f: "https://sendflow.click/i/oro-jul26-traf",
-    org: "https://sendflow.click/i/oro-jul26-org",
+    org: "https://sendflow.click/i/oro-jul26-traf",
     m: "https://sendflow.click/i/oro-jul26-traf",
     q: "https://sendflow.click/i/oro-jul26-traf",
 } as any;
