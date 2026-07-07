@@ -12,7 +12,7 @@ const GoogleTagManager = () => {
     console.log('meu ip =>', userIp);
     useEffect(() => {
         const defaultGtmId = 'GTM-PT8FKTDN';
-        const oroOrgGtmId = 'GTM-KDPHP732';
+        const oroOrgGtmId = '';
         const normalizedTemperature = (Array.isArray(temperature) ? temperature[0] : temperature || '').toLowerCase();
         const normalizedSlug = (Array.isArray(slug) ? slug : slug ? [slug] : [])
             .map((segment) => segment.toLowerCase());

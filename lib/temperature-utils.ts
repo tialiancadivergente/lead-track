@@ -17,8 +17,8 @@ export const TEMPERATURE_TAG_MAP_ORO: Record<string, string> = {
   'm': '[ORO][JUL26][TRAFEGO]',
   'f': '[ORO][JUL26][TRAFEGO]',
   't': '[ORO][JUL26][TRAFEGO]',
-  'o': '[ORO][JUL26][ORGANICO]',
-  'org': '[ORO][JUL26][ORGANICO]'
+  'o': '',
+  'org': ''
 };
 
 export const getTagIdByTemperature = (temperature: string): number | null => {
