@@ -1,84 +1,89 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { handleScroll } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import { ArrowUpRight } from "lucide-react";
+import { handleScroll } from "@/lib/utils";
+
+function ParticipateButton() {
+  return (
+    <button
+      type="button"
+      onClick={handleScroll}
+      className="flex h-14 w-full items-center justify-center gap-2 rounded-full border-2 border-transparent px-6 font-raleway text-base font-extrabold uppercase tracking-wide text-black transition-all hover:brightness-110 [background:linear-gradient(88.53deg,_#16FFA6_0%,_#12ED28_100%)_padding-box,_linear-gradient(180deg,_#90FF9F_0%,_#008A13_100%)_border-box]"
+    >
+      <span>Participar gratuitamente</span>
+      <ArrowUpRight size={18} strokeWidth={2.5} />
+    </button>
+  );
+}
 
 export default function Biography() {
+  return (
+    <section className="relative z-0 flex h-[1992px] flex-col items-center justify-start overflow-hidden bg-[#031B22] bg-[url('/images/oro/v5.1/bg_segunda_dobra_mobile.png')] bg-cover bg-top px-4 pb-14 md:h-[1607px] md:bg-[url('/images/oro/v5.1/bg_sugunda_dobra_desktop.png')] md:bg-center md:px-0">
+      <div className="mx-auto w-full max-w-[348px] md:w-[1080px] md:max-w-none">
+        <div className="mt-7 text-center md:mt-14">
+          <h2 className="h-[140px] font-teramo text-[24px] font-bold uppercase leading-[145%] text-[#C0964B] md:mx-auto md:h-auto md:max-w-[760px] md:text-[32px]">
+            Chega de dar o seu máximo e só ficar se perguntando o que faltou.
+          </h2>
 
-	const ButtonParticipate = () => {
-		return (
-			<button
-				onClick={handleScroll}
-				className="w-full h-14 font-raleway font-extrabold text-[#000000] rounded-[50px] px-6 text-base uppercase tracking-wide transition-all hover:brightness-105 border-2 border-transparent [background:linear-gradient(90deg,_#90FF9F_0%,_#008A13_100%)_padding-box,_linear-gradient(180deg,_#90FF9F_0%,_#008A13_100%)_border-box] flex items-center justify-center gap-2"
-			>
-				<span>Participar gratuitamente</span>
-				<ArrowUpRight size={18} strokeWidth={2.5} />
-			</button>
-		)
-	}
+          <div className="mt-6 min-h-[345px] font-raleway text-[16px] leading-[145%] text-[#F4F0E1] md:mx-auto md:min-h-0 md:max-w-[760px] md:text-[20px]">
+            <p>
+              <strong>Chegou o momento de entender de verdade o que falta para você ter o resultado que realmente merece.</strong>{" "}
+              Toda demora nos resultados esconde uma espera nas relações, e através do seu Diagnóstico de Dependência Emocional você conseguirá mapear exatamente o que ou quem está te impedindo de destravar a sua vida.
+            </p>
 
-	return (
-		<section
-			className={`md:min-h-[1606px] md:h-[1606px] flex flex-col items-center pb-14 p-4 md:p-0 justify-start overflow-hidden bg-[#031B22] bg-[url('/images/oro/v5/biografia_ramon_mobile.webp')] md:bg-[url('/images/oro/v5/biografia_ramon_desktop.webp')] bg-cover bg-top md:bg-center z-0`}
-		>
-			<div className="mx-auto sm:px-4 lg:w-[1080px] w-full">
-				<div className="mt-7 md:mt-24 text-center md:text-left">
+            <p className="mt-5">
+              Mas esta será a <strong>Última Edição do Resgate dos Otimistas</strong>. A sua última chance de ter acesso <strong>GRATUITO</strong> às nossas ferramentas de análise emocional e ao diagnóstico completo. <strong>Garanta sua vaga agora.</strong>
+            </p>
+          </div>
 
-					<div className="text-2xl md:text-3xl font-bold uppercase text-[#C0964B] md:text-center">
-						Que bom que você não desistiu.
-					</div>
+          <div className="mx-auto mt-7 w-full max-w-[348px]">
+            <ParticipateButton />
+          </div>
+        </div>
 
-					<div className="font-raleway text-[#F4F0E1] text-[16px] md:text-[20px] my-8 max-w-[688px] mx-auto font-extralight md:text-center leading-relaxed">
-						<span className="font-bold">
-							Chega de dar o seu máximo e só ficar se perguntando o que faltou.
-						</span>{' '}
-						<span className="font-normal">
-							Pare de cometer o erro de sempre se perguntar
-						</span>{' '}
-						<span className="font-bold">
-							o que falta para você ter o resultado
-						</span>{' '}
-						<span className="font-normal">
-							que o seu esforço realmente merece.
-						</span>
-					</div>
+        <div className="mt-[300px] flex w-full justify-center md:mt-[200px] md:justify-end">
+          <div className="w-full text-[#F4F0E1] md:max-w-[512px]">
+            <h3 className="font-spectral text-[24px] font-bold uppercase leading-[120%] md:text-[32px]">
+              Quem vai ser o seu mentor nessa jornada?
+            </h3>
 
-					<div className="max-w-[347px] mx-auto">
-						<ButtonParticipate />
-					</div>
+            <p className="mb-6 mt-4 font-raleway text-[20px] font-bold text-[#C0964B] md:text-[24px]">
+              Ramon Galimberti
+            </p>
 
-				</div>
+            <div className="flex flex-col gap-4 font-raleway text-[16px] font-normal leading-[145%]">
+              <p>
+                Ramon fez tudo o que disseram que daria certo. Estudou, se formou, foi até o mestrado. Tinha tudo o que deveria pra dar certo. E mesmo assim, não dava.
+              </p>
 
-				<div className="flex justify-center md:justify-end mt-[800px] xs:mt-[850px] 2xs:mt-[900px] sm:mt-[1150px] md:mt-[300px] w-full">
-					<div className="w-full max-w-[512px] text-[#F4F0E1]">
-						<div className="font-spectral text-2xl md:text-[32px] font-bold">
-							QUEM VAI SER O SEU MENTOR NESSA JORNADA?
-						</div>
-						<div className="flex flex-col mt-4 mb-6 text-xl md:text-2xl font-bold">
-							<p className="text-[#C0964B]">
-								Ramon Galimberti
-							</p>
-						</div>
-						<div className="flex flex-col gap-4 font-regular font-raleway">
-							<p>Ramon fez tudo o que disseram que daria certo. Estudou, se formou, foi até o mestrado. Tinha tudo o que deveria pra dar certo. E mesmo assim, não dava.</p>
+              <p>
+                Perto dos 30, se viu morando em cima da casa pais. Desempregado. Saindo de um relacionamento que tinha desabado. Usando o ticket do pai pra fazer compra no mercado e virar o mês. Diploma bonito na parede, mas o bolso vazio bonito na parede, mas o bolso vazio. E foi nesse momento que ele pensou: &quot;o sucesso não é pra mim.&quot;
+              </p>
 
-							<p>Perto dos 30, se viu morando em cima da casa pais. Desempregado. Saindo de um relacionamento que tinha desabado. Usando o ticket do pai pra fazer compra no mercado e virar o mês. Diploma bonito na parede, mas o bolso vazio. E foi nesse momento que ele pensou: "o sucesso não é pra mim."</p>
+              <p>
+                Até descobrir o que realmente travava tudo, e não tinha nada a ver com competência. Era Permissão. Existia um padrão invisível que decidia o resultado por ele, antes que ele tivesse qualquer chance. Quando ele quebrou esse padrão, rompeu o teto financeiro que o prendia havia anos e que parecia impossível de ultrapassar.
+              </p>
 
-							<p>Até descobrir o que realmente travava tudo, e não tinha nada a ver com competência. Era Permissão. Existia um padrão invisível que decidia o resultado por ele, antes que ele tivesse qualquer chance. Quando ele quebrou esse padrão, rompeu o teto financeiro que o prendia havia anos e que parecia impossível de ultrapassar.</p>
+              <p>
+                Hoje Ramon é o primeiro brasileiro autorizado a aplicar a Teoria da Permissão e guiou mais de 160 mil pessoas a enxergarem o mesmo padrão que as mantém presas: no dinheiro, na carreira e nas relações.
+              </p>
 
-							<p>Hoje Ramon é o primeiro brasileiro autorizado a aplicar a Teoria da Permissão e guiou mais de 160 mil pessoas a enxergarem o mesmo padrão que as mantém presas: no dinheiro, na carreira e nas relações.</p>
+              <p>
+                No Resgate dos Otimistas, você vai entender que todo acontecimento ruim tem uma explicação, e a sua falta de resultado tem resposta. Uma resposta que você vai identificar, pra romper o seu teto financeiro de forma definitiva.
+              </p>
 
-							<p>No Resgate dos Otimistas, você vai entender que todo acontecimento ruim tem uma explicação, e a sua falta de resultado tem resposta. Uma resposta que você vai identificar, pra romper o seu teto financeiro de forma definitiva.</p>
+              <p className="font-bold">Você tem coragem de ver?</p>
 
-							<p>Você tem coragem de ver?</p>
-							<ButtonParticipate />
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	);
+              <div className="mt-2">
+                <ParticipateButton />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Image src="/images/oro/v5.1/bg_segunda_dobra_mobile.png" alt="" width={1} height={1} className="hidden" />
+    </section>
+  );
 }

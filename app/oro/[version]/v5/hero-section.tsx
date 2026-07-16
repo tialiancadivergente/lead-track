@@ -1,100 +1,146 @@
 "use client";
 
-import React from "react";
-import { CalendarDays, Smartphone } from "lucide-react";
+import type { ReactNode } from "react";
 import Image from "next/image";
-import {
-	LeadCaptureForm,
-	LeadCaptureSubmitData,
-} from "@/app/components/form/lead-capture-form";
+import { CalendarDays, Smartphone } from "lucide-react";
+import { LeadCaptureForm, type LeadCaptureSubmitData } from "@/app/components/form/lead-capture-form";
 
 interface ContainerProps {
-	titleRedLine: React.ReactNode | null,
-	redLine: React.ReactNode | null,
-	formName: string,
-	onSubmit: (data: LeadCaptureSubmitData) => void | Promise<void>;
-	submitError?: string | null;
+  titleRedLine: ReactNode | null;
+  redLine: ReactNode | null;
+  formName: string;
+  onSubmit: (data: LeadCaptureSubmitData) => void | Promise<void>;
+  submitError?: string | null;
 }
 
-export default function HeroSection({
-	titleRedLine,
-	redLine,
-	formName,
-	onSubmit,
-	submitError
-}: ContainerProps) {
-	return (
-		<section
-			id="hero"
-			className={`relative h-[1100px] md:h-[902px] flex flex-col items-center p-4 md:p-0 justify-start overflow-hidden bg-[#071117] bg-[url('/images/oro/v5/o_resgate_dos_otimistas_mobile.webp')] md:bg-[url('/images/oro/v5/o_resgate_dos_otimistas_desktop.webp')] bg-cover bg-center z-0`}
-		>
-			<div
-				className={`mx-auto sm:px-4 2md:pt-6 pt-2 relative lg:w-[1080px] w-full flex justify-center md:justify-start`}
-			>
-				<div className="w-full 2md:max-w-[528px] max-w-[440px]">
-					<div className="-mt-[20px] md:-mt-[12px] flex justify-center md:justify-start">
-						<Image
-							src="/images/oro/v5/logo_resgate_dos_otimistas.png"
-							alt="Logo Resgate dos Otimistas"
-							width={424}
-							height={164}
-							priority
-							className="object-contain w-[280px] md:w-[424px] h-auto select-none pointer-events-none"
-						/>
-					</div>
+const marqueeItems = Array.from({ length: 8 });
 
-					<div
-						className={`text-[#fff] font-raleway font-medium text-[14px] flex items-center mt-4 justify-start sm:gap-8 gap-2 xl:text-2xl sm:text-2xl text-sm`}
-					>
-						<div className="flex items-center justify-center leading-none gap-2 text-[#F4F0E1] font-raleway font-medium text-xs md:text-[14px]">
-							<CalendarDays className="text-[#C0964B]" size={18} />
-							20, 21 e 22 de julho | Às 19h55
-						</div>
+export default function HeroSection({ titleRedLine, redLine, formName, onSubmit, submitError }: ContainerProps) {
+  return (
+    <>
+      <section
+        id="hero"
+        className="relative flex h-[1120px] flex-col items-center justify-start overflow-hidden bg-[#071117] bg-[url('/images/oro/v5.1/bg_primeira_dobra_mobile.png')] bg-cover bg-top px-4 pt-2 md:h-[902px] md:bg-[url('/images/oro/v5.1/bg_primeira_dobra_desktop.png')] md:px-0"
+      >
+        <div className="relative mx-auto flex w-full flex-col items-center justify-start pt-2 md:w-[1080px] md:flex-row md:items-start md:justify-start md:pt-6">
+          <div className="flex h-[135px] w-full max-w-[348px] justify-center md:hidden">
+            <Image
+              src="/images/oro/v5.1/logo.svg"
+              alt="Resgate dos Otimistas"
+              width={348}
+              height={135}
+              priority
+              className="pointer-events-none h-[135px] w-[348px] max-w-full translate-x-[35px] select-none object-contain"
+            />
+          </div>
 
-						<div className="flex items-center justify-center leading-none gap-2 text-[#F4F0E1] font-raleway font-medium text-xs md:text-[14px]">
-							<Smartphone className="text-[#C0964B]" size={18} />
-							Online e Gratuito
-						</div>
-					</div>
+          <div className="pointer-events-none absolute hidden md:left-[-100px] md:top-[20px] md:block">
+            <Image
+              src="/images/oro/v5.1/logo.svg"
+              alt="Resgate dos Otimistas"
+              width={723}
+              height={225}
+              priority
+              className="h-auto w-[723px] select-none object-contain"
+            />
+          </div>
 
-					<div className="mt-6 mb-2 font-bebas-neue text-left">
-						<div
-							className={`2md:text-[36px] text-2xl leading-none text-left text-[#f4f0e1] font-spectral font-extrabold`}
-						>
-							{titleRedLine}
-						</div>
-					</div>
+          <div className="w-full max-w-[348px] md:mt-[250px] md:max-w-[520px]">
+            <div className="mt-3 flex h-[18px] w-full items-center gap-4 whitespace-nowrap font-raleway text-[14px] font-medium leading-[135%] text-[#F4F0E1] md:hidden">
+              <div className="flex items-center gap-2">
+                <CalendarDays className="shrink-0 text-[#C0964B]" size={14} />
+                <span>24, 25 e 26/11 | Às 19h55</span>
+              </div>
 
-					<div
-						className="mb-8 mt-4 text-[#D3CAC0] 2md:text-2xl text-base font-extralight font-spectral"
-					>
-						{redLine ? (
-							redLine
-						) : (
-							<>
-								Descubra como{" "}
-								<span className="font-bold text-[#C0964B]">
-									AUMENTAR O SEU NÃVEL DE PERMISSÃƒO
-								</span>{" "}
-								e melhorar seus resultados nas finanÃ§as, nos relacionamentos e
-								na saÃºde.
-							</>
-						)}
-					</div>
+              <div className="flex items-center gap-2">
+                <Smartphone className="shrink-0 text-[#C0964B]" size={14} />
+                <span>Online e Gratuito</span>
+              </div>
+            </div>
 
-					<div className="max-w-lg">
-						<LeadCaptureForm
-							formName={formName}
-							onSubmit={onSubmit}
-							submitError={submitError}
-							emailInputClassName="w-full h-[58px] border border-[#D9D3BA] flex rounded-[200px] flex-1 px-4 py-4 bg-[#F4F0E11A] placeholder:text-[#F4F0E1] text-[#F4F0E1] font-raleway font-medium text-[16px]"
-							ddiSelectClassName="h-[58px] py-4 pl-10 pr-2 bg-[#F4F0E11A] rounded-l-[200px] border border-[#D9D3BA] border-r-[0px] text-[#F4F0E1] font-raleway font-medium text-[16px] focus:outline-none [&>option]:bg-black [&>option]:text-white"
-							phoneInputClassName="w-full !h-[58px] px-4 py-4 rounded-r-[200px] bg-[#F4F0E11A] placeholder:text-[#F4F0E1] text-[#F4F0E1] font-raleway font-medium text-[16px] focus:outline-none border border-[#D9D3BA] border-l-[0px]"
-							buttonClassName="w-full h-14 font-raleway font-extrabold text-[#000000] rounded-[50px] px-6 text-base uppercase tracking-wide transition-all hover:brightness-110 border-2 border-transparent [background:linear-gradient(88.53deg,_#FFD17E_0%,_#B37E21_100%)_padding-box,_linear-gradient(180deg,_#FFDA99_0%,_#AD7512_100%)_border-box] shadow-[0px_6px_13px_0px_rgba(179,126,33,0.25)]"
-						/>
-					</div>
-				</div>
-			</div>
-		</section>
-	);
+            <div className="mt-3 hidden items-center gap-5 text-[#F4F0E1] md:flex">
+              <div className="flex items-center gap-2 text-[14px] font-medium">
+                <CalendarDays className="text-[#C0964B]" size={16} />
+                <span>24, 25 e 26/11 | Às 19h55</span>
+              </div>
+
+              <div className="flex items-center gap-2 text-[14px] font-medium">
+                <Smartphone className="text-[#C0964B]" size={16} />
+                <span>Online e Gratuito</span>
+              </div>
+            </div>
+
+            <div className="mt-4 h-[87px] w-full font-spectral text-[24px] font-extrabold uppercase leading-[120%] text-[#F4F0E1] md:hidden">
+              Faça seu diagnóstico de dependência <span className="text-[#C0964B]">emocional</span> gratuito
+            </div>
+
+            <div className="mt-6 hidden text-left md:block">
+              <div className="font-spectral text-[36px] font-extrabold leading-none text-[#F4F0E1]">{titleRedLine}</div>
+            </div>
+
+            <div className="mb-5 mt-3 h-[66px] w-full font-spectral text-[16px] font-normal leading-[135%] text-[#D3CAC0] md:hidden">
+              Descubra quais padrões invisíveis travam o seu financeiro e aprenda como superá-los na{" "}
+              <span className="font-bold text-[#C0964B]">Última Edição do Resgate dos Otimistas.</span>
+            </div>
+
+            <div className="mb-8 mt-4 hidden max-w-[460px] font-spectral text-[20px] leading-[135%] text-[#D3CAC0] md:block">
+              {redLine || (
+                <>
+                  Descubra como <span className="font-bold text-[#C0964B]">aumentar o seu nível de permissão</span> e melhorar seus resultados nas finanças, nos relacionamentos e na saúde.
+                </>
+              )}
+            </div>
+
+            <div className="w-full md:max-w-[460px]">
+              <LeadCaptureForm
+                formName={formName}
+                onSubmit={onSubmit}
+                submitError={submitError}
+                submitLabel="PARTICIPAR GRATUITAMENTE"
+                submittingLabel="ENVIANDO..."
+                emailInputClassName="h-[58px] w-full rounded-full border border-[#D9D3BA] bg-[#F4F0E11A] px-5 text-[#F4F0E1] placeholder:text-[#F4F0E1]"
+                ddiSelectClassName="h-[58px] rounded-l-full border border-r-0 border-[#D9D3BA] bg-[#F4F0E11A] pl-10 pr-2 text-[#F4F0E1] focus:outline-none [&>option]:bg-black [&>option]:text-white"
+                phoneInputClassName="!h-[58px] w-full rounded-r-full border border-l-0 border-[#D9D3BA] bg-[#F4F0E11A] px-4 text-[#F4F0E1] placeholder:text-[#F4F0E1] focus:outline-none"
+                buttonClassName="h-14 w-full rounded-full border-2 border-transparent px-6 font-raleway text-base font-extrabold uppercase text-black transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 [background:linear-gradient(88.53deg,_#FFD17E_0%,_#B37E21_100%)_padding-box,_linear-gradient(180deg,_#FFDA99_0%,_#AD7512_100%)_border-box] shadow-[0_6px_13px_rgba(179,126,33,0.25)]"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-1/2 z-20 flex h-[25px] w-screen -translate-x-1/2 items-center overflow-hidden border border-[#C0964B] bg-[#07242C] md:hidden">
+          <div className="hero-mobile-marquee flex w-max shrink-0 items-center whitespace-nowrap">
+            {[0, 1].map((group) => (
+              <div key={group} className="flex shrink-0 items-center gap-[8px] pr-[8px]">
+                {marqueeItems.map((_, index) => (
+                  <div key={index} className="flex shrink-0 items-center gap-[8px]">
+                    <span className="font-raleway text-[8px] font-medium uppercase leading-none tracking-[0.02em] text-[#F4F0E1]">
+                      O ÚLTIMO RESGATE DOS OTIMISTAS
+                    </span>
+                    <span className="h-[3px] w-[3px] shrink-0 rounded-full bg-white" />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <style jsx>{`
+        .hero-mobile-marquee {
+          animation: hero-mobile-marquee 22s linear infinite;
+          will-change: transform;
+        }
+
+        @keyframes hero-mobile-marquee {
+          from {
+            transform: translateX(0);
+          }
+
+          to {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
+    </>
+  );
 }
