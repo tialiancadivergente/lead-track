@@ -755,7 +755,7 @@ export default function Quiz({ params }: { params: { form: string } }) {
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="text-[#c0964b]" size={20} />
-                  24, 25 e 26/11 | ÀS 19h55
+                  20, 21 e 22/07 | ÀS 19h55
                 </div>
               </div>
               <p
