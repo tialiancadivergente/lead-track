@@ -49,7 +49,7 @@ export default function HeroSection({ titleRedLine, redLine, formName, onSubmit,
             <div className="mt-3 flex h-[18px] w-full items-center gap-4 whitespace-nowrap font-raleway text-[14px] font-medium leading-[135%] text-[#F4F0E1] md:hidden">
               <div className="flex items-center gap-2">
                 <CalendarDays className="shrink-0 text-[#C0964B]" size={14} />
-                <span>20, 21 e 22/Julho | Às 19h55</span>
+                <span>20, 21 e 22/07 | Às 19h55</span>
               </div>
 
               <div className="flex items-center gap-2">
@@ -61,7 +61,7 @@ export default function HeroSection({ titleRedLine, redLine, formName, onSubmit,
             <div className="mt-3 hidden items-center gap-5 text-[#F4F0E1] md:flex">
               <div className="flex items-center gap-2 text-[14px] font-medium">
                 <CalendarDays className="text-[#C0964B]" size={16} />
-                <span>20, 21 e 22/Julho | Às 19h55</span>
+                <span>20, 21 e 22/07 | Às 19h55</span>
               </div>
 
               <div className="flex items-center gap-2 text-[14px] font-medium">
