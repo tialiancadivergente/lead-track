@@ -14,9 +14,18 @@ import Formv9 from "@/app/oro/[version]/v9";
 import Formv10 from "@/app/oro/[version]/v10";
 import Ind from "@/app/oro/[version]/group";
 import Formv11 from "@/app/oro/[version]/v11";
+import Formv12 from "@/app/oro/[version]/v12";
 
 export default function Home() {
   const { version } = useParams();
+
+  if (version === "v12") {
+    return (
+      <SplashScreenOro>
+        <Formv12 />
+      </SplashScreenOro>
+    );
+  }
 
   if (version === "v11") {
     return (
