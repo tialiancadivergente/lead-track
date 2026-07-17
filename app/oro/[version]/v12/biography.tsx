@@ -23,7 +23,7 @@ export default function Biography() {
       className="relative left-1/2 z-0 -mt-[2px] flex h-[2212px] w-screen -translate-x-1/2 flex-col items-center justify-start overflow-hidden bg-[#031B22] bg-[url('/images/oro/v12/bg_segunda_dobra_mobile.png')] bg-cover bg-top bg-no-repeat px-4 pb-14 md:h-[1618px] md:bg-[url('/images/oro/v12/bg_segunda_dobra_desktop.png')] md:bg-center md:px-0"
     >
       <div className="mx-auto w-full max-w-[348px] md:w-[1080px] md:max-w-none">
-        <div className="mt-7 text-center md:mt-14 md:-translate-y-[100px]">
+        <div className="mt-7 text-center md:mt-14 md:-translate-y-[60px]">
           <h2 id="biography-title" className="h-[140px] font-teramo text-[24px] font-bold uppercase leading-[145%] text-[#C0964B] md:mx-auto md:h-auto md:max-w-[760px] md:text-[32px]">
             A sua última chance de descobrir por que você não foi mais longe
           </h2>
