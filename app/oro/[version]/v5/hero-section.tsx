@@ -2,7 +2,9 @@
 
 import type { ReactNode } from "react";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import { CalendarDays, Smartphone } from "lucide-react";
+import { getEventConfigFromSlug } from "@/lib/config/event-config";
 import { LeadCaptureForm, type LeadCaptureSubmitData } from "@/app/components/form/lead-capture-form";
 
 interface ContainerProps {
@@ -16,6 +18,10 @@ interface ContainerProps {
 const marqueeItems = Array.from({ length: 8 });
 
 export default function HeroSection({ titleRedLine, redLine, formName, onSubmit, submitError }: ContainerProps) {
+  const params = useParams();
+  const event = getEventConfigFromSlug(params.slug);
+  const eventDate = event.region === "Brasil" ? "20, 21 e 22/07" : "24, 25 E 26/08";
+
   return (
     <>
       <section
@@ -49,7 +55,7 @@ export default function HeroSection({ titleRedLine, redLine, formName, onSubmit,
             <div className="mt-3 flex h-[18px] w-full items-center gap-4 whitespace-nowrap font-raleway text-[14px] font-medium leading-[135%] text-[#F4F0E1] md:hidden">
               <div className="flex items-center gap-2">
                 <CalendarDays className="shrink-0 text-[#C0964B]" size={14} />
-                <span>20, 21 e 22/07 | Às 19h55</span>
+                <span>{eventDate} | ÀS {event.time}</span>
               </div>
 
               <div className="flex items-center gap-2">
@@ -61,7 +67,7 @@ export default function HeroSection({ titleRedLine, redLine, formName, onSubmit,
             <div className="mt-3 hidden items-center gap-5 text-[#F4F0E1] md:flex">
               <div className="flex items-center gap-2 text-[14px] font-medium">
                 <CalendarDays className="text-[#C0964B]" size={16} />
-                <span>20, 21 e 22/07 | Às 19h55</span>
+                <span>{eventDate} | ÀS {event.time}</span>
               </div>
 
               <div className="flex items-center gap-2 text-[14px] font-medium">

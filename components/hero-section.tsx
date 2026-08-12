@@ -6,6 +6,7 @@ import Image from "next/image"
 import { useParams, useSearchParams } from "next/navigation"
 import { NormalizedTemperature, normalizeTemperature } from "@/lib/temperature-utils"
 import { LEAD_TRACK_CONFIG } from "@/lib/config/lead-track-config"
+import { getEventConfigFromSlug } from "@/lib/config/event-config"
 import { useCreateLeadCapture } from "@/app/modules/lead-capture/hook/use-create-lead-capture"
 import { LeadCaptureForm, LeadCaptureSubmitData } from "@/app/components/form/lead-capture-form"
 import { getTrackingCookies, getTrackingPageInfo, getTrackingUtmInfo } from "@/lib/tracking/lead-tracking-browser"
@@ -28,6 +29,7 @@ export default function HeroSection() {
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const { launch, season, tag_id } = LEAD_TRACK_CONFIG;
+  const event = getEventConfigFromSlug(params.temperatura);
 
   const mutationCreate = useCreateLeadCapture();
 
@@ -269,7 +271,7 @@ export default function HeroSection() {
                 buttonClassName="w-full bg-custom-primary-gold text-white font-medium py-3 px-6 rounded-md transition-all hover:brightness-110 uppercase text-sm tracking-wider"
               />
             </div>
-            <p className="text-[#C0964B] text-lg mt-4 text-center md:text-left" style={{ color: "#C0964B" }}>ONLINE E GRATUITO. 20, 21 e 22 de julho às 19h55</p>
+            <p className="text-[#C0964B] text-lg mt-4 text-center md:text-left" style={{ color: "#C0964B" }}>ONLINE E GRATUITO. {event.date} ÀS {event.time}</p>
           </div>
 
           {/* Coluna da direita - Imagem Hero */}
