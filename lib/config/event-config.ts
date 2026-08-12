@@ -7,12 +7,12 @@ export const EVENT_CONFIG = {
 	eua: {
 		region: "Flórida",
 		date: "24, 25 E 26 DE AGOSTO",
-		time: "20H55",
+		time: "19H55",
 	},
 	pt: {
 		region: "Portugal",
 		date: "24, 25 E 26 DE AGOSTO",
-		time: "15H55",
+		time: "19H55",
 	},
 } as const;
 

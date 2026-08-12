@@ -33,6 +33,7 @@ import { sendLeadScoreTracking } from "@/lib/tracking/leadScoreTracking";
 
 function QuizNewPageContent() {
   const searchParams = useSearchParams();
+  const region = (searchParams.get("region") || "").toLowerCase();
 
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -151,8 +152,8 @@ function QuizNewPageContent() {
   }, [questionsDataUpdatedAt]);
 
   const whatsappUrl = useMemo(() => {
-    return resolveQuestTesteWhatsappUrl(temperature);
-  }, [temperature]);
+    return resolveQuestTesteWhatsappUrl(temperature, region);
+  }, [temperature, region]);
 
   const fetchQuestions = useCallback(async () => {
     await refetchQuestions();

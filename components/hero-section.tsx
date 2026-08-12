@@ -30,6 +30,15 @@ export default function HeroSection() {
 
   const { launch, season, tag_id } = LEAD_TRACK_CONFIG;
   const event = getEventConfigFromSlug(params.temperatura);
+  const rawEventParam = Array.isArray(params.temperatura)
+    ? params.temperatura[0]
+    : params.temperatura;
+  const eventRegion =
+    typeof rawEventParam === "string"
+      ? rawEventParam
+          .split("-")
+          .find((part) => part === "latam" || part === "eua" || part === "pt")
+      : undefined;
 
   const mutationCreate = useCreateLeadCapture();
 
@@ -199,7 +208,7 @@ export default function HeroSection() {
 
       window.location.href = `/quiz-new/?temperature=${temperatura}&requestId=${encodeURIComponent(
         requestId
-      )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}`;
+      )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}${eventRegion ? `&region=${encodeURIComponent(eventRegion)}` : ""}`;
     } catch (error) {
       console.error("Erro ao enviar cadastro:", error);
       setSubmitError("Nao foi possivel enviar seu cadastro agora.");
