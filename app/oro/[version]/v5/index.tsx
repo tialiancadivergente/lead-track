@@ -42,52 +42,9 @@ export default function Formv5() {
       ? rawSlug
       : undefined;
 
-  const { launch, season, tag_id } = LEAD_TRACK_CONFIG;
+  const { launch, season, tag_id, tag_id_International } = LEAD_TRACK_CONFIG;
 
   const mutationCreate = useCreateLeadCapture();
-
-  // ************* INICIO - CODIGO LEGADO ************* 
-  // Capturar UTMs da queryString
-  useEffect(() => {
-    if (searchParams) {
-      const utmParams: Record<string, string> = {};
-      let hasUtm = false;
-
-      // Lista de parâmetros UTM comuns
-      const utmKeys = [
-        "utm_source",
-        "utm_medium",
-        "utm_campaign",
-        "utm_term",
-        "utm_content",
-        "utm_id",
-      ];
-
-      // Verificar cada parâmetro UTM
-      utmKeys.forEach((key) => {
-        const value = searchParams.get(key);
-        if (value) {
-          utmParams[key] = value;
-          hasUtm = true;
-        }
-      });
-
-      // Adicionar outros parâmetros da query que não são UTM
-      searchParams.forEach((value, key) => {
-        if (!utmKeys.includes(key) && key !== "temperatura") {
-          utmParams[key] = value;
-          hasUtm = true;
-        }
-      });
-
-      // Definir formFields apenas se houver UTMs
-      if (hasUtm) {
-        console.log("UTM params:", utmParams);
-        setFormFields(utmParams);
-      }
-    }
-  }, [searchParams]);
-  // ************* FINAL - CODIGO LEGADO ************* 
 
   useEffect(() => {
     if (params && params.temperature) {
@@ -118,43 +75,11 @@ export default function Formv5() {
     setSubmitError(null);
 
     try {
-      const resolvedTagId = tag_id(temperatura);
+      const resolvedTagId = 
+        tag_id_International(region) || tag_id(temperatura);
       const { currentUrl, currentPath, currentPage } = getTrackingPageInfo();
       const { utmObject, getUtmValue } = getTrackingUtmInfo();
       const cookies = getTrackingCookies();
-
-      // ************* INICIO - CODIGO LEGADO *************
-      const payloadDynamo: Record<string, any> = {
-        email: data.email,
-        phone: data.normalizedPhone,
-        temperature: temperatura,
-        tipo: `redline-${params.headline}`,
-        version: params.version,
-        parametroCompleto: `${currentPage}${currentPath}`,
-        domain: currentPage,
-        uri: currentPage,
-        tagId: resolvedTagId,
-        launch,
-        path: window.location.pathname,
-      };
-
-      // Adicionar formFields ao payload apenas se existir
-      if (formFields) {
-        payloadDynamo.formFields = formFields;
-      }
-
-      const responseDynamo = await fetch("/api/register-lead", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payloadDynamo),
-      });
-
-      if (!responseDynamo.ok) {
-        throw new Error("Falha ao registrar lead no dynamo");
-      }
-      // ************* FINAL - CODIGO LEGADO *************
 
       const payload: LeadRegistrationPayload = {
         email: data.email,

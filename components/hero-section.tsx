@@ -87,8 +87,6 @@ export default function HeroSection() {
   const handleLeadCaptureSubmit = async (data: LeadCaptureSubmitData) => {
     setSubmitError(null);
 
-    console.log('AQUI TAG = ', tag_id_International(eventRegion) || tag_id(temperatura))
-
     try {
       const resolvedTagId =
         tag_id_International(eventRegion) || tag_id(temperatura);
