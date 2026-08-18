@@ -6,7 +6,7 @@ import Image from "next/image"
 import { useParams } from "next/navigation"
 import { NormalizedTemperature, normalizeTemperature } from "@/lib/temperature-utils"
 import { LEAD_TRACK_CONFIG } from "@/lib/config/lead-track-config"
-import { getEventConfigFromSlug } from "@/lib/config/event-config"
+import { EVENT_CONFIG, getEventConfigFromSlug } from "@/lib/config/event-config"
 import { useCreateLeadCapture } from "@/app/modules/lead-capture/hook/use-create-lead-capture"
 import { LeadCaptureForm, LeadCaptureSubmitData } from "@/app/components/form/lead-capture-form"
 import { getTrackingCookies, getTrackingPageInfo, getTrackingUtmInfo } from "@/lib/tracking/lead-tracking-browser"
@@ -25,16 +25,21 @@ export default function HeroSection() {
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const { launch, season, tag_id, tag_id_International } = LEAD_TRACK_CONFIG;
-  const event = getEventConfigFromSlug(params.temperatura);
   const rawEventParam = Array.isArray(params.temperatura)
     ? params.temperatura[0]
     : params.temperatura;
-  const eventRegion =
-    typeof rawEventParam === "string"
+  const isOrdoV9Ago26 =
+    rawEventParam === "ordo-v9-h1-6-q" || rawEventParam === "ordo-v9-q";
+  const eventRegion = isOrdoV9Ago26
+    ? "latam"
+    : typeof rawEventParam === "string"
       ? rawEventParam
           .split("-")
           .find((part) => part === "latam" || part === "eua" || part === "pt")
       : undefined;
+  const event = isOrdoV9Ago26
+    ? EVENT_CONFIG.latam
+    : getEventConfigFromSlug(params.temperatura);
 
   const mutationCreate = useCreateLeadCapture();
 
@@ -127,7 +132,9 @@ export default function HeroSection() {
         throw new Error("requestId nao retornado na resposta.");
       }
 
-      window.location.href = `/quiz-new/?temperature=${temperatura}&requestId=${encodeURIComponent(
+      const quizPath = isOrdoV9Ago26 ? "/quiz-oro" : "/quiz-new";
+
+      window.location.href = `${quizPath}/?temperature=${temperatura}&requestId=${encodeURIComponent(
         requestId
       )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}${eventRegion ? `&region=${encodeURIComponent(eventRegion)}` : ""}`;
     } catch (error) {
