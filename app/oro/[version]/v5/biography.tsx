@@ -19,7 +19,7 @@ function ParticipateButton() {
 
 export default function Biography() {
   return (
-    <section className="relative z-0 flex h-[1992px] flex-col items-center justify-start overflow-hidden bg-[#031B22] bg-[url('/images/oro/v5.1/bg_segunda_dobra_mobile.png')] bg-cover bg-top px-4 pb-14 md:h-[1607px] md:bg-[url('/images/oro/v5.1/bg_sugunda_dobra_desktop.png')] md:bg-center md:px-0">
+    <section className="relative z-0 flex h-[1992px] flex-col items-center justify-start overflow-hidden bg-[#031B22] bg-[url('/images/oro/v5/biografia_elton_mobile.webp')] bg-cover bg-top px-4 pb-14 md:h-[1607px] md:bg-[url('/images/oro/v5/biografia_elton_desktop.webp')] md:bg-center md:px-0">
       <div className="mx-auto w-full max-w-[348px] md:w-[1080px] md:max-w-none">
         <div className="mt-7 text-center md:mt-14">
           <h2 className="h-[140px] font-teramo text-[24px] font-bold uppercase leading-[145%] text-[#C0964B] md:mx-auto md:h-auto md:max-w-[760px] md:text-[32px]">
@@ -48,32 +48,35 @@ export default function Biography() {
               Quem vai ser o seu mentor nessa jornada?
             </h3>
 
-            <p className="mb-6 mt-4 font-raleway text-[20px] font-bold text-[#C0964B] md:text-[24px]">
-              Ramon Galimberti
+            <p className="mt-4 font-raleway text-[20px] font-bold text-[#C0964B] md:text-[24px]">
+              Elton Euler
+            </p>
+            <p className="mb-6 font-raleway text-[16px] font-bold text-[#F4F0E1] md:text-[20px]">
+              Líder e Idealizador da Aliança Divergente
             </p>
 
             <div className="flex flex-col gap-4 font-raleway text-[16px] font-normal leading-[145%]">
               <p>
-                Ramon fez tudo o que disseram que daria certo. Estudou, se formou, foi até o mestrado. Tinha tudo o que deveria pra dar certo. E mesmo assim, não dava.
+                Elton Euler é um dos maiores exemplos de superação e transformação da atualidade.
               </p>
 
               <p>
-                Perto dos 30, se viu morando em cima da casa pais. Desempregado. Saindo de um relacionamento que tinha desabado. Usando o ticket do pai pra fazer compra no mercado e virar o mês. Diploma bonito na parede, mas o bolso vazio bonito na parede, mas o bolso vazio. E foi nesse momento que ele pensou: &quot;o sucesso não é pra mim.&quot;
+                Antes de se tornar multimilionário e referência no desenvolvimento humano, quebrou 17 vezes e chegou a acreditar que sua vida não tinha mais solução.
               </p>
 
               <p>
-                Até descobrir o que realmente travava tudo, e não tinha nada a ver com competência. Era Permissão. Existia um padrão invisível que decidia o resultado por ele, antes que ele tivesse qualquer chance. Quando ele quebrou esse padrão, rompeu o teto financeiro que o prendia havia anos e que parecia impossível de ultrapassar.
+                Decidido a mudar sua história, Elton descobriu o que realmente bloqueava seus resultados e, em menos de 3 anos, saiu das dívidas e construiu uma vida de prosperidade.
               </p>
 
               <p>
-                Hoje Ramon é o primeiro brasileiro autorizado a aplicar a Teoria da Permissão e guiou mais de 160 mil pessoas a enxergarem o mesmo padrão que as mantém presas: no dinheiro, na carreira e nas relações.
+                Hoje, já ajudou mais de 160 mil pessoas em 60 países a destravarem suas vidas financeiras, suas carreiras e suas relações emocionais com técnicas práticas e poderosas.
               </p>
 
               <p>
-                No Resgate dos Otimistas, você vai entender que todo acontecimento ruim tem uma explicação, e a sua falta de resultado tem resposta. Uma resposta que você vai identificar, pra romper o seu teto financeiro de forma definitiva.
+                Agora, ele vai te mostrar o que está faltando para você desbloquear sua Permissão e elevar sua vida a um novo patamar.
               </p>
 
-              <p className="font-bold">Você tem coragem de ver?</p>
+              <p className="font-bold">Você está pronto para descobrir?</p>
 
               <div className="mt-2">
                 <ParticipateButton />
@@ -83,7 +86,7 @@ export default function Biography() {
         </div>
       </div>
 
-      <Image src="/images/oro/v5.1/bg_segunda_dobra_mobile.png" alt="" width={1} height={1} className="hidden" />
+      <Image src="/images/oro/v5/biografia_elton_mobile.webp" alt="" width={1} height={1} className="hidden" />
     </section>
   );
 }

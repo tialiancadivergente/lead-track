@@ -36,7 +36,8 @@ export default function Formv10() {
     null
   );
 
-  const { launch, season, tag_id } = LEAD_TRACK_CONFIG;
+  const { launch, season, tag_id, tag_id_International } = LEAD_TRACK_CONFIG;
+  const region = "pt";
 
   const mutationCreate = useCreateLeadCapture();
 
@@ -112,7 +113,7 @@ export default function Formv10() {
     setSubmitError(null);
 
     try {
-      const resolvedTagId = tag_id(temperatura);
+      const resolvedTagId = tag_id_International(region) || tag_id(temperatura);
       const { currentUrl, currentPath, currentPage } = getTrackingPageInfo();
       const { utmObject, getUtmValue } = getTrackingUtmInfo();
       const cookies = getTrackingCookies();
@@ -185,7 +186,7 @@ export default function Formv10() {
 
       window.location.href = `/quiz-oro/?temperature=${temperatura}&requestId=${encodeURIComponent(
         requestId
-      )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}`;
+      )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}&region=${encodeURIComponent(region)}`;
     } catch (error) {
       console.error("Erro ao enviar cadastro:", error);
       setSubmitError("Nao foi possivel enviar seu cadastro agora.");
