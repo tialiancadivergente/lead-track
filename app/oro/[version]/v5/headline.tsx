@@ -120,7 +120,7 @@ export const Headline: IHeadline[] = [
     ),
     text: (
       <p className="font-spectral text-[16px] leading-[135%] text-[#D3CAC0] md:text-[20px]">
-        Identifique os padrões invisíveis que travam a sua vida financeira e
+        IIIdentifique os padrões invisíveis que travam a sua vida financeira e
         aprenda como superá-los no{" "}
         <span className="font-bold text-[#C0964B]">
           Resgate dos Otimistas.
