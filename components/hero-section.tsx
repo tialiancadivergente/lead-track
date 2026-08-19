@@ -3,10 +3,10 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { useParams, useSearchParams } from "next/navigation"
+import { useParams } from "next/navigation"
 import { NormalizedTemperature, normalizeTemperature } from "@/lib/temperature-utils"
 import { LEAD_TRACK_CONFIG } from "@/lib/config/lead-track-config"
-import { getEventConfigFromSlug } from "@/lib/config/event-config"
+import { EVENT_CONFIG, getEventConfigFromSlug } from "@/lib/config/event-config"
 import { useCreateLeadCapture } from "@/app/modules/lead-capture/hook/use-create-lead-capture"
 import { LeadCaptureForm, LeadCaptureSubmitData } from "@/app/components/form/lead-capture-form"
 import { getTrackingCookies, getTrackingPageInfo, getTrackingUtmInfo } from "@/lib/tracking/lead-tracking-browser"
@@ -15,11 +15,7 @@ import { HeadlineV9 } from "@/lib/config/headline/headline-v9"
 
 export default function HeroSection() {
   const params = useParams();
-  const searchParams = useSearchParams();
   const [titleRedLine, setTitleRedLine] = useState<React.ReactNode | null>(
-    null
-  );
-  const [formFields, setFormFields] = useState<Record<string, string> | null>(
     null
   );
   const [redLine, setRedLine] = useState<React.ReactNode | null>(null);
@@ -28,17 +24,22 @@ export default function HeroSection() {
   );
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const { launch, season, tag_id } = LEAD_TRACK_CONFIG;
-  const event = getEventConfigFromSlug(params.temperatura);
+  const { launch, season, tag_id, tag_id_International } = LEAD_TRACK_CONFIG;
   const rawEventParam = Array.isArray(params.temperatura)
     ? params.temperatura[0]
     : params.temperatura;
-  const eventRegion =
-    typeof rawEventParam === "string"
+  const isOrdoV9Ago26 =
+    rawEventParam === "ordo-v9-h1-6-q" || rawEventParam === "ordo-v9-q";
+  const eventRegion = isOrdoV9Ago26
+    ? "latam"
+    : typeof rawEventParam === "string"
       ? rawEventParam
           .split("-")
           .find((part) => part === "latam" || part === "eua" || part === "pt")
       : undefined;
+  const event = isOrdoV9Ago26
+    ? EVENT_CONFIG.latam
+    : getEventConfigFromSlug(params.temperatura);
 
   const mutationCreate = useCreateLeadCapture();
 
@@ -50,49 +51,6 @@ export default function HeroSection() {
 
     return undefined;
   };
-
-  // ************* INICIO - CODIGO LEGADO ************* 
-  // Capturar UTMs da queryString
-  useEffect(() => {
-    if (searchParams) {
-      const utmParams: Record<string, string> = {};
-      let hasUtm = false;
-
-      // Lista de parâmetros UTM comuns
-      const utmKeys = [
-        "utm_source",
-        "utm_medium",
-        "utm_campaign",
-        "utm_term",
-        "utm_content",
-        "utm_id",
-      ];
-
-      // Verificar cada parâmetro UTM
-      utmKeys.forEach((key) => {
-        const value = searchParams.get(key);
-        if (value) {
-          utmParams[key] = value;
-          hasUtm = true;
-        }
-      });
-
-      // Adicionar outros parâmetros da query que não são UTM
-      searchParams.forEach((value, key) => {
-        if (!utmKeys.includes(key) && key !== "temperatura") {
-          utmParams[key] = value;
-          hasUtm = true;
-        }
-      });
-
-      // Definir formFields apenas se houver UTMs
-      if (hasUtm) {
-        console.log("UTM params:", utmParams);
-        setFormFields(utmParams);
-      }
-    }
-  }, [searchParams]);
-  // ************* FINAL - CODIGO LEGADO ************* 
 
   useEffect(() => {
     if (params && params.temperatura) {
@@ -135,43 +93,11 @@ export default function HeroSection() {
     setSubmitError(null);
 
     try {
-      const resolvedTagId = tag_id(temperatura);
+      const resolvedTagId =
+        tag_id_International(eventRegion) || tag_id(temperatura);
       const { currentUrl, currentPath, currentPage } = getTrackingPageInfo();
       const { utmObject, getUtmValue } = getTrackingUtmInfo();
       const cookies = getTrackingCookies();
-
-      // ************* INICIO - CODIGO LEGADO *************
-      const payloadDynamo: Record<string, any> = {
-        email: data.email,
-        phone: data.normalizedPhone,
-        temperature: temperatura,
-        tipo: `redline-${params.headline}`,
-        version: params.version,
-        parametroCompleto: `${currentPage}${currentPath}`,
-        domain: currentPage,
-        uri: currentPage,
-        tagId: resolvedTagId,
-        launch,
-        path: window.location.pathname,
-      };
-
-      // Adicionar formFields ao payload apenas se existir
-      if (formFields) {
-        payloadDynamo.formFields = formFields;
-      }
-
-      const responseDynamo = await fetch("/api/register-lead", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payloadDynamo),
-      });
-
-      if (!responseDynamo.ok) {
-        throw new Error("Falha ao registrar lead no dynamo");
-      }
-      // ************* FINAL - CODIGO LEGADO *************
 
       const payload: LeadRegistrationPayload = {
         email: data.email,
@@ -206,7 +132,9 @@ export default function HeroSection() {
         throw new Error("requestId nao retornado na resposta.");
       }
 
-      window.location.href = `/quiz-new/?temperature=${temperatura}&requestId=${encodeURIComponent(
+      const quizPath = isOrdoV9Ago26 ? "/quiz-oro" : "/quiz-new";
+
+      window.location.href = `${quizPath}/?temperature=${temperatura}&requestId=${encodeURIComponent(
         requestId
       )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}${eventRegion ? `&region=${encodeURIComponent(eventRegion)}` : ""}`;
     } catch (error) {

@@ -29,6 +29,7 @@ export default function HeroSection({
 }: ContainerProps) {
   const params = useParams();
   const event = getEventConfigFromSlug(params.slug);
+
   const eventDate =
     event.region === "Brasil" ? "20, 21 e 22/07" : "24, 25 E 26/08";
 
@@ -64,14 +65,20 @@ export default function HeroSection({
           <div className="w-full max-w-[348px] md:mt-[250px] md:max-w-[620px]">
             <div className="mt-3 flex h-[18px] w-full items-center gap-4 whitespace-nowrap font-raleway text-[14px] font-medium leading-[135%] text-[#F4F0E1] md:hidden">
               <div className="flex items-center gap-2">
-                <CalendarDays className="shrink-0 text-[#C0964B]" size={14} />
+                <CalendarDays
+                  className="shrink-0 text-[#C0964B]"
+                  size={14}
+                />
                 <span>
                   {eventDate} | ÀS {event.time}
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <Smartphone className="shrink-0 text-[#C0964B]" size={14} />
+                <Smartphone
+                  className="shrink-0 text-[#C0964B]"
+                  size={14}
+                />
                 <span>Online e Gratuito</span>
               </div>
             </div>
@@ -176,6 +183,7 @@ export default function HeroSection({
           from {
             transform: translateX(0);
           }
+
           to {
             transform: translateX(-50%);
           }
