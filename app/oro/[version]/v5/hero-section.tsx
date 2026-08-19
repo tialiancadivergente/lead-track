@@ -5,7 +5,10 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { CalendarDays, Smartphone } from "lucide-react";
 import { getEventConfigFromSlug } from "@/lib/config/event-config";
-import { LeadCaptureForm, type LeadCaptureSubmitData } from "@/app/components/form/lead-capture-form";
+import {
+  LeadCaptureForm,
+  type LeadCaptureSubmitData,
+} from "@/app/components/form/lead-capture-form";
 
 interface ContainerProps {
   titleRedLine: ReactNode | null;
@@ -17,10 +20,17 @@ interface ContainerProps {
 
 const marqueeItems = Array.from({ length: 8 });
 
-export default function HeroSection({ titleRedLine, redLine, formName, onSubmit, submitError }: ContainerProps) {
+export default function HeroSection({
+  titleRedLine,
+  redLine,
+  formName,
+  onSubmit,
+  submitError,
+}: ContainerProps) {
   const params = useParams();
   const event = getEventConfigFromSlug(params.slug);
-  const eventDate = event.region === "Brasil" ? "20, 21 e 22/07" : "24, 25 E 26/08";
+  const eventDate =
+    event.region === "Brasil" ? "20, 21 e 22/07" : "24, 25 E 26/08";
 
   return (
     <>
@@ -51,11 +61,13 @@ export default function HeroSection({ titleRedLine, redLine, formName, onSubmit,
             />
           </div>
 
-          <div className="w-full max-w-[348px] md:mt-[250px] md:max-w-[520px]">
+          <div className="w-full max-w-[348px] md:mt-[250px] md:max-w-[620px]">
             <div className="mt-3 flex h-[18px] w-full items-center gap-4 whitespace-nowrap font-raleway text-[14px] font-medium leading-[135%] text-[#F4F0E1] md:hidden">
               <div className="flex items-center gap-2">
                 <CalendarDays className="shrink-0 text-[#C0964B]" size={14} />
-                <span>{eventDate} | ÀS {event.time}</span>
+                <span>
+                  {eventDate} | ÀS {event.time}
+                </span>
               </div>
 
               <div className="flex items-center gap-2">
@@ -67,7 +79,9 @@ export default function HeroSection({ titleRedLine, redLine, formName, onSubmit,
             <div className="mt-3 hidden items-center gap-5 text-[#F4F0E1] md:flex">
               <div className="flex items-center gap-2 text-[14px] font-medium">
                 <CalendarDays className="text-[#C0964B]" size={16} />
-                <span>{eventDate} | ÀS {event.time}</span>
+                <span>
+                  {eventDate} | ÀS {event.time}
+                </span>
               </div>
 
               <div className="flex items-center gap-2 text-[14px] font-medium">
@@ -76,23 +90,38 @@ export default function HeroSection({ titleRedLine, redLine, formName, onSubmit,
               </div>
             </div>
 
-            <div className="mt-4 h-[87px] w-full font-spectral text-[24px] font-extrabold uppercase leading-[120%] text-[#F4F0E1] md:hidden">
-              Faça seu diagnóstico de dependência <span className="text-[#C0964B]">emocional</span> gratuito
+            <div className="mt-4 w-full font-spectral text-[24px] font-extrabold uppercase leading-[120%] text-[#F4F0E1] md:hidden">
+              {titleRedLine}
             </div>
 
-            <div className="mt-6 hidden text-left md:block">
-              <div className="font-spectral text-[36px] font-extrabold leading-none text-[#F4F0E1]">{titleRedLine}</div>
+            <div className="mt-6 hidden w-full text-left md:block">
+              <div className="font-spectral text-[36px] font-extrabold leading-none text-[#F4F0E1]">
+                {titleRedLine}
+              </div>
             </div>
 
-            <div className="mb-5 mt-3 h-[66px] w-full font-spectral text-[16px] font-normal leading-[135%] text-[#D3CAC0] md:hidden">
-              Descubra quais padrões invisíveis travam o seu financeiro e aprenda como superá-los na{" "}
-              <span className="font-bold text-[#C0964B]">Última Edição do Resgate dos Otimistas.</span>
+            <div className="mb-5 mt-3 w-full font-spectral text-[16px] font-normal leading-[135%] text-[#D3CAC0] md:hidden">
+              {redLine || (
+                <>
+                  Descubra como{" "}
+                  <span className="font-bold text-[#C0964B]">
+                    aumentar o seu nível de permissão
+                  </span>{" "}
+                  e melhorar seus resultados nas finanças, nos relacionamentos e
+                  na saúde.
+                </>
+              )}
             </div>
 
             <div className="mb-8 mt-4 hidden max-w-[460px] font-spectral text-[20px] leading-[135%] text-[#D3CAC0] md:block">
               {redLine || (
                 <>
-                  Descubra como <span className="font-bold text-[#C0964B]">aumentar o seu nível de permissão</span> e melhorar seus resultados nas finanças, nos relacionamentos e na saúde.
+                  Descubra como{" "}
+                  <span className="font-bold text-[#C0964B]">
+                    aumentar o seu nível de permissão
+                  </span>{" "}
+                  e melhorar seus resultados nas finanças, nos relacionamentos e
+                  na saúde.
                 </>
               )}
             </div>
@@ -116,9 +145,15 @@ export default function HeroSection({ titleRedLine, redLine, formName, onSubmit,
         <div className="absolute bottom-0 left-1/2 z-20 flex h-[25px] w-screen -translate-x-1/2 items-center overflow-hidden border border-[#C0964B] bg-[#07242C] md:hidden">
           <div className="hero-mobile-marquee flex w-max shrink-0 items-center whitespace-nowrap">
             {[0, 1].map((group) => (
-              <div key={group} className="flex shrink-0 items-center gap-[8px] pr-[8px]">
+              <div
+                key={group}
+                className="flex shrink-0 items-center gap-[8px] pr-[8px]"
+              >
                 {marqueeItems.map((_, index) => (
-                  <div key={index} className="flex shrink-0 items-center gap-[8px]">
+                  <div
+                    key={index}
+                    className="flex shrink-0 items-center gap-[8px]"
+                  >
                     <span className="font-raleway text-[8px] font-medium uppercase leading-none tracking-[0.02em] text-[#F4F0E1]">
                       O ÚLTIMO RESGATE DOS OTIMISTAS
                     </span>
@@ -141,7 +176,6 @@ export default function HeroSection({ titleRedLine, redLine, formName, onSubmit,
           from {
             transform: translateX(0);
           }
-
           to {
             transform: translateX(-50%);
           }
