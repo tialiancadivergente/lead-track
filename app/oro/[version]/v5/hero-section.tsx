@@ -18,8 +18,6 @@ interface ContainerProps {
   submitError?: string | null;
 }
 
-const marqueeItems = Array.from({ length: 8 });
-
 export default function HeroSection({
   titleRedLine,
   redLine,
@@ -37,7 +35,7 @@ export default function HeroSection({
     <>
       <section
         id="hero"
-        className="relative flex h-[1120px] flex-col items-center justify-start overflow-hidden bg-[#071117] bg-[url('/images/oro/v5.1/bg_primeira_dobra_mobile.png')] bg-cover bg-top px-4 pt-2 md:h-[902px] md:bg-[url('/images/oro/v5.1/bg_primeira_dobra_desktop.png')] md:px-0"
+        className="relative flex h-[1120px] flex-col items-center justify-start overflow-hidden bg-[#071117] bg-[url('/images/oro/v5/o_resgate_dos_otimistas_mobile.webp')] bg-cover bg-top px-4 pt-2 md:h-[902px] md:bg-[url('/images/oro/v5/o_resgate_dos_otimistas_desktop.webp')] md:px-0"
       >
         <div className="relative mx-auto flex w-full flex-col items-center justify-start pt-2 md:w-[1080px] md:flex-row md:items-start md:justify-start md:pt-6">
           <div className="flex h-[135px] w-full max-w-[348px] justify-center md:hidden">
@@ -148,47 +146,7 @@ export default function HeroSection({
             </div>
           </div>
         </div>
-
-        <div className="absolute bottom-0 left-1/2 z-20 flex h-[25px] w-screen -translate-x-1/2 items-center overflow-hidden border border-[#C0964B] bg-[#07242C] md:hidden">
-          <div className="hero-mobile-marquee flex w-max shrink-0 items-center whitespace-nowrap">
-            {[0, 1].map((group) => (
-              <div
-                key={group}
-                className="flex shrink-0 items-center gap-[8px] pr-[8px]"
-              >
-                {marqueeItems.map((_, index) => (
-                  <div
-                    key={index}
-                    className="flex shrink-0 items-center gap-[8px]"
-                  >
-                    <span className="font-raleway text-[8px] font-medium uppercase leading-none tracking-[0.02em] text-[#F4F0E1]">
-                      O ÚLTIMO RESGATE DOS OTIMISTAS
-                    </span>
-                    <span className="h-[3px] w-[3px] shrink-0 rounded-full bg-white" />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
-
-      <style jsx>{`
-        .hero-mobile-marquee {
-          animation: hero-mobile-marquee 22s linear infinite;
-          will-change: transform;
-        }
-
-        @keyframes hero-mobile-marquee {
-          from {
-            transform: translateX(0);
-          }
-
-          to {
-            transform: translateX(-50%);
-          }
-        }
-      `}</style>
     </>
   );
 }
