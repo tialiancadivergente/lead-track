@@ -32,6 +32,7 @@ export default function HeroSection({
     event.region === "Brasil" ? "20, 21 e 22/07" : "24, 25 E 26/08";
 
   return (
+<<<<<<< HEAD
     <section
       id="hero"
       className="relative flex h-[1100px] flex-col items-center justify-start overflow-hidden bg-[#071117] bg-[url('/images/v5/bg_mobile_v5.png')] bg-cover bg-top px-4 pt-2 md:h-[902px] md:bg-[url('/images/v5/bg_desktop_v5.png')] md:px-0"
@@ -47,6 +48,24 @@ export default function HeroSection({
             className="pointer-events-none h-[135px] w-[348px] max-w-full translate-x-[35px] select-none object-contain"
           />
         </div>
+=======
+    <>
+      <section
+        id="hero"
+        className="relative flex h-[1120px] flex-col items-center justify-start overflow-hidden bg-[#071117] bg-[url('/images/oro/v5/o_resgate_dos_otimistas_mobile.webp')] bg-cover bg-top px-4 pt-2 md:h-[902px] md:bg-[url('/images/oro/v5/o_resgate_dos_otimistas_desktop.webp')] md:px-0"
+      >
+        <div className="relative mx-auto flex w-full flex-col items-center justify-start pt-2 md:w-[1080px] md:flex-row md:items-start md:justify-start md:pt-6">
+          <div className="flex h-[135px] w-full max-w-[348px] justify-center md:hidden">
+            <Image
+              src="/images/oro/v5.1/logo.svg"
+              alt="Resgate dos Otimistas"
+              width={348}
+              height={135}
+              priority
+              className="pointer-events-none h-[135px] w-[348px] max-w-full translate-x-[35px] select-none object-contain"
+            />
+          </div>
+>>>>>>> e650a313fba7d4111b4dd06c4c624cb24224bda9
 
         <div className="pointer-events-none absolute hidden md:left-[-100px] md:top-[20px] md:block">
           <Image
@@ -144,7 +163,12 @@ export default function HeroSection({
             />
           </div>
         </div>
+<<<<<<< HEAD
       </div>
     </section>
+=======
+      </section>
+    </>
+>>>>>>> e650a313fba7d4111b4dd06c4c624cb24224bda9
   );
 }
