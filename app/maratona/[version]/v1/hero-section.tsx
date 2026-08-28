@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import { useParams } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import type { LeadCaptureSubmitData } from "@/app/components/form/lead-capture-form";
+import { WhoWeAreCheckSection } from "./who-we-are.check";
 
 interface ContainerProps {
 	titleRedLine: ReactNode | null;
@@ -295,6 +296,8 @@ export default function HeroSection(_: ContainerProps) {
 					/>
 				</a>
 			</div>
+
+			<WhoWeAreCheckSection />
 
 			<style jsx>{`
 				.maratona-marquee {
