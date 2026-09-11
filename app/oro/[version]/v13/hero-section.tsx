@@ -27,8 +27,14 @@ export default function HeroSection({
 			aria-labelledby="hero-title"
 			className="relative h-[1177px] w-full overflow-hidden bg-[#F4EBD7] bg-[url('/images/omdp/v1/bg_mobile_lp_curta.png')] bg-cover bg-top bg-no-repeat md:h-[1001px] md:bg-[url('/images/omdp/v1/bg_desktop_lp_curta.png')]"
 		>
-			<div className="relative mx-auto flex h-full w-full justify-center px-4 pt-[130px] md:w-[1080px] md:justify-start md:px-0 md:pt-[205px]">
+			<div className="relative mx-auto flex h-full w-full justify-center px-4 pt-[105px] md:w-[1080px] md:justify-start md:px-0 md:pt-[205px]">
 				<div className="flex w-full max-w-[520px] flex-col items-center md:items-start">
+					<div className="mb-4 inline-flex self-center bg-[#0D313E] px-3 py-[7px] md:mb-6 md:self-start md:px-4 md:py-[9px]">
+						<span className="[font-family:Inter,sans-serif] text-[10px] font-bold uppercase leading-none tracking-[0.08em] text-white md:text-[13px]">
+							EXCLUSIVO PARA EX-ALIADOS
+						</span>
+					</div>
+
 					{titleRedLine}
 
 					<div className="mt-6 w-full md:mt-7">
