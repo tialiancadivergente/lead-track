@@ -40,7 +40,7 @@ export default function HeroSection({
 						</div>
 						<div className="flex items-center justify-center leading-none gap-2 text-[#F4F0E1] font-raleway font-medium text-xs md:text-[14px]">
 							<Smartphone className="text-[#C0964B]" size={18} />
-							Online e Gratuito
+							Online
 						</div>
 					</div>
 					<div className="md:mt-6 mt-3 mb-2 font-bebas-neue text-left">
