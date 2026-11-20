@@ -29,7 +29,7 @@ export default function HeroSection({
   const event = getEventConfigFromSlug(params.slug);
 
   const eventDate =
-    event.region === "Brasil" ? "20, 21 e 22/07" : "24, 25 E 26/08";
+    event.region === "Brasil" ? "07, 08 E 09/12" : "07, 08 E 09/12";
 
   return (
     <section
