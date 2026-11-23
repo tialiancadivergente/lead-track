@@ -15,6 +15,8 @@ import {
 import type { QuizQuestion } from "@/app/modules/lead-score/lead-score.types";
 import { useEffect } from "react";
 
+const WHATSAPP_V2_URL = "https://sendflow.click/i/oroeuropadez26";
+
 interface ContainerQuestProps {
   isFetchingQuestions: boolean;
   fetchError: string | null;
@@ -252,8 +254,8 @@ export default function ContainerQuest({
                 </div>
               )}
 
-              {showLeadCaptureForm && (
-                <div className="mb-6 md:mb-8 text-center text-white">
+              <div className="mb-6 md:mb-8 text-center text-white">
+                {showLeadCaptureForm ? (
                   <div className="w-full max-w-lg mx-auto">
                     <LeadCaptureForm
                       formName="quiz-lead-capture"
@@ -265,8 +267,31 @@ export default function ContainerQuest({
                       buttonClassName="w-full h-14 font-raleway font-extrabold text-[#000000] rounded-[8px] px-6 text-base uppercase tracking-wide transition-all hover:brightness-110 border border-transparent [background:linear-gradient(90deg,_#E1C371_0%,_#FCF3D4_100%)_padding-box,_linear-gradient(180deg,_rgba(255,255,255,0.25)_0%,_#FFF9E5_100%)_border-box] shadow-[0px_6px_18.9px_0px_#F7EDCC85]"
                     />
                   </div>
-                </div>
-              )}
+                ) : (
+                  <>
+                    <p
+                      className="dark:text-white light:text-[#07242C] text-xs md:text-sm mb-4 md:mb-5"
+                      style={{ fontFamily: '"Roboto", Sans-serif' }}
+                    >
+                      Após responder as questões, toque no botão abaixo
+                      <br className="hidden md:block" />
+                      para receber o link e materiais do evento:
+                    </p>
+
+                    <Button
+                      className="w-full max-w-sm py-4 md:py-6 text-sm md:text-base hover:opacity-90 transition-opacity duration-300 rounded-3xl"
+                      onClick={() => window.open(WHATSAPP_V2_URL, "_blank")}
+                      style={{
+                        background:
+                          "linear-gradient(96.48deg, #065100 -18.33%, #49E413 159.75%)",
+                        fontFamily: '"Roboto", Sans-serif',
+                      }}
+                    >
+                      Entrar no Grupo
+                    </Button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
