@@ -1,17 +1,17 @@
 export const EVENT_CONFIG = {
 	latam: {
 		region: "Argentina, Paraguai e Uruguai",
-		date: "07, 08 E 09 DE DEZEMBRO",
+		date: "08, 09 E 10 DE DEZEMBRO",
 		time: "19H55",
 	},
 	eua: {
 		region: "Flórida",
-		date: "07, 08 E 09 DE DEZEMBRO",
+		date: "08, 09 E 10 DE DEZEMBRO",
 		time: "19H55",
 	},
 	pt: {
 		region: "Portugal",
-		date: "07, 08 E 09 DE DEZEMBRO",
+		date: "08, 09 E 10 DE DEZEMBRO",
 		time: "19H55",
 	},
 } as const;
@@ -20,7 +20,7 @@ type EventRegion = keyof typeof EVENT_CONFIG;
 
 const DEFAULT_EVENT_CONFIG = {
 	region: "Brasil",
-	date: "07, 08 E 09 DE DEZEMBRO",
+	date: "08, 09 E 10 DE DEZEMBRO",
 	time: "19H55",
 } as const;
 
