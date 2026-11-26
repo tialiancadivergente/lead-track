@@ -15,11 +15,15 @@ import {
   type NormalizedTemperature,
 } from "@/lib/temperature-utils";
 import { useCreateLeadCapture } from "@/app/modules/lead-capture/hook/use-create-lead-capture";
+import { useCaptacaoOroWebhook } from "@/app/modules/lead-capture/hook/use-captacao-oro-webhook";
+import { buildCaptacaoOroPayload } from "@/lib/webhooks/captacao-oro";
+import { formatRequestErrorMessage } from "@/app/modules/format-request-error-message";
 import type {
   LeadRegistrationPayload,
 } from "@/app/modules/lead-capture/lead-capture.model";
 import ContainerTeste from "./container";
 import { Headline } from "./headline";
+import { saveLeadContact } from "@/lib/lead-contact-storage";
 
 export default function Formv5() {
   const params = useParams();
@@ -45,6 +49,7 @@ export default function Formv5() {
   const { launch, season, tag_id, tag_id_International } = LEAD_TRACK_CONFIG;
 
   const mutationCreate = useCreateLeadCapture();
+  const mutationCaptacaoOro = useCaptacaoOroWebhook();
 
   useEffect(() => {
     if (params && params.temperature) {
@@ -114,12 +119,30 @@ export default function Formv5() {
         throw new Error("requestId nao retornado na resposta.");
       }
 
+      try {
+        const captacaoOroPayload = buildCaptacaoOroPayload({
+          launch,
+          season,
+          temperatura,
+          lead: { phone: data.normalizedPhone, email: data.email },
+          getUtmValue,
+        });
+
+        await mutationCaptacaoOro.mutateAsync(captacaoOroPayload);
+      } catch {
+        console.warn("Falha na automacao de captacao ORO. Continuando para o quiz.");
+      }
+
+      if (!saveLeadContact(requestId, { email: data.email, phone: data.normalizedPhone })) {
+        setSubmitError("Nao foi possivel guardar seus dados neste navegador. Habilite o armazenamento para continuar.");
+        return;
+      }
+
       window.location.href = `/quiz-oro/?temperature=${temperatura}&requestId=${encodeURIComponent(
         requestId
-      )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}${region ? `&region=${encodeURIComponent(region)}` : ""}`;
+      )}${region ? `&region=${encodeURIComponent(region)}` : ""}`;
     } catch (error) {
-      console.error("Erro ao enviar cadastro:", error);
-      setSubmitError("Nao foi possivel enviar seu cadastro agora.");
+      setSubmitError(formatRequestErrorMessage(error));
     }
   };
 
