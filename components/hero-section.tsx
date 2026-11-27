@@ -8,6 +8,10 @@ import { NormalizedTemperature, normalizeTemperature } from "@/lib/temperature-u
 import { LEAD_TRACK_CONFIG } from "@/lib/config/lead-track-config"
 import { EVENT_CONFIG, getEventConfigFromSlug } from "@/lib/config/event-config"
 import { useCreateLeadCapture } from "@/app/modules/lead-capture/hook/use-create-lead-capture"
+import { useCaptacaoOroWebhook } from "@/app/modules/lead-capture/hook/use-captacao-oro-webhook"
+import { buildCaptacaoOroPayload } from "@/lib/webhooks/captacao-oro"
+import { saveLeadContact } from "@/lib/lead-contact-storage"
+import { formatRequestErrorMessage } from "@/app/modules/format-request-error-message"
 import { LeadCaptureForm, LeadCaptureSubmitData } from "@/app/components/form/lead-capture-form"
 import { getTrackingCookies, getTrackingPageInfo, getTrackingUtmInfo } from "@/lib/tracking/lead-tracking-browser"
 import { LeadRegistrationPayload } from "@/app/modules/lead-capture/lead-capture.model"
@@ -40,8 +44,12 @@ export default function HeroSection() {
   const event = isOrdoV9Ago26
     ? EVENT_CONFIG.latam
     : getEventConfigFromSlug(params.temperatura);
+  const internationalTagId = tag_id_International(eventRegion);
 
   const mutationCreate = useCreateLeadCapture();
+  const mutationCaptacaoOro = useCaptacaoOroWebhook({
+    international: Boolean(internationalTagId),
+  });
 
   const findHeadlineIdFromSlug = (parts: string[]): string | number | undefined => {
     const numericCandidate = parts.find((part) => /^\d+$/.test(part));
@@ -93,8 +101,7 @@ export default function HeroSection() {
     setSubmitError(null);
 
     try {
-      const resolvedTagId =
-        tag_id_International(eventRegion) || tag_id(temperatura);
+      const resolvedTagId = internationalTagId || tag_id(temperatura);
       const { currentUrl, currentPath, currentPage } = getTrackingPageInfo();
       const { utmObject, getUtmValue } = getTrackingUtmInfo();
       const cookies = getTrackingCookies();
@@ -132,14 +139,30 @@ export default function HeroSection() {
         throw new Error("requestId nao retornado na resposta.");
       }
 
-      const quizPath = isOrdoV9Ago26 ? "/quiz-oro" : "/quiz-new";
+      try {
+        const captacaoOroPayload = buildCaptacaoOroPayload({
+          launch,
+          season,
+          temperatura,
+          lead: { phone: data.normalizedPhone, email: data.email },
+          getUtmValue,
+        });
 
-      window.location.href = `${quizPath}/?temperature=${temperatura}&requestId=${encodeURIComponent(
-        requestId
-      )}&email=${encodeURIComponent(data.email)}&phone=${encodeURIComponent(data.normalizedPhone)}${eventRegion ? `&region=${encodeURIComponent(eventRegion)}` : ""}`;
+        await mutationCaptacaoOro.mutateAsync(captacaoOroPayload);
+      } catch {
+        console.warn("Falha na automacao de captacao ORO. Continuando para o quiz.");
+      }
+
+      if (!saveLeadContact(requestId, { email: data.email, phone: data.normalizedPhone })) {
+        setSubmitError("Nao foi possivel guardar seus dados neste navegador. Habilite o armazenamento para continuar.");
+        return;
+      }
+
+      const quizParams = new URLSearchParams({ temperature: temperatura || "f", requestId });
+      if (eventRegion) quizParams.set("region", eventRegion);
+      window.location.href = `/quiz-new/?${quizParams.toString()}`;
     } catch (error) {
-      console.error("Erro ao enviar cadastro:", error);
-      setSubmitError("Nao foi possivel enviar seu cadastro agora.");
+      setSubmitError(formatRequestErrorMessage(error));
     }
   };
 

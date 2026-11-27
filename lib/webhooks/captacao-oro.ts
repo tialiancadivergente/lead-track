@@ -3,6 +3,8 @@ import type { NormalizedTemperature } from "@/lib/temperature-utils";
 
 export const CAPTACAO_ORO_WEBHOOK_URL =
   "https://n8n.prod.awsales.io/webhook/captacao-oro-dez-26";
+export const CAPTACAO_ORO_INTERNATIONAL_WEBHOOK_URL =
+  "https://n8n.prod.awsales.io/webhook/captacao-oro-europa-dez-26";
 
 export const captacaoOroPayloadSchema = z.object({
   event: z.literal("custom_action"),

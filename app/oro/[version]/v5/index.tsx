@@ -47,9 +47,12 @@ export default function Formv5() {
       : undefined;
 
   const { launch, season, tag_id, tag_id_International } = LEAD_TRACK_CONFIG;
+  const internationalTagId = tag_id_International(region);
 
   const mutationCreate = useCreateLeadCapture();
-  const mutationCaptacaoOro = useCaptacaoOroWebhook();
+  const mutationCaptacaoOro = useCaptacaoOroWebhook({
+    international: Boolean(internationalTagId),
+  });
 
   useEffect(() => {
     if (params && params.temperature) {
@@ -80,8 +83,7 @@ export default function Formv5() {
     setSubmitError(null);
 
     try {
-      const resolvedTagId = 
-        tag_id_International(region) || tag_id(temperatura);
+      const resolvedTagId = internationalTagId || tag_id(temperatura);
       const { currentUrl, currentPath, currentPage } = getTrackingPageInfo();
       const { utmObject, getUtmValue } = getTrackingUtmInfo();
       const cookies = getTrackingCookies();
@@ -138,7 +140,7 @@ export default function Formv5() {
         return;
       }
 
-      window.location.href = `/quiz-oro/?temperature=${temperatura}&requestId=${encodeURIComponent(
+      window.location.href = `/quiz-new/?temperature=${temperatura}&requestId=${encodeURIComponent(
         requestId
       )}${region ? `&region=${encodeURIComponent(region)}` : ""}`;
     } catch (error) {

@@ -30,6 +30,7 @@ import { TRACKING_GA_PROPERTY_ID, TRACKING_LEADSCORE_EVENT_ID, TRACKING_LEADSCOR
 import { sendLeadTracking } from "@/lib/tracking/leadTracking";
 import useUserIP from "../hooks/useUserIP";
 import { sendLeadScoreTracking } from "@/lib/tracking/leadScoreTracking";
+import { readLeadContact, removeLeadContact } from "@/lib/lead-contact-storage";
 
 function QuizNewPageContent() {
   const searchParams = useSearchParams();
@@ -112,12 +113,14 @@ function QuizNewPageContent() {
     }
 
     const urlParams = new URLSearchParams(window.location.search);
+    const storedContact = readLeadContact(leadRegistrationRequestId);
 
     setFormVersionId(formVersionId);
     setLeadRegistrationRequestId(leadRegistrationRequestId);
     setTemperature(temperature);
-    setEmail(urlParams.get("email") || "");
-    setPhone(urlParams.get("phone") || urlParams.get("telefone") || "");
+    // Keep older form versions working while they migrate to storage.
+    setEmail(storedContact?.email || urlParams.get("email") || "");
+    setPhone(storedContact?.phone || urlParams.get("phone") || urlParams.get("telefone") || "");
   }, []);
 
   const {
@@ -230,6 +233,10 @@ function QuizNewPageContent() {
     if (!leadRegistrationRequestId) {
       throw new Error("requestId nao encontrado na URL.");
     }
+
+    const totalScore = calculateTotalScore(questions, answers);
+    const faixa = resolveFaixaByTotalScore(totalScore);
+    const formattedAnswers = formatAnswersForTracking(questions, answers);
 
     // *********** INICIO - CODIGO LEGADO *********** 
     const executeTracking = async () => {
@@ -359,10 +366,6 @@ function QuizNewPageContent() {
     void executeTracking();
     //  *********** FINAL - CODIGO LEGADO *********** 
 
-    const totalScore = calculateTotalScore(questions, answers);
-    const faixa = resolveFaixaByTotalScore(totalScore);
-    const formattedAnswers = formatAnswersForTracking(questions, answers);
-
     const gtmData = {
       email,
       phone,
@@ -384,6 +387,7 @@ function QuizNewPageContent() {
     };
 
     await mutationCreateLeadScoreStart.mutateAsync(payload);
+    removeLeadContact(leadRegistrationRequestId);
 
     if (TagManager.dataLayer) {
       TagManager.dataLayer({

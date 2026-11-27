@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import {
   CAPTACAO_ORO_WEBHOOK_URL,
+  CAPTACAO_ORO_INTERNATIONAL_WEBHOOK_URL,
   captacaoOroPayloadSchema,
 } from "@/lib/webhooks/captacao-oro";
 
@@ -16,7 +17,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const response = await fetch(CAPTACAO_ORO_WEBHOOK_URL, {
+    const international = new URL(request.url).searchParams.get("international") === "true";
+    const webhookUrl = international
+      ? CAPTACAO_ORO_INTERNATIONAL_WEBHOOK_URL
+      : CAPTACAO_ORO_WEBHOOK_URL;
+
+    const response = await fetch(webhookUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(parsed.data),
